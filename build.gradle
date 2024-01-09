@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+}
+
+group = 'app.koel.qa'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    implementation 'org.testng:testng:7.6.1'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.4.1'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    implementation 'tech.grasshopper:extentreports-cucumber7-adapter:1.14.0'
+    implementation 'io.cucumber:cucumber-testng:7.9.0'
+    testImplementation 'io.cucumber:cucumber-core:7.9.0'
+    testImplementation 'io.cucumber:cucumber-java:7.9.0'
+    testImplementation 'io.cucumber:cucumber-gherkin:7.9.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.9.0'
+    testImplementation 'com.aventstack:extentreports:5.0.9'
+    implementation 'org.apache.logging.log4j:log4j-api:2.22.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.22.0'
+    implementation 'org.json:json:20151123'
+    implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+
+}
+
+test {
+    useTestNG(){
+
+    }
+}
