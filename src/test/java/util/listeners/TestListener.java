@@ -22,8 +22,26 @@ import java.util.Set;
 
 public class TestListener  implements ITestListener, WebDriverListener {
     //Extent Report Declarations
-    ExtentReports extent = ExtentManager.getInstance();
-    ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    static ExtentReports extent = ExtentManager.getInstance();
+    static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    public static void logPassDetails(String log) {
+        test.get().pass(MarkupHelper.createLabel(log, ExtentColor.GREEN));
+    }
+    public static void logRsDetails(String log) {
+        test.get().info(MarkupHelper.createLabel(log, ExtentColor.WHITE));
+    }
+    public static void logAssertionDetails(String log) {
+        test.get().info(MarkupHelper.createLabel(log, ExtentColor.PURPLE));
+    }
+    public static void logFailureDetails(String log) {
+        test.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
+    }
+    public static void logExceptionDetails(String log) {
+        test.get().fail(log);
+    }
+    public static void logInfoDetails(String log) {
+        test.get().info(MarkupHelper.createLabel(log, ExtentColor.GREY));
+    }
     @Override
     public synchronized void onStart(ITestContext context) {
        Log.info("Extent Reports for Koel Automation Test Suite started!");
