@@ -25,9 +25,9 @@ public class SearchPage extends BasePage{
             List<WebElement> text = findElements(By.xpath("//section[@data-testid='"+section+"-excerpts']//p"));
             return text != null;
         }
+
+        //Does not work because shadow content is closed
         public WebElement getShadowCancelBtn() {
-
-
             WebElement host = driver.findElement(By.cssSelector("#searchForm > input[type='search']"));
             SearchContext shadowRoot = host.getShadowRoot();
             return shadowRoot.findElement(By.cssSelector("#text-field-container #search-clear"));
@@ -36,6 +36,7 @@ public class SearchPage extends BasePage{
         public String getSearchResultHeaderText() {
             return findElement(searchResultHeaderText).getText();
         }
+       //since cancel button is part of a shadow tree we have to access it by approximating its relative position with respect to the center of the search bar
         public void clickCancelBtn() {
             int width = searchInputLocator.getSize().getWidth();
             int height = searchInputLocator.getSize().getHeight();
