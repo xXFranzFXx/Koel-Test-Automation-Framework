@@ -3,15 +3,7 @@ package db;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-public class KoelDb {
-    package db;
-
 import org.mariadb.jdbc.Connection;
-
-import java.lang.reflect.InvocationTargetException;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
     public class KoelDb {
         public static Connection connection;
@@ -20,9 +12,6 @@ import java.sql.SQLException;
             return threadDriver.get();
         }
 
-        public static String DB_URL = System.getProperty("dbUrl");
-        public static String DB_USER = System.getProperty("dbUser");
-        public static String DB_PASS = System.getProperty("dbPassword");
         public static void initializeDb() throws SQLException, ClassNotFoundException {
             threadDriver.set(setupDB());
         }
@@ -45,4 +34,4 @@ import java.sql.SQLException;
         }
     }
 
-}
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="KoelDb" >
+    <listeners>
+        <listener class-name="util.listeners.TestListener"/>
+    </listeners>
+    <test name="Koel Db Tests" preserve-order="false">
+        <parameter name="artist" value="Grav"/>
+        <parameter name="koelUser" value="franz.fernando+1@testpro.io"/>
+        <classes>
+            <class name="db.KoelDbTests">
+            </class>
+        </classes>
+    </test>
+</suite>
