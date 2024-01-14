@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="KoelApi" >
+    <listeners>
+        <listener class-name="util.listeners.TestListener"/>
+    </listeners>
+    <test name="Koel Api Tests" preserve-order="false">
+        <parameter name="baseURL" value="https://qa.koel.app"/>
+        <classes>
+            <class name="api.ApiTests">
+            </class>
+        </classes>
+    </test>
+</suite>

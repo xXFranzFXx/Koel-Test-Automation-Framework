@@ -1,8 +1,10 @@
 package util.listeners;
 
 import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.markuputils.CodeLanguage;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.restassured.http.Header;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.events.WebDriverListener;
@@ -11,19 +13,22 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import util.TestUtil;
 import util.extentReports.ExtentManager;
+import util.extentReports.ExtentTestManager;
 import util.logs.Log;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
 public class TestListener  implements ITestListener, WebDriverListener {
     //Extent Report Declarations
-    ExtentReports extent = ExtentManager.getInstance();
-    ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    static ExtentReports extent = ExtentManager.getInstance();
+    static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
     @Override
     public synchronized void onStart(ITestContext context) {
        Log.info("Extent Reports for Koel Automation Test Suite started!");
@@ -46,15 +51,15 @@ public class TestListener  implements ITestListener, WebDriverListener {
     }
     @Override
     public synchronized void onTestFailure(ITestResult result) {
-        Log.error(result.getMethod().getMethodName() + " failed!");
-        try {
-            TestUtil.takeScreenshotAtEndOfTest(result.getMethod().getMethodName());
-            test.get().log(Status.FAIL, "fail ❌").addScreenCaptureFromPath("/reports/extent-reports/screenshots/" + result.getMethod().getMethodName() + ".png");
-            Log.info("screen shot taken for failed test " + result.getMethod().getMethodName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-            test.get().fail(result.getThrowable());
+        Log.error("Test Failed");
+        logFailureDetails(result.getThrowable().getMessage());
+        String stackTrace = Arrays.toString(result.getThrowable().getStackTrace());
+        stackTrace = stackTrace.replaceAll(",", "<br>");
+        String formmatedTrace = "<details>\n" +
+                "    <summary>Click Here To See Exception Logs</summary>\n" +
+                "    " + stackTrace + "\n" +
+                "</details>\n";
+        logExceptionDetails(formmatedTrace);
     }
     @Override
     public synchronized void onTestSkipped(ITestResult result) {
@@ -66,6 +71,29 @@ public class TestListener  implements ITestListener, WebDriverListener {
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         Log.info("onTestFailedButWithinSuccessPercentage for " + result.getMethod().getMethodName());
 
+    }
+    public static void logPassDetails(String log) {
+        test.get().pass(MarkupHelper.createLabel(log, ExtentColor.GREEN));
+    }
+    public static void logFailureDetails(String log) {
+        test.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
+    }
+    public static void logExceptionDetails(String log) {
+        test.get().fail(log);
+    }
+    public static void logInfoDetails(String log) {
+        test.get().info(MarkupHelper.createLabel(log, ExtentColor.GREY));
+    }
+    public static void logWarningDetails(String log) {
+        test.get().warning(MarkupHelper.createLabel(log, ExtentColor.YELLOW));
+    }
+    public static void logJson(String json) {
+        test.get().info(MarkupHelper.createCodeBlock(json, CodeLanguage.JSON));
+    }
+    public static void logHeaders(List<Header> headersList) {
+        String[][] arrayHeaders = headersList.stream().map(header -> new String[] {header.getName(), header.getValue()})
+                .toArray(String[][] :: new);
+        ExtentTestManager.getTest().info(MarkupHelper.createTable(arrayHeaders));
     }
     public void beforeAnyCall(Object target, Method method, Object[] args) {
         Log.debug( "Before calling method: " + method.getName());
