@@ -145,8 +145,12 @@ public class BasePage {
         actions.moveToElement(albumsLocator).perform();
         clickElement(albumsLocator);
     }
-    protected void allSongsPage() {  actions.moveToElement(allSongsLocator).perform();
+    public void allSongsPage() {  actions.moveToElement(allSongsLocator).perform();
         clickElement(allSongsLocator);
+    }
+
+    public void favorites() {actions.moveToElement(favoritesLocator).perform();
+        clickElement(favoritesLocator);
     }
     protected void homePage() {  actions.moveToElement(homeLocator).perform();
         clickElement(homeLocator);
@@ -154,9 +158,7 @@ public class BasePage {
     protected void about() { actions.moveToElement(aboutBtnLocator).perform();
             clickElement(aboutBtnLocator);
     }
-    protected void favorites() {actions.moveToElement(favoritesLocator).perform();
-        clickElement(favoritesLocator);
-    }
+
     public void clickLogoutButton() {
         findElement(logoutButtonLocator).click();
     }

@@ -18,6 +18,8 @@ public class AllSongsPage extends BasePage{
 
     @FindBy(xpath = "//nav[@id='sidebar']/section[@class='music']/ul/li[3]/a")
     private WebElement allSongsLocator;
+    @FindBy(xpath = "//section[@id='songsWrapper']//tr[@class='song-item']//button[@class='text-secondary' and contains(@title, 'Like')]")
+    private WebElement singleLikeButton;
     @FindBy(xpath = "//section[@id='songsWrapper']//tr[@class='song-item']//button[@class='text-secondary']")
     private List<WebElement> likeButtons;
     @FindBy(xpath = "//section[@id='songsWrapper']//tr[@class='song-item']//button[@class='text-secondary' and contains(@title, 'Like')]")
@@ -53,6 +55,12 @@ public class AllSongsPage extends BasePage{
         }
         return this;
     }
+
+    public AllSongsPage likeOneSong() {
+        findElement(singleLikeButton).click();
+        return this;
+    }
+
     //likes every song
     public AllSongsPage likeSongs() {
         if(unLikedButton.isEmpty()) return this;
