@@ -32,6 +32,7 @@ dependencies {
 
 test {
     useTestNG(){
+    suites "src/test/resources/config/KoelDb.xml"
 
     }
 }

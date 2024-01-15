@@ -1,0 +1,84 @@
+SELECT * FROM dbkoel.songs;
+
+SELECT * FROM dbkoel.songs WHERE title ='Dark Days';
+
+SELECT title, path FROM dbkoel.songs WHERE title ='Dark Days';
+
+SELECT * FROM dbkoel.artists WHERE name != 'Unknown Artist';
+
+SELECT * FROM dbkoel.artists
+WHERE name != 'Unknown Artist' AND name != 'Various Artists';
+
+SELECT email, updated_at FROM dbkoel.users
+WHERE email = '1254@gmail.com' OR email = 'admin@koel.dev';
+
+SELECT * FROM dbkoel.songs WHERE title LIKE "%Dark%";
+
+SELECT DISTINCT (name) FROM dbkoel.playlists;
+
+SELECT * FROM dbkoel.songs WHERE LENGTH BETWEEN 60 AND 120;
+
+SELECT * FROM dbkoel.songs WHERE track IN (1,2,3);
+
+SELECT * FROM dbkoel.songs ORDER BY title ASC;
+
+SELECT COUNT(*) FROM dbkoel.songs;
+
+SELECT SUM(length/60/60) FROM dbkoel.songs;
+
+SELECT AVG(length/60) FROM dbkoel.songs;
+
+SELECT MIN(length) FROM dbkoel.songs;
+
+SELECT MAX(length) FROM dbkoel.songs;
+
+SELECT * FROM dbkoel.songs ORDER BY length LIMIT 10;
+
+SELECT * FROM dbkoel.users u WHERE email = 'dancefront5@gmail.com';
+
+SELECT * FROM dbkoel.playlists WHERE name ='new';
+
+/*Find the playlists belonging to user registered as 'fake@fakeaccount.com'*/
+SELECT *  FROM dbkoel.users u
+JOIN dbkoel.playlists p
+ON u.id = p.user_id
+WHERE u.email = 'fake@fakeaccount.com';
+
+SELECT * FROM dbkoel.users u
+LEFT JOIN dbkoel.playlists p
+ON u.id = p.user_id;
+
+/*Select all the users that have playlists*/
+SELECT * FROM dbkoel.users u
+RIGHT JOIN dbkoel.playlists p
+ON u.id = p.user_id;
+
+/*Select all songs from the album 'Airbit'*/
+SELECT s.title as 'songs on Airbit' FROM dbkoel.songs s
+JOIN dbkoel.albums a
+ON s.album_id  = a.id
+WHERE a.name ='Airbit';
+
+/*select song, artist, album and song length and order them by song title*/
+SELECT s.title, ar.name as artist, al.name as album, s.length
+FROM dbkoel.songs s
+JOIN dbkoel.artists ar
+ON s.artist_id = ar.id
+JOIN dbkoel.albums al
+ON al.id = ar.id
+ORDER BY s.title;
+
+SELECT * FROM dbkoel.songs s
+LEFT JOIN dbkoel.artists ar
+ON s.artist_id  = ar.id
+WHERE s.title LIKE '%Dark%'
+
+/*bug, the result doesn't show up on the UI*/
+SELECT al.name, ar.name FROM dbkoel.albums al
+JOIN dbkoel.artists ar
+ON al.artist_id = ar.id
+WHERE al.name LIKE '%Dark%'
+
+/*bug no artist in database, but on the UI there is*/
+SELECT * FROM dbkoel.artists
+WHERE name LIKE '%Dark%'

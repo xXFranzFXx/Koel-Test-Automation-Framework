@@ -12,6 +12,7 @@ public class KoelDbActions extends KoelDb{
     private static Connection db ;
     private static PreparedStatement st;
     private static ResultSet rs;
+
     private final String getUserPwdInfo = """
             SELECT password, updated_at FROM dbkoel.users u WHERE u.email = ?
             """;
@@ -32,6 +33,11 @@ public class KoelDbActions extends KoelDb{
             LEFT JOIN dbkoel.artists a
             ON a.id = s.artist_id WHERE a.name = ?
             """;
+    private String songSpecificLength = """
+            SELECT * FROM dbkoel.songs WHERE LENGTH BETWEEN ? AND ?""";
+    private String usersThatHavePlaylsts = """
+            SELECT * FROM dbkoel.users u RIGHT JOIN dbkoel.playlists p ON u.id = p.user_id""";
+
 
     private ResultSet simpleQuery(String sql) throws SQLException {
         db = getDbConnection();
