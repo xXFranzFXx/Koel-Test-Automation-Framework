@@ -16,16 +16,17 @@ Java <br>
 * Cucumber - BDD testing <br>
 * REST Assured - Validation of REST web services<br>
 * MariaDB Connector/J - Database connector for Koel database<br>
+* Apache POI - Reading and writing data in .xlsx, .xls format<br>
 * LambdaTest - Cross-browser testing<br>
 * log4j - Capturing logs<br>
 * Extent Reports - reporting<br>
 * Gradle - Build and package management<br>
 * Jenkins - CI/CD<br>
 
-<h2>Overview</h2>
+<h3>Overview</h3>
 This project provides a testing framework based on page object model to automate tests for the Koel web application.  For the most part each branch serves a particular purpose: api, database, or web application testing. <br> 
 
-<h2>Getting Started</h2>
+<h3>Getting Started</h3>
 Follow these steps to get started with the Koel Test Automation Framework:<br><br>
 1.) Clone this repository to your local machine. <br>
 2.) cd Koel-Test-Automation <br>
@@ -36,7 +37,10 @@ Follow these steps to get started with the Koel Test Automation Framework:<br><b
 NOTE: If using Jenkins be sure to add a variable in the build.gradle file<br>
 <img  src="assets/jenkins.png" alt="jenkins" width="500"><br>
 
-<h2>Extent Reports</h2>
+<h3>Extent Reports</h3>
 Extent reports will be generated in the reports/extent-reports folder.<br>
 <img src="./assets/extent1.png" alt="extent1" width="550" height="530"> 
-<img src="./assets/extent2.png" alt="extent2" width="570" height="530">
+<img src="./assets/extent2.png" alt="extent2" width="550" height="530">
+
+<h3>Store Results in Excel Files, or Use as a Dataprovider<h3>
+<img src="./assets/ExcelFile.png" alt="extent1" width="550" height="530"> 
