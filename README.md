@@ -29,11 +29,11 @@ This project provides a testing framework based on page object model to automate
 Follow these steps to get started with the Koel Test Automation Framework:<br><br>
 1.) Clone this repository to your local machine. <br>
 2.) cd Koel-Test-Automation <br>
-3.) rename "sample.env" to ".env" in src/test/resources <br>
-4.) fill in all the appropriate property values in the .env file<br>
-5.) choose a branch<br>
+3.) Rename "sample.env" to ".env" in src/test/resources <br>
+4.) Fill in all the appropriate property values in the .env file<br>
+5.) Choose a branch<br>
 6.) gradle clean test<br>
-NOTE: if using Jenkins be sure to add a variable in the build.gradle file<br>
+NOTE: If using Jenkins be sure to add a variable in the build.gradle file<br>
 <img  src="assets/jenkins.png" alt="jenkins" width="500"><br>
 
 <h2>Extent Reports</h2>
