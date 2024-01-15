@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -88,6 +89,7 @@ public class BaseDefinitions {
                 ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito");
+                options.setExperimentalOption("prefs", setDownloadDir());
                 TestListener eventListener = new TestListener();
                 driver = new ChromeDriver(service, options);
                 EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator<>(eventListener);
@@ -110,6 +112,12 @@ public class BaseDefinitions {
     }
     public static void closeBrowser(){
             driver.quit();
+    }
+    public static HashMap<String, Object> setDownloadDir() {
+        HashMap<String, Object> chromePref = new HashMap<>();
+        chromePref.put("profile.default_content_settings.popups", 0);
+        chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
+        return chromePref;
     }
     public static String checkString(String string) {
         Pattern userPattern = Pattern.compile("^&&");
