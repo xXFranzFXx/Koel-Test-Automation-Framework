@@ -16,6 +16,7 @@ import util.logs.Log;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -63,17 +64,18 @@ public class TestListener  implements ITestListener, WebDriverListener {
         test.get().pass(MarkupHelper.createLabel("Test Passed", ExtentColor.GREEN));
     }
     @Override
-    public synchronized void onTestFailure(ITestResult result) {
-        Log.error(result.getMethod().getMethodName() + " failed!");
-        try {
-            TestUtil.takeScreenshotAtEndOfTest(result.getMethod().getMethodName());
-            test.get().log(Status.FAIL, "fail ❌").addScreenCaptureFromPath("/reports/extent-reports/screenshots/" + result.getMethod().getMethodName() + ".png");
-            Log.info("screen shot taken for failed test " + result.getMethod().getMethodName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-            test.get().fail(result.getThrowable());
+    public void onTestFailure(ITestResult result) {
+        Log.error("Test Failed");
+        logFailureDetails(result.getThrowable().getMessage());
+        String stackTrace = Arrays.toString(result.getThrowable().getStackTrace());
+        stackTrace = stackTrace.replaceAll(",", "<br>");
+        String formmatedTrace = "<details>\n" +
+                "    <summary>Click Here To See Exception Logs</summary>\n" +
+                "    " + stackTrace + "\n" +
+                "</details>\n";
+        logExceptionDetails(formmatedTrace);
     }
+
     @Override
     public synchronized void onTestSkipped(ITestResult result) {
         Log.warn(result.getMethod().getMethodName() + " skipped");

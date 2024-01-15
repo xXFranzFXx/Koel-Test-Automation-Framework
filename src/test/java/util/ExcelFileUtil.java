@@ -13,8 +13,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class ExcelFile {
+public class ExcelFileUtil {
     private String excelFilePath = "./src/test/resources/testData/";
     @DataProvider(name="excel-data")
     public Object[][] excelDP() throws IOException {
@@ -49,7 +55,9 @@ public class ExcelFile {
         }
         return data;
     }
-    public void writeToExcel(String fileName, String sheetName, String[] dataToWrite) throws IOException {
+    //writes data in result set from sql query to an excel file
+    public void writeToExcel(String fileName, String sheetName, ResultSet rs) throws IOException, SQLException {
+        ResultSetMetaData rsmd = rs.getMetaData();
         try {
             String excelFile = excelFilePath + fileName;
             File file = new File(excelFile);
@@ -63,18 +71,29 @@ public class ExcelFile {
                 workbook = new HSSFWorkbook(inputStream);
                 workbook.createSheet(sheetName);
             }
+            List<String> columns = new ArrayList<>() {{
+                for(int i=1; i<=rsmd.getColumnCount(); i++) {
+                    add(rsmd.getColumnLabel(i));
+                }
+            }};
             //Read excel sheet by sheet name
             assert workbook != null;
             Sheet sheet = workbook.getSheet(sheetName);
             int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
             Row row = sheet.getRow(0);
             Row newRow = sheet.createRow(rowCount + 1);
-            for (int j = 0; j < row.getLastCellNum(); j++) {
-                Cell cell = newRow.createCell(j);
-                cell.setCellValue(dataToWrite[j]);
+            Row header = sheet.createRow(0);
+            for (int i=0; i < columns.size(); i++) {
+                header.createCell(i).setCellValue(columns.get(i));
+            }
+            while(rs.next()) {
+                for (int j = 0; j < row.getLastCellNum(); j++) {
+                    Cell cell = newRow.createCell(j);
+                    String val = Objects.toString(rs.getObject(columns.get(j)), "");
+                    cell.setCellValue(val);
+                }
             }
             inputStream.close();
-
             //Create an object of FileOutputStream class to create write data in excel file
             FileOutputStream outputStream = new FileOutputStream(file);
             //write the data
@@ -84,31 +103,4 @@ public class ExcelFile {
             Reporter.log("Error writing to excel file " + e, true);
         }
     }
-
-//    public static Object[][] getTestData(String sheetName) {
-//        FileInputStream file = null;
-//        try {
-//            file = new FileInputStream(TESTDATA_SHEET_PATH);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            book = WorkbookFactory.create(file);
-//        } catch (InvalidFormatException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        sheet = book.getSheet(sheetName);
-//        Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
-//        // System.out.println(sheet.getLastRowNum() + "--------" +
-//        // sheet.getRow(0).getLastCellNum());
-//        for (int i = 0; i < sheet.getLastRowNum(); i++) {
-//            for (int k = 0; k < sheet.getRow(0).getLastCellNum(); k++) {
-//                data[i][k] = sheet.getRow(i + 1).getCell(k).toString();
-//                // System.out.println(data[i][k]);
-//            }
-//        }
-//        return data;
-//    }
 }
