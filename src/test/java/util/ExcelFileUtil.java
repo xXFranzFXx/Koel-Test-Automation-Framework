@@ -1,6 +1,7 @@
 package util;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -9,16 +10,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ExcelFileUtil {
     private static  String excelFilePath = "./src/test/resources/testData/";
@@ -56,51 +52,90 @@ public class ExcelFileUtil {
         return data;
     }
     //writes data in result set from sql query to an excel file
-    public static void writeToExcel(String fileName, String sheetName, ResultSet rs) throws IOException, SQLException {
-        ResultSetMetaData rsmd = rs.getMetaData();
-        try {
-            String excelFile = excelFilePath + fileName;
-            File file = new File(excelFile);
-            FileInputStream inputStream = new FileInputStream(file);
-            Workbook workbook = null;
-            String fileExtensionName = fileName.substring((fileName.indexOf(".")));
-            if (fileExtensionName.equals(".xlsx")) {
-                workbook = new XSSFWorkbook(inputStream);
-                workbook.createSheet(sheetName);
-            } else if (fileExtensionName.equals(".xls")) {
-                workbook = new HSSFWorkbook(inputStream);
-                workbook.createSheet(sheetName);
+
+    public static void generateExcel(Map<String, LinkedHashMap<String, String>> resultMap, String fileName, String name) {
+        String excelFile = excelFilePath + fileName;
+        File file = new File(excelFile);
+        FileOutputStream fileOut = null;
+        try
+        {
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFCellStyle headerStyle = wb.createCellStyle();
+            HSSFSheet sheet3 = wb.createSheet(name);
+            HSSFFont headerFont = wb.createFont();
+            headerFont.setBold(true);
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            headerStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.PALE_BLUE.getIndex());
+
+
+            headerStyle.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
+            headerStyle.setFont(headerFont);
+            try
+            {
+                fileOut = new FileOutputStream(file);
             }
-            List<String> columns = new ArrayList<>() {{
-                for(int i=1; i<=rsmd.getColumnCount(); i++) {
-                    add(rsmd.getColumnLabel(i));
+            catch (FileNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            HSSFRow sessionname = sheet3.createRow(2);
+            HSSFCell title = sessionname.createCell(3);
+            title.setCellStyle(headerStyle);
+            title.setCellValue(name);
+            HSSFRow row = sheet3.createRow(5);
+            Map<String, LinkedHashMap<String, String>> rMap = resultMap;
+            Map<String, String> columnDetails = rMap.get("1");
+            Set<String> s = columnDetails.keySet();
+
+            int cellNo = 0;
+            for (String s1 : s)
+            {
+                HSSFCell cell0 = row.createCell(cellNo);
+                cell0.setCellStyle(headerStyle);
+                cell0.setCellValue(s1);
+                cellNo++;
+            }
+            for (int i = 1; i <= rMap.size(); i++)
+            {
+                columnDetails = rMap.get(Integer.valueOf(i).toString());
+                System.out.println(i);
+                HSSFRow nextrow = sheet3.createRow(5 + i);
+                Set<String> set = columnDetails.keySet();
+                int cellNum = 0;
+                for (String s2 : set)
+                {
+                    nextrow.createCell(cellNum).setCellValue(columnDetails.get(s2));
+                    cellNum++;
                 }
-            }};
-            //Read excel sheet by sheet name
-            assert workbook != null;
-            Sheet sheet = workbook.getSheet(sheetName);
-            int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-            Row row = sheet.getRow(0);
-            Row newRow = sheet.createRow(rowCount + 1);
-            Row header = sheet.createRow(0);
-            for (int i=0; i < columns.size(); i++) {
-                header.createCell(i).setCellValue(columns.get(i));
             }
-            while(rs.next()) {
-                for (int j = 0; j < row.getLastCellNum(); j++) {
-                    Cell cell = newRow.createCell(j);
-                    String val = Objects.toString(rs.getObject(columns.get(j)));
-                    cell.setCellValue(val);
-                }
+            sheet3.autoSizeColumn(0);
+            sheet3.autoSizeColumn(1);
+            sheet3.autoSizeColumn(2);
+            sheet3.autoSizeColumn(3);
+            wb.write(fileOut);
+            fileOut.flush();
+            fileOut.close();
+        }
+        catch (FileNotFoundException fe)
+        {
+            fe.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                fileOut.flush();
+                fileOut.close();
             }
-            inputStream.close();
-            //Create an object of FileOutputStream class to create write data in excel file
-            FileOutputStream outputStream = new FileOutputStream(file);
-            //write the data
-            workbook.write(outputStream);
-            outputStream.close();
-        } catch (Exception e){
-            Reporter.log("Error writing to excel file " + e, true);
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
+
 }

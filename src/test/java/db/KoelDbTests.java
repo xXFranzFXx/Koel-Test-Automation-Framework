@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import util.ExcelFileUtil;
 import util.TestDataHandler;
+import util.TestUtil;
 import util.listeners.TestListener;
 import util.extentReports.ExtentManager;
 
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
+
 import util.ExcelFileUtil;
 
 public class KoelDbTests extends KoelDbActions {
@@ -47,7 +50,7 @@ public class KoelDbTests extends KoelDbActions {
         dataMap.clear();
         testData.setTestDataInMap(dataMap);
     }
-    @Test
+    @Test(description = "get artist info")
     @Parameters({"artist"})
     public void queryArtist(String artist) throws SQLException {
         rs = artistQuery(artist);
@@ -73,7 +76,7 @@ public class KoelDbTests extends KoelDbActions {
     public void verifyArtistQueryResults(){
         Assert.assertTrue(verifyData("name", "queryName"));
     }
-    @Test
+    @Test(description = "get songs by an artist")
     @Parameters({"artist"})
     public void querySongByArtist(String artist) throws SQLException {
         rs = songByArtistJoinStmt(artist);
@@ -88,7 +91,7 @@ public class KoelDbTests extends KoelDbActions {
         }
         Assert.assertFalse(false);
     }
-    @Test
+    @Test(description = "get the total amount of songs in the database")
     public void getSongTotal() throws SQLException {
         rs = totalSongCount();
         if(rs.next()) {
@@ -100,14 +103,14 @@ public class KoelDbTests extends KoelDbActions {
         Assert.assertFalse(false);
     }
 
-    @Test
+    @Test(description = "get a user's playlists and write the data from the result set to excel file")
     @Parameters({"koelUser"})
     public void getKoelUserPlaylists(String koelUser) throws SQLException, IOException {
         rs = getUserPlaylst(koelUser);
         System.out.println(rs.getMetaData());
-        ExcelFileUtil.writeToExcel("test.xlsx", "sheet2", rs);
+        ExcelFileUtil.generateExcel(TestUtil.processResultSet(rs), "test.xlsx", "userPlaylists");
         if(rs.next()) {
-            String p_uid = rs.getString("p.id");
+            String p_uid = rs.getString("p.user_id");
             String u_id = rs.getString("u.id");
             String email = rs.getString("email");
             addDataFromTest("playlistSearchUserEmail", email);

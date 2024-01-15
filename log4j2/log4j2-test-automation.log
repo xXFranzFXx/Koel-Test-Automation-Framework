@@ -14,3 +14,29 @@
 [INFO ] 2024-01-15 11:46:01.818 [Test worker] Log - getKoelUserPlaylists started!
 [INFO ] 2024-01-15 11:46:02.174 [Test worker] Log - getKoelUserPlaylists passed!
 [INFO ] 2024-01-15 11:46:02.180 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 11:47:17.935 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 11:47:18.328 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 11:47:18.673 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 11:47:18.680 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:00:11.833 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:00:12.231 [Test worker] Log - getKoelUserPlaylists started!
+[ERROR] 2024-01-15 12:00:12.591 [Test worker] Log - Test Failed
+[INFO ] 2024-01-15 12:00:12.599 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:08:10.558 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:08:10.969 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 12:08:11.325 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 12:08:11.331 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:08:33.300 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:08:33.690 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 12:08:34.058 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 12:08:34.065 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:09:43.258 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:09:43.656 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 12:09:44.085 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 12:09:44.092 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 14:45:34.249 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 14:45:34.623 [Test worker] Log - getKoelUserPlaylists started!
+[WARN ] 2024-01-15 14:45:35.497 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 14:45:35.497 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 14:45:35.504 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 14:45:35.512 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!

@@ -7,8 +7,10 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.Date;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.*;
 
 public class TestUtil {
     public static long sysTime = System.currentTimeMillis();;
@@ -24,6 +26,47 @@ public class TestUtil {
 ////        FileUtils.copyFile(source, new File(destinationFile));
 ////        return destinationFile;
 //    }
+public static Map<String, LinkedHashMap<String, String>> processResultSet(ResultSet rs) throws SQLException {
+    ArrayList<String> columnNames = new ArrayList<String>();
+    LinkedHashMap<String, String> rowDetails = new LinkedHashMap<String, String>();
+    Map<String, LinkedHashMap<String, String>> resultMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
+    ResultSetMetaData rsm = null;
+    if (rs != null)
+    {
+        try
+        {
+            rsm = (ResultSetMetaData) rs.getMetaData();
+            for (int i = 1; i <= rsm.getColumnCount(); i++)
+            {
+                System.out.println(i + " -> " + rsm.getColumnName(i));
+                columnNames.add(rsm.getColumnName(i));
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    try
+    {
+        int rowCount = 1;
+        while (rs.next())
+        {
+            for (int i = 1; i <= rsm.getColumnCount(); i++)
+            {
+                rowDetails.put(rsm.getColumnName(i), rs.getString(i));
+            }
+            resultMap.put(Integer.valueOf(rowCount).toString(), rowDetails);
+            rowCount++;
+            rowDetails = new LinkedHashMap<String, String>();
+        }
+    }
+    catch (SQLException e)
+    {
+        e.printStackTrace();
+    }
+    return resultMap;
+}
     private Date getTime(long millis) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
