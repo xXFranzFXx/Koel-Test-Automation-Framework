@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ExcelFileUtil {
-    private String excelFilePath = "./src/test/resources/testData/";
+    private static  String excelFilePath = "./src/test/resources/testData/";
     @DataProvider(name="excel-data")
     public Object[][] excelDP() throws IOException {
         Object [][] arrObj;
@@ -56,7 +56,7 @@ public class ExcelFileUtil {
         return data;
     }
     //writes data in result set from sql query to an excel file
-    public void writeToExcel(String fileName, String sheetName, ResultSet rs) throws IOException, SQLException {
+    public static void writeToExcel(String fileName, String sheetName, ResultSet rs) throws IOException, SQLException {
         ResultSetMetaData rsmd = rs.getMetaData();
         try {
             String excelFile = excelFilePath + fileName;
@@ -89,7 +89,7 @@ public class ExcelFileUtil {
             while(rs.next()) {
                 for (int j = 0; j < row.getLastCellNum(); j++) {
                     Cell cell = newRow.createCell(j);
-                    String val = Objects.toString(rs.getObject(columns.get(j)), "");
+                    String val = Objects.toString(rs.getObject(columns.get(j)));
                     cell.setCellValue(val);
                 }
             }

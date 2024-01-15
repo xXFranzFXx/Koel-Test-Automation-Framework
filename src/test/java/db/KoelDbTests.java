@@ -3,14 +3,17 @@ package db;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import util.ExcelFileUtil;
 import util.TestDataHandler;
 import util.listeners.TestListener;
 import util.extentReports.ExtentManager;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import util.ExcelFileUtil;
 
 public class KoelDbTests extends KoelDbActions {
     ResultSet rs;
@@ -99,8 +102,10 @@ public class KoelDbTests extends KoelDbActions {
 
     @Test
     @Parameters({"koelUser"})
-    public void getKoelUserPlaylists(String koelUser) throws SQLException {
+    public void getKoelUserPlaylists(String koelUser) throws SQLException, IOException {
         rs = getUserPlaylst(koelUser);
+        System.out.println(rs.getMetaData());
+        ExcelFileUtil.writeToExcel("test.xlsx", "sheet2", rs);
         if(rs.next()) {
             String p_uid = rs.getString("p.id");
             String u_id = rs.getString("u.id");
