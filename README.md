@@ -1,21 +1,29 @@
-<div align="center">
+
 <h1>Koel Test Automation Framework</h1><br>
+<img  src="assets/logo.f9bf992.svg" alt="extent1" width="100">
 
-<img  src="assets/loginscreen.png" alt="extent1" width="100"> 
-</div>
+<h3>Test Subject</h3>
+koel: a personal music streaming server that works<br>
 
-<h3>Dependency</h3>
+https://qa.koel.app<br>
+
+<h3>Programming Language</h3>
 Java <br>
-Gradle
 
-<h3>Libraries Used</h3> <br>
-Selenium<br>
-TestNG<br>
-log4j<br>
-Extent Reports 
+<h3>Libraries/Tools Used</h3> 
+* Selenium - Web automation<br>
+* TestNG - Test execution<br>
+* Cucumber - BDD testing <br>
+* REST Assured - Validation of REST web services<br>
+* MariaDB Connector/J - Database connector for Koel database<br>
+* LambdaTest - Cross-browser testing<br>
+* log4j - Capturing logs<br>
+* Extent Reports - reporting<br>
+* Gradle - Build and package management<br>
+* Jenkins - CI/CD<br>
 
 <h2>Overview</h2>
-This project provides a testing framework based on page object model to automate tests for the Koel web application.  For the most part each branch serves a particular purpose: api, database, or web application testing.  
+This project provides a testing framework based on page object model to automate tests for the Koel web application.  For the most part each branch serves a particular purpose: api, database, or web application testing. <br> 
 
 <h2>Getting Started</h2>
 Follow these steps to get started with the Koel Test Automation Framework:<br><br>
@@ -23,8 +31,12 @@ Follow these steps to get started with the Koel Test Automation Framework:<br><b
 2.) cd Koel-Test-Automation <br>
 3.) rename "sample.env" to ".env" in src/test/resources <br>
 4.) fill in all the appropriate property values in the .env file<br>
-5.) gradle clean test
+5.) choose a branch<br>
+6.) gradle clean test<br>
+NOTE: if using Jenkins be sure to add a variable in the build.gradle file<br>
+<img  src="assets/jenkins.png" alt="jenkins" width="500"><br>
+
 <h2>Extent Reports</h2>
 Extent reports will be generated in the reports/extent-reports folder.<br>
-<img src="./assets/extent1.png" alt="extent1" width="250"> 
-<img src="./assets/extent2.png" alt="extent2" width="235">
+<img src="./assets/extent1.png" alt="extent1" width="550" height="530"> 
+<img src="./assets/extent2.png" alt="extent2" width="570" height="530">
