@@ -240,7 +240,6 @@ public class HomePage extends BasePage {
 
     public HomePage clickGreenAddToBtn() {
         wait.until(ExpectedConditions.visibilityOf(greenAddToBtn)).click();
-//       findElement(greenAddToBtn).click();
         return this;
     }
     public HomePage selectPlaylistToAddTo() {
@@ -277,7 +276,6 @@ public class HomePage extends BasePage {
         } else {
             clickInfoButton();
         }
-//        click(albumTabLocator);
         WebElement albumInfoText = wait.until(ExpectedConditions.presenceOfElementLocated(albumTabInfo));
         return albumInfoText.getText();
     }
