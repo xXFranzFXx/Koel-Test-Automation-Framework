@@ -13,9 +13,6 @@ public class Playlist {
         this.songs = songs;
     }
 
-    public Playlist() {
-    }
-
     public int getId() {
         return id;
     }
