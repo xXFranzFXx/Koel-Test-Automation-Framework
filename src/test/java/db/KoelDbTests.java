@@ -53,6 +53,7 @@ public class KoelDbTests extends KoelDbActions {
     @Test(description = "get artist info")
     @Parameters({"artist"})
     public void queryArtist(String artist) throws SQLException {
+        ExcelFileUtil.generateExcel(TestUtil.processResultSet(rs), "test.xlsx", "artistQuery");
         rs = artistQuery(artist);
         if (rs.next()) {
 
@@ -80,6 +81,7 @@ public class KoelDbTests extends KoelDbActions {
     @Parameters({"artist"})
     public void querySongByArtist(String artist) throws SQLException {
         rs = songByArtistJoinStmt(artist);
+        ExcelFileUtil.generateExcel(TestUtil.processResultSet(rs), "test.xlsx", "songsByArtist");
         if(rs.next()){
             int artistID = rs.getInt("artist_id");
             int id = rs.getInt("a.id");
