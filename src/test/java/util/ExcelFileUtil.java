@@ -62,7 +62,12 @@ public class ExcelFileUtil {
         try {
            XSSFWorkbook  wb = new XSSFWorkbook();
                 for (String name: names) {
-                    System.out.println(name);
+                    try {
+                        fileOut = new FileOutputStream(file);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+//                    System.out.println(name);
                     XSSFSheet sheet3 = wb.createSheet(name);
                     XSSFCellStyle headerStyle = wb.createCellStyle();
                     XSSFFont headerFont = wb.createFont();
@@ -71,16 +76,8 @@ public class ExcelFileUtil {
                     headerStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.PALE_BLUE.getIndex());
                     headerStyle.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
                     headerStyle.setFont(headerFont);
-                    try {
-                        fileOut = new FileOutputStream(file);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
+
                     int rowCount = sheet3.getLastRowNum() - sheet3.getFirstRowNum();
-                    XSSFRow sessionname = sheet3.createRow(0);
-                    XSSFCell title = sessionname.createCell(1);
-                    title.setCellStyle(headerStyle);
-                    title.setCellValue(name);
                     XSSFRow row = sheet3.createRow(rowCount);
                     Map<String, LinkedHashMap<String, String>> rsMap = rMap.get(name);
                     Map<String, String> columnDetails = rsMap.get("1");
@@ -107,8 +104,6 @@ public class ExcelFileUtil {
                     }
                     wb.write(fileOut);
                 }
-            } finally {
-                try {
                     fileOut.flush();
                     fileOut.close();
                 } catch (IOException e) {
@@ -116,4 +111,3 @@ public class ExcelFileUtil {
             }
         }
     }
-}
