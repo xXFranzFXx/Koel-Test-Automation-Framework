@@ -1,16 +1,17 @@
 package util;
 
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TestDataHandler {
-    Map<String, Object> testDataInMap = new HashMap<String, Object>();
+    Map<String, ResultSet> testDataInMap = new HashMap<String, ResultSet>();
 
-    public Map<String, Object> getTestDataInMap() {
+    public Map<String, ResultSet> getTestDataInMap() {
         return testDataInMap;
     }
 
-    public void setTestDataInMap(Map<String, Object> testDataInMap) {
+    public void setTestDataInMap(Map<String, ResultSet> testDataInMap) {
         this.testDataInMap = testDataInMap;
     }
 }

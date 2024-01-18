@@ -1,0 +1,84 @@
+[INFO ] 2024-01-15 11:36:33.055 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 11:36:33.453 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 11:36:33.881 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 11:36:33.888 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 11:39:56.074 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 11:39:56.469 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 11:39:56.818 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 11:39:56.825 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 11:42:59.326 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 11:42:59.718 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 11:43:00.075 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 11:43:00.082 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 11:46:01.418 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 11:46:01.818 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 11:46:02.174 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 11:46:02.180 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 11:47:17.935 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 11:47:18.328 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 11:47:18.673 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 11:47:18.680 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:00:11.833 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:00:12.231 [Test worker] Log - getKoelUserPlaylists started!
+[ERROR] 2024-01-15 12:00:12.591 [Test worker] Log - Test Failed
+[INFO ] 2024-01-15 12:00:12.599 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:08:10.558 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:08:10.969 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 12:08:11.325 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 12:08:11.331 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:08:33.300 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:08:33.690 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 12:08:34.058 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 12:08:34.065 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 12:09:43.258 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 12:09:43.656 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-15 12:09:44.085 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 12:09:44.092 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 14:45:34.249 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 14:45:34.623 [Test worker] Log - getKoelUserPlaylists started!
+[WARN ] 2024-01-15 14:45:35.497 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 14:45:35.497 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 14:45:35.504 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-15 14:45:35.512 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 17:36:36.786 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 17:36:37.086 [Test worker] Log - querySongByArtist started!
+[WARN ] 2024-01-15 17:36:37.712 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 17:36:37.712 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 17:36:37.721 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-15 17:36:37.729 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 17:40:33.595 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 17:40:33.876 [Test worker] Log - querySongByArtist started!
+[WARN ] 2024-01-15 17:40:34.020 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 17:40:34.020 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 17:40:34.030 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-15 17:40:34.038 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 17:41:45.888 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 17:41:46.183 [Test worker] Log - querySongByArtist started!
+[WARN ] 2024-01-15 17:41:46.328 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 17:41:46.329 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 17:41:46.338 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-15 17:41:46.346 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 17:43:28.355 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 17:43:28.641 [Test worker] Log - querySongByArtist started!
+[WARN ] 2024-01-15 17:43:28.782 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 17:43:28.782 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 17:43:28.791 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-15 17:43:28.799 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 17:44:48.590 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 17:44:48.911 [Test worker] Log - querySongByArtist started!
+[WARN ] 2024-01-15 17:44:49.050 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 17:44:49.050 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 17:44:49.060 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-15 17:44:49.067 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 17:46:15.511 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 17:46:15.793 [Test worker] Log - querySongByArtist started!
+[WARN ] 2024-01-15 17:46:15.933 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 17:46:15.933 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 17:46:15.941 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-15 17:46:15.949 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-15 17:47:05.297 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-15 17:47:05.590 [Test worker] Log - querySongByArtist started!
+[WARN ] 2024-01-15 17:47:06.098 [Test worker] POIDocument - DocumentSummaryInformation property set came back as null
+[WARN ] 2024-01-15 17:47:06.098 [Test worker] POIDocument - SummaryInformation property set came back as null
+[INFO ] 2024-01-15 17:47:06.108 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-15 17:47:06.116 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
