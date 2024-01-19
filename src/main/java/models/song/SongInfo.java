@@ -28,6 +28,9 @@ public class SongInfo {
         this.artist = artist;
         this.album = album;
     }
+    public SongInfo() {
+
+    }
     public long getId() {
         return id;
     }

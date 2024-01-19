@@ -12,6 +12,9 @@ public class User {
         this.is_admin = is_admin;
         this.preferences = preferences;
     }
+    public User() {
+        
+    }
     public int getId() {
          return id;
     }

@@ -5,6 +5,9 @@ public class Preference {
     public Preference(String lastfm_session_key) {
         this.lastfm_session_key = lastfm_session_key;
     }
+    public Preference() {
+
+    }
     public String getLastfm_session_key() {
         return lastfm_session_key;
     }

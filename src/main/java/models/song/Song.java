@@ -20,7 +20,9 @@ public class Song {
         this.albums = albums;
     }
 
+    public Song() {
 
+    }
     public long getSong_Id() {
         return song_id;
     }
