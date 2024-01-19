@@ -27,7 +27,7 @@ import java.util.Set;
 public class TestListener  implements ITestListener, WebDriverListener {
     //Extent Report Declarations
     static ExtentReports extent = ExtentManager.getInstance();
-    static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     @Override
     public synchronized void onStart(ITestContext context) {
@@ -93,7 +93,7 @@ public class TestListener  implements ITestListener, WebDriverListener {
     public static void logHeaders(List<Header> headersList) {
         String[][] arrayHeaders = headersList.stream().map(header -> new String[] {header.getName(), header.getValue()})
                 .toArray(String[][] :: new);
-        ExtentTestManager.getTest().info(MarkupHelper.createTable(arrayHeaders));
+       test.get().info(MarkupHelper.createTable(arrayHeaders));
     }
     public void beforeAnyCall(Object target, Method method, Object[] args) {
         Log.debug( "Before calling method: " + method.getName());

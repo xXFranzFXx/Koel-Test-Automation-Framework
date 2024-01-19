@@ -12,7 +12,9 @@ public class Playlist {
         this.is_smart = is_smart;
         this.songs = songs;
     }
+    public Playlist() {
 
+    }
     public int getId() {
         return id;
     }

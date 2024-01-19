@@ -16,6 +16,8 @@ import util.ApiTestDataHandler;
 import util.restUtils.AssertionUtils;
 import util.restUtils.RestUtil;
 import static io.restassured.RestAssured.given;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,6 +27,11 @@ public class ApiTests extends KoelApiSpec{
     Map<String, Object>  responseMap = new HashMap<>();
     JSONObject jsonObject;
     String responseBody;
+    @BeforeClass
+    public void getEnv() {
+        setEnv();
+        getAuthRequestSpec();
+    }
     @Test
     public void createPlaylist() {
         jsonObject = new JSONObject();
@@ -58,6 +65,7 @@ public class ApiTests extends KoelApiSpec{
                 .then().statusCode(200)
                 .extract().response();
         Playlist[] playlists = response.as(Playlist[].class);
+        System.out.println(Arrays.toString(playlists));
         responseMap.put("id", playlists[0].getId());
         responseMap.put("name", playlists[0].getName());
         Assert.assertEquals(playlists[0].getName(), "newPlaylist");

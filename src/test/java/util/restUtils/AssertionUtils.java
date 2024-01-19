@@ -45,6 +45,6 @@ public class AssertionUtils {
         String[][] finalAssertionsMap = actualValuesMap.stream().map(assertions -> new String[] {assertions.getJsonPath(),
                         String.valueOf(assertions.getExpectedValue()), String.valueOf(assertions.getActualValue()), assertions.getResult()})
                 .toArray(String[][] :: new);
-        ExtentTestManager.getTest().info(MarkupHelper.createTable(finalAssertionsMap));
+        TestListener.test.get().info(MarkupHelper.createTable(finalAssertionsMap));
     }
 }
