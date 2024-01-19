@@ -16,7 +16,9 @@ public class Album {
        this.is_compilation = is_compilation;
 
    }
+   public Album () {
 
+   }
    public int getId() {
        return id;
    }
