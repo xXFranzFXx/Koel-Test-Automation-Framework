@@ -17,13 +17,18 @@ public class AssertionUtils {
         Set<String> jsonPaths =  expectedValuesMap.keySet();
         for(String jsonPath : jsonPaths) {
             Optional<Object> actualValue = Optional.ofNullable(response.jsonPath().get(jsonPath));
+
             if(actualValue.isPresent()) {
                 Object value = actualValue.get();
                 // Assert actual and expected values
-                if(value.equals(expectedValuesMap.get(jsonPath)))
+                if(value.equals(expectedValuesMap.get(jsonPath))) {
                     // if value is matched then add details
                     actualValuesMap.add(new AssertionKeys(jsonPath, expectedValuesMap.get(jsonPath), value, "MATCHED ✅"));
-                else {
+
+                } else if(response.jsonPath().get(jsonPath).toString().contains(expectedValuesMap.get(jsonPath).toString())){
+                    actualValuesMap.add(new AssertionKeys(jsonPath, expectedValuesMap.get(jsonPath), value, "FOUND ✅"));
+
+                } else {
                     // if single assertion is failed then to update final result as failure
                     allMatched = false;
                     actualValuesMap.add(new AssertionKeys(jsonPath, expectedValuesMap.get(jsonPath), value, "NOT_MATCHED ❌"));

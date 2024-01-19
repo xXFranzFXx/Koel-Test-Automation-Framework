@@ -1,27 +1,22 @@
-package api;
+package apitests;
 
+import api.KoelApiSpec;
 import models.playlist.Playlist;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import util.restUtils.AssertionUtils;
 import util.restUtils.RestUtil;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-import models.playlist.Playlist;
 import org.json.JSONObject;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import util.ApiTestDataHandler;
-import util.restUtils.AssertionUtils;
-import util.restUtils.RestUtil;
+
 import static io.restassured.RestAssured.given;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ApiTests extends KoelApiSpec{
+public class PlaylistTests extends KoelApiSpec {
     ApiTestDataHandler apiTestDataHandler = new ApiTestDataHandler();
     Map<String,Object> dataMap = new HashMap<>();
     Map<String, Object>  responseMap = new HashMap<>();
@@ -51,6 +46,7 @@ public class ApiTests extends KoelApiSpec{
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec(), payload);
         AssertionUtils.assertExpectedValuesWithJsonPath(response, dataMap);
     }
+
     @Test
     public void verifyPlaylistName() {
         Response response = given()
@@ -65,6 +61,7 @@ public class ApiTests extends KoelApiSpec{
         responseMap.put("name", playlists[0].getName());
         Assert.assertEquals(playlists[0].getName(), "newPlaylist");
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
+        AssertionUtils.assertExpectedValuesWithJsonPath(response, dataMap);
     }
 }
 
