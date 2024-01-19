@@ -35,7 +35,7 @@ public class KoelDbTests extends KoelDbActions {
     public void addDataFromTest(String key, ResultSet rs) {
         dataMap.put(key, rs);
         testData.setTestDataInMap(dataMap);
-        Reporter.log("testData is: " + dataMap, true);
+
     }
     @BeforeClass
     public static void setEnv() {
@@ -80,7 +80,7 @@ public class KoelDbTests extends KoelDbActions {
     public void querySongByArtist(String artist) throws SQLException, IOException {
         rs = songByArtistJoinStmt(artist);
         addDataFromTest("querySongByArtist", rs);
-        ExcelFileUtil.generateExcel(dataMap, "test.xlsx");
+        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
 
         if(rs.next()){
             int artistID = rs.getInt("artist_id");

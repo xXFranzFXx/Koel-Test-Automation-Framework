@@ -538,3 +538,23 @@
 [INFO ] 2024-01-18 14:21:24.381 [Test worker] Log - querySongByArtist started!
 [INFO ] 2024-01-18 14:21:25.206 [Test worker] Log - querySongByArtist passed!
 [INFO ] 2024-01-18 14:21:25.211 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-18 16:27:15.616 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-18 16:27:16.008 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-18 16:27:16.105 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-18 16:27:16.426 [Test worker] Log - getSongTotal started!
+[INFO ] 2024-01-18 16:27:16.494 [Test worker] Log - getSongTotal passed!
+[INFO ] 2024-01-18 16:27:16.835 [Test worker] Log - queryArtist started!
+[INFO ] 2024-01-18 16:27:16.910 [Test worker] Log - queryArtist passed!
+[INFO ] 2024-01-18 16:27:17.258 [Test worker] Log - querySongByArtist started!
+[INFO ] 2024-01-18 16:27:18.045 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-18 16:27:18.050 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-18 16:57:14.604 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-18 16:57:15.019 [Test worker] Log - getKoelUserPlaylists started!
+[INFO ] 2024-01-18 16:57:15.116 [Test worker] Log - getKoelUserPlaylists passed!
+[INFO ] 2024-01-18 16:57:15.452 [Test worker] Log - getSongTotal started!
+[INFO ] 2024-01-18 16:57:15.518 [Test worker] Log - getSongTotal passed!
+[INFO ] 2024-01-18 16:57:15.855 [Test worker] Log - queryArtist started!
+[INFO ] 2024-01-18 16:57:15.929 [Test worker] Log - queryArtist passed!
+[INFO ] 2024-01-18 16:57:16.259 [Test worker] Log - querySongByArtist started!
+[INFO ] 2024-01-18 16:57:17.060 [Test worker] Log - querySongByArtist passed!
+[INFO ] 2024-01-18 16:57:17.064 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
