@@ -27,11 +27,6 @@ public class ApiTests extends KoelApiSpec{
     Map<String, Object>  responseMap = new HashMap<>();
     JSONObject jsonObject;
     String responseBody;
-    @BeforeClass
-    public void getEnv() {
-        setEnv();
-        getAuthRequestSpec();
-    }
     @Test
     public void createPlaylist() {
         jsonObject = new JSONObject();

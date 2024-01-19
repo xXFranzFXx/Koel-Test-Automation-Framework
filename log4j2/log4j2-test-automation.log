@@ -64,3 +64,33 @@
 [INFO ] 2024-01-18 18:20:19.172 [Test worker] Log - verifyPlaylistName started!
 [INFO ] 2024-01-18 18:20:20.246 [Test worker] Log - verifyPlaylistName passed!
 [INFO ] 2024-01-18 18:20:20.247 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-18 18:29:31.021 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-18 18:29:32.312 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-18 18:29:33.617 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-18 18:29:33.984 [Test worker] Log - verifyPlaylistName started!
+[INFO ] 2024-01-18 18:29:35.046 [Test worker] Log - verifyPlaylistName passed!
+[INFO ] 2024-01-18 18:29:35.047 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-18 18:30:38.907 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-18 18:30:40.161 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-18 18:30:41.455 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-18 18:30:41.839 [Test worker] Log - verifyPlaylistName started!
+[INFO ] 2024-01-18 18:30:42.922 [Test worker] Log - verifyPlaylistName passed!
+[INFO ] 2024-01-18 18:30:42.923 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-18 18:32:22.524 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-18 18:32:23.703 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-18 18:32:24.980 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-18 18:32:25.358 [Test worker] Log - verifyPlaylistName started!
+[INFO ] 2024-01-18 18:32:26.475 [Test worker] Log - verifyPlaylistName passed!
+[INFO ] 2024-01-18 18:32:26.477 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-18 18:34:54.526 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-18 18:34:55.801 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-18 18:34:57.085 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-18 18:34:57.452 [Test worker] Log - verifyPlaylistName started!
+[INFO ] 2024-01-18 18:34:58.549 [Test worker] Log - verifyPlaylistName passed!
+[INFO ] 2024-01-18 18:34:58.551 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-18 18:36:09.558 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-18 18:36:10.794 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-18 18:36:12.099 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-18 18:36:12.461 [Test worker] Log - verifyPlaylistName started!
+[INFO ] 2024-01-18 18:36:13.536 [Test worker] Log - verifyPlaylistName passed!
+[INFO ] 2024-01-18 18:36:13.538 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!

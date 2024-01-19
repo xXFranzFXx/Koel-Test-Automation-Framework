@@ -13,7 +13,7 @@ public class User {
         this.preferences = preferences;
     }
     public User() {
-        
+
     }
     public int getId() {
          return id;
