@@ -20,7 +20,6 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
-
     private int timeSeconds = 5;
     public static String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])";
     public static String songTotalRe = "^\\d{1,}[^\\W•]";
@@ -31,20 +30,17 @@ public class BasePage {
      */
     @FindBy(xpath = "//div[@class='header-right']//button[@data-testid='about-btn']")
     @CacheLookup
-
     private WebElement aboutBtnLocator;
     @FindBy(xpath = "//div[@class='modal-wrapper overlay']//div[@data-testid='about-modal']")
     private WebElement aboutModalLocator;
     @FindBy(xpath = "//h1[contains(text(), 'About Koel')]")
     @CacheLookup
-
     List<WebElement> modal;
 
     @FindBy(xpath = "//div[@class='modal-wrapper overlay']//footer")
     private WebElement modalCloseLocator;
     @FindBy(xpath = "//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']")
     @CacheLookup
-
     private WebElement closeModalBtn;
 
     /**

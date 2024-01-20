@@ -21,8 +21,6 @@ public class LoginPage extends BasePage{
     private WebElement passwordField;
     @FindBy(xpath = "//a[@href='registration']")
     private WebElement registrationLinkLocator;
-
-    //constructor method
     private By emailInput = By.cssSelector("[type='email']");
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
@@ -33,7 +31,6 @@ public class LoginPage extends BasePage{
     }
     public void enterEmail(String email) {
       driver.findElement(emailInput).sendKeys(email);
-
     }
     public LoginPage provideEmail(String email) {
         emailField.sendKeys(email);
@@ -61,6 +58,5 @@ public class LoginPage extends BasePage{
     public boolean getRegistrationLink() {
      WebElement registrationLink =  wait.until(ExpectedConditions.visibilityOf(registrationLinkLocator));
      return registrationLink.isDisplayed();
-
     }
 }

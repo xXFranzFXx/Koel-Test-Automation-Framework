@@ -16,7 +16,6 @@ public class ProfilePage extends BasePage{
     private WebElement updateNotification;
     @FindBy(css = "[data-testid=\"view-profile-link\"] .name")
     private WebElement avatarLocator;
-
     @FindBy(css = "[name='current_password']")
     private WebElement currentPassword;
     @FindBy(css = "[name='new_password']")
@@ -25,10 +24,8 @@ public class ProfilePage extends BasePage{
     private WebElement newEmail;
     @FindBy(xpath = "//span[@id='userBadge']//a[@data-testid='view-profile-link']/span")
     private WebElement actualProfileName;
-
     @FindBy(css = "button.btn-submit")
     private WebElement saveButton;
-
     @FindBy(id = "inputProfileEmail")
     private WebElement emailId;
 
@@ -44,8 +41,6 @@ public class ProfilePage extends BasePage{
         profileName.sendKeys(randomName);
         return this;
     }
-
-
     public boolean clickSave() {
       findElement(saveButton).click();
       return updateNotification.isDisplayed();
@@ -93,7 +88,6 @@ public class ProfilePage extends BasePage{
     }
     public boolean checkTheme (String theme) {
         return wait.until(ExpectedConditions.attributeToBe(By.xpath("//html[@data-theme]"), "data-theme", theme));
-
     }
     public String invalidEmailMsg () {
         WebElement popUpMsg = findElement(emailId);
@@ -101,11 +95,6 @@ public class ProfilePage extends BasePage{
     }
     public void moveToSaveAndClick() {
        actions.moveToElement(saveButton).click().build().perform();
-    }
-    public void getMsgAlertText () {
-        WebElement popUpMsg = driver.findElement(By.id("inputProfileEmail"));
-        SearchContext shadowRoot = popUpMsg.getShadowRoot();
-
     }
 
 }
