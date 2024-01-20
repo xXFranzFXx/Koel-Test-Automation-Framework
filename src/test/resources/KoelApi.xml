@@ -9,6 +9,8 @@
         <classes>
             <class name="apitests.PlaylistTests"/>
              <class name="apitests.UserTests"/>
+            <class name="apitests.SongsTests"/>
+
 
         </classes>
     </test>

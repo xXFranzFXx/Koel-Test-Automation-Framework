@@ -282,3 +282,23 @@
 [INFO ] 2024-01-19 16:42:03.023 [Test worker] Log - getUserInfo started!
 [INFO ] 2024-01-19 16:42:04.222 [Test worker] Log - getUserInfo passed!
 [INFO ] 2024-01-19 16:42:04.223 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-19 17:58:24.559 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-19 17:58:25.836 [Test worker] Log - getRecentlyPlayed started!
+[ERROR] 2024-01-19 17:58:26.556 [Test worker] Log - Test Failed
+[INFO ] 2024-01-19 17:58:26.562 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-19 17:58:46.655 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-19 17:58:47.816 [Test worker] Log - getRecentlyPlayed started!
+[ERROR] 2024-01-19 17:58:48.496 [Test worker] Log - Test Failed
+[INFO ] 2024-01-19 17:58:48.503 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-19 18:00:18.707 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-19 18:00:19.947 [Test worker] Log - getRecentlyPlayed started!
+[ERROR] 2024-01-19 18:00:20.667 [Test worker] Log - Test Failed
+[INFO ] 2024-01-19 18:00:20.674 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-19 18:00:55.731 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-19 18:00:56.869 [Test worker] Log - getRecentlyPlayed started!
+[INFO ] 2024-01-19 18:00:58.000 [Test worker] Log - getRecentlyPlayed passed!
+[INFO ] 2024-01-19 18:00:58.001 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-19 18:04:09.434 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-19 18:04:10.567 [Test worker] Log - getRecentlyPlayed started!
+[INFO ] 2024-01-19 18:04:11.732 [Test worker] Log - getRecentlyPlayed passed!
+[INFO ] 2024-01-19 18:04:11.733 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
