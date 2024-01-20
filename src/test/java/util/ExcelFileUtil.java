@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ExcelFileUtil {
-    private static String excelFilePath = "./src/test/resources/testData/";
+    private static String excelFilePath = "./src/test/java/testData/";
 
     @DataProvider(name = "excel-data")
     public Object[][] excelDP() throws IOException {
