@@ -1,11 +1,11 @@
 package models.user;
 
-public class Preference {
+public class Preferences {
     private String lastfm_session_key;
-    public Preference(String lastfm_session_key) {
+    public Preferences(String lastfm_session_key) {
         this.lastfm_session_key = lastfm_session_key;
     }
-    public Preference() {
+    public Preferences() {
 
     }
     public String getLastfm_session_key() {

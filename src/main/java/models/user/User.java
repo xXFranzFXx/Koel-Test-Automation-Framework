@@ -5,8 +5,9 @@ public class User {
     private String name;
     private String email;
     private boolean is_admin;
-    private Preference[] preferences;
-    public User(String name, String email, boolean is_admin, Preference[] preferences) {
+    private Preferences preferences;
+    public User(int id, String name, String email, boolean is_admin, Preferences preferences) {
+        this.id=id;
         this.name = name;
         this.email = email;
         this.is_admin = is_admin;
@@ -39,10 +40,10 @@ public class User {
     public void setIs_admin(boolean is_admin) {
         this.is_admin = is_admin;
     }
-    public Preference[] getPreferences() {
+    public Preferences getPreferences() {
         return preferences;
     }
-    public void setPreferences(Preference[] preferences) {
+    public void setPreferences(Preferences preferences) {
         this.preferences = preferences;
     }
 }

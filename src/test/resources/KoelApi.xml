@@ -7,8 +7,9 @@
     <test name="Koel Api Tests" preserve-order="false">
         <parameter name="baseURL" value="https://qa.koel.app"/>
         <classes>
-            <class name="apitests.PlaylistTests">
-            </class>
+            <class name="apitests.PlaylistTests"/>
+             <class name="apitests.UserTests"/>
+
         </classes>
     </test>
 </suite>
