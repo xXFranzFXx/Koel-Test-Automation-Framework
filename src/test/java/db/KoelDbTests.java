@@ -68,9 +68,7 @@ public class KoelDbTests extends KoelDbActions {
 
         Assert.assertFalse(false);
     }
-    public void logResultSetDetails(Map<String, Object> results) {
 
-    }
 //    @Test(dependsOnMethods = {"queryArtist"})
 //    public void verifyArtistQueryResults(){
 //        Assert.assertTrue(verifyData("name", "queryName"));
