@@ -67,8 +67,8 @@ public class PlaylistTests extends KoelApiSpec {
         responseMap.put("id", playlists[0].getId());
         responseMap.put("name", playlists[0].getName());
         List<String> names = Arrays.stream(playlists).map(Playlist::getName).toList();
-        Assert.assertTrue(names.contains(dataMap.get("name")));
-//        Assert.assertEquals(playlists[0].getName(), "newPlaylist");
+        String name = dataMap.get("name").toString();
+        Assert.assertTrue(names.contains(name));
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         AssertionUtils.assertExpectedValuesWithJsonPath(response, dataMap);
     }
