@@ -24,7 +24,11 @@ Java <br>
 * Jenkins - CI/CD<br>
 
 <h3>Overview</h3>
-This project provides a testing framework based on page object model to automate tests for the Koel web application.  For the most part each branch serves a particular purpose: api, database, or web application testing. <br> 
+This project provides a testing framework based on page object model to automate tests for the Koel web application. There are multiple branches for different types of testing:<br>
+* db - Database testing
+* api - REST api testing
+* TestNG - TDD testing
+* Cucumber - BDD testing
 
 <h3>Getting Started</h3>
 Follow these steps to get started with the Koel Test Automation Framework:<br><br>
