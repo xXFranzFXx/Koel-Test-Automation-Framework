@@ -25,10 +25,10 @@ Java <br>
 
 <h3>Overview</h3>
 This project provides a testing framework based on page object model to automate tests for the Koel web application. There are multiple branches for different types of testing:<br>
-* db - Database testing
-* api - REST api testing
-* TestNG - TDD testing
-* Cucumber - BDD testing
+* db - Database testing<br>
+* api - REST api testing<br>
+* TestNG - TDD testing<br>
+* Cucumber - BDD testing<br>
 
 <h3>Getting Started</h3>
 Follow these steps to get started with the Koel Test Automation Framework:<br><br>
