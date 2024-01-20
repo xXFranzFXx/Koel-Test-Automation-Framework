@@ -15,7 +15,6 @@ public class RecentlyPlayedPage extends BasePage{
     public RecentlyPlayedPage(WebDriver givenDriver) {
          super(givenDriver);
     }
-
     public boolean isSearchedSongInRecentlyPlayed(String search) {
        List<WebElement> rows =  findElements(recentlyPlayedTitlesLocator);
        for(WebElement row: rows) {

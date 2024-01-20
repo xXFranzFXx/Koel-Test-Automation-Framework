@@ -151,7 +151,6 @@ public class HomePage extends BasePage {
     private final By selectNewSmartList = By.cssSelector("li[data-testid=\"playlist-context-menu-create-smart\"]");
     @CacheLookup
     private By playlistDelete = By.xpath("//section[@id='playlists']/ul/li[3]/nav/ul/li[2]");
-
     @FindBy(xpath = "//div[@class='alertify']//nav/button[@class='ok']")
     private WebElement ok;
     private By okBtn = By.xpath( "//div[@class='alertify']//nav/button[@class='ok']");
@@ -195,10 +194,7 @@ public class HomePage extends BasePage {
         return userAvatarIcon.isEnabled();
     }
 
-
-
     public HomePage searchSong(String song) {
-
         searchSongInput.clear();
         searchSongInput.sendKeys(song);
         return this;
@@ -215,7 +211,6 @@ public class HomePage extends BasePage {
         return playBtnBefore.isEnabled();
     }
 
-
     public HomePage clickViewAllButton() {
         findElement(viewAllBtnLocator).click();
         return this;
@@ -223,12 +218,10 @@ public class HomePage extends BasePage {
     public HomePage clickRPViewAllBtn() {
         actions.moveToElement(recentlyPlayedViewAllBtn).perform();
         click(rPPlayedViewAllBtn);
-
         return this;
     }
 
     public void checkOkModal() {
-
         if (elementDoesNotExist(okBtn)) {
             wait.until(ExpectedConditions.elementToBeClickable(findElement(ok))).click();
         }
@@ -257,7 +250,6 @@ public class HomePage extends BasePage {
         return infoPanel.isDisplayed();
     }
 
-
     public String clickLyricsTab() {
         click(lyricsTabLocator);
         WebElement lyricsInfoText = wait.until(ExpectedConditions.presenceOfElementLocated(lyricsTabInfo));
@@ -280,10 +272,8 @@ public class HomePage extends BasePage {
         return albumInfoText.getText();
     }
 
-
     public void clickAlbumTabShuffleBtn() {
         click(albumTabShuffleBtn);
-
     }
 
     public boolean checkQueueTitle() {
@@ -315,7 +305,6 @@ public class HomePage extends BasePage {
         return this;
     }
 
-
     public boolean checkAlbumTabText() {
         findElement(albumTabCoverFinder);
         return albumTabCoverFinder.isDisplayed();
@@ -342,7 +331,6 @@ public class HomePage extends BasePage {
 
     public boolean noRecentlyPlayed() {
         return findElement(emptyListPlaceHolderText).isDisplayed();
-
     }
 
     public void clickFooterPlayBtn() {

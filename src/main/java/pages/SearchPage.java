@@ -14,24 +14,20 @@ public class SearchPage extends BasePage{
         public SearchPage(WebDriver givenDriver) {
             super(givenDriver);
         }
-
         public boolean isSearchResultEmpty(String section) {
             By childLocator = By.xpath("//section[@data-testid='"+section+"-excerpts']//article");
             List<WebElement> results = findElements(childLocator);
             return results.isEmpty();
         }
-
         public boolean noneFoundTextExists(String section) {
             List<WebElement> text = findElements(By.xpath("//section[@data-testid='"+section+"-excerpts']//p"));
             return text != null;
         }
-
         //Does not work because shadow content is closed
         public WebElement getShadowCancelBtn() {
             WebElement host = driver.findElement(By.cssSelector("#searchForm > input[type='search']"));
             SearchContext shadowRoot = host.getShadowRoot();
             return shadowRoot.findElement(By.cssSelector("#text-field-container #search-clear"));
-
         }
         public String getSearchResultHeaderText() {
             return findElement(searchResultHeaderText).getText();
@@ -55,5 +51,4 @@ public class SearchPage extends BasePage{
             wait.until(ExpectedConditions.urlContains("https://qa.koel.app/#!"));
             actions.sendKeys("f").perform();
         }
-
 }

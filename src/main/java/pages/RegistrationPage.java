@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class RegistrationPage extends BasePage{
-
-
    @FindBy(xpath = "//*[@type=\"email\"]")
    private WebElement emailInput;
    @FindBy(xpath = "//input[@id=\"button\"]")
@@ -26,11 +24,8 @@ public class RegistrationPage extends BasePage{
     public void registerNewAccount(String newEmail) {
         provideEmail(newEmail)
                 .clickSubmit();
-
     }
     public boolean getConfirmationMsg() {
         return confirmationMsg.isEnabled();
-
     }
-
 }

@@ -91,9 +91,6 @@ public class BaseTest{
         caps.setCapability("plugin", "java-testNG");
         return new RemoteWebDriver(new URL("https://" + username + ":" + authKey + hub), caps);
     }
-
-
-
     private static WebDriver setupDefaultBrowser() {
         WebDriverManager.chromedriver().setup();
         ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
@@ -103,7 +100,6 @@ public class BaseTest{
         TestListener eventListener = new TestListener();
         driver = new ChromeDriver(service, options);
         Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-//        System.out.println(cap);
         System.setProperty("browserName", cap.getBrowserName());
         System.setProperty("browserVersion", cap.getBrowserVersion());
         EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator<>(eventListener);
@@ -115,20 +111,15 @@ public class BaseTest{
         chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
         return chromePref;
     }
-
-
     public static void loadEnv() {
         Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").load();
         dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
-
     }
-
     public static void closeBrowser() {
         if (getDriver() == null) {
             threadDriver.get().close();
             threadDriver.remove();
         }
-
         threadDriver.get().quit();
     }
 }
