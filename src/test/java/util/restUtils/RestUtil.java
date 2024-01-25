@@ -5,8 +5,11 @@ import io.restassured.response.Response;
 import io.restassured.specification.QueryableRequestSpecification;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.SpecificationQuerier;
+import models.playlist.Playlist;
 import util.listeners.TestListener;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 public class RestUtil {
@@ -52,5 +55,10 @@ public class RestUtil {
     public static void getRequestDetailsForLog(Response response, RequestSpecification requestSpecification) {
         printRequestLogInReport(requestSpecification);
         printResponseLogInReport(response);
-    }}
+    }
+    public static List<String> getPlaylistNames(Response response) {
+        Playlist[] playlists = response.as(Playlist[].class);
+        return Arrays.stream(playlists).map(Playlist::getName).toList();
+    }
+}
 
