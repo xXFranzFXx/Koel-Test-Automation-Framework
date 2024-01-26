@@ -35,7 +35,7 @@ public class BaseTest{
     }
 
     public static void setupBrowser(String baseURL) throws MalformedURLException {
-        threadDriver.set(pickBrowser(System.getProperty("browser")));
+        threadDriver.set(pickBrowser(System.getProperty("browser", "")));
         Reporter.log("browser is: " + System.getProperty("browser"));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         getDriver().manage().deleteAllCookies();

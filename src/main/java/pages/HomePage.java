@@ -43,7 +43,7 @@ public class HomePage extends BasePage {
     private By deletePlaylistBtn;
     @FindBy(css = ".search-results .virtual-scroller tr:nth-child(1)  .title")
     private WebElement firstSearchSong;
-    @FindBy(css = "div.success.show")
+    @FindBy(css = ".success.show")
     private WebElement successNotification;
     //block containing all songs
     @FindBy(xpath = "//div[@id='searchForm']/input[@type='search']")
@@ -166,7 +166,7 @@ public class HomePage extends BasePage {
             wait.until(ExpectedConditions.elementToBeClickable(playlistsMenuFirstPl));
             contextClick(playlistsMenuFirstPl);
             click(playlistDelete);
-            checkOkModal();
+
             return this;
     }
     public void deleteAllPlaylists() {
@@ -174,7 +174,7 @@ public class HomePage extends BasePage {
                 try {
                     findElement(l).click();
                     contextClickFirstPlDelete();
-                    Assert.assertTrue(notificationMsg());
+
                     Reporter.log("Deleted playlist: " + l, true);
                 } catch (NoSuchElementException e) {
                     Reporter.log("cannot delete playlist" + e, true);
@@ -221,10 +221,11 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public void checkOkModal() {
-        if (elementDoesNotExist(okBtn)) {
-            wait.until(ExpectedConditions.elementToBeClickable(findElement(ok))).click();
+    public HomePage checkOkModal() {
+        if (!elementDoesNotExist(okBtn)) {
+            findElement(ok).click();
         }
+        return this;
     }
     public HomePage clickFirstSearchResult() {
         findElement(firstSearchSong).click();

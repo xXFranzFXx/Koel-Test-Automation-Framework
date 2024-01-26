@@ -177,7 +177,7 @@ public class BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         return modal.contains(closeModalBtn);
     }
-    protected boolean elementDoesNotExist(By locator) {
+    public boolean elementDoesNotExist(By locator) {
         return findElements(locator).isEmpty();
     }
 
