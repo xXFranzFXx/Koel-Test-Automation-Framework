@@ -8,9 +8,9 @@ import io.restassured.specification.SpecificationQuerier;
 import models.playlist.Playlist;
 import util.listeners.TestListener;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RestUtil {
     private static RequestSpecification getRequestSpecification(String endPoint,  Map<String, String> headers) {
@@ -58,7 +58,11 @@ public class RestUtil {
     }
     public static List<String> getPlaylistNames(Response response) {
         Playlist[] playlists = response.as(Playlist[].class);
-        return Arrays.stream(playlists).map(Playlist::getName).toList();
+        return Arrays.stream(playlists).map(Playlist::getName).collect(Collectors.toList());
     }
+    public boolean playlistExists(Response response, String playlistName) {
+          return  getPlaylistNames(response).contains(playlistName);
+    }
+
 }
 

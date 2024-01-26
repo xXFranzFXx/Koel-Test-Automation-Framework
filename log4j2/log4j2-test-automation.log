@@ -1,10 +1,50 @@
-[INFO ] 2024-01-24 10:57:44.429 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
-[INFO ] 2024-01-24 10:57:44.453 [Test worker] Log - createPlaylist started!
-[INFO ] 2024-01-24 10:57:46.889 [Test worker] Log - createPlaylist passed!
-[INFO ] 2024-01-24 10:57:46.890 [Test worker] Log - verifyPlaylistName started!
-[INFO ] 2024-01-24 10:57:48.245 [Test worker] Log - verifyPlaylistName passed!
-[INFO ] 2024-01-24 10:57:48.247 [Test worker] Log - deletePlaylist started!
-[INFO ] 2024-01-24 10:57:49.522 [Test worker] Log - deletePlaylist passed!
-[INFO ] 2024-01-24 10:57:49.523 [Test worker] Log - getPlaylistNames started!
-[INFO ] 2024-01-24 10:57:50.811 [Test worker] Log - getPlaylistNames passed!
-[INFO ] 2024-01-24 10:57:50.812 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-25 15:23:07.982 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-25 15:23:08.006 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-25 15:23:10.458 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-25 15:23:10.459 [Test worker] Log - verifyPlaylistName started!
+[ERROR] 2024-01-25 15:23:11.331 [Test worker] Log - Test Failed
+[INFO ] 2024-01-25 15:23:11.337 [Test worker] Log - deletePlaylist started!
+[WARN ] 2024-01-25 15:23:11.337 [Test worker] Log - deletePlaylist skipped
+[INFO ] 2024-01-25 15:23:11.340 [Test worker] Log - getUserPlaylistNames started!
+[INFO ] 2024-01-25 15:23:12.709 [Test worker] Log - getUserPlaylistNames passed!
+[INFO ] 2024-01-25 15:23:12.710 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-25 15:24:00.755 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-25 15:24:00.776 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-25 15:24:03.113 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-25 15:24:03.114 [Test worker] Log - verifyPlaylistName started!
+[ERROR] 2024-01-25 15:24:04.001 [Test worker] Log - Test Failed
+[INFO ] 2024-01-25 15:24:04.007 [Test worker] Log - deletePlaylist started!
+[WARN ] 2024-01-25 15:24:04.007 [Test worker] Log - deletePlaylist skipped
+[INFO ] 2024-01-25 15:24:04.010 [Test worker] Log - getUserPlaylistNames started!
+[INFO ] 2024-01-25 15:24:05.362 [Test worker] Log - getUserPlaylistNames passed!
+[INFO ] 2024-01-25 15:24:05.363 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-25 15:24:45.047 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-25 15:24:45.068 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-25 15:24:47.381 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-25 15:24:47.382 [Test worker] Log - verifyPlaylistName started!
+[ERROR] 2024-01-25 15:24:48.297 [Test worker] Log - Test Failed
+[INFO ] 2024-01-25 15:24:48.303 [Test worker] Log - deletePlaylist started!
+[WARN ] 2024-01-25 15:24:48.304 [Test worker] Log - deletePlaylist skipped
+[INFO ] 2024-01-25 15:24:48.307 [Test worker] Log - getUserPlaylistNames started!
+[INFO ] 2024-01-25 15:24:49.636 [Test worker] Log - getUserPlaylistNames passed!
+[INFO ] 2024-01-25 15:24:49.638 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-25 15:25:29.217 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-25 15:25:29.239 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-25 15:25:31.521 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-25 15:25:31.522 [Test worker] Log - verifyPlaylistName started!
+[ERROR] 2024-01-25 15:25:32.461 [Test worker] Log - Test Failed
+[INFO ] 2024-01-25 15:25:32.466 [Test worker] Log - deletePlaylist started!
+[WARN ] 2024-01-25 15:25:32.467 [Test worker] Log - deletePlaylist skipped
+[INFO ] 2024-01-25 15:25:32.472 [Test worker] Log - getUserPlaylistNames started!
+[INFO ] 2024-01-25 15:25:33.809 [Test worker] Log - getUserPlaylistNames passed!
+[INFO ] 2024-01-25 15:25:33.813 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
+[INFO ] 2024-01-25 15:34:51.615 [Test worker] Log - Extent Reports for Koel Automation Test Suite started!
+[INFO ] 2024-01-25 15:34:51.637 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-01-25 15:34:53.954 [Test worker] Log - createPlaylist passed!
+[INFO ] 2024-01-25 15:34:53.955 [Test worker] Log - verifyPlaylistName started!
+[INFO ] 2024-01-25 15:34:55.385 [Test worker] Log - verifyPlaylistName passed!
+[INFO ] 2024-01-25 15:34:55.386 [Test worker] Log - deletePlaylist started!
+[INFO ] 2024-01-25 15:34:56.726 [Test worker] Log - deletePlaylist passed!
+[INFO ] 2024-01-25 15:34:56.728 [Test worker] Log - getUserPlaylistNames started!
+[INFO ] 2024-01-25 15:34:58.082 [Test worker] Log - getUserPlaylistNames passed!
+[INFO ] 2024-01-25 15:34:58.083 [Test worker] Log - Extent Reports for Koel Automation Test Suite ending!
