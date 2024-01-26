@@ -221,11 +221,14 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public HomePage checkOkModal() {
-        if (!elementDoesNotExist(okBtn)) {
-            findElement(ok).click();
-        }
-        return this;
+
+        public void checkOkModal() {
+            List<WebElement> ele2 = driver.findElements(okBtn);
+            if (!ele2.isEmpty()) {
+                wait.until(ExpectedConditions.elementToBeClickable(findElement(ok))).click();
+        } else {
+                return;
+            }
     }
     public HomePage clickFirstSearchResult() {
         findElement(firstSearchSong).click();
