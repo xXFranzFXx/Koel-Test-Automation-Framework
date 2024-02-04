@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -134,6 +131,8 @@ public class HomePage extends BasePage {
     private WebElement rPEmptyText;
     @FindBy(xpath = "//a[@href=\"/#!/profile\"]")
     private WebElement profilePageLink;
+    @FindBy(xpath = "//section[@id='playlists']/ul/li[3]/nav/ul/li[2]")
+    private WebElement plDeleteBtn;
 
     private final By searchResultThumbnail = By.cssSelector("section[data-testid=\"song-excerpts\"] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
@@ -166,7 +165,7 @@ public class HomePage extends BasePage {
             wait.until(ExpectedConditions.elementToBeClickable(playlistsMenuFirstPl));
             contextClick(playlistsMenuFirstPl);
             click(playlistDelete);
-
+            checkOkModal();
             return this;
     }
     public void deleteAllPlaylists() {
@@ -185,6 +184,19 @@ public class HomePage extends BasePage {
                 }
             }
         Reporter.log("Total Playlists remaining: " + allPlaylists.size(), true);
+    }
+    public HomePage deleteAllPlaylists2() {
+        try {
+            for (int i = 2; i < playlistsSection.size(); i ++) {
+                clickElement(playlistsSection.get(i));
+                contextClick(findElement(playlistsSection.get(i)));
+                actions.moveToElement(plDeleteBtn).click().pause(3000).perform();
+                checkOkModal();
+            }
+        } catch (StaleElementReferenceException e) {
+            e.printStackTrace();
+        }
+        return this;
     }
     public boolean playlistsEmpty() {
         return (playlistsSection.size() == 2);
@@ -222,13 +234,14 @@ public class HomePage extends BasePage {
     }
 
 
-        public void checkOkModal() {
-            List<WebElement> ele2 = driver.findElements(okBtn);
-            if (!ele2.isEmpty()) {
-                wait.until(ExpectedConditions.elementToBeClickable(findElement(ok))).click();
+    public void checkOkModal() {
+        List<WebElement> ele2 = driver.findElements(okBtn);
+        if (!ele2.isEmpty()) {
+            wait.until(ExpectedConditions.elementToBeClickable(findElement(ok)));
+            actions.moveToElement(ok).click().pause(1500).perform();
         } else {
-                return;
-            }
+            deleteAllPlaylists();
+        }
     }
     public HomePage clickFirstSearchResult() {
         findElement(firstSearchSong).click();
@@ -290,6 +303,10 @@ public class HomePage extends BasePage {
         actions.doubleClick(searchResultSongText).perform();
         return this;
     }
+    public String getSearchInputValidationMsg() {
+        return findElement(newPlaylistInput).getAttribute("validationMessage");
+    }
+
 
     public WebElement isInfoPanelVisible() {
         return findElement(infoPanelShowing);
