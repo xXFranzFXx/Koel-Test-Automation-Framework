@@ -12,6 +12,7 @@ import util.extentReports.ExtentManager;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +37,47 @@ public class KoelDbTests extends KoelDbActions {
         dataMap.put(key, rs);
         testData.setTestDataInMap(dataMap);
 
+    }
+    private boolean checkDatabaseForPlaylist(String koelUser, String playlistName) throws SQLException, ClassNotFoundException {
+        rs = checkNewPlaylist(koelUser, playlistName);
+        if(rs.next()) {
+            String playlist = rs.getString("p.name");
+            TestListener.logInfoDetails("Playlist in database: " + playlist);
+            TestListener.logAssertionDetails("Created playlist exists in database: " + playlistName.equalsIgnoreCase(playlist));
+            return playlistName.equalsIgnoreCase(playlist);
+        }
+        return false;
+    }
+    private boolean checkDatabaseForSongInPlaylist(String koelUser, String song) throws SQLException, ClassNotFoundException {
+
+        rs = checkSongsInPlaylist(koelUser);
+        ResultSetMetaData resultSetMetaData = rs.getMetaData();
+        final int columnCount = resultSetMetaData.getColumnCount();
+        boolean found = false;
+        TestListener.logInfoDetails("Searching for song containing the word '"+song+"' ");
+        while (rs.next()) {
+            for (int i = 1; i <= columnCount; i++) {
+                String dbSong = rs.getString(i).toLowerCase();
+                found = dbSong.contains(song);
+                TestListener.logInfoDetails("Playlist song found: " + dbSong);
+                TestListener.logAssertionDetails("Song added to playlist matches playlist song found in database: " + dbSong.contains(song));
+                if (found) break;
+            }
+        }
+        return found;
+    }
+    public boolean duplicateCondition (int duplicates) {
+        return duplicates >= 2;
+    }
+    private int countDuplicateNames(String koelUser, String playlistName) throws SQLException, ClassNotFoundException {
+        int duplicates = 0;
+        rs = checkDuplicatePlaylistNames(koelUser, playlistName);
+        if (rs.next()) {
+            duplicates = rs.getInt("count");
+            TestListener.logInfoDetails("Total playlists with same name: " + duplicates);
+            TestListener.logAssertionDetails("User can create playlists with duplicate names: " + duplicateCondition(duplicates));
+        }
+        return duplicates;
     }
     @BeforeClass
     public static void setEnv() {
@@ -69,10 +111,6 @@ public class KoelDbTests extends KoelDbActions {
         Assert.assertFalse(false);
     }
 
-//    @Test(dependsOnMethods = {"queryArtist"})
-//    public void verifyArtistQueryResults(){
-//        Assert.assertTrue(verifyData("name", "queryName"));
-//    }
     @Test(description = "get songs by an artist")
     @Parameters({"artist"})
     public void querySongByArtist(String artist) throws SQLException, IOException {

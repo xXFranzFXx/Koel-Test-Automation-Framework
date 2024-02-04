@@ -37,6 +37,21 @@ public class KoelDbActions extends KoelDb{
             SELECT * FROM dbkoel.songs WHERE LENGTH BETWEEN ? AND ?""";
     private String usersThatHavePlaylsts = """
             SELECT * FROM dbkoel.users u RIGHT JOIN dbkoel.playlists p ON u.id = p.user_id""";
+    private final String getTotalDuration = """
+             SELECT SUM(length) as duration FROM dbkoel.songs
+             """;
+    private final String getDuration = """
+            SELECT SUM(duration.length/60/60) FROM (SELECT * FROM dbkoel.songs  LIMIT = ?) as duration
+            """;
+    private String checkNewPlaylistName = """
+            SELECT p.name FROM dbkoel.users u JOIN dbkoel.playlists p ON u.id = p.user_id WHERE u.email = ? AND p.name = ?
+            """;
+    private String getSongsInPlaylist = """
+            SELECT s.title FROM dbkoel.songs s JOIN dbkoel.playlist_song ps ON s.id = ps.song_id JOIN dbkoel.playlists p ON ps.playlist_id  = p.id  JOIN dbkoel.users u ON p.user_id = u.id WHERE u.email = ?
+            """;
+    private String getDuplicatePlaylistNames = """
+            SELECT COUNT(*) as count FROM dbkoel.playlists p JOIN dbkoel.users u ON p.user_id = u.id WHERE u.email = ? AND p.name = ?
+            """;
 
 
     private ResultSet simpleQuery(String sql) throws SQLException {
@@ -92,6 +107,28 @@ public class KoelDbActions extends KoelDb{
         TestListener.logInfoDetails("String user: " + user);
         String[] str = new String[]{user};
         return query(getNewUser, str);
+    }
+    public ResultSet totalDuration() throws SQLException {
+        return simpleQuery(getTotalDuration);
+    }
+    public ResultSet getSpecificDuration(String songTotal) throws SQLException {
+        TestListener.logInfoDetails("String songTotal: " + songTotal);
+        String[] str = new String[]{songTotal};
+        return query(getDuration, str);
+    }
+    public ResultSet checkNewPlaylist(String user, String playlist) throws SQLException {
+        TestListener.logInfoDetails("User: " + user);
+        TestListener.logInfoDetails("New playlist name: " + playlist);
+        String[] str = new String[]{user, playlist};
+        return query(checkNewPlaylistName, str);
+    }
+    public ResultSet checkSongsInPlaylist(String user) throws SQLException {
+        String[] str = new String[]{user};
+        return query(getSongsInPlaylist, str);
+    }
+    public ResultSet checkDuplicatePlaylistNames(String user, String playlist) throws SQLException {
+        String[] str = new String[]{user, playlist};
+        return query(getDuplicatePlaylistNames, str);
     }
 
 
