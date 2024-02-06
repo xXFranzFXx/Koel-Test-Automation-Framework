@@ -30,7 +30,7 @@ public class AlbumsPage extends BasePage{
     private WebElement firstAlbumLocator;
     @FindBy(xpath = "//h1[text()[normalize-space()='Albums']]")
     private WebElement albumsPageTitleLocator;
-    @FindBy(css = "#albumsWrapper article.item.full")
+    @FindBy(css = "#albumsWrapper .albums article.item.full")
     private List<WebElement> albumTiles;
     @FindBy(css="article.item.full span.cover")
     private List<WebElement> albumCoverPics;
@@ -40,6 +40,8 @@ public class AlbumsPage extends BasePage{
     private List<WebElement> albumArtists;
     @FindBy(css="#albumsWrapper p.meta")
     private List <WebElement> footerInfoContainer;
+    @FindBy(css="#albumsWrapper .fa.fa-list")
+    private WebElement listViewButton;
     @FindBy(css = "#albumsWrapper p.meta i.fa.fa-download")
     private List <WebElement> downloadBtn;
     @FindBy(css = "#albumsWrapper p.meta i.fa.fa-random")

@@ -190,7 +190,7 @@ public class HomePage extends BasePage {
             for (int i = 2; i < playlistsSection.size(); i ++) {
                 clickElement(playlistsSection.get(i));
                 contextClick(findElement(playlistsSection.get(i)));
-                actions.moveToElement(plDeleteBtn).click().pause(3000).perform();
+                actions.moveToElement(plDeleteBtn).click().pause(1000).perform();
                 checkOkModal();
             }
         } catch (StaleElementReferenceException e) {
@@ -238,7 +238,7 @@ public class HomePage extends BasePage {
         List<WebElement> ele2 = driver.findElements(okBtn);
         if (!ele2.isEmpty()) {
             wait.until(ExpectedConditions.elementToBeClickable(findElement(ok)));
-            actions.moveToElement(ok).click().pause(1500).perform();
+            actions.moveToElement(ok).click().pause(1000).perform();
         } else {
             deleteAllPlaylists();
         }
@@ -537,5 +537,6 @@ public class HomePage extends BasePage {
     public void clickSaveSmartList() {
         findElement(smartListSaveButton).click();
     }
+
 }
 
