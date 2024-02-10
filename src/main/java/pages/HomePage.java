@@ -53,9 +53,9 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//section[@class='songs']//button[contains(.,'View All')]")
     private WebElement viewAllBtnLocator;
 
-    @FindBy(xpath = "//section[@class=\"recent\"]//h1")
+    @FindBy(xpath = "//section[@class='recent']//h1")
     private WebElement recentlyPlayedViewAllBtn;
-    private By rPPlayedViewAllBtn = By.xpath("//section[@class=\"recent\"]//h1/button");
+    private By rPPlayedViewAllBtn = By.xpath("//section[@class='recent']//h1/button");
     //AddTo dropdown menu choice in the context menu when right-clicking a song
 
     @FindBy(xpath = "//section[@id='songResultsWrapper']//button[@class='btn-add-to']")
@@ -97,7 +97,7 @@ public class HomePage extends BasePage {
     private WebElement artistTabInfoText;
     @FindBy(css = "section#extra .tabs")
     private WebElement infoPanelTabsGroupLocator;
-    @FindBy(xpath = "//section[@id=\"homeWrapper\"]//div[@class='heading-wrapper']/h1")
+    @FindBy(xpath = "//section[@id='homeWrapper']//div[@class='heading-wrapper']/h1")
     private WebElement welcomeMsg;
     @FindBy(css = "section.recent .text-secondary")
     private WebElement emptyListPlaceHolderText;
@@ -119,35 +119,41 @@ public class HomePage extends BasePage {
     private WebElement newPlaylistInput;
     @FindBy(xpath = "//form[@data-testid='create-smart-playlist-form']")
     private WebElement smartListModal;
-    @FindBy(xpath = "//span[@class=\"value-wrapper\"]/input[@type=\"text\"]")
+    @FindBy(css = ".rule-group .btn-add-rule .fa.fa-plus")
+    private WebElement smartListAddRuleBtn;
+    @FindBy(css = ".btn-add-group .fa.fa-plus")
+    private WebElement smartListAddGroupBtn;
+    @FindBy(xpath = "//span[@class='value-wrapper']/input[@type='text']")
     private WebElement smartListCriteriaInput;
+    @FindBy(xpath = "//span[@class='value-wrapper']/input[@type='text']")
+    private List<WebElement> smartListCriteriaInputGroup;
     @FindBy(xpath = "//form[@data-testid='create-smart-playlist-form']//input[@name='name']")
     private WebElement smartListFormNameInput;
-    @FindBy(xpath = "//button[text()=\"Save\"]")
+    @FindBy(xpath = "//button[text()='Save']")
     private WebElement smartListSaveButton;
-    @FindBy(xpath = "//article/footer/div/span[@class=\"sep text-secondary\"]")
+    @FindBy(xpath = "//article/footer/div/span[@class='sep text-secondary']")
     private WebElement rAThumbnailTitle;
     @FindBy(css = "section.recent p.text-secondary")
     private WebElement rPEmptyText;
-    @FindBy(xpath = "//a[@href=\"/#!/profile\"]")
+    @FindBy(xpath = "//a[@href='/#!/profile']")
     private WebElement profilePageLink;
     @FindBy(xpath = "//section[@id='playlists']/ul/li[3]/nav/ul/li[2]")
     private WebElement plDeleteBtn;
 
-    private final By searchResultThumbnail = By.cssSelector("section[data-testid=\"song-excerpts\"] span.cover:nth-child(1)");
+    private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
     private final By lyricsTabInfo = By.cssSelector(".none span");
     private final By artisTabLocator = By.id("extraTabArtist");
     private final By artistTabInfo = By.cssSelector("[data-test='artist-info'] h1.name span");
     private final By albumTabLocator = By.id("extraTabAlbum");
     private final By albumTabInfo = By.cssSelector("main span a.control.control-play");
-    private final By albumTabShuffleBtn = By.cssSelector("article[data-test=\"album-info\"] .fa-random");
+    private final By albumTabShuffleBtn = By.cssSelector("article[data-test='album-info'] .fa-random");
     private final By currentQueueHeader = By.cssSelector("#queueWrapper .heading-wrapper h1");
-    private final By badgeNameTextLocator = By.xpath("//span[@id=\"userBadge\"]//span[@class='name']");
+    private final By badgeNameTextLocator = By.xpath("//span[@id='userBadge']//span[@class='name']");
     private final By playPauseBtn = By.xpath("//span[@title='Play or resume']//i[@class='fa fa-play']");
-    private final By recentlyAddedlistItems = By.xpath("//ol[@class=\"recently-added-album-list\"][1]/li");
+    private final By recentlyAddedlistItems = By.xpath("//ol[@class='recently-added-album-list'][1]/li");
     private final By searchResultsGroup = By.cssSelector("#searchExcerptsWrapper .results section");
-    private final By selectNewSmartList = By.cssSelector("li[data-testid=\"playlist-context-menu-create-smart\"]");
+    private final By selectNewSmartList = By.cssSelector("li[data-testid='playlist-context-menu-create-smart']");
     @CacheLookup
     private By playlistDelete = By.xpath("//section[@id='playlists']/ul/li[3]/nav/ul/li[2]");
     @FindBy(xpath = "//div[@class='alertify']//nav/button[@class='ok']")
@@ -521,7 +527,7 @@ public class HomePage extends BasePage {
 
     public void enterSmartListName(String smartList) {
         WebElement input = findElement(smartListFormNameInput);
-        input.sendKeys("newSmartList");
+        input.sendKeys(smartList);
 
     }
     public void enterSmartListCriteria(String criteria) {
