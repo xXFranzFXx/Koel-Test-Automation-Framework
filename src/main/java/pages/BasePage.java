@@ -122,22 +122,22 @@ public class BasePage {
     protected void doubleClick(WebElement webElement) {
         actions.doubleClick(findElement(webElement)).perform();
     }
-    protected boolean isSongPlaying() {
+    public boolean isSongPlaying() {
         findElement(soundBarVisualizer);
         return soundBarVisualizer.isDisplayed();
     }
 
-    protected void currentQueuePage () {
+    public void currentQueuePage () {
         actions.moveToElement(currentQueueLocator).perform();
         clickElement(currentQueueLocator);    }
-    protected void recentlyPlayedPage() {
+    public void recentlyPlayedPage() {
         actions.moveToElement(recentlyPlayedLocator).perform();
             clickElement(recentlyPlayedLocator);
     }
-    protected void artistsPage() {
+    public void artistsPage() {
         actions.moveToElement(artistsLocator).perform();
         clickElement(artistsLocator);    }
-    protected void albumsPage() {
+    public void albumsPage() {
         actions.moveToElement(albumsLocator).perform();
         clickElement(albumsLocator);
     }
@@ -148,37 +148,41 @@ public class BasePage {
     public void favorites() {actions.moveToElement(favoritesLocator).perform();
         clickElement(favoritesLocator);
     }
-    protected void homePage() {  actions.moveToElement(homeLocator).perform();
+    public void homePage() {  actions.moveToElement(homeLocator).perform();
         clickElement(homeLocator);
     }
-    protected void about() { actions.moveToElement(aboutBtnLocator).perform();
+    public void about() { actions.moveToElement(aboutBtnLocator).perform();
             clickElement(aboutBtnLocator);
     }
 
     public void clickLogoutButton() {
         findElement(logoutButtonLocator).click();
     }
-    protected boolean checkAboutModal() {
+    public boolean checkAboutModal() {
         return findElement(aboutModalLocator).isDisplayed();
     }
-    protected String getSearchedSongTitle() {
+    public String getSearchedSongTitle() {
             return searchResultSongLocator.getText();
         }
-    protected void closeModal() {
+    public void closeModal() {
        actions.moveToElement(modalCloseLocator).perform();
        click(closeModalButton);
     }
-    protected void closeModalAndLogout() {
+    public void closeModalAndLogout() {
         wait.until(ExpectedConditions.visibilityOf(modalCloseLocator));
         click(closeModalButton);
         clickLogoutButton();
     }
-    protected boolean modalIsClosed() {
+    public boolean modalIsClosed() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         return modal.contains(closeModalBtn);
     }
-    public boolean elementDoesNotExist(By locator) {
+    protected boolean elementDoesNotExist(By locator) {
         return findElements(locator).isEmpty();
     }
+    protected void pause(int seconds) {
+        actions.pause(Duration.ofSeconds(seconds)).perform();
+    }
+
 
 }
