@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class TestUtil {
@@ -83,5 +84,11 @@ public static Map<String, LinkedHashMap<String, String>> processResultSet(String
         calendar.setTimeInMillis(millis);
         return calendar.getTime();
     }
+    public static  String getDate() {
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        df.setTimeZone(TimeZone.getTimeZone("Europe/London"));
+        return df.format(new Date());
+    }
+
 
 }

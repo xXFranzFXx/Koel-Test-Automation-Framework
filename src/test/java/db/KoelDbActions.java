@@ -12,6 +12,12 @@ public class KoelDbActions extends KoelDb{
     private static Connection db ;
     private static PreparedStatement st;
     private static ResultSet rs;
+    private String getSmartPLaylist = """
+            SELECT * FROM dbkoel.playlists p JOIN dbkoel.users u ON p.user_id = u.id WHERE u.email= ? AND p.name= ?
+            """;
+    private String getArtistsInDb = """
+            SELECT a.name as name FROM dbkoel.artists a  ORDER BY a.name ASC
+            """;
 
     private final String getUserPwdInfo = """
             SELECT password, updated_at FROM dbkoel.users u WHERE u.email = ?
@@ -129,6 +135,13 @@ public class KoelDbActions extends KoelDb{
     public ResultSet checkDuplicatePlaylistNames(String user, String playlist) throws SQLException {
         String[] str = new String[]{user, playlist};
         return query(getDuplicatePlaylistNames, str);
+    }
+    public ResultSet checkSmartPl(String user, String smartPl) throws SQLException {
+        String[] str = new String[]{user, smartPl};
+        return query(getSmartPLaylist, str);
+    }
+    public ResultSet checkArtistsInDb() throws SQLException {
+        return simpleQuery(getArtistsInDb);
     }
 
 
