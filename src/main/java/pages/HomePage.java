@@ -5,6 +5,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
 
@@ -157,6 +158,16 @@ public class HomePage extends BasePage {
     private WebElement ok;
     @FindBy(xpath = "//span[@class='value-wrapper']/input[@type='text']")
     private WebElement smartListCriteriaTextInput;
+    @FindBy(xpath = "//div[@data-test='smart-playlist-rule-row']//select[@name='model[]']")
+    private WebElement smartListModelSelectMenu;
+    @FindBy(xpath = "//div[@data-test='smart-playlist-rule-row']//select[@name='operator[]']")
+    private WebElement smartListOperatorSelectMenu;
+    @FindBy(css ="#playlistWrapper .items")
+    private List<WebElement> smartPlaylistSongs;
+    @FindBy(css = ".fa.fa-file-o")
+    private WebElement emptySmartlistIcon;
+    @FindBy(css = "#playlistWrapper .text")
+    private WebElement emptySmartListText;
 
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
@@ -613,6 +624,31 @@ public class HomePage extends BasePage {
         WebElement editModal = find(By.cssSelector(".smart-playlist-form form"));
         return  editModal.isDisplayed();
     }
-
+    public HomePage selectOperatorOption(String option){
+        Select operatorSelectMenu = new Select(smartListOperatorSelectMenu);
+        operatorSelectMenu.selectByVisibleText(option);
+        return this;
+    }
+    public HomePage selectModelOption(String option){
+        Select modelSelectMenu = new Select(smartListModelSelectMenu);
+        modelSelectMenu.selectByVisibleText(option);
+        return this;
+    }
+    public boolean checkSmartListEmpty() {
+        return smartPlaylistSongs.isEmpty();
+    }
+    public HomePage enterSmartListDateCriteria(String date) {
+        smartListCriteriaDateInput.sendKeys(date);
+        return this;
+    }
+    public boolean checkEmptySmartListIcon() {
+        return emptySmartlistIcon.isDisplayed();
+    }
+    public String emptySmartListMessage() {
+        return emptySmartListText.getText();
+    }
+    public String getNameInputValidationMsg() {
+        return findElement(smartListFormNameInput).getAttribute("validationMessage");
+    }
 }
 
