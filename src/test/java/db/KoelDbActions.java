@@ -6,6 +6,7 @@ import util.listeners.TestListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class KoelDbActions extends KoelDb{
@@ -58,8 +59,25 @@ public class KoelDbActions extends KoelDb{
     private String getDuplicatePlaylistNames = """
             SELECT COUNT(*) as count FROM dbkoel.playlists p JOIN dbkoel.users u ON p.user_id = u.id WHERE u.email = ? AND p.name = ?
             """;
-
-
+    private String dbArtistsInList = """
+           SELECT COUNT(*) as count FROM dbkoel.artists a
+           """;
+    private static String createQueryList(int length, String sql, String property) {
+        String query = sql + "WHERE " + property + " in (";
+        StringBuilder queryBuilder = new StringBuilder(query);
+        for (int i = 0; i < length; i++) {
+            queryBuilder.append(" ?");
+            if (i != length - 1)
+                queryBuilder.append(",");
+        }
+        queryBuilder.append(")");
+        return queryBuilder.toString();
+    }
+    private ResultSet processDynamicQuery(List<String> list, String sql, String property) throws SQLException {
+        String queryStr = createQueryList(list.size(), sql, property);
+        String[] stringArr = list.toArray(new String[0]);
+        return query(queryStr, stringArr);
+    }
     private ResultSet simpleQuery(String sql) throws SQLException {
         db = getDbConnection();
         st=db.prepareStatement(sql);
@@ -69,8 +87,6 @@ public class KoelDbActions extends KoelDb{
     }
     public ResultSet query(String sql, String ...args) throws SQLException {
         TestListener.logInfoDetails("SQL statement: " + sql);
-
-
         db = getDbConnection();
         st = db.prepareStatement(sql);
         if (args.length > 1) {
@@ -91,7 +107,6 @@ public class KoelDbActions extends KoelDb{
         String[] str = new String[]{artist};
         return query(artistNameQuery, str);
     }
-
     public ResultSet songByArtistJoinStmt(String artist) throws SQLException {
         String[] str = new String[]{artist};
         return query(getSongByArtist, str);
@@ -143,7 +158,7 @@ public class KoelDbActions extends KoelDb{
     public ResultSet checkArtistsInDb() throws SQLException {
         return simpleQuery(getArtistsInDb);
     }
-
-
-
+    public ResultSet checkArtistsListFromApp(List<String> artists, String property) throws SQLException {
+        return processDynamicQuery(artists, dbArtistsInList, property);
+    }
 }
