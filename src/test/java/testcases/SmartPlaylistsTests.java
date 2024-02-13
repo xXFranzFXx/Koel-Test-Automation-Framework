@@ -36,8 +36,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectOperatorOption("contains")
                 .enterSmartListTextCriteria("dark")
                 .clickSaveSmartList();
@@ -51,8 +50,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .enterSmartListTextCriteria("dark")
                 .clickSaveSmartList();
         Object[] expected = {true, expectedText};
@@ -67,8 +65,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .clickGroupRuleBtn()
                 .enterGroupRulesText(text)
                 .clickSaveSmartList();
@@ -81,8 +78,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectModelOption("Plays")
                 .enterSmartListIntCriteria(3)
                 .clickSaveSmartList();
@@ -94,8 +90,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName("a");
-        homePage
+                .enterSmartListName("a")
                 .enterSmartListTextCriteria("dark")
                 .clickSaveSmartList();
         TestListener.logAssertionDetails("Created smart playlist with name that has one-character length: " + homePage.smartlistAddedToMenu("a"));
@@ -107,8 +102,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(longName);
-        homePage
+                .enterSmartListName(longName)
                 .enterSmartListTextCriteria("dark")
                 .clickSaveSmartList();
         TestListener.logAssertionDetails("Created smart playlist with name exceeding 256-character length max: " + homePage.smartlistAddedToMenu(longName));
@@ -122,10 +116,8 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
-                .selectModelOption("Date Added");
-        homePage
+                .enterSmartListName(playlist)
+                .selectModelOption("Date Added")
                 .enterSmartListDateCriteria(currentDate)
                 .clickSaveSmartList();
         TestListener.logAssertionDetails("Created smart playlist using the 'Date Added' model: " + homePage.smartlistAddedToMenu(playlist));
@@ -138,8 +130,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .clickSmartListCancelBtn();
         TestListener.logAssertionDetails("Verified functionality of 'Cancel' button: " + homePageUrl.equalsIgnoreCase(getDriver().getCurrentUrl()));
         Assert.assertEquals(homePageUrl, getDriver().getCurrentUrl(), "Unable to verify functionality of 'Cancel' button");
@@ -150,8 +141,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectOperatorOption("is not")
                 .enterSmartListTextCriteria("dark")
                 .clickSaveSmartList();
@@ -164,8 +154,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectOperatorOption("does not contain")
                 .enterSmartListTextCriteria("dark")
                 .clickSaveSmartList();
@@ -178,8 +167,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectOperatorOption("begins with")
                 .enterSmartListTextCriteria("a")
                 .clickSaveSmartList();
@@ -192,8 +180,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectOperatorOption("ends with")
                 .enterSmartListTextCriteria("a")
                 .clickSaveSmartList();
@@ -206,8 +193,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectModelOption("Plays")
                 .selectOperatorOption("is greater than")
                 .enterSmartListIntCriteria(3)
@@ -221,8 +207,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectModelOption("Plays")
                 .selectOperatorOption("is less than")
                 .enterSmartListIntCriteria(3)
@@ -237,8 +222,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectModelOption("Plays")
                 .selectOperatorOption("is between")
                 .enterIntCriteria(plays)
@@ -263,8 +247,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .clickSaveSmartList();
         TestListener.logAssertionDetails("Verified smart playlist with blank rule criteria cannot be created: " + homePage.isEditModalVisible());
         Assert.assertTrue(homePage.isEditModalVisible());
@@ -275,8 +258,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectModelOption("Plays")
                 .enterSmartListIntCriteria(-3)
                 .clickSaveSmartList();
@@ -290,8 +272,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectModelOption("Date Added")
                 .selectOperatorOption("in the last")
                 .enterSmartListIntCriteria(5)
@@ -306,8 +287,7 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
-                .enterSmartListName(playlist);
-        homePage
+                .enterSmartListName(playlist)
                 .selectModelOption("Date Added")
                 .selectOperatorOption("not in the last")
                 .enterSmartListIntCriteria(5)

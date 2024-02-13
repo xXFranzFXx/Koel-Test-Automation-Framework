@@ -552,16 +552,15 @@ public class HomePage extends BasePage {
         return findElement(smartListModal).isDisplayed();
     }
 
-    public void enterSmartListName(String smartList) {
+    public HomePage enterSmartListName(String smartList) {
         WebElement input = findElement(smartListFormNameInput);
         input.sendKeys(smartList);
-
+        return this;
     }
-    public void enterSmartListCriteria(String criteria) {
+    public HomePage enterSmartListCriteria(String criteria) {
         WebElement input = findElement(smartListCriteriaInput);
         input.sendKeys(criteria);
-
-
+        return this;
     }
 
     public HomePage enterSmartListTextCriteria(String criteria) {
