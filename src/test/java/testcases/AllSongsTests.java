@@ -28,11 +28,12 @@ public class AllSongsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         loginPage = new LoginPage(getDriver());
         allSongsPage = new AllSongsPage(getDriver());
+        loginPage.loginValidCredentials().clickAllSongs();
+
     }
 
     @Test(description = "Play the first song on All Songs page")
     public void playFirstSong() {
-        loginPage.loginValidCredentials().clickAllSongs();
        allSongsPage
                 .checkHeaderTitle()
                 .contextClickFirstSong()
@@ -42,7 +43,6 @@ public class AllSongsTests extends BaseTest {
     }
     @Test(description = "Click on the Album Tab in the Info Panel")
     public void clickInfoPanelAlbumTab() {
-        loginPage.loginValidCredentials().clickAllSongs();
         allSongsPage
                 .checkHeaderTitle()
                 .contextClickFirstSong()
@@ -52,23 +52,19 @@ public class AllSongsTests extends BaseTest {
     }
     @Test(description="Like all songs")
     public void likeAll(){
-        loginPage.loginValidCredentials().clickAllSongs();
         allSongsPage.likeSongs();
         Assert.assertFalse(allSongsPage.checkUnliked());
     }
     @Test(description="Unlike all liked songs", dependsOnMethods = {"likeAll"})
     public void unlikeAll () {
-        loginPage.loginValidCredentials().clickAllSongs();
         allSongsPage.unlikeSongs();
             Assert.assertTrue(allSongsPage.checkUnliked());
     }
     public void checkSongInfo() {
-        loginPage.loginValidCredentials().clickAllSongs();
         Assert.assertTrue(allSongsPage.findSongInfo(), "Info is missing in one or more songs, check songs in All Songs page");
     }
     @Test(description = "Count the total number of playable songs and compare that to the total number of songs displayed in All Songs page header")
     public void totalPlayableSongsCount() {
-        loginPage.loginValidCredentials().clickAllSongs();
         int manualCount = allSongsPage.getTotalSongsCount();
         int countDisplayedInHeader = Integer.parseInt(allSongsPage.getSongTotalFromHeader());
         TestListener.logInfoDetails("Total songs displayed in All Songs page header: " + countDisplayedInHeader);
@@ -78,12 +74,10 @@ public class AllSongsTests extends BaseTest {
     }
     @Test(description = "Verify song total is displayed in the All Songs page header")
     public void songTotalIsDisplayed() {
-        loginPage.loginValidCredentials().clickAllSongs();
         Assert.assertTrue(allSongsPage.songTotalIsDisplayed(), "Song total not found");
     }
     @Test(description = "Verify total duration of songs is displayed in the All Songs page header")
     public void durationInHeader() {
-        loginPage.loginValidCredentials().clickAllSongs();
         Assert.assertTrue(allSongsPage.totalDurationIsDisplayed(), "Total song duration not found");
     }
 }

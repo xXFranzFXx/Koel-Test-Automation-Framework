@@ -41,13 +41,13 @@ public class FavoritesTests extends BaseTest {
     public void setUp(String baseURL) throws MalformedURLException {
         setupBrowser(baseURL);
         loginPage = new LoginPage(getDriver());
+        allSongsPage = new AllSongsPage(getDriver());
+        favoritesPage = new FavoritesPage(getDriver());
         loginPage.loginValidCredentials();
     }
 
     @Test(description="Add songs to favorites playlist and verify they are displayed in the favorites playlist page", priority=0)
     public void likeSongs() {
-        favoritesPage = new FavoritesPage(getDriver());
-        allSongsPage = new AllSongsPage(getDriver());
         allSongsPage.allSongsPage();
         allSongsPage.likeOneSong();
         allSongsPage.favorites();
@@ -56,7 +56,6 @@ public class FavoritesTests extends BaseTest {
     }
     @Test(description = "Remove all songs from favorites playlist and verify no songs are displayed", priority=2)
     public void unlikeAllSongs(){
-        favoritesPage = new FavoritesPage(getDriver());
         favoritesPage.favorites();
         favoritesPage.unlikeAllSongs();
         TestListener.logAssertionDetails("User can remove songs from Favorites playlist page: " + favoritesPage.checkPlaylistEmptyIcon());
@@ -64,7 +63,6 @@ public class FavoritesTests extends BaseTest {
     }
     @Test(description = "Download a song from the favorites playlist page and verify that the song is downloading", priority=1)
     public void downloadSong() {
-        favoritesPage = new FavoritesPage(getDriver());
         favoritesPage.favorites();
         favoritesPage.contextClickFirstSong()
                 .selectDownloadFromCM();
