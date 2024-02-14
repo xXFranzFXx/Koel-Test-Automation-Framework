@@ -34,14 +34,14 @@ public class SearchTests extends BaseTest {
     public void setup(String baseURL) throws MalformedURLException {
         setupBrowser(baseURL);
         loginPage = new LoginPage(getDriver());
+        homePage = new HomePage(getDriver());
+        searchPage = new SearchPage(getDriver());
         loginPage.loginValidCredentials();
     }
 
     @Test(description = "Verify info is displayed in Songs, Artists, Albums section when searching")
     @Parameters({"searchString"})
     public void checkSearchResults(String searchString) {
-        homePage = new HomePage(getDriver());
-        searchPage = new SearchPage(getDriver());
         homePage.searchSong(searchString);
         TestListener.logInfoDetails("Search input: " + searchString);
         TestListener.logAssertionDetails("Results for songs are empty: " + searchPage.isSearchResultEmpty("song"));
@@ -54,8 +54,6 @@ public class SearchTests extends BaseTest {
     @Test(description = "Verify no info is displayed when search returns no matches")
     @Parameters({"searchString2"})
     public void checkEmptyResults(String searchString2) {
-        homePage = new HomePage(getDriver());
-        searchPage = new SearchPage(getDriver());
         homePage.searchSong(searchString2);
         TestListener.logInfoDetails("Search input: " + searchString2);
 
@@ -69,8 +67,6 @@ public class SearchTests extends BaseTest {
     }
     @Test(description="Test 'x' button in search field: type a letter, click 'x', then enter a different letter", dataProvider = "SearchData", dataProviderClass = DataProviderUtil.class)
     public void cancelButton(String firstSearch, String secondSearch) {
-        homePage = new HomePage(getDriver());
-        searchPage = new SearchPage(getDriver());
         homePage.searchSong(firstSearch);
         searchPage.clickCancelBtn();
         homePage.searchSong(secondSearch);
@@ -81,8 +77,6 @@ public class SearchTests extends BaseTest {
     }
     @Test(description="Use keyboard to clear the search field: type a letter, clear input by keyboard, then enter a different letter",  dataProvider = "SearchData", dataProviderClass = DataProviderUtil.class)
     public void keyboardClear(String firstSearch, String secondSearch) {
-        homePage = new HomePage(getDriver());
-        searchPage = new SearchPage(getDriver());
         homePage.searchSong(firstSearch);
         searchPage.useKeyBoardClear();
         homePage.searchSong(secondSearch);
@@ -93,8 +87,6 @@ public class SearchTests extends BaseTest {
     }
     @Test(description = "Verify trailing/heading whitespaces are ignored for search input", dataProvider = "SearchData", dataProviderClass = DataProviderUtil.class)
     public void checkWhiteSpace(String str) {
-        homePage = new HomePage(getDriver());
-        searchPage = new SearchPage(getDriver());
         homePage.searchSong(str);
         String searchText = searchPage.getSearchResultHeaderText();
         TestListener.logInfoDetails("Search string: " + str);
@@ -103,7 +95,6 @@ public class SearchTests extends BaseTest {
     }
     @Test(description = "Verify search page can be invoked with keyboard shortcut, by pressing 'F' key")
     public void invokeSearchByKeybd() {
-        searchPage = new SearchPage(getDriver());
         TestListener.logInfoDetails("URL before invoking search feature: " + getDriver().getCurrentUrl());
         searchPage.invokeSearchFromKeybd();
         String expectedUrl = "https://qa.koel.app/#!/search";

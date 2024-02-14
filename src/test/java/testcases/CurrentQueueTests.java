@@ -28,11 +28,11 @@ public class CurrentQueueTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         currentQueuePage = new CurrentQueuePage(getDriver());
+        loginPage.loginValidCredentials();
     }
 
     @Test(description = "Queue page should display total time duration of songs")
     public void checkQueuePageSongs() {
-        loginPage.loginValidCredentials();
         homePage.clickFooterPlayBtn();
         Assert.assertTrue(currentQueuePage.isSongPlayingCQ());
         Assert.assertTrue(currentQueuePage.checkTotalOrDuration(BasePage.durationRe, currentQueuePage.duration()));
