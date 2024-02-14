@@ -31,11 +31,9 @@ dependencies {
 }
 
 test {
-    useTestNG(){
-        suites "src/test/resources/TestNG.xml"
-        suites "src/test/resources/Smoke.xml"
-        suites "src/test/resources/Regression.xml"
-        //        suites "src/test/resources/${suite}.xml"   //This is for testing with Jenkins
+    def suite = project.properties.getOrDefault("suite", "TestNG.xml")
+    useTestNG() {
+        suites "src/test/resources/${suite}"    //gradle clean test -Psuite=suiteName.xml 
         systemProperty "browser", System.getProperty("browser")
     }
 }
