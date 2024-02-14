@@ -10,11 +10,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ProfilePage extends BasePage{
     @FindBy(xpath = "//div[@data-testid='theme-card-pines']/div")
     private WebElement inThePinesThemeLocator;
-    @FindBy(xpath = "//a[@data-testid=\"btn-logout\"]/i")
+    @FindBy(xpath = "//a[@data-testid='btn-logout']/i")
     private WebElement logoutButton;
     @FindBy(css = ".success.show")
     private WebElement updateNotification;
-    @FindBy(css = "[data-testid=\"view-profile-link\"] .name")
+    @FindBy(css = "[data-testid='view-profile-link'] .name")
     private WebElement avatarLocator;
     @FindBy(css = "[name='current_password']")
     private WebElement currentPassword;
@@ -28,6 +28,9 @@ public class ProfilePage extends BasePage{
     private WebElement saveButton;
     @FindBy(id = "inputProfileEmail")
     private WebElement emailId;
+    @FindBy(css = ".error.show")
+    private WebElement errorNotification;
+
 
     public ProfilePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -73,7 +76,7 @@ public class ProfilePage extends BasePage{
     }
     public void clickLogout() {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(".success.show")));
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath( "//*[@data-testid=\"btn-logout\"]/i"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector( "i.fa.fa-sign-out"))).click();
     }
     public ProfilePage provideNewPassword(String newPassword) {
         WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#inputProfileNewPassword")));
@@ -82,7 +85,7 @@ public class ProfilePage extends BasePage{
         return this;
     }
     public void clickTheme(String theme) {
-        By newTheme = By.xpath( "//*[@data-testid='theme-card-"+theme+"']");
+        By newTheme = By.xpath( "//div[@data-testid='theme-card-"+theme+"']");
         WebElement themeLocator = wait.until(ExpectedConditions.visibilityOfElementLocated(newTheme));
         findElement(themeLocator).click();
     }
@@ -95,6 +98,19 @@ public class ProfilePage extends BasePage{
     }
     public void moveToSaveAndClick() {
        actions.moveToElement(saveButton).click().build().perform();
+    }
+    public ProfilePage provideEmail(String email) {
+        WebElement currentEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#inputProfileEmail")));
+        currentEmail.clear();
+        currentEmail.sendKeys(email);
+        return this;
+    }
+    public String getValidationMsg() {
+        return findElement(emailId).getAttribute("validationMessage");
+    }
+    public String getErrorNotificationText() {
+        WebElement errorMsg = wait.until(ExpectedConditions.visibilityOf(errorNotification));
+        return errorMsg.getText();
     }
 
 }

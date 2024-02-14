@@ -33,5 +33,9 @@ dependencies {
 test {
     useTestNG(){
         suites "src/test/resources/TestNG.xml"
+        suites "src/test/resources/Smoke.xml"
+        suites "src/test/resources/Regression.xml"
+        //        suites "src/test/resources/${suite}.xml"   //This is for testing with Jenkins
+        systemProperty "browser", System.getProperty("browser")
     }
 }
