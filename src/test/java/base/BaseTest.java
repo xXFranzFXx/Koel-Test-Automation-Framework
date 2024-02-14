@@ -69,6 +69,7 @@ public class BaseTest{
             case "grid-chrome":
                 ChromeOptions options1 = new ChromeOptions();
                 options1.setExperimentalOption("prefs", setDownloadDir());
+                options1.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
                 options1.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito");
                 caps.setCapability("browserName", "chrome");
                 caps.setCapability(ChromeOptions.CAPABILITY, options1);
@@ -99,6 +100,7 @@ public class BaseTest{
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito");
         options.setExperimentalOption("prefs", setDownloadDir());
+        options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         TestListener eventListener = new TestListener();
         driver = new ChromeDriver(service, options);
         Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
