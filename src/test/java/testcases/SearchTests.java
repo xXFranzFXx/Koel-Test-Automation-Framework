@@ -29,17 +29,12 @@ public class SearchTests extends BaseTest {
     LoginPage loginPage;
     SearchPage searchPage;
 
-
     @BeforeMethod
     @Parameters({"baseURL"})
     public void setup(String baseURL) throws MalformedURLException {
         setupBrowser(baseURL);
         loginPage = new LoginPage(getDriver());
         loginPage.loginValidCredentials();
-    }
-    @AfterMethod
-    public void close() {
-        closeBrowser();
     }
 
     @Test(description = "Verify info is displayed in Songs, Artists, Albums section when searching")

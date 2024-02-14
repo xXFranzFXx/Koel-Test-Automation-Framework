@@ -29,11 +29,6 @@ public class HomeTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         loginPage.loginValidCredentials();
     }
-    @AfterMethod
-    public void close() {
-        closeBrowser();
-    }
-
 
     @Test(description = "User can create a playlist", priority = 1)
     public void createPlaylist() {

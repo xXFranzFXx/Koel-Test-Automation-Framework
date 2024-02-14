@@ -29,10 +29,6 @@ public class ProfileTests extends BaseTest {
         homePage = new HomePage(getDriver());
         profilePage = loginPage.loginValidCredentials().clickAvatar();
     }
-    @AfterMethod
-    public void close() {
-        closeBrowser();
-    }
 
     @Test(description = "Update profile name")
     public void changeProfileName()  throws InterruptedException {

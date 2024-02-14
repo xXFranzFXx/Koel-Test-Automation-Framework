@@ -39,22 +39,14 @@ public class LogoutTests extends BaseTest {
     }
     @BeforeMethod
     @Parameters({"baseURL"})
-
-    public void setup(String baseURL) throws MalformedURLException, IOException {
-
+    public void setup(String baseURL) throws MalformedURLException{
         setupBrowser(baseURL);
         homePage = new HomePage(getDriver());
         loginPage = new LoginPage(getDriver());
         profilePage = loginPage.loginValidCredentials().clickAvatar();
     }
-    @AfterMethod
-    public void close() {
-        closeBrowser();
-    }
-
 
     @Test(description = "Log in and verify visibility of logout button, then log out")
-
     public void useLogoutButton() {
         loginPage.loginValidCredentials();
         Assert.assertTrue(homePage.checkForLogoutBtn());
@@ -63,7 +55,6 @@ public class LogoutTests extends BaseTest {
         Reporter.log("Successfully logged out after logging in", true);
 
     }
-
 
 //    @Test(dependsOnMethods = { "useLogoutButton" }, description = "Update username and password then logout and verify navigation back to login screen")
 //    public void logoutAfterProfileUpdate() {

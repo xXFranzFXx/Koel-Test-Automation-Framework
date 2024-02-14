@@ -28,10 +28,6 @@ public class AlbumsTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         albumsPage = loginPage.loginValidCredentials().clickAlbums();
     }
-    @AfterMethod
-    public void close() {
-        closeBrowser();
-    }
 
     @Test(description = "Right click on an album and play all songs")
     public void playFirstAlbumSongs() {

@@ -29,10 +29,6 @@ public class AllSongsTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         allSongsPage = new AllSongsPage(getDriver());
     }
-    @AfterMethod
-    public void close() {
-        closeBrowser();
-    }
 
     @Test(description = "Play the first song on All Songs page")
     public void playFirstSong() {

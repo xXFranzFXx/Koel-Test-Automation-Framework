@@ -11,6 +11,8 @@ public class SearchPage extends BasePage{
         private WebElement searchResultHeaderText;
         @FindBy(css ="#searchForm input[type='search']")
         private WebElement searchInputLocator;
+        @FindBy(css = "section.artists > ul")
+        private WebElement artistResult;
         public SearchPage(WebDriver givenDriver) {
             super(givenDriver);
         }
@@ -51,4 +53,7 @@ public class SearchPage extends BasePage{
             wait.until(ExpectedConditions.urlContains("https://qa.koel.app/#!"));
             actions.sendKeys("f").perform();
         }
+    public boolean artistExists() {
+        return artistResult.isDisplayed();
+    }
 }
