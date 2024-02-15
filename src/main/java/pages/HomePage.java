@@ -41,14 +41,14 @@ public class HomePage extends BasePage {
     private By deletePlaylistBtn;
     @FindBy(css = ".search-results .virtual-scroller tr:nth-child(1)  .title")
     private WebElement firstSearchSong;
-    @FindBy(css = ".success.show")
+    @FindBy(css = "div.success.show")
     private WebElement successNotification;
     //block containing all songs
     @FindBy(xpath = "//div[@id='searchForm']/input[@type='search']")
     private WebElement searchSongInput;
 
     //play button used for hoverplay method
-    @FindBy(css = "[data-testid='play-btn']")
+    @FindBy(css = "span[data-testid='play-btn']")
     private WebElement play;
 
     @FindBy(xpath = "//section[@class='songs']//button[contains(.,'View All')]")
@@ -89,6 +89,10 @@ public class HomePage extends BasePage {
             @FindBy(xpath = "//section[@id='playlists']/ul/li[@class='playlist playlist']/a")
     })
     private List<WebElement> allPlaylists;
+    @FindBy(xpath = "//section[@id='playlists']/ul/li[@class='playlist playlist']/a")
+    private List<WebElement> regularPlaylists;
+    @FindBy(xpath = "//section[@id='playlists']/ul/li[@class='playlist playlist smart']/a")
+    private List<WebElement> smartLists;
     @FindBy(xpath = "//footer[@id='mainFooter']//button[@data-testid='toggle-extra-panel-btn']")
     private WebElement infoButton;
     @FindBy(xpath = "//article[@class='album-info sidebar']//span[@class='cover']/a")
@@ -184,6 +188,7 @@ public class HomePage extends BasePage {
     private final By searchResultsGroup = By.cssSelector("#searchExcerptsWrapper .results section");
     private final By selectNewSmartList = By.cssSelector("li[data-testid='playlist-context-menu-create-smart']");
     private By playlistDelete = By.xpath("//section[@id='playlists']/ul/li[3]/nav/ul/li[2]");
+    private By cmDelete= By.xpath("//li[text()[contains(.,'Delete')]]");
 
     private By okBtn = By.xpath( "//div[@class='alertify']//nav/button[@class='ok']");
 
@@ -193,12 +198,20 @@ public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
+    public HomePage deleteRegularPlaylistWithSong(String playlistName) {
+       WebElement regularPl = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']/a[text()='" + playlistName + "']")));
+       contextClick(regularPl);
+       pause(2);
+       click(cmDelete);
+        wait.until(ExpectedConditions.elementToBeClickable(findElement(ok)));
+        actions.moveToElement(ok).click().perform();
+       return this;
+    }
     public HomePage contextClickFirstPlDelete() {
             wait.until(ExpectedConditions.elementToBeClickable(playlistsMenuFirstPl));
             contextClick(playlistsMenuFirstPl);
             click(playlistDelete);
-            checkOkModal();
+            actions.sendKeys(Keys.ENTER).perform();
             return this;
     }
     public void deleteAllPlaylists() {
@@ -206,6 +219,9 @@ public class HomePage extends BasePage {
                 try {
                     findElement(l).click();
                     contextClickFirstPlDelete();
+                    pause(2);
+                    actions.sendKeys(Keys.ENTER).perform();
+
 
                     Reporter.log("Deleted playlist: " + l, true);
                 } catch (NoSuchElementException e) {
@@ -218,12 +234,17 @@ public class HomePage extends BasePage {
             }
         Reporter.log("Total Playlists remaining: " + allPlaylists.size(), true);
     }
-    public HomePage deleteAllPlaylists2() {
+    public HomePage deletePlaylists() {
+        int count = 0;
         try {
+            System.out.println(playlistsSection.size());
             for (int i = 2; i < playlistsSection.size(); i ++) {
-                clickElement(playlistsSection.get(i));
-                contextClick(findElement(playlistsSection.get(i)));
-                actions.moveToElement(plDeleteBtn).click().pause(1000).perform();
+                WebElement plSection = wait.until(ExpectedConditions.elementToBeClickable(playlistsSection.get(i)));
+                actions.moveToElement(plSection).pause(1).perform();
+                contextClick(plSection);
+//                contextClick(playlistsSection.get(i));
+                actions.moveToElement(plDeleteBtn).click().pause(3).perform();
+                count++;
                 checkOkModal();
             }
         } catch (StaleElementReferenceException e) {
@@ -271,8 +292,9 @@ public class HomePage extends BasePage {
         List<WebElement> ele2 = driver.findElements(okBtn);
         if (!ele2.isEmpty()) {
             wait.until(ExpectedConditions.elementToBeClickable(findElement(ok)));
-            actions.moveToElement(ok).click().pause(1000).perform();
+            actions.moveToElement(ok).click().pause(2).perform();
         } else {
+            pause(1);
             deleteAllPlaylists();
         }
     }
@@ -285,8 +307,9 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(greenAddToBtn)).click();
         return this;
     }
-    public HomePage selectPlaylistToAddTo() {
-        findElement(addToPlaylistMenuSelection).click();
+    public HomePage selectPlaylistToAddTo(String playlist) {
+        WebElement menuChoice = find(By.xpath("//section[@id='songResultsWrapper']//li[@class='playlist' and text()[contains(.,"+playlist+")]]"));
+        findElement(menuChoice).click();
         return this;
     }
 

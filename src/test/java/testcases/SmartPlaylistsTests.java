@@ -2,7 +2,9 @@ package testcases;
 
 import base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
@@ -19,18 +21,19 @@ public class SmartPlaylistsTests extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     Map<String, String> dataMap = new HashMap<>();
+    @BeforeClass
+    public void setEnv() {
+        loadEnv();
+    }
     @BeforeMethod
-    public void setup() throws MalformedURLException {
-        setupBrowser(System.getProperty("baseURL"));
+    @Parameters({"baseURL"})
+    public void setup(String baseURL) throws MalformedURLException {
+        setupBrowser(baseURL);
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
     }
-    private String generatePlaylistName(int nameLength) {
-        String name = RandomString.getAlphaNumericString(nameLength);
-        TestListener.logInfoDetails("Smart playlist name: " + name);
-        return name;
-    }
+
     @Test(description = "User can create a smart playlist with one rule and verify related songs appear")
     public void createSmartPlaylist() {
         String playlist = generatePlaylistName(5);
@@ -285,11 +288,11 @@ public class SmartPlaylistsTests extends BaseTest {
         dataMap.put("editedName", newName);
         TestListener.logInfoDetails("Smart playlist name after: " + homePage.getFirstSmartPlName());
         TestListener.logAssertionDetails("User can edit smart playlist name: " + homePage.getFirstSmartPlName().contains(newName));
-        Assert.assertTrue(homePage.getFirstSmartPlName().contains(newName), "Unable to edit smart playlist name");
+        Assert.assertTrue(homePage.smartlistAddedToMenu(newName), "Unable to create a new smart playlist using the 'not in the last' operator");
     }
     @Test(description = "Delete all smart playlists", dependsOnMethods = {"titleIsNot"})
-    public void deleteAllSmartPl() {
-        homePage.deleteAllPlaylists();
+    public void deleteAllPlaylists() {
+        homePage.deletePlaylists();
         Assert.assertTrue(homePage.playlistsEmpty());
     }
 }

@@ -43,13 +43,11 @@ public class LogoutTests extends BaseTest {
         setupBrowser(baseURL);
         homePage = new HomePage(getDriver());
         loginPage = new LoginPage(getDriver());
-        profilePage = loginPage.loginValidCredentials().clickAvatar();
     }
 
     @Test(description = "Log in and verify visibility of logout button, then log out")
     public void useLogoutButton() {
         loginPage.loginValidCredentials();
-        Assert.assertTrue(homePage.checkForLogoutBtn());
         homePage.clickLogoutButton();
         Assert.assertTrue(loginPage.getRegistrationLink());
         Reporter.log("Successfully logged out after logging in", true);

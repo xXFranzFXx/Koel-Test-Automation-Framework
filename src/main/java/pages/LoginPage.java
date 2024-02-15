@@ -41,9 +41,13 @@ public class LoginPage extends BasePage{
        return this;
     }
     public HomePage loginValidCredentials() {
+        String homeUrl = "https://qa.koel.app/#!/home";
         provideEmail(System.getProperty("koelUser"));
         providePassword(System.getProperty("koelPassword"));
         clickSubmitBtn();
+        if(!driver.getCurrentUrl().equalsIgnoreCase(homeUrl)) {
+            driver.get(homeUrl);
+        }
         return new HomePage(driver);
     }
     public void loginAsNewUser() {

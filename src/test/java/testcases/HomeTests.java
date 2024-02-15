@@ -9,11 +9,14 @@ import pages.HomePage;
 import pages.LoginPage;
 
 import java.net.MalformedURLException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeTests extends BaseTest {
     LoginPage loginPage;
     AllSongsPage allSongsPage;
     HomePage homePage;
+    Map<String, String> dataMap = new HashMap<>();
     public HomeTests() {
         super();
     }
@@ -32,11 +35,13 @@ public class HomeTests extends BaseTest {
 
     @Test(description = "User can create a playlist", priority = 1)
     public void createPlaylist() {
+        String playlist = generatePlaylistName(5);
+        dataMap.put("playlist", playlist);
         homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
-                .enterPlaylistName("playlist");
-        Assert.assertTrue(homePage.playlistAddedToMenu("playlist"));
+                .enterPlaylistName(playlist);
+        Assert.assertTrue(homePage.playlistAddedToMenu(playlist));
     }
     @Test(description = "Add a song to a playlist", priority = 2, dependsOnMethods = {"createPlaylist"})
     public void addSongToPlaylist() {
@@ -45,7 +50,7 @@ public class HomeTests extends BaseTest {
                 .clickViewAllButton()
                 .clickFirstSearchResult()
                 .clickGreenAddToBtn()
-                .selectPlaylistToAddTo();
+                .selectPlaylistToAddTo(dataMap.get("playlist"));
         Assert.assertTrue(homePage.notificationMsg());
         Reporter.log("Added song to playlist", true);
     }
@@ -86,16 +91,13 @@ public class HomeTests extends BaseTest {
                 .closeModalAndLogOut();
 
     }
-//  @Test(description = "delete playlist created", dependsOnMethods = { "createPlaylist" })
+  @Test(description = "delete playlist created", dependsOnMethods = { "addSongToPlaylist" })
     public void deletePlaylist() {
+        String playlistName = dataMap.get("playlist");
         homePage = new HomePage(getDriver());
-        homePage.contextClickFirstPlDelete();
+        homePage.deleteRegularPlaylistWithSong(playlistName);
+        dataMap.clear();
         Assert.assertTrue(homePage.notificationMsg());
     }
-    @Test(description = "delete all playlists", priority=3)
-    public void deleteAllPlaylists() {
-        homePage = new HomePage(getDriver());
-        homePage.deleteAllPlaylists();
-        Assert.assertTrue(homePage.playlistsEmpty());
-    }
+
 }

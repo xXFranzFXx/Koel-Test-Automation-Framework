@@ -24,13 +24,23 @@ public class FavoritesPage extends BasePage{
     public FavoritesPage(WebDriver givenDriver) {
         super(givenDriver);
     }
+    public int getLikedSongsCount() {
+        return likedHeartIcon.size();
+    }
     public FavoritesPage unlikeAllSongs()  throws StaleElementReferenceException {
         if(likedHeartIcon.isEmpty()) return this;
+        int count = 0;
+        int size = likedHeartIcon.size();
         try {
-            for (WebElement l : likedHeartIcon) {
-                findElement(l).click();
+            for(int i = 0; i < getLikedSongsCount(); i++) {
+                findElement(likedHeartIcon.get(i)).click();
+                count++;
+                if (getLikedSongsCount() == 0 || count == size) {
+                    return this;
+                }
             }
-        }catch (StaleElementReferenceException e) {
+                unlikeAllSongs();
+        }catch (IndexOutOfBoundsException e) {
             Reporter.log("Error removing songs from favorites playlist:  " + e, true);
         }
         return this;
@@ -45,7 +55,7 @@ public class FavoritesPage extends BasePage{
         return this;
     }
     public boolean checkPlaylistEmptyIcon() {
-        List<WebElement> icon = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']")));
+        List<WebElement> icon = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']")));
         return !icon.isEmpty();
     }
     public boolean isFavoritesEmpty() {

@@ -53,7 +53,7 @@ public class BasePage {
     @FindBy(xpath = "//nav[@id='sidebar']//a[@class='home active']")
     @CacheLookup
     private WebElement homeLocator;
-    @FindBy(xpath = "//nav[@id='sidebar']//a[@class='songs']")
+    @FindBy(xpath = "//nav[@id='sidebar']//a[text()[contains(.,'All Songs')]]")
     @CacheLookup
     private WebElement allSongsLocator;
     @FindBy(xpath = "//nav[@id='sidebar']//a[@class='albums']")

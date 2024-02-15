@@ -33,7 +33,7 @@ dependencies {
 test {
     def suite = project.properties.getOrDefault("suite", "TestNG.xml")
     useTestNG() {
-        suites "src/test/resources/${suite}"    //gradle clean test -Psuite=suiteName.xml 
+        suites "src/test/resources/${suite}"    //gradle clean test -Psuite=suiteName.xml
         systemProperty "browser", System.getProperty("browser")
     }
 }

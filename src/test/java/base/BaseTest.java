@@ -16,6 +16,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.Reporter;
 import org.testng.annotations.*;
+import util.RandomString;
 import util.listeners.TestListener;
 
 import java.net.MalformedURLException;
@@ -33,7 +34,11 @@ public class BaseTest{
     public  void navigateTo(String baseURL) {
         getDriver().get(baseURL);
     }
-
+    public String generatePlaylistName(int nameLength) {
+        String name = RandomString.getAlphaNumericString(nameLength);
+        TestListener.logInfoDetails("Playlist name: " + name);
+        return name;
+    }
 
     public  void setupBrowser(String baseURL) throws MalformedURLException {
         threadDriver.set(pickBrowser(System.getProperty("browser", "")));

@@ -50,6 +50,7 @@ public class SearchPage extends BasePage{
             searchInputLocator.sendKeys(Keys.BACK_SPACE);
         }
         public void invokeSearchFromKeybd() {
+            pause(2);
             wait.until(ExpectedConditions.urlContains("https://qa.koel.app/#!"));
             actions.sendKeys("f").perform();
         }

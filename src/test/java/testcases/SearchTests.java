@@ -28,7 +28,10 @@ public class SearchTests extends BaseTest {
     HomePage homePage;
     LoginPage loginPage;
     SearchPage searchPage;
-
+    @BeforeClass
+    public void setEnv() {
+        loadEnv();
+    }
     @BeforeMethod
     @Parameters({"baseURL"})
     public void setup(String baseURL) throws MalformedURLException {

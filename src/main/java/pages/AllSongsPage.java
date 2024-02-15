@@ -68,7 +68,8 @@ public class AllSongsPage extends BasePage{
     public AllSongsPage unlikeSongs() {
         if(likedSongsButton.isEmpty()) return this;
         for(WebElement l: likedSongsButton) {
-                l.click();
+               findElement(l).click();
+               pause(1);
         }
         return this;
     }
