@@ -47,6 +47,7 @@ public class BaseTest{
         Reporter.log("browser is: " + System.getProperty("browser"));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         getDriver().manage().deleteAllCookies();
+        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
         navigateTo(baseURL);
     }
     public   WebDriver pickBrowser(String browser) throws MalformedURLException {

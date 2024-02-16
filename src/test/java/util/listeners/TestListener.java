@@ -9,23 +9,16 @@ import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import util.TestUtil;
-import util.TestUtil.*;
 import util.extentReports.ExtentManager;
 import util.logs.Log;
-
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import static base.BaseTest.getDriver;
-import static util.TestUtil.*;
 
 public class TestListener  implements ITestListener, WebDriverListener {
-    //Extent Report Declarations
 
     static ExtentReports extent = ExtentManager.getInstance();
     static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
@@ -52,16 +45,10 @@ public class TestListener  implements ITestListener, WebDriverListener {
     }
     @Override
     public synchronized void onTestFailure(ITestResult result) {
-        WebDriver driver = getDriver();
         Log.error(result.getMethod().getMethodName() + " failed!");
-        try {
-            TestUtil.takeScreenshotAtEndOfTest(result.getMethod().getMethodName(), driver);
-            test.get().log(Status.FAIL, "fail ❌").addScreenCaptureFromPath("/reports/extent-reports/screenshots/" + result.getMethod().getMethodName() + ".png");
-            Log.info("screen shot taken for failed test " + result.getMethod().getMethodName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-            test.get().fail(result.getThrowable());
+        test.get().log(Status.FAIL, "fail ❌").addScreenCaptureFromPath("/reports/extent-reports/screenshots/" + result.getMethod().getMethodName() + ".png");
+        Log.info("screen shot taken for failed test " + result.getMethod().getMethodName());
+        test.get().fail(result.getThrowable());
     }
     @Override
     public synchronized void onTestSkipped(ITestResult result) {

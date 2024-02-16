@@ -316,8 +316,6 @@ public class HomePage extends BasePage {
     public void clickInfoButton() {
        findElement(infoButton).click();
     }
-    //click the info button and check for info panel visibility, click again if invisible this verifies it disappears when clicked
-    //if the first click turns on visibility, click again to make it invisible, and negative assert visibility of info panel this verifies that the info button toggles the visibility.
 
     public boolean checkVisibility() {
         return infoPanel.isDisplayed();

@@ -6,6 +6,7 @@ import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
+import util.listeners.TestListener;
 
 import java.net.MalformedURLException;
 
@@ -46,20 +47,21 @@ public class InfoPanelTests extends BaseTest {
         Reporter.log("Info panel is visible " + homePage.checkVisibility(), true);
         if(homePage.checkVisibility()) {
             homePage.clickInfoBtnActive();
+            TestListener.logAssertionDetails("Info panel is visible after first click: " + homePage.checkVisibility());
             Assert.assertFalse(homePage.checkVisibility());
-            Reporter.log("Clicked Info Active button, now it's visible? " + homePage.checkVisibility(), true);
+
             homePage.clickInfoButton();
+            TestListener.logAssertionDetails("Info panel is visible after second click: " + homePage.checkVisibility());
             Assert.assertTrue(homePage.checkVisibility());
-            Reporter.log("Info panel is visible! ", true);
         } else {
             homePage.clickInfoButton();
+            TestListener.logAssertionDetails("Info panel is visible after first click: " + homePage.checkVisibility());
             Assert.assertTrue(homePage.checkVisibility());
+
             homePage.clickInfoBtnActive();
+            TestListener.logAssertionDetails("Info panel is visible after second click: " + homePage.checkVisibility());
             Assert.assertFalse(homePage.checkVisibility());
-            Reporter.log("Info Panel is invisible", true);
-
         }
-
     }
     @Test(description = "Login, search for an artist and play song, then test shuffle play button in the Album Tab")
     public void checkShufflePlayBtn() {
@@ -69,9 +71,8 @@ public class InfoPanelTests extends BaseTest {
                 .clickSearchResultThumbnail()
                 .clickAlbumTab();
         homePage.clickAlbumTabShuffleBtn();
+        TestListener.logAssertionDetails("Successfully shuffled songs using Album tab shuffle button: " + homePage.checkQueueTitle());
         Assert.assertTrue(homePage.checkQueueTitle());
-        Reporter.log("Successfully shuffled songs using Album tab shuffle button", true);
-
     }
     @Test(description = "click each tab and verify correct info is displayed in info panel then press the shuffle button")
     public void checkInfoPanelTabs() {
@@ -84,34 +85,30 @@ public class InfoPanelTests extends BaseTest {
                     .clickSearchResultThumbnail();
             String displayedLyricsString;
             displayedLyricsString = homePage.clickLyricsTab();
+            TestListener.logAssertionDetails("Correct info is displayed in info panel lyrics tab: " + displayedLyricsString.equalsIgnoreCase(lyricsInfoText));
             Assert.assertEquals(displayedLyricsString, lyricsInfoText);
-            Reporter.log("Verified functionality of Lyrics tab in info panel", true);
-
         }catch(Exception e) {
-            Reporter.log("Failed to verify Lyrics tab" + e);
+            TestListener.logExceptionDetails("Error: " + e);
             Assert.assertFalse(false);
         }
         try {
             String displayedArtistString;
             displayedArtistString = homePage.clickArtistTab();
+            TestListener.logAssertionDetails("Correct info is displayed in info panel artists tab: " + displayedArtistString.equalsIgnoreCase(searchArtist));
             Assert.assertEquals(displayedArtistString, searchArtist);
             Reporter.log("Verified functionality of Artist tab in info panel", true);
-
         }catch(Exception e) {
-            Reporter.log("Failed to verify Artist tab" + e);
+            TestListener.logExceptionDetails("Error: " + e);
             Assert.assertFalse(false);
-
         }
         try {
         String displayedAlbumString;
         displayedAlbumString = homePage.clickAlbumTab();
-        Assert.assertEquals(displayedAlbumString, albumInfoText);
-            Reporter.log("Verified functionality of Album tab in info panel", true);
-
+            TestListener.logAssertionDetails("Correct info is displayed info panel album info tab: " + displayedAlbumString.equalsIgnoreCase(albumInfoText));
+            Assert.assertEquals(displayedAlbumString, albumInfoText);
         }catch(Exception e) {
-            Reporter.log("Failed to verify Album tab" + e);
+            TestListener.logExceptionDetails("Error: " + e);
             Assert.assertFalse(false);
-
         }
         Reporter.log("Finished testing functionality of all tabs in info panel", true);
     }

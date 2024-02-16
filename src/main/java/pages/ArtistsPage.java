@@ -21,7 +21,6 @@ public class ArtistsPage extends BasePage{
     private By artistsSideMenuLocator;
     @FindBy(xpath = "//h1[text()[normalize-space()='Artists']]")
     private WebElement artistsPageTitleLocator;
-    //finds the link to any album on the artists page
     @FindBy(xpath = "//section[@id='artistsWrapper']/div/article[1]/span/span/a")
     private WebElement firstArtistAlbumLocator;
     @FindBy(css = ".artists .thumbnail-wrapper .cover > a")

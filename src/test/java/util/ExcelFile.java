@@ -22,7 +22,6 @@ public class ExcelFile {
         arrObj = getExcelData("test.xlsx", "Sheet1");
         return arrObj;
     }
-    // Data providers end
     public String [][] getExcelData(String fileName, String sheetName) {
         String [][] data = null;
         try {

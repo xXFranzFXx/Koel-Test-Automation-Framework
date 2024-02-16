@@ -24,7 +24,6 @@ public class BasePage {
     public static String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])";
     public static String songTotalRe = "^\\d{1,}[^\\W•]";
     public static Set<String> themes = Set.of("pines","classic", "violet", "oak", "slate", "madison", "astronaut", "chocolate", "laura", "rose-petals", "purple-waves", "pop-culture", "jungle", "mountains", "nemo", "cat");
-
     /**
      * Navigation header "About" link
      */
@@ -36,17 +35,14 @@ public class BasePage {
     @FindBy(xpath = "//h1[contains(text(), 'About Koel')]")
     @CacheLookup
     List<WebElement> modal;
-
     @FindBy(xpath = "//div[@class='modal-wrapper overlay']//footer")
     private WebElement modalCloseLocator;
     @FindBy(xpath = "//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']")
     @CacheLookup
     private WebElement closeModalBtn;
-
     /**
      * Side Menu links
      */
-
     @FindBy(xpath = "//nav[@id='sidebar']//a[@class='queue']")
     @CacheLookup
     private WebElement currentQueueLocator;
@@ -70,19 +66,15 @@ public class BasePage {
     private WebElement soundBarVisualizer;
     @FindBy(xpath = "//section[@id='playlists']//li[@class='playlist recently-played']/a")
     @CacheLookup
-
     private WebElement recentlyPlayedLocator;
     @FindBy(xpath = "//section[@id='searchExcerptsWrapper']//span[@class='details']")
     @CacheLookup
-
     private WebElement searchResultSongLocator;
     @CacheLookup
     @FindBy(css = ".fa-sign-out")
-
     private WebElement logoutButtonLocator;
     @CacheLookup
     private By closeModalButton = By.xpath("//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']");
-
 
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;

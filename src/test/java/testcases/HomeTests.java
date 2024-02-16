@@ -20,13 +20,10 @@ public class HomeTests extends BaseTest {
     public HomeTests() {
         super();
     }
-
-
     public void setupHome(){
         loginPage = new LoginPage(getDriver());
         loginPage.loginValidCredentials();
     }
-
     @Test(description = "User can create a playlist", priority = 1)
     public void createPlaylist() {
         setupHome();
