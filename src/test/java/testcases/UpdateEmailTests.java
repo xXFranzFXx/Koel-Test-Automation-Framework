@@ -56,11 +56,7 @@ public class UpdateEmailTests extends BaseTest {
         dataMap.clear();
         testData.setTestDataInMap(dataMap);
     }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setUp(String baseURL) throws MalformedURLException {
-        setupBrowser(baseURL);
-    }
+
 
 //    @Test(description = "Execute SQL query to find an existing user", priority=0)
 //    @Parameters({"koelExistingUser"})

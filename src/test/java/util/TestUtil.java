@@ -13,10 +13,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class TestUtil extends BaseTest {
+public class TestUtil {
     public static long sysTime = System.currentTimeMillis();;
-    public static void takeScreenshotAtEndOfTest(String fileName) throws IOException {
-        File scrFile = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+    public static void takeScreenshotAtEndOfTest(String fileName, WebDriver driver) throws IOException {
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String currentDir = System.getProperty("user.dir");
         FileUtils.copyFile(scrFile, new File(currentDir +"/reports/extent-reports/screenshots/" + fileName + ".png"));
     }

@@ -243,7 +243,7 @@ public class HomePage extends BasePage {
                 actions.moveToElement(plSection).pause(1).perform();
                 contextClick(plSection);
 //                contextClick(playlistsSection.get(i));
-                actions.moveToElement(plDeleteBtn).click().pause(3).perform();
+                actions.moveToElement(plDeleteBtn).click().pause(2).perform();
                 count++;
                 checkOkModal();
             }
@@ -294,8 +294,8 @@ public class HomePage extends BasePage {
             wait.until(ExpectedConditions.elementToBeClickable(findElement(ok)));
             actions.moveToElement(ok).click().pause(2).perform();
         } else {
-            pause(1);
-            deleteAllPlaylists();
+            pause(2);
+            deletePlaylists();
         }
     }
     public HomePage clickFirstSearchResult() {

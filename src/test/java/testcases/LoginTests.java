@@ -22,16 +22,11 @@ public class LoginTests extends BaseTest {
     public LoginTests() {
         super();
     }
-    @BeforeClass
-    public void setEnv() {
-        loadEnv();
-    }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setup(String baseURL) throws MalformedURLException {
-        setupBrowser(baseURL);
+
+    public void setupLogin() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
+        profilePage = new ProfilePage(getDriver());
         registrationPage = new RegistrationPage(getDriver());
     }
     //    @Test
@@ -46,6 +41,7 @@ public class LoginTests extends BaseTest {
     }
     @Test(description = "log in with newly registered account with testpro.io domain")//(dependsOnMethods = { "registerNewAccount" })
     public void loginWithNewAccount() {
+        setupLogin();
         loginPage.provideEmail(System.getProperty("koelUser"))
                 .providePassword(System.getProperty("koelPassword"))
                 .clickSubmitBtn();
@@ -55,6 +51,7 @@ public class LoginTests extends BaseTest {
 
     @Test (description ="log in with new account, update email, log out and attempt to log back in with old email address", dependsOnMethods = { "loginWithNewAccount" })
     public void loginAndUpdateNewAccount() {
+        setupLogin();
         loginPage.provideEmail(System.getProperty("koelUser"))
                 .providePassword(System.getProperty("koelPassword"))
                 .clickSubmitBtn();
@@ -77,6 +74,7 @@ public class LoginTests extends BaseTest {
 
     @Test (description = "Log in with the updated email and update the password, log out, and attempt to log in with old password", dependsOnMethods = { "loginAndUpdateNewAccount"} )
     public void loginWithUpdatedEmailAndUpdatePwd() {
+        setupLogin();
         loginPage.provideEmail(System.getProperty("koelNewUser"))
                 .providePassword(System.getProperty("koelPassword"))
                 .clickSubmitBtn();
@@ -94,6 +92,7 @@ public class LoginTests extends BaseTest {
 
     @Test(description = "Log in success test")
     public void loginSuccessTest() {
+        setupLogin();
         loginPage.provideEmail(System.getProperty("koelUser"))
                 .providePassword(System.getProperty("koelPassword"))
                 .clickSubmitBtn();
@@ -102,6 +101,7 @@ public class LoginTests extends BaseTest {
 
     @Test(description = "Log in with incorrect password")
     public void loginWrongPasswordTest() {
+        setupLogin();
         loginPage.provideEmail(System.getProperty("koelUser"))
                 .providePassword("wrongPassword")
                 .clickSubmitBtn();
@@ -110,6 +110,7 @@ public class LoginTests extends BaseTest {
 
     @Test(description = "Log in with incorrect email address")
     public void loginWrongEmailTest() {
+        setupLogin();
         loginPage.provideEmail("wrong@wrongmail")
                 .providePassword(System.getProperty("koelPassword"))
                 .clickSubmitBtn();
@@ -118,6 +119,7 @@ public class LoginTests extends BaseTest {
 
     @Test(description = "Log in with blank password")
     public void loginEmptyPasswordTest() {
+        setupLogin();
         loginPage.provideEmail(System.getProperty("koelUser"))
                 .providePassword("")
                 .clickSubmitBtn();
@@ -126,6 +128,7 @@ public class LoginTests extends BaseTest {
 
     @Test(description = "Log in with data read from external source", dataProvider = "LoginData", dataProviderClass = DataProviderUtil.class)
     public void loginWithLoginData(String email, String password) {
+        setupLogin();
         try {
             loginPage.provideEmail(email)
                     .providePassword(password)
@@ -141,6 +144,7 @@ public class LoginTests extends BaseTest {
     }
     @Test(description = "Log in with data read from Excel Sheet", dataProvider = "excel-data", dataProviderClass = ExcelFile.class)
     public void loginWithExcelData(String email, String password){
+        setupLogin();
         try{
             loginPage.provideEmail(email)
                     .providePassword(password)
@@ -153,6 +157,7 @@ public class LoginTests extends BaseTest {
     }
     @AfterClass(description = "Reset profile back to default newly registered account details after previous test completes", dependsOnMethods = { "loginWithUpdatedEmailAndUpdatePwd" })
     public void resetProfile() {
+        setupLogin();
         String url = "https://qa.koel.app/#!/home";
         String loginUrl = driver.getCurrentUrl();
         try {

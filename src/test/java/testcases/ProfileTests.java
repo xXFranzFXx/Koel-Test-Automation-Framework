@@ -18,14 +18,8 @@ public class ProfileTests extends BaseTest {
     public ProfileTests() {
         super();
     }
-    @BeforeClass
-    public void setEnv() {
-        loadEnv();
-    }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setup(String baseURL) throws MalformedURLException {
-        setupBrowser(baseURL);
+
+    public void setupProfile() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         profilePage = loginPage.loginValidCredentials().clickAvatar();
@@ -33,6 +27,7 @@ public class ProfileTests extends BaseTest {
 
     @Test(description = "Update profile name")
     public void changeProfileName()  throws InterruptedException {
+        setupProfile();
         String randomNm = generateRandomName();
         String profileName = profilePage.getProfileName();
         try {
@@ -52,6 +47,7 @@ public class ProfileTests extends BaseTest {
 
     @Test(description = "Update theme to In the Pines")
     public void choosePinesTheme() {
+        setupProfile();
         try {
             profilePage
                     .clickTheme("pines");

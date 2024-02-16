@@ -28,7 +28,7 @@ import java.util.HashMap;
 public class BaseTest{
     public  WebDriver driver;
     private static final ThreadLocal <WebDriver> threadDriver = new ThreadLocal<>();
-    public static WebDriver getDriver() {
+    public  static WebDriver getDriver() {
         return threadDriver.get();
     }
     public  void navigateTo(String baseURL) {
@@ -39,6 +39,8 @@ public class BaseTest{
         TestListener.logInfoDetails("Playlist name: " + name);
         return name;
     }
+    @BeforeMethod
+    @Parameters({"baseURL"})
 
     public  void setupBrowser(String baseURL) throws MalformedURLException {
         threadDriver.set(pickBrowser(System.getProperty("browser", "")));
@@ -120,18 +122,18 @@ public class BaseTest{
         chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
         return chromePref;
     }
+    @BeforeClass
     public  void loadEnv() {
         Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").load();
         dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
     }
     @AfterMethod
-    public static void closeBrowser() {
-        if (getDriver() == null) {
-           threadDriver.get().quit();
+    public void closeBrowser() {
+        if(getDriver() == null) {
+            threadDriver.get().close();
+            threadDriver.remove();
         }
-        threadDriver.get().close();
-        threadDriver.remove();
-
+        threadDriver.get().quit();
     }
 }
 

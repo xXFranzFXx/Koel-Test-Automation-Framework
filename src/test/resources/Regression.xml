@@ -18,6 +18,7 @@
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="testcases.HomeTests"/>
+            <class name="testcases.InfoPanelTests"/>
             <class name="testcases.UpdateEmailTests"/>
             <class name="testcases.ProfileTests"/>
         </classes>

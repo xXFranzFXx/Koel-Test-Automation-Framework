@@ -21,20 +21,15 @@ public class HomeTests extends BaseTest {
         super();
     }
 
-    @BeforeClass
-    public void setEnv() {
-        loadEnv();
-    }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setup(String baseURL) throws MalformedURLException {
-        setupBrowser(baseURL);
+
+    public void setupHome(){
         loginPage = new LoginPage(getDriver());
         loginPage.loginValidCredentials();
     }
 
     @Test(description = "User can create a playlist", priority = 1)
     public void createPlaylist() {
+        setupHome();
         String playlist = generatePlaylistName(5);
         dataMap.put("playlist", playlist);
         homePage = new HomePage(getDriver());
@@ -45,6 +40,7 @@ public class HomeTests extends BaseTest {
     }
     @Test(description = "Add a song to a playlist", priority = 2, dependsOnMethods = {"createPlaylist"})
     public void addSongToPlaylist() {
+        setupHome();
         homePage = new HomePage(getDriver());
         homePage.searchSong("dark")
                 .clickViewAllButton()
@@ -56,36 +52,42 @@ public class HomeTests extends BaseTest {
     }
     @Test(description = "hover cursor over the play button")
     public void hoverOverPlayBtn() throws InterruptedException {
+        setupHome();
         homePage = new HomePage(getDriver());
         Assert.assertTrue(homePage.hoverPlay());
     }
 
     @Test(description = "verify songs exist in recenlty played section")
     public void recentlyPlayedExists() {
+        setupHome();
         homePage = new HomePage(getDriver());
         Assert.assertTrue(homePage.recentlyPlayedListExists());
         Reporter.log("Recently Played song list size is:" + homePage.recentlyPlayedListSize(), true);
     }
     @Test(description = "verify songs exist in recently added section")
     public void checkRecentlyAdded() {
+        setupHome();
         homePage = new HomePage(getDriver());
 //        homePage.clickRPViewAllBtn();
         Assert.assertTrue(homePage.recentlyAddedListHasAlbumTitles());
     }
     @Test(description = "check that recently added songs have title and also have a shuffle and download icon")
     public void checkRASongsOnHover() {
+        setupHome();
         homePage = new HomePage(getDriver());
         Assert.assertTrue(homePage.checkRAListButtonsOnHover());
 
     }
     @Test(description = "verify functionality of 'about' link")
     public void clickAboutLink() {
+        setupHome();
         homePage = new HomePage(getDriver());
         homePage.clickAboutLink();
         Assert.assertTrue(homePage.aboutModalVisible());
     }
     @Test(description =  "verify the 'about' modal closes")
     public void modalCloses() {
+        setupHome();
         homePage = new HomePage(getDriver());
         homePage.clickAboutLink()
                 .closeModalAndLogOut();
@@ -93,6 +95,7 @@ public class HomeTests extends BaseTest {
     }
   @Test(description = "delete playlist created", dependsOnMethods = { "addSongToPlaylist" })
     public void deletePlaylist() {
+        setupHome();
         String playlistName = dataMap.get("playlist");
         homePage = new HomePage(getDriver());
         homePage.deleteRegularPlaylistWithSong(playlistName);

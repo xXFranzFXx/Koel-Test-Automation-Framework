@@ -21,14 +21,8 @@ public class SmartPlaylistsTests extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     Map<String, String> dataMap = new HashMap<>();
-    @BeforeClass
-    public void setEnv() {
-        loadEnv();
-    }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setup(String baseURL) throws MalformedURLException {
-        setupBrowser(baseURL);
+
+    public void setupSmartPl() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
@@ -36,6 +30,7 @@ public class SmartPlaylistsTests extends BaseTest {
 
     @Test(description = "User can create a smart playlist with one rule and verify related songs appear")
     public void createSmartPlaylist() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -48,6 +43,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Verify empty smart playlist is created when no songs match rule criteria")
     public void createSmartPlaylistNoMatches() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         String expectedText = "No songs match the playlist's criteria.";
         homePage.clickCreateNewPlaylist()
@@ -62,6 +58,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a smart playlist with group rules")
     public void createSmartPlaylistGroupRules() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         String[] text = {"dark", "grav"};
         homePage.clickCreateNewPlaylist()
@@ -75,6 +72,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a smart playlist based on 'Plays' rule criteria")
     public void createSmartPlaylistByPlay() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -87,6 +85,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description= "Create a smart playlist with name has length of one character")
     public void createSmartPlaylistShortName() {
+        setupSmartPl();
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
                 .enterSmartListName("a")
@@ -97,6 +96,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a smart playlist with name that exceeds 256-character length")
     public void createSmartPlaylistLongName() {
+        setupSmartPl();
         String longName = generatePlaylistName(257);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -109,6 +109,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a smart playlist based on 'Date Added' rule criteria")
     public void createSmartPlaylistByDateAdded(){
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         String currentDate = TestUtil.getDate();
         homePage.clickCreateNewPlaylist()
@@ -122,6 +123,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Verify functionality of 'Cancel' button when creating a new smart playlist")
     public void testCancelButton() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         String homePageUrl = "https://qa.koel.app/#!/home";
         homePage.clickCreateNewPlaylist()
@@ -133,6 +135,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a new smart playlist using the operator 'is not' in the rule criteria")
     public void titleIsNot() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -145,6 +148,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a new smart playlist using the operator 'does not contain' in the rule criteria")
     public void titleDoesNotContain() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -157,6 +161,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a new smart playlist using the operator 'begins with' in the rule criteria")
     public void titleBeginsWith() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -169,6 +174,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a new smart playlist using the operator 'ends with' in the rule criteria")
     public void titleEndsWith() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -181,6 +187,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a new smart playlist using the operator 'is greater than' in the rule criteria")
     public void playsIsGreaterThan() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -194,6 +201,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a new smart playlist using the operator 'is less than' in the rule criteria")
     public void playsIsLessThan() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -207,6 +215,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a new smart playlist using the operator 'is between' in the rule criteria")
     public void playsIsBetween() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         int[] plays = {2, 5};
         homePage.clickCreateNewPlaylist()
@@ -221,6 +230,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Verify user cannot create a new smart playlist with blank name")
     public void blankPlaylistName() {
+        setupSmartPl();
         String validationMessage = "Please fill out this field.";
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -230,6 +240,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Verify user cannot create a new smart playlist with no rules criteria")
     public void blankRuleCriteria() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         String validationMessage = "Please fill out this field.";
         homePage.clickCreateNewPlaylist()
@@ -241,6 +252,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a smart playlist based on 'Plays' rule with a negative integer input criteria")
     public void negativeNumberCriteria() {
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewSmartlist()
@@ -253,6 +265,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a smart playlist based on 'in the last' rule criteria")
     public void inTheLastCriteria(){
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         String currentDate = TestUtil.getDate();
         homePage.clickCreateNewPlaylist()
@@ -267,6 +280,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Create a smart playlist based on 'not in the last' rule criteria")
     public void notInTheLastCriteria(){
+        setupSmartPl();
         String playlist = generatePlaylistName(5);
         String currentDate = TestUtil.getDate();
         homePage.clickCreateNewPlaylist()
@@ -281,6 +295,7 @@ public class SmartPlaylistsTests extends BaseTest {
     }
     @Test(description = "Verify existing smart playlist name can be edited")
     public void editListName() throws SQLException, ClassNotFoundException {
+        setupSmartPl();
         String newName = generatePlaylistName(6);
         homePage.cmEditFirstSmartPl()
                 .editSmartPlName(newName)
@@ -290,8 +305,9 @@ public class SmartPlaylistsTests extends BaseTest {
         TestListener.logAssertionDetails("User can edit smart playlist name: " + homePage.getFirstSmartPlName().contains(newName));
         Assert.assertTrue(homePage.smartlistAddedToMenu(newName), "Unable to create a new smart playlist using the 'not in the last' operator");
     }
-    @Test(description = "Delete all smart playlists", dependsOnMethods = {"titleIsNot"})
+    @Test(description = "Delete all smart playlists")//, dependsOnMethods = {"titleIsNot"})
     public void deleteAllPlaylists() {
+        setupSmartPl();
         homePage.deletePlaylists();
         Assert.assertTrue(homePage.playlistsEmpty());
     }

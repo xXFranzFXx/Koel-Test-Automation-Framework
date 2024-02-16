@@ -18,14 +18,8 @@ public class ArtistsTests extends BaseTest {
     public ArtistsTests() {
         super();
     }
-    @BeforeClass
-    public void setEnv() {
-        loadEnv();
-    }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setup(String baseURL) throws MalformedURLException {
-        setupBrowser(baseURL);
+
+    public void setupArtists() {
         loginPage = new LoginPage(getDriver());
         artistsPage = loginPage.loginValidCredentials().clickArtists();
         searchPage = new SearchPage(getDriver());
@@ -34,6 +28,7 @@ public class ArtistsTests extends BaseTest {
 
     @Test(description = "Play all songs by an artist")
     public void playAllSongsByArtist () {
+        setupArtists();
        artistsPage
                 .rightClickAlbum()
                 .selectPlayAll();
@@ -42,11 +37,13 @@ public class ArtistsTests extends BaseTest {
     }
     @Test(description = "Verify artists are displayed")
     public void artistsAreDisplayed() {
+        setupArtists();
         TestListener.logAssertionDetails("All artists are present: " + artistsPage.artistsArePresent());
         Assert.assertTrue(artistsPage.artistsArePresent(), "Artists are not displayed");
     }
     @Test(description = "Verify artists is displayed in search results")
     public void searchArtist() {
+        setupArtists();
         String search = "dark";
         artistsPage.searchArtist(search);
         TestListener.logAssertionDetails("Artist shows up from search: " + searchPage.artistExists());
@@ -54,6 +51,7 @@ public class ArtistsTests extends BaseTest {
     }
     @Test(description = "Verify user can play songs from selected artist")
     public void playArtistSongs() {
+        setupArtists();
         artistsPage.clickArtistPlay();
         TestListener.logAssertionDetails("User can play song from artist: " + artistsPage.songIsPlaying());
         Assert.assertTrue(artistsPage.songIsPlaying());

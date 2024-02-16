@@ -20,14 +20,8 @@ public class CurrentQueueTests extends BaseTest {
     public CurrentQueueTests() {
         super();
     }
-    @BeforeClass
-    public void setEnv(){
-        loadEnv();
-    }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setup(String baseURL) throws MalformedURLException {
-        setupBrowser(baseURL);
+
+    public void setupCQ() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         currentQueuePage = new CurrentQueuePage(getDriver());
@@ -36,6 +30,7 @@ public class CurrentQueueTests extends BaseTest {
 
     @Test(description = "Queue page should display total time duration of songs")
     public void checkQueuePageSongs() {
+        setupCQ();
         homePage.clickFooterPlayBtn();
         Assert.assertTrue(currentQueuePage.isSongPlayingCQ());
         Assert.assertTrue(currentQueuePage.checkTotalOrDuration(BasePage.durationRe, currentQueuePage.duration()));

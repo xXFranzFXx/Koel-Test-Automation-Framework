@@ -33,20 +33,15 @@ public class LogoutTests extends BaseTest {
     public LogoutTests() {
         super();
     }
-    @BeforeClass
-    public void loadProperties() {
-        loadEnv();
-    }
-    @BeforeMethod
-    @Parameters({"baseURL"})
-    public void setup(String baseURL) throws MalformedURLException{
-        setupBrowser(baseURL);
+
+    public void setupLogout(){
         homePage = new HomePage(getDriver());
         loginPage = new LoginPage(getDriver());
     }
 
     @Test(description = "Log in and verify visibility of logout button, then log out")
     public void useLogoutButton() {
+        setupLogout();
         loginPage.loginValidCredentials();
         homePage.clickLogoutButton();
         Assert.assertTrue(loginPage.getRegistrationLink());

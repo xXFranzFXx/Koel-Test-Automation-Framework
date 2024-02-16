@@ -69,13 +69,16 @@ public class AllSongsPage extends BasePage{
         if(likedSongsButton.isEmpty()) return this;
         for(WebElement l: likedSongsButton) {
                findElement(l).click();
-               pause(1);
         }
         return this;
     }
     public AllSongsPage likeOneSong() {
-        findElement(singleLikeButton).click();
-        return this;
+        if(unLikedButton.isEmpty()) {
+            return this;
+        } else {
+            findElement(singleLikeButton).click();
+        }
+            return this;
     }
     //likes every song
     public AllSongsPage likeSongs() {
