@@ -30,8 +30,8 @@ public class AlbumsTests extends BaseTest {
         loginPage.albumsPage();
                 albumsPage.rightClickAlbum()
                 .selectPlayAll();
+        TestListener.logAssertionDetails("Added all songs from selected album to current queue: " + albumsPage.checkAlbumSongPlaying());
         Assert.assertTrue(albumsPage.checkAlbumSongPlaying());
-        Reporter.log("Added all songs from selected album to current queue", true);
     }
     @Test(description = "Verify albums are displayed")
     public void albumsAreDisplayed() {

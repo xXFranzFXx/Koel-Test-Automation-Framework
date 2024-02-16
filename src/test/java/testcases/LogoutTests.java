@@ -7,6 +7,7 @@ import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ProfilePage;
+import util.listeners.TestListener;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -44,9 +45,8 @@ public class LogoutTests extends BaseTest {
         setupLogout();
         loginPage.loginValidCredentials();
         homePage.clickLogoutButton();
+        TestListener.logAssertionDetails("Successfully logged out after logging in: " + loginPage.getRegistrationLink());
         Assert.assertTrue(loginPage.getRegistrationLink());
-        Reporter.log("Successfully logged out after logging in", true);
-
     }
 
 //    @Test(dependsOnMethods = { "useLogoutButton" }, description = "Update username and password then logout and verify navigation back to login screen")
