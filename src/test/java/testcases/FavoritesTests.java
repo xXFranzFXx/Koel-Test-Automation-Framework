@@ -1,18 +1,14 @@
 package testcases;
 
 import base.BaseTest;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.AllSongsPage;
 import pages.FavoritesPage;
-import pages.HomePage;
 import pages.LoginPage;
 import util.listeners.TestListener;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.util.Arrays;
 
 /**
  * Story:

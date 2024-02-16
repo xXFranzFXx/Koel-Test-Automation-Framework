@@ -39,9 +39,13 @@ public class BaseTest{
         TestListener.logInfoDetails("Playlist name: " + name);
         return name;
     }
+    @BeforeClass
+    public  void loadEnv() {
+        Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").load();
+        dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
+    }
     @BeforeMethod
     @Parameters({"baseURL"})
-
     public  void setupBrowser(String baseURL) throws MalformedURLException {
         threadDriver.set(pickBrowser(System.getProperty("browser", "")));
         Reporter.log("browser is: " + System.getProperty("browser"));
@@ -123,11 +127,7 @@ public class BaseTest{
         chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
         return chromePref;
     }
-    @BeforeClass
-    public  void loadEnv() {
-        Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").load();
-        dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
-    }
+
     @AfterMethod
     public void closeBrowser() {
         if(getDriver() == null) {

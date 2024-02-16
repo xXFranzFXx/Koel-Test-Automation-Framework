@@ -494,6 +494,7 @@ public class HomePage extends BasePage {
 
     public HomePage closeModalAndLogOut() {
         closeModalAndLogout();
+        pause(2);
         return this;
     }
 

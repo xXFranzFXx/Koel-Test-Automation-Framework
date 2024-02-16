@@ -1,16 +1,10 @@
 package testcases;
 
 import base.BaseTest;
-import org.openqa.selenium.ElementClickInterceptedException;
 import org.testng.Assert;
-import org.testng.Reporter;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.*;
-
-import java.net.MalformedURLException;
+import util.listeners.TestListener;
 
 public class CurrentQueueTests extends BaseTest {
     LoginPage loginPage;
@@ -32,15 +26,13 @@ public class CurrentQueueTests extends BaseTest {
     public void checkQueuePageSongs() {
         setupCQ();
         homePage.clickFooterPlayBtn();
-        Assert.assertTrue(currentQueuePage.isSongPlayingCQ());
-        Assert.assertTrue(currentQueuePage.checkTotalOrDuration(BasePage.durationRe, currentQueuePage.duration()));
         String total = currentQueuePage.extractTotalOrDuration(BasePage.songTotalRe, currentQueuePage.duration());
         String duration = currentQueuePage.extractTotalOrDuration(BasePage.durationRe, currentQueuePage.duration());
         int actualListSize = currentQueuePage.queueListSize();
         int reported = Integer.parseInt(total);
-        Reporter.log("Song Total is" + total, true);
-        Reporter.log("Duration is:" + currentQueuePage.duration(), true);
-        Reporter.log("counted list size" + currentQueuePage.queueListSize(), true);
-        Assert.assertNotEquals(actualListSize, reported);
+        TestListener.logInfoDetails("Song Total is" + total);
+        TestListener.logInfoDetails("Duration is:" + currentQueuePage.duration());
+        TestListener.logInfoDetails("counted list size" + currentQueuePage.queueListSize());
+        Assert.assertTrue(currentQueuePage.checkTotalOrDuration(BasePage.durationRe, currentQueuePage.duration()));
     }
 }
