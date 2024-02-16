@@ -9,8 +9,6 @@ import pages.LoginPage;
 import pages.ProfilePage;
 import util.TestDataHandler;
 import util.listeners.TestListener;
-
-import java.net.MalformedURLException;
 import java.sql.ResultSet;
 
 import java.util.HashMap;
@@ -37,6 +35,14 @@ public class UpdateEmailTests extends BaseTest {
 
     TestDataHandler testData = new TestDataHandler();
     Map<String, Object> dataMap = new HashMap<>();
+
+    public void setupEmailTests() {
+        homePage = new HomePage(getDriver());
+        loginPage = new LoginPage(getDriver());
+        profilePage = new ProfilePage(getDriver());
+        loginPage.loginValidCredentials();
+        homePage.clickAvatar();
+    }
 
     public Object getDataValue(String key) {
         Map<String, Object> testDataInMap = testData.getTestDataInMap();
@@ -83,11 +89,7 @@ public class UpdateEmailTests extends BaseTest {
         String existingUser = getDataValue("existingUser").toString();
         String expectedErrorMsg = "The email has already been taken.";
         TestListener.logInfoDetails("Expected error message: " + expectedErrorMsg);
-        homePage = new HomePage(getDriver());
-        loginPage = new LoginPage(getDriver());
-        profilePage = new ProfilePage(getDriver());
-        loginPage.loginValidCredentials();
-        homePage.clickAvatar();
+        setupEmailTests();
         profilePage.provideCurrentPassword(koelPassword)
                 .provideEmail(existingUser)
                 .clickSaveButton();
@@ -100,11 +102,7 @@ public class UpdateEmailTests extends BaseTest {
     @Parameters({"email", "password"})
     public void updateWithIncorrectEmailFmt(String email, String password){
         TestListener.logInfoDetails("String email: " + email);
-        homePage = new HomePage(getDriver());
-        loginPage = new LoginPage(getDriver());
-        profilePage = new ProfilePage(getDriver());
-        loginPage.loginValidCredentials();
-        homePage.clickAvatar();
+        setupEmailTests();
         profilePage.provideCurrentPassword(password)
                 .provideEmail(email)
                 .clickSaveButton();
@@ -119,11 +117,7 @@ public class UpdateEmailTests extends BaseTest {
     @Parameters({"incompleteEmail", "password"})
     public void updateWithIncompleteEmail(String incompleteEmail, String password){
         TestListener.logInfoDetails("String email: " + incompleteEmail);
-        homePage = new HomePage(getDriver());
-        loginPage = new LoginPage(getDriver());
-        profilePage = new ProfilePage(getDriver());
-        loginPage.loginValidCredentials();
-        homePage.clickAvatar();
+        setupEmailTests();
         profilePage.provideCurrentPassword(password)
                 .provideEmail(incompleteEmail)
                 .clickSaveButton();
@@ -138,11 +132,7 @@ public class UpdateEmailTests extends BaseTest {
     @Parameters({"incorrectDotEmail", "password"})
     public void updateWithIncorrectDot(String incorrectDotEmail, String password){
         TestListener.logInfoDetails("String email: " + incorrectDotEmail);
-        homePage = new HomePage(getDriver());
-        loginPage = new LoginPage(getDriver());
-        profilePage = new ProfilePage(getDriver());
-        loginPage.loginValidCredentials();
-        homePage.clickAvatar();
+        setupEmailTests();
         profilePage.provideCurrentPassword(password)
                 .provideEmail(incorrectDotEmail)
                 .clickSaveButton();
@@ -156,11 +146,7 @@ public class UpdateEmailTests extends BaseTest {
     @Test(description =  "Update email with valid email address, log out, try to log in with old email address", priority=5)
     @Parameters({"properEmail", "password", "oldEmail"})
     public void updateWithProperEmail(String properEmail, String password, String oldEmail){
-        homePage = new HomePage(getDriver());
-        loginPage = new LoginPage(getDriver());
-        profilePage = new ProfilePage(getDriver());
-        loginPage.loginValidCredentials();
-        homePage.clickAvatar();
+        setupEmailTests();
         try {
             profilePage
                     .provideCurrentPassword(password)

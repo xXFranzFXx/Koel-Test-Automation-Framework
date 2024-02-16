@@ -2,13 +2,11 @@ package testcases;
 
 import base.BaseTest;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.ProfilePage;
-
-import java.net.MalformedURLException;
+import util.listeners.TestListener;
 import java.util.UUID;
 
 public class ProfileTests extends BaseTest {
@@ -35,10 +33,10 @@ public class ProfileTests extends BaseTest {
                     .provideCurrentPassword(System.getProperty("koelPassword"))
                     .provideRandomProfileName(randomNm)
                     .clickSave();
+            TestListener.logInfoDetails("Updated user name to" + randomNm);
             Assert.assertEquals(profileName, randomNm);
-            Reporter.log("Updated user name to" + randomNm, true);
         }catch (Exception e) {
-            Reporter.log("Failed to update user name" + e, true);
+            TestListener.logExceptionDetails("Failed to update user name" + e);
         }
     }
     private String generateRandomName() {
@@ -51,11 +49,11 @@ public class ProfileTests extends BaseTest {
         try {
             profilePage
                     .clickTheme("pines");
-            Assert.assertTrue(profilePage.verifyTheme("pines"));
-            Reporter.log("Changed theme to pines", true);
+            boolean themeChanged = profilePage.verifyTheme("pines");
+            TestListener.logAssertionDetails("Changed theme to pines: " + themeChanged);
+            Assert.assertTrue(themeChanged);
         } catch(Exception e) {
-            Reporter.log("Failed to change theme to pines theme" + e, true);
-            Assert.assertFalse(false);
+            TestListener.logExceptionDetails("Failed to change theme to pines: " + e);
         }
     }
 }

@@ -27,13 +27,12 @@ public class AllSongsTests extends BaseTest {
     @Test(description = "Play the first song on All Songs page")
     public void playFirstSong() {
         setupAllSongs();
-       loginPage.allSongsPage();
+        loginPage.allSongsPage();
                allSongsPage
                 .checkHeaderTitle()
                 .contextClickFirstSong()
                 .choosePlayOption();
         Assert.assertTrue(allSongsPage.checkSongPlaying());
-
     }
     @Test(description = "Click on the Album Tab in the Info Panel")
     public void clickInfoPanelAlbumTab() {
@@ -58,7 +57,7 @@ public class AllSongsTests extends BaseTest {
         setupAllSongs();
         loginPage.allSongsPage();
         allSongsPage.unlikeSongs();
-            Assert.assertTrue(allSongsPage.checkUnliked());
+        Assert.assertTrue(allSongsPage.checkUnliked());
     }
     @Test(description = "Verify all song info is displayed properly")
     public void checkSongInfo() {

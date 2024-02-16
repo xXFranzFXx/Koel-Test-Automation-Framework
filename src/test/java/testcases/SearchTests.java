@@ -9,9 +9,6 @@ import pages.SearchPage;
 import util.DataProviderUtil;
 import util.listeners.TestListener;
 
-import java.net.MalformedURLException;
-import java.util.List;
-
 /**
  * Story:
  * As a user, I want to perform a search to find an existing song

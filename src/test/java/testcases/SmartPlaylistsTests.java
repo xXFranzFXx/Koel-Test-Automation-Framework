@@ -2,17 +2,12 @@ package testcases;
 
 import base.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
-import util.RandomString;
 import util.TestUtil;
 import util.listeners.TestListener;
 
-import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -294,7 +289,7 @@ public class SmartPlaylistsTests extends BaseTest {
         Assert.assertTrue(homePage.smartlistAddedToMenu(playlist), "Unable to create a new smart playlist using the 'not in the last' operator");
     }
     @Test(description = "Verify existing smart playlist name can be edited")
-    public void editListName() throws SQLException, ClassNotFoundException {
+    public void editListName() {
         setupSmartPl();
         String newName = generatePlaylistName(6);
         homePage.cmEditFirstSmartPl()
@@ -305,7 +300,7 @@ public class SmartPlaylistsTests extends BaseTest {
         TestListener.logAssertionDetails("User can edit smart playlist name: " + homePage.getFirstSmartPlName().contains(newName));
         Assert.assertTrue(homePage.smartlistAddedToMenu(newName), "Unable to create a new smart playlist using the 'not in the last' operator");
     }
-    @Test(description = "Delete all smart playlists")//, dependsOnMethods = {"titleIsNot"})
+    @Test(description = "Delete all smart playlists", dependsOnMethods = {"titleIsNot"})
     public void deleteAllPlaylists() {
         setupSmartPl();
         homePage.deletePlaylists();
