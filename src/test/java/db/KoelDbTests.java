@@ -90,9 +90,8 @@ public class KoelDbTests extends KoelDbActions {
     }
     @AfterMethod
     public void closeDbConnection() throws SQLException {
-        closeDatabaseConnection();
 //        dataMap.clear();
-//        testData.setTestDataInMap(dataMap);
+        closeDatabaseConnection();
     }
     @Test(description = "get artist info")
     @Parameters({"artist"})
@@ -115,15 +114,13 @@ public class KoelDbTests extends KoelDbActions {
     @Parameters({"artist"})
     public void querySongByArtist(String artist) throws SQLException, IOException {
         rs = songByArtistJoinStmt(artist);
-        addDataFromTest("querySongByArtist", rs);
-        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
-
         if(rs.next()){
-            int artistID = rs.getInt("artist_id");
+            int artistID = rs.getInt("s.artist_id");
             int id = rs.getInt("a.id");
             String songArtist = rs.getString("a.name");
-            String songTitle = rs.getString("title");
-
+            String songTitle = rs.getString("s.title");
+            TestListener.logRsDetails("songArtist: " + songArtist);
+            TestListener.logRsDetails("artistID: " + artistID);
             Assert.assertEquals(artistID, id);
             Assert.assertEquals(songArtist, artist);
         }
@@ -141,9 +138,11 @@ public class KoelDbTests extends KoelDbActions {
 
     @Test(description = "get a user's playlists and write the data from the result set to excel file")
     @Parameters({"koelUser"})
-    public void getKoelUserPlaylists(String koelUser) throws SQLException {
+    public void getKoelUserPlaylists(String koelUser) throws SQLException, IOException {
         rs = getUserPlaylst(koelUser);
         addDataFromTest("getKoelUserPlaylists", rs);
+                ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
+
         if(rs.next()) {
             String p_uid = rs.getString("p.user_id");
             String u_id = rs.getString("u.id");

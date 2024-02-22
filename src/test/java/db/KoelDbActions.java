@@ -36,9 +36,7 @@ public class KoelDbActions extends KoelDb{
         SELECT * FROM artists WHERE name = ?
         """;
     private String getSongByArtist = """
-            SELECT * FROM dbkoel.songs s
-            LEFT JOIN dbkoel.artists a
-            ON a.id = s.artist_id WHERE a.name = ?
+            SELECT * FROM dbkoel.songs s JOIN dbkoel.artists a ON a.id = s.artist_id WHERE a.name = ?
             """;
     private String songSpecificLength = """
             SELECT * FROM dbkoel.songs WHERE LENGTH BETWEEN ? AND ?""";

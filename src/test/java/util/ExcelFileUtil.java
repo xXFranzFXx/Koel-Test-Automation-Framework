@@ -57,7 +57,7 @@ public class ExcelFileUtil {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
         FileOutputStream fileOut = null;
-        Map<String, Map<String, LinkedHashMap<String, String>>> rMap = TestUtil.createProcessedResultSetMap(dataMap);
+        Map<String, Map<String, LinkedHashMap<String, String>>> rMap = DbUtil.createProcessedResultSetMap(dataMap);
         Set<String> names = dataMap.keySet();
         try {
            XSSFWorkbook  wb = new XSSFWorkbook();
