@@ -8,12 +8,14 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
-public class TestUtil extends BaseTest {
+public class TestUtil {
     public static long sysTime = System.currentTimeMillis();;
-    public static void takeScreenshotAtEndOfTest(String fileName) throws IOException {
+    public static void takeScreenshotAtEndOfTest(String fileName, WebDriver driver) throws IOException {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         String currentDir = System.getProperty("user.dir");
         FileUtils.copyFile(scrFile, new File(currentDir +"/reports/extent-reports/screenshots/" + fileName + ".png"));
@@ -30,5 +32,11 @@ public class TestUtil extends BaseTest {
         calendar.setTimeInMillis(millis);
         return calendar.getTime();
     }
+    public static  String getDate() {
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        df.setTimeZone(TimeZone.getTimeZone("Europe/London"));
+        return df.format(new Date());
+    }
+
 
 }

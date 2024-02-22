@@ -6,13 +6,12 @@ import org.testng.ITestResult;
 
 import java.io.IOException;
 
-import static util.extentReports.ExtentTestManager.getTest;
 
 public class Retry implements IRetryAnalyzer {
 
 
     private int count  = 0;
-    private static int maxTry = 0; //Run the failed test 2 times
+    private static int maxTry = 1; //Run the failed test 1 times
     @Override
     public boolean retry(ITestResult iTestResult) {
         if (!iTestResult.isSuccess()) {                     //Check if test not succeed
@@ -20,8 +19,7 @@ public class Retry implements IRetryAnalyzer {
                 count++;                                    //Increase the maxTry count by 1
                 iTestResult.setStatus(ITestResult.FAILURE); //Mark test as failed and take base64Screenshot
                 try {
-//                    TestUtil.takeScreenshotAtEndOfTest(iTestResult.getMethod().getMethodName());
-                    extendReportsFailOperations(iTestResult);   //ExtentReports fail operations
+                    extentReportsFailOperations(iTestResult);   //ExtentReports fail operations
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -32,8 +30,8 @@ public class Retry implements IRetryAnalyzer {
         }
         return false;
     }
-    public void extendReportsFailOperations(ITestResult iTestResult) throws IOException {
-        getTest().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath("/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + ".png");
+    public void extentReportsFailOperations(ITestResult iTestResult) throws IOException {
+        TestListener.test.get().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath("/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + count + ".png");
     }
 
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SmokeTests">
+    <listeners>
+        <listener class-name="util.listeners.TestListener"/>
+        <listener class-name="util.listeners.AnnotationTransformer"/>
+    </listeners>
+    <test name="Login-Logout Tests" >
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
+        <classes>
+            <class name="testcases.LoginTests"/>
+            <class name="testcases.LogoutTests"/>
+        </classes>
+    </test>
+    <test name="Playlist Tests">
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
+      <classes>
+            <class name="testcases.SmartPlaylistsTests"/>
+        </classes>
+    </test>
+    <test name="Search Tests" >
+        <parameter name="baseURL" value="https://qa.koel.app/"/>
+        <parameter name="searchString" value="dar"/>
+        <parameter name="searchString2" value="a"/>
+            <classes>
+                <class name="testcases.SearchTests"/>
+            </classes>
+    </test>
+</suite>

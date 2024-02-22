@@ -9,21 +9,20 @@ import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import util.TestUtil;
 import util.extentReports.ExtentManager;
 import util.logs.Log;
-
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+
 public class TestListener  implements ITestListener, WebDriverListener {
-    //Extent Report Declarations
-    ExtentReports extent = ExtentManager.getInstance();
-    ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
+    static ExtentReports extent = ExtentManager.getInstance();
+    static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+
     @Override
     public synchronized void onStart(ITestContext context) {
        Log.info("Extent Reports for Koel Automation Test Suite started!");
@@ -47,14 +46,9 @@ public class TestListener  implements ITestListener, WebDriverListener {
     @Override
     public synchronized void onTestFailure(ITestResult result) {
         Log.error(result.getMethod().getMethodName() + " failed!");
-        try {
-            TestUtil.takeScreenshotAtEndOfTest(result.getMethod().getMethodName());
-            test.get().log(Status.FAIL, "fail ❌").addScreenCaptureFromPath("/reports/extent-reports/screenshots/" + result.getMethod().getMethodName() + ".png");
-            Log.info("screen shot taken for failed test " + result.getMethod().getMethodName());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-            test.get().fail(result.getThrowable());
+        test.get().log(Status.FAIL, "fail ❌").addScreenCaptureFromPath("/reports/extent-reports/screenshots/" + result.getMethod().getMethodName() + ".png");
+        Log.info("screen shot taken for failed test " + result.getMethod().getMethodName());
+        test.get().fail(result.getThrowable());
     }
     @Override
     public synchronized void onTestSkipped(ITestResult result) {
@@ -67,6 +61,25 @@ public class TestListener  implements ITestListener, WebDriverListener {
         Log.info("onTestFailedButWithinSuccessPercentage for " + result.getMethod().getMethodName());
 
     }
+    public static void logPassDetails(String log) {
+        test.get().pass(MarkupHelper.createLabel(log, ExtentColor.GREEN));
+    }
+    public static void logRsDetails(String log) {
+        test.get().info(MarkupHelper.createLabel(log, ExtentColor.WHITE));
+    }
+    public static void logAssertionDetails(String log) {
+        test.get().info(MarkupHelper.createLabel(log, ExtentColor.PURPLE));
+    }
+    public  static void logFailureDetails(String log) {
+        test.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
+    }
+    public static void logExceptionDetails(String log) {
+        test.get().fail(log);
+    }
+    public static void logInfoDetails(String log) {
+        test.get().info(MarkupHelper.createLabel(log, ExtentColor.GREY));
+    }
+    @Override
     public void beforeAnyCall(Object target, Method method, Object[] args) {
         Log.debug( "Before calling method: " + method.getName());
     }
