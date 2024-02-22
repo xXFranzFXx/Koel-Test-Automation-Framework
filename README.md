@@ -39,12 +39,12 @@ Follow these steps to get started with the Koel Test Automation Framework:<br><b
 5.) Choose a branch<br>
 6.) gradle clean test<br>
 NOTE: If using Jenkins be sure to add a variable in the build.gradle file<br>
-<img  src="assets/jenkins.png" alt="jenkins" width="500"><br>
+<img  src="assets/jenkins.png" alt="jenkins" width="505"><br>
 
 <h3>Extent Reports</h3>
 Extent reports will be generated in the reports/extent-reports folder.<br>
-<img src="./assets/extent1.png" alt="extent1" width="550" height="530"> 
-<img src="./assets/extent2.png" alt="extent2" width="550" height="530">
+<img src="./assets/extent1.png" alt="extent1" width="555" height="530"> 
+<img src="./assets/extent2.png" alt="extent2" width="555" height="530">
 
 <h3>Store Results in Excel Files, or Use as a Dataprovider<h3>
-<img src="./assets/ExcelFile.png" alt="extent1" width="550" height="530"> 
+<img src="./assets/ExcelFile.png" alt="extent1" width="555" height="530"> 
