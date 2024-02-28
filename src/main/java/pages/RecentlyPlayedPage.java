@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecentlyPlayedPage extends BasePage{
     @FindBy(linkText = "Recently Played")
@@ -17,9 +18,7 @@ public class RecentlyPlayedPage extends BasePage{
     }
     public boolean isSearchedSongInRecentlyPlayed(String search) {
        List<WebElement> rows =  findElements(recentlyPlayedTitlesLocator);
-       for(WebElement row: rows) {
-            return row.getText().equals(search);
-       }
-        return false;
+       int fails = rows.stream().filter(row -> !row.getText().equals(search)).toList().size();
+        return fails <= 0;
     }
 }
