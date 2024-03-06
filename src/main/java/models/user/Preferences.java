@@ -6,6 +6,7 @@ public class Preferences {
         this.lastfm_session_key = lastfm_session_key;
     }
     public Preferences() {
+        this(null);
 
     }
     public String getLastfm_session_key() {
