@@ -4,7 +4,7 @@ import models.artist.Artist;
 import models.album.Album;
 
 public class SongInfo {
-    private long id;
+    private String id;
     private int album_id;
     private int artist_id;
     private String title;
@@ -31,10 +31,10 @@ public class SongInfo {
     public SongInfo() {
 
     }
-    public long getId() {
+    public String getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
     public int getAlbum_id() {

@@ -4,7 +4,7 @@ package models.song;
 import models.album.Album;
 
 public class Song {
-    private long song_id;
+    private String song_id;
     private boolean liked;
     private int play_count;
     private SongInfo[] songInfo;
@@ -12,7 +12,7 @@ public class Song {
 
 
 
-    public Song(boolean liked, SongInfo[] songInfo, int play_count, long song_id, Album[] albums) {
+    public Song(boolean liked, SongInfo[] songInfo, int play_count, String song_id, Album[] albums) {
         this.liked = liked;
         this.songInfo = songInfo;
         this.play_count = play_count;
@@ -23,11 +23,11 @@ public class Song {
     public Song() {
 
     }
-    public long getSong_Id() {
+    public String getSong_Id() {
         return song_id;
     }
 
-    public void setSong_id(long song_id) {
+    public void setSong_id(String song_id) {
         this.song_id = song_id;
     }
     public SongInfo[] getSongInfo() {

@@ -2,13 +2,12 @@ package apitests;
 
 import api.KoelApiSpec;
 import io.restassured.response.Response;
-import models.playlist.Playlist;
-import models.user.User;
+import models.song.Song;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import util.restUtils.RestUtil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -28,6 +27,7 @@ public class SongsTests extends KoelApiSpec {
                 .then().statusCode(200)
                 .extract().response();
 
+        List<Song> songs = response.jsonPath().get(); // deserialize
         Assert.assertEquals(response.statusCode(), 200);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
     }
