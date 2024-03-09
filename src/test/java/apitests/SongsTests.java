@@ -8,7 +8,9 @@ import org.testng.annotations.Test;
 import util.restUtils.RestUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
 
@@ -27,7 +29,9 @@ public class SongsTests extends KoelApiSpec {
                 .then().statusCode(200)
                 .extract().response();
 
-        List<Song> songs = response.jsonPath().get(); // deserialize
+        List<String> songs = response.jsonPath().get();
+        songs.forEach(System.out::println);
+
         Assert.assertEquals(response.statusCode(), 200);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
     }
