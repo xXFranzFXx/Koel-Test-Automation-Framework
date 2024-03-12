@@ -41,7 +41,7 @@ public class ExcelDataProvider {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Something went terribly wrong." + e);
+            System.out.println("Failed to open excel file." + e);
         }
         return data;
     }

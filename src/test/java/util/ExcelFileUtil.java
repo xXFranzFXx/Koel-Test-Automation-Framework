@@ -36,35 +36,7 @@ public class ExcelFileUtil {
                 }
                 Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(name);
                 XSSFSheet sheet3 = makeSheet(wb, name, resultSetMap);
-//                XSSFCellStyle headerStyle = wb.createCellStyle();
-//                XSSFFont headerFont = wb.createFont();
-//                headerFont.setBold(true);
-//                headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-//                headerStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.PALE_BLUE.getIndex());
-//                headerStyle.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
-//                headerStyle.setFont(headerFont);
-//
-//                int rowCount = sheet3.getLastRowNum() - sheet3.getFirstRowNum();
-//                XSSFRow row = sheet3.createRow(rowCount);
-//                Map<String, String> columnDetails = resultSets.get("1");
-//                Set<String> columnNames = columnDetails.keySet();
-//                int cellNo = 0;
-//                for (String s1 : columnNames) {
-//                    XSSFCell cell0 = row.createCell(cellNo);
-//                    cell0.setCellStyle(headerStyle);
-//                    cell0.setCellValue(s1);
-//                    cellNo++;
-//                }
-//                for (int i = 1; i <= resultSets.size(); i++) {
-//                    columnDetails = resultSets.get(Integer.valueOf(i).toString());
-//                    XSSFRow nextrow = sheet3.createRow(rowCount + i);
-//                    Set<String> set = columnDetails.keySet();
-//                    int cellNum = 0;
-//                    for (String s2 : set) {
-//                        nextrow.createCell(cellNum).setCellValue(columnDetails.get(s2));
-//                        cellNum++;
-//                    }
-//                }
+
                 for (int i = 0; i < resultSets.get("1").size(); i++) {
                     sheet3.autoSizeColumn(i);
                 }
@@ -116,7 +88,6 @@ public class ExcelFileUtil {
         headerStyle.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
         headerStyle.setFont(headerFont);
 
-//        int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
         XSSFRow row = sheet.createRow(rowCount);
         Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
         Map<String, String> columnDetails = resultSets.get("1");
@@ -143,5 +114,24 @@ public class ExcelFileUtil {
               }
           }
       }
+    public static void checkDuplicate(XSSFSheet spreadSheet) {
+        Set<String> recordsSet =new TreeSet<>();
+        XSSFRow row;
+        for (Row cells : spreadSheet) {
+            row = (XSSFRow) cells;
+            //System.out.println("----->"+spreadsheet.get);
+            Iterator<Cell> cellIterator = row.cellIterator();
+            Cell cell;
+            while (cellIterator.hasNext()) {
+                cell = cellIterator.next();
+                if (cell.getRowIndex() == 0)
+                    continue;
+                if (Objects.requireNonNull(cell.getCellType()) == CellType.STRING) {
+                    recordsSet.add(cell.getStringCellValue());
+                }
+            }
+        }
+
     }
+}
 
