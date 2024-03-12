@@ -1,5 +1,10 @@
 package util;
 
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -18,7 +23,7 @@ public class DbUtil {
         return multiRsMap;
     }
     public static Map<String, LinkedHashMap<String, String>> processResultSet(String name, ResultSet rs){
-        ArrayList<String> columnNames = new ArrayList<String>();
+
         LinkedHashMap<String, String> rowDetails = new LinkedHashMap<String, String>();
         Map<String, LinkedHashMap<String, String>> resultMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
         ResultSetMetaData rsm = null;
@@ -27,6 +32,7 @@ public class DbUtil {
             try
             {
                 rsm = rs.getMetaData();
+                ArrayList<String> columnNames = new ArrayList<String>();
                 for (int i = 1; i <= rsm.getColumnCount(); i++)
                 {
                     System.out.println(i + " -> " + rsm.getColumnName(i));
@@ -48,7 +54,6 @@ public class DbUtil {
                     rowDetails.put(rsm.getColumnName(i), rs.getString(i));
                 }
                 resultMap.put(Integer.valueOf(rowCount).toString(), rowDetails);
-//            multiRsMap.put(name, resultMap);
                 rowCount++;
                 rowDetails = new LinkedHashMap<>();
             }

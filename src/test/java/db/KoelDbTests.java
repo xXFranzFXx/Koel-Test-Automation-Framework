@@ -23,7 +23,7 @@ import util.ExcelFileUtil;
 public class KoelDbTests extends KoelDbActions {
     ResultSet rs;
     TestDataHandler testData =new TestDataHandler();
-    Map<String,ResultSet> dataMap = new HashMap<>();
+    public static Map<String,ResultSet> dataMap = new HashMap<>();
     //Verify the data saved in previous test is correct
 //    public boolean verifyData(String key1, String key2) {
 //        Map<String, ResultSet> testDataInMap = testData.getTestDataInMap();
@@ -87,16 +87,19 @@ public class KoelDbTests extends KoelDbActions {
     @BeforeMethod
     public void setupDb() throws SQLException, ClassNotFoundException {
         initializeDb();
+        dataMap.clear();
     }
-    @AfterMethod
-    public void closeDbConnection() throws SQLException {
-//        dataMap.clear();
+    @AfterClass
+    public void closeDbConnection() throws SQLException, IOException {
         closeDatabaseConnection();
     }
     @Test(description = "get artist info")
     @Parameters({"artist"})
-    public void queryArtist(String artist) throws SQLException {
+    public void queryArtist(String artist) throws SQLException, IOException {
         rs = artistQuery(artist);
+        addDataFromTest("artistQuery", rs);
+        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
+
         if (rs.next()) {
 
             TestListener.logPassDetails("Results: " +"\n" +"<br>"+
@@ -114,6 +117,9 @@ public class KoelDbTests extends KoelDbActions {
     @Parameters({"artist"})
     public void querySongByArtist(String artist) throws SQLException, IOException {
         rs = songByArtistJoinStmt(artist);
+        addDataFromTest("songByArtist", rs);
+        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
+
         if(rs.next()){
             int artistID = rs.getInt("s.artist_id");
             int id = rs.getInt("a.id");
@@ -129,6 +135,9 @@ public class KoelDbTests extends KoelDbActions {
     @Test(description = "get the total amount of songs in the database")
     public void getSongTotal() throws SQLException, IOException {
         rs = totalSongCount();
+        addDataFromTest("totalSongCount", rs);
+        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
+
         if(rs.next()) {
             int count = rs.getInt("count");
             Assert.assertEquals(count, 66);
@@ -141,7 +150,7 @@ public class KoelDbTests extends KoelDbActions {
     public void getKoelUserPlaylists(String koelUser) throws SQLException, IOException {
         rs = getUserPlaylst(koelUser);
         addDataFromTest("getKoelUserPlaylists", rs);
-                ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
+        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
 
         if(rs.next()) {
             String p_uid = rs.getString("p.user_id");
