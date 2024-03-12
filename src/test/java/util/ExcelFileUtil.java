@@ -18,27 +18,28 @@ public class ExcelFileUtil {
 
     //writes data in result set from sql query to an excel file
     public static void generateExcel(Map<String, ResultSet> dataMap, String fileName) throws SQLException, IOException {
-
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
+        FileInputStream fip = new FileInputStream(file);
 
         Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap = DbUtil.createProcessedResultSetMap(dataMap);
         Set<String> testNames = dataMap.keySet();
+        XSSFWorkbook wb = null;
+        if (file.isFile() && file.exists()) {
+            wb = new XSSFWorkbook(fip);
+            System.out.println(fileName + ".xlsx open");
+        } else {
+            wb = new XSSFWorkbook();
+            System.out.println(fileName + ".xlsx either not exist" + " or can't open");
+        }
         for (String name : testNames) {
             try {
-                FileInputStream fip = new FileInputStream(file);
-                XSSFWorkbook wb = new XSSFWorkbook(fip);
 
-                if (file.isFile() && file.exists()) {
-                    System.out.println(fileName + ".xlsx open");
-                } else {
-                    System.out.println(fileName + ".xlsx either not exist" + " or can't open");
-                }
                 Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(name);
-                XSSFSheet sheet3 = makeSheet(wb, name, resultSetMap);
+                XSSFSheet sheet = makeSheet(wb, name, resultSetMap);
 
                 for (int i = 0; i < resultSets.get("1").size(); i++) {
-                    sheet3.autoSizeColumn(i);
+                    sheet.autoSizeColumn(i);
                 }
 
                 FileOutputStream fileOut = new FileOutputStream(file);
@@ -79,7 +80,6 @@ public class ExcelFileUtil {
         }
     }
     private static void createHeader(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, XSSFWorkbook wb, int rowCount) {
-
         XSSFCellStyle headerStyle = wb.createCellStyle();
         XSSFFont headerFont = wb.createFont();
         headerFont.setBold(true);
