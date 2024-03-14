@@ -1,5 +1,6 @@
 package util;
 
+import com.beust.ah.A;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ExcelFileUtil {
     private static final String excelFilePath = System.getProperty("excelPath");
@@ -27,10 +29,10 @@ public class ExcelFileUtil {
         XSSFWorkbook wb = null;
         if (file.isFile() && file.exists()) {
             wb = new XSSFWorkbook(fip);
-            System.out.println(fileName + ".xlsx open");
+            System.out.println(fileName + " open");
         } else {
             wb = new XSSFWorkbook();
-            System.out.println(fileName + ".xlsx either not exist" + " or can't open");
+            System.out.println(fileName + " either not exist" + " or can't open");
         }
         for (String name : testNames) {
             try {
@@ -66,13 +68,14 @@ public class ExcelFileUtil {
         return sheetNames.contains(sheetName);
     }
     private static XSSFSheet makeSheet (XSSFWorkbook wb, String sheetName, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap) {
+
         if (sheetExists(wb, sheetName)) {
-             XSSFSheet sheet = wb.getSheet(sheetName);
-             int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+            XSSFSheet sheet = wb.getSheet(sheetName);
+            int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
              createRows(sheet, resultSetMap, wb, rowCount);
              return sheet;
         } else {
-            XSSFSheet sheet  =  wb.createSheet(sheetName);
+            XSSFSheet sheet = wb.createSheet(sheetName);
             int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
             createHeader(sheet, resultSetMap, wb, rowCount);
             createRows(sheet, resultSetMap, wb, rowCount);
@@ -100,11 +103,11 @@ public class ExcelFileUtil {
             cellNo++;
          }
       }
-
       private static void createRows(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, XSSFWorkbook wb, int rowCount) {
           Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
+          Map<String, String> columnDetails = new HashMap<>();
           for (int i = 1; i <= resultSets.size(); i++) {
-              Map<String, String> columnDetails = resultSets.get(Integer.valueOf(i).toString());
+              columnDetails = resultSets.get(Integer.valueOf(i).toString());
               XSSFRow nextrow = sheet.createRow(rowCount + i);
               Set<String> set = columnDetails.keySet();
               int cellNum = 0;
@@ -114,11 +117,13 @@ public class ExcelFileUtil {
               }
           }
       }
-    public static void checkDuplicate(XSSFSheet spreadSheet) {
-        Set<String> recordsSet =new TreeSet<>();
+    public static List<String> checkDuplicate(XSSFSheet spreadSheet) {
+        List<String> recordsSet =new ArrayList<>();
+        Map<String, List<String>> rowMap = new HashMap<>();
         XSSFRow row;
         for (Row cells : spreadSheet) {
             row = (XSSFRow) cells;
+            String rowNum = Integer.valueOf(row.getRowNum()).toString();
             //System.out.println("----->"+spreadsheet.get);
             Iterator<Cell> cellIterator = row.cellIterator();
             Cell cell;
@@ -131,7 +136,8 @@ public class ExcelFileUtil {
                 }
             }
         }
-
+        return recordsSet;
+        //Todo write out recordsSet to a new file, this file will not contain duplicate rows for the spreadsheet
     }
 }
 

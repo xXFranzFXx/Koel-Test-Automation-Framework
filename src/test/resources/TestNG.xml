@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="util.listeners.TestListener"/>
     </listeners>
-    <test name="Koel Db Tests" >
+    <test name="Koel Db Tests" verbose="1" >
         <parameter name="artist" value="Grav"/>
         <parameter name="koelUser" value="franz.fernando+1@testpro.io"/>
         <classes>
