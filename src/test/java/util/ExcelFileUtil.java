@@ -15,6 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ExcelFileUtil {
     private static final String excelFilePath = System.getProperty("excelPath");
@@ -74,13 +75,13 @@ public class ExcelFileUtil {
         if (sheetExists(wb, sheetName)) {
             XSSFSheet sheet = wb.getSheet(sheetName);
             int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-            createRows(sheet, resultSetMap, wb, rowCount);
+            createRows(sheet, resultSetMap, rowCount);
             return sheet;
         } else {
             XSSFSheet sheet = wb.createSheet(sheetName);
             int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
             createHeader(sheet, resultSetMap, wb, rowCount);
-            createRows(sheet, resultSetMap, wb, rowCount);
+            createRows(sheet, resultSetMap, rowCount);
             return sheet;
         }
     }
@@ -107,25 +108,25 @@ public class ExcelFileUtil {
         }
     }
 
-    private static void createRows(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, XSSFWorkbook wb, int rowCount) {
+    private static void createRows(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, int rowCount) {
         Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
         Map<String, String> columnDetails = new HashMap<>();
         for (int i = 1; i <= resultSets.size(); i++) {
             columnDetails = resultSets.get(Integer.valueOf(i).toString());
-            XSSFRow nextrow = sheet.createRow(rowCount + i);
+            XSSFRow nextRow = sheet.createRow(rowCount + i);
             Set<String> set = columnDetails.keySet();
-            List<List<String>> uniqueRows = checkDuplicate(sheet);
-            System.out.println("unique " + uniqueRows);
             int cellNum = 0;
             for (String s2 : set) {
-                nextrow.createCell(cellNum).setCellValue(columnDetails.get(s2));
+                nextRow.createCell(cellNum).setCellValue(columnDetails.get(s2));
                 cellNum++;
             }
         }
+
     }
 
    private static List<List<String>> checkDuplicate(XSSFSheet spreadSheet) {
         List<String> recordsSet = new ArrayList<>();
+
         Map<Integer, List<String>> rowMap = new HashMap<>();
         XSSFRow row = spreadSheet.getRow(1);
         int numOfRows = spreadSheet.getPhysicalNumberOfRows();
@@ -147,7 +148,6 @@ public class ExcelFileUtil {
             }
             recordsSet = new ArrayList<>();
         }
-
         //create a list of unique rows, so we can write to a new file without having duplicate data
         List<List<String>> uniqueRows = rowMap.keySet().stream().map(rowMap::get).distinct().toList();
         if ( rowMap.size() > uniqueRows.size()) {
@@ -155,7 +155,16 @@ public class ExcelFileUtil {
         }
         System.out.println("uniqueRows " + uniqueRows);
         return uniqueRows;
-        //Todo write out uniqueRows to a new workbook/spreadsheet, so it will not contain duplicate rows for the spreadsheet
     }
+private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
+    List<String> sheetNames = getSheetNames(wb);
+    Map<String, List<List<String>>> uniqueRowsMap = new HashMap<>();
+    for(String sh : sheetNames) {
+        uniqueRowsMap.put(sh, checkDuplicate(wb.getSheet(sh)));
+    }
+    return uniqueRowsMap;
+  }
+
+    //Todo write out uniqueRows to a new workbook/spreadsheet, so it will not contain duplicate rows for the spreadsheet
 
 }
