@@ -45,6 +45,8 @@ public class ExcelFileUtil {
                 for (int i = 0; i < resultSets.get("1").size(); i++) {
                     sheet.autoSizeColumn(i);
                 }
+                System.out.println("uniqueRowMap " + getUniqueRows(wb));
+
                 FileOutputStream fileOut = new FileOutputStream(file);
                 wb.write(fileOut);
                 fip.close();
@@ -121,7 +123,6 @@ public class ExcelFileUtil {
                 cellNum++;
             }
         }
-
     }
 
    private static List<List<String>> checkDuplicate(XSSFSheet spreadSheet) {
@@ -133,8 +134,10 @@ public class ExcelFileUtil {
         int numOfColumns = row.getLastCellNum();
 
         for (int j = 1; j < numOfRows; j++) {
-            Iterator<Cell> cellIterator = row.cellIterator();
+            XSSFRow nextRow = spreadSheet.getRow(j);
+            Iterator<Cell> cellIterator = nextRow.cellIterator();
             Cell cell;
+
             for (int i = 1; i <= numOfColumns; i++) {
                 cell = cellIterator.next();
                 if (cell.getRowIndex() == 0)
@@ -151,7 +154,7 @@ public class ExcelFileUtil {
         //create a list of unique rows, so we can write to a new file without having duplicate data
         List<List<String>> uniqueRows = rowMap.keySet().stream().map(rowMap::get).distinct().toList();
         if ( rowMap.size() > uniqueRows.size()) {
-            TestListener.logInfoDetails("There are " + (rowMap.size() - uniqueRows.size()) + " duplicate rows of data in spreadsheet " + spreadSheet.getSheetName() + ".");
+            Reporter.log("There are " + (rowMap.size() - uniqueRows.size()) + " duplicate rows of data in spreadsheet " + spreadSheet.getSheetName() + ".", true);
         }
         System.out.println("uniqueRows " + uniqueRows);
         return uniqueRows;
@@ -164,7 +167,5 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
     }
     return uniqueRowsMap;
   }
-
     //Todo write out uniqueRows to a new workbook/spreadsheet, so it will not contain duplicate rows for the spreadsheet
-
 }
