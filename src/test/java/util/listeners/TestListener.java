@@ -43,6 +43,7 @@ public class TestListener  implements ITestListener, WebDriverListener {
     public static void logInfoDetails(String log) {
         test.get().info(MarkupHelper.createLabel(log, ExtentColor.GREY));
     }
+
     @Override
     public synchronized void onStart(ITestContext context) {
        Log.info("Extent Reports for Koel Automation Test Suite started!");

@@ -24,17 +24,18 @@ public class ExcelFileUtil {
     public static void generateExcel(Map<String, ResultSet> dataMap, String fileName) throws SQLException, IOException {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
-        FileInputStream fip = new FileInputStream(file);
 
-        Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap = DbUtil.createProcessedResultSetMap(dataMap);
+
+        Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap = getResultSetMap(dataMap);
         Set<String> testNames = dataMap.keySet();
         XSSFWorkbook wb = null;
         if (file.isFile() && file.exists()) {
+            FileInputStream fip = new FileInputStream(file);
             wb = new XSSFWorkbook(fip);
             System.out.println(fileName + " open");
         } else {
             wb = new XSSFWorkbook();
-            System.out.println(fileName + " either not exist" + " or can't open");
+            System.out.println(fileName + " either does not exist" + " or can't open, creating new file");
         }
         for (String name : testNames) {
             try {
@@ -46,13 +47,25 @@ public class ExcelFileUtil {
                     sheet.autoSizeColumn(i);
                 }
                 writeFile(file, wb);
-                fip.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("uniqueRowMap " + getUniqueRows(wb));
-        writeUniqueRowsToFile(wb, resultSetMap);
+
+
+    }
+    private static void writeWithoutDuplicates() throws SQLException, IOException {
+        String excelFile = excelFilePath + fileName;
+        File file = new File(excelFile);
+        if (file.isFile() && file.exists() && duplicateRowsExist(fileName)) {
+            String newName = System.getProperty("newExcelFileName");
+            Reporter.log("Duplicate data exists", true);
+            Reporter.log("Creating new file without duplicates: " + newName, true);
+            writeToFileWithoutDuplicates(newName);
+        }
+    }
+    private static Map<String, Map<String, LinkedHashMap<String, String>>> getResultSetMap (Map<String, ResultSet> dataMap) throws SQLException {
+        return DbUtil.createProcessedResultSetMap(dataMap);
     }
     private static void writeFile (File file, XSSFWorkbook wb) throws IOException {
         FileOutputStream fileOut = new FileOutputStream(file);
@@ -128,39 +141,52 @@ public class ExcelFileUtil {
             }
         }
     }
+   public static boolean duplicateRowsExist(String fileName) throws IOException {
+       String excelFile = excelFilePath + fileName;
+       FileInputStream fip = new FileInputStream(excelFile);
+       XSSFWorkbook wb = new XSSFWorkbook(fip);
+       List<String> workSheets = getSheetNames(wb);
+       for(String worksheet: workSheets) {
+           XSSFSheet ws = wb.getSheet(worksheet);
+           if (getRowMap(ws).size() > checkDuplicate(ws).size()) {
+               Reporter.log("There are " + (getRowMap(ws).size() - checkDuplicate(ws).size()) + " duplicate rows of data in spreadsheet " + ws.getSheetName() + ".", true);
+           }
+       }
+              return !workSheets.stream().map(wb::getSheet).filter(s -> getRowMap(s).size() > checkDuplicate(s).size()).toList().isEmpty();
+   }
+   private static Map<Integer, List<String>> getRowMap (XSSFSheet spreadSheet) {
+       Map<Integer, List<String>> rowMap = new HashMap<>();
+       List<String> recordsSet = new ArrayList<>();
+       XSSFRow row = spreadSheet.getRow(1);
+       int numOfRows = spreadSheet.getPhysicalNumberOfRows();
+       int numOfColumns = row.getLastCellNum();
 
-   private static List<List<String>> checkDuplicate(XSSFSheet spreadSheet) {
-        List<String> recordsSet = new ArrayList<>();
-        Map<Integer, List<String>> rowMap = new HashMap<>();
-        XSSFRow row = spreadSheet.getRow(1);
-        int numOfRows = spreadSheet.getPhysicalNumberOfRows();
-        int numOfColumns = row.getLastCellNum();
+       for (int j = 1; j < numOfRows; j++) {
+           XSSFRow nextRow = spreadSheet.getRow(j);
+           Iterator<Cell> cellIterator = nextRow.cellIterator();
+           Cell cell;
 
-        for (int j = 1; j < numOfRows; j++) {
-            XSSFRow nextRow = spreadSheet.getRow(j);
-            Iterator<Cell> cellIterator = nextRow.cellIterator();
-            Cell cell;
+           for (int i = 1; i <= numOfColumns; i++) {
+               cell = cellIterator.next();
+               if (cell.getRowIndex() == 0)
+                   continue;
+               if (Objects.requireNonNull(cell.getCellType()) == CellType.STRING) {
+                   recordsSet.add(cell.getStringCellValue());
+               } else if (cell.getCellType() == CellType.BLANK) {
+                   recordsSet.add(null);
+               }
+               rowMap.put(j, recordsSet);
+           }
+           recordsSet = new ArrayList<>();
+       }
 
-            for (int i = 1; i <= numOfColumns; i++) {
-                cell = cellIterator.next();
-                if (cell.getRowIndex() == 0)
-                    continue;
-                if (Objects.requireNonNull(cell.getCellType()) == CellType.STRING) {
-                    recordsSet.add(cell.getStringCellValue());
-                } else if (cell.getCellType() == CellType.BLANK) {
-                    recordsSet.add(null);
-                }
-                rowMap.put(j, recordsSet);
-            }
-            recordsSet = new ArrayList<>();
-        }
+       return rowMap;
+   }
+
+    private static List<List<String>> checkDuplicate(XSSFSheet spreadSheet) {
+        Map<Integer, List<String>> rowMap = getRowMap(spreadSheet);
         //create a list of unique rows, so we can write to a new file without having duplicate data
-        List<List<String>> uniqueRows = rowMap.keySet().stream().map(rowMap::get).distinct().toList();
-        if ( rowMap.size() > uniqueRows.size()) {
-            Reporter.log("There are " + (rowMap.size() - uniqueRows.size()) + " duplicate rows of data in spreadsheet " + spreadSheet.getSheetName() + ".", true);
-        }
-        System.out.println("uniqueRows " + uniqueRows);
-        return uniqueRows;
+        return rowMap.keySet().stream().map(rowMap::get).distinct().toList();
     }
 private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
     List<String> sheetNames = getSheetNames(wb);
@@ -170,16 +196,22 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
     }
     return uniqueRowsMap;
   }
-  private static void writeUniqueRowsToFile(XSSFWorkbook wb,  Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap) {
-      String excelFile = excelFilePath + "dbResultsEdited.xlsx";
-      File file = new File(excelFile);
-      List<String> sheetNames = getSheetNames(wb);
+  private static void writeToFileWithoutDuplicates(String newFileName) throws IOException, SQLException {
+      String newExcelFile = excelFilePath + newFileName;
+      String oldExcelFile = excelFilePath + "dbResults.xlsx";
+
+      File file = new File(newExcelFile);
+      FileInputStream fip = new FileInputStream(oldExcelFile);
+
       XSSFWorkbook newWb = new XSSFWorkbook();
+      XSSFWorkbook wb = new XSSFWorkbook(fip);
+
+      List<String> sheetNames = getSheetNames(wb);
       Map<String, List<List<String>>> rowVals = getUniqueRows(wb);
+
       for (String sh: sheetNames) {
           try {
               XSSFSheet sheet = newWb.createSheet(sh);
-              Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
               int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
               List<List<String>> rowData = rowVals.get(sh);
               copyRow(wb, newWb, sheet,  wb.getSheet(sh), 0, 0);
@@ -192,6 +224,7 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
                       nextRow.createCell(cellNum).setCellValue(s);
                       cellNum++;
                   }
+                  sheet.autoSizeColumn(i-1);
               }
               writeFile(file, newWb);
           } catch (IOException e) {
