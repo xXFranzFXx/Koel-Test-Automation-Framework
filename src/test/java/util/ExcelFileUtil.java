@@ -45,20 +45,21 @@ public class ExcelFileUtil {
                 for (int i = 0; i < resultSets.get("1").size(); i++) {
                     sheet.autoSizeColumn(i);
                 }
-                System.out.println("uniqueRowMap " + getUniqueRows(wb));
-
-                FileOutputStream fileOut = new FileOutputStream(file);
-                wb.write(fileOut);
+                writeFile(file, wb);
                 fip.close();
-                fileOut.flush();
-                fileOut.close();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        System.out.println("uniqueRowMap " + getUniqueRows(wb));
+        writeUniqueRowsToFile(wb, resultSetMap);
     }
-
+    private static void writeFile (File file, XSSFWorkbook wb) throws IOException {
+        FileOutputStream fileOut = new FileOutputStream(file);
+        wb.write(fileOut);
+        fileOut.flush();
+        fileOut.close();
+    }
     private static List<String> getSheetNames(XSSFWorkbook wb) {
         List<String> sheetNames = new ArrayList<String>();
         for (int i = 0; i < wb.getNumberOfSheets(); i++) {
@@ -87,8 +88,7 @@ public class ExcelFileUtil {
             return sheet;
         }
     }
-
-    private static void createHeader(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, XSSFWorkbook wb, int rowCount) {
+    private static XSSFCellStyle createHeaderStyle(XSSFWorkbook wb) {
         XSSFCellStyle headerStyle = wb.createCellStyle();
         XSSFFont headerFont = wb.createFont();
         headerFont.setBold(true);
@@ -96,7 +96,11 @@ public class ExcelFileUtil {
         headerStyle.setFillForegroundColor(HSSFColor.HSSFColorPredefined.PALE_BLUE.getIndex());
         headerStyle.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
         headerStyle.setFont(headerFont);
+        return headerStyle;
+    }
 
+    private static void createHeader(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, XSSFWorkbook wb, int rowCount) {
+        XSSFCellStyle headerStyle = createHeaderStyle(wb);
         XSSFRow row = sheet.createRow(rowCount);
         Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
         Map<String, String> columnDetails = resultSets.get("1");
@@ -127,7 +131,6 @@ public class ExcelFileUtil {
 
    private static List<List<String>> checkDuplicate(XSSFSheet spreadSheet) {
         List<String> recordsSet = new ArrayList<>();
-
         Map<Integer, List<String>> rowMap = new HashMap<>();
         XSSFRow row = spreadSheet.getRow(1);
         int numOfRows = spreadSheet.getPhysicalNumberOfRows();
@@ -167,5 +170,77 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
     }
     return uniqueRowsMap;
   }
-    //Todo write out uniqueRows to a new workbook/spreadsheet, so it will not contain duplicate rows for the spreadsheet
+  private static void writeUniqueRowsToFile(XSSFWorkbook wb,  Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap) {
+      String excelFile = excelFilePath + "dbResultsEdited.xlsx";
+      File file = new File(excelFile);
+      List<String> sheetNames = getSheetNames(wb);
+      XSSFWorkbook newWb = new XSSFWorkbook();
+      Map<String, List<List<String>>> rowVals = getUniqueRows(wb);
+      for (String sh: sheetNames) {
+          try {
+              XSSFSheet sheet = newWb.createSheet(sh);
+              Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
+              int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
+              List<List<String>> rowData = rowVals.get(sh);
+              copyRow(wb, newWb, sheet,  wb.getSheet(sh), 0, 0);
+
+              for (int i = 1; i <= rowData.size(); i++) {
+                  XSSFRow nextRow = sheet.createRow(rowCount + i);
+                  List<String> singleRow = rowData.get(i-1);
+                  int cellNum = 0;
+                  for (String s : singleRow) {
+                      nextRow.createCell(cellNum).setCellValue(s);
+                      cellNum++;
+                  }
+              }
+              writeFile(file, newWb);
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+    private static void copyRow(XSSFWorkbook workbook, XSSFWorkbook newWb, XSSFSheet destWorksheet, XSSFSheet srcWorksheet, int sourceRowNum, int destinationRowNum) {
+        XSSFCellStyle headerStyle = createHeaderStyle(newWb);
+        XSSFRow newRow = destWorksheet.getRow(destinationRowNum);
+        XSSFRow sourceRow = srcWorksheet.getRow(sourceRowNum);
+
+        if (newRow != null) {
+            destWorksheet.shiftRows(destinationRowNum, destWorksheet.getLastRowNum(), 1);
+        } else {
+            newRow = destWorksheet.createRow(destinationRowNum);
+        }
+
+        for (int i = 0; i < sourceRow.getLastCellNum(); i++) {
+            XSSFCell oldCell = sourceRow.getCell(i);
+            XSSFCell newCell = newRow.createCell(i);
+            newCell.setCellStyle(headerStyle);
+
+            if (oldCell == null) {
+                newCell = null;
+                continue;
+            }
+            newCell.setCellType(oldCell.getCellType());
+
+            switch (oldCell.getCellType()) {
+                case CellType.BLANK:
+                    newCell.setCellValue(oldCell.getStringCellValue());
+                    break;
+                case CellType.BOOLEAN:
+                    newCell.setCellValue(oldCell.getBooleanCellValue());
+                    break;
+                case CellType.ERROR:
+                    newCell.setCellErrorValue(oldCell.getErrorCellValue());
+                    break;
+                case CellType.FORMULA:
+                    newCell.setCellFormula(oldCell.getCellFormula());
+                    break;
+                case CellType.NUMERIC:
+                    newCell.setCellValue(oldCell.getNumericCellValue());
+                    break;
+                case CellType.STRING:
+                    newCell.setCellValue(oldCell.getRichStringCellValue());
+                    break;
+            }
+        }
+    }
 }
