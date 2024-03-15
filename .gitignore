@@ -8,6 +8,7 @@ gradle*
 !gradle-wrapper.jar
 /src/test/resources/.env
 .env
+.log*
 # Cache of project
 .gradletasknamecache
 /bin/
