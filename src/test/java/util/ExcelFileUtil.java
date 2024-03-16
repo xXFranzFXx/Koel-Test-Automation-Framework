@@ -1,21 +1,16 @@
 package util;
 
-import com.beust.ah.A;
-import org.apache.poi.hssf.usermodel.*;
+
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.testng.Reporter;
-import org.testng.annotations.DataProvider;
 import util.listeners.TestListener;
 
 import java.io.*;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ExcelFileUtil {
     private static final String excelFilePath = System.getProperty("excelPath");
@@ -25,13 +20,13 @@ public class ExcelFileUtil {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
 
-
         Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap = getResultSetMap(dataMap);
         Set<String> testNames = dataMap.keySet();
         XSSFWorkbook wb = null;
         if (file.isFile() && file.exists()) {
             fip = new FileInputStream(file);
             wb = new XSSFWorkbook(fip);
+
             System.out.println(fileName + " open");
         } else {
             wb = new XSSFWorkbook();
@@ -46,23 +41,31 @@ public class ExcelFileUtil {
                 for (int i = 0; i < resultSets.get("1").size(); i++) {
                     sheet.autoSizeColumn(i);
                 }
-                fip.close();
+                if (fip != null) {
+                    fip.close();
+                }
                 writeFile(file, wb);
             } catch (IOException e) {
+                TestListener.logExceptionDetails("Error writing data to Excel file: " + e.getLocalizedMessage());
                 e.printStackTrace();
             }
         }
 
 
     }
-    private static void writeWithoutDuplicates(String fileName) throws SQLException, IOException {
+    public static void writeWithoutDuplicates(String fileName) throws SQLException, IOException {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
-        if (file.isFile() && file.exists() && duplicateRowsExist(fileName)) {
-            String newName = System.getProperty("newExcelFileName");
-            Reporter.log("Duplicate data exists", true);
-            Reporter.log("Creating new file without duplicates: " + newName, true);
-            writeToFileWithoutDuplicates(newName);
+        try {
+            if (file.isFile() && file.exists() && duplicateRowsExist(fileName)) {
+                String newName = System.getProperty("newExcelFileName");
+                Reporter.log("Duplicate data exists", true);
+                Reporter.log("Creating new file without duplicates: " + newName, true);
+                writeToFileWithoutDuplicates(newName);
+            }
+        } catch (Exception e) {
+            Reporter.log("Could not access duplicate data", true);
+            TestListener.logExceptionDetails("Unable access duplicate data " + e.getLocalizedMessage());
         }
     }
     private static Map<String, Map<String, LinkedHashMap<String, String>>> getResultSetMap (Map<String, ResultSet> dataMap) throws SQLException {
@@ -230,6 +233,7 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
               fileInputStream.close();
               writeFile(file, newWb);
           } catch (IOException e) {
+              TestListener.logExceptionDetails("Error creating worksheet when editing duplicate data: " + e.getLocalizedMessage());
               e.printStackTrace();
           }
       }
@@ -238,44 +242,48 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
         XSSFCellStyle headerStyle = createHeaderStyle(newWb);
         XSSFRow newRow = destWorksheet.getRow(destinationRowNum);
         XSSFRow sourceRow = srcWorksheet.getRow(sourceRowNum);
-
-        if (newRow != null) {
-            destWorksheet.shiftRows(destinationRowNum, destWorksheet.getLastRowNum(), 1);
-        } else {
-            newRow = destWorksheet.createRow(destinationRowNum);
-        }
-
-        for (int i = 0; i < sourceRow.getLastCellNum(); i++) {
-            XSSFCell oldCell = sourceRow.getCell(i);
-            XSSFCell newCell = newRow.createCell(i);
-            newCell.setCellStyle(headerStyle);
-
-            if (oldCell == null) {
-                newCell = null;
-                continue;
+        try {
+            if (newRow != null) {
+                destWorksheet.shiftRows(destinationRowNum, destWorksheet.getLastRowNum(), 1);
+            } else {
+                newRow = destWorksheet.createRow(destinationRowNum);
             }
-            newCell.setCellType(oldCell.getCellType());
 
-            switch (oldCell.getCellType()) {
-                case CellType.BLANK:
-                    newCell.setCellValue(oldCell.getStringCellValue());
-                    break;
-                case CellType.BOOLEAN:
-                    newCell.setCellValue(oldCell.getBooleanCellValue());
-                    break;
-                case CellType.ERROR:
-                    newCell.setCellErrorValue(oldCell.getErrorCellValue());
-                    break;
-                case CellType.FORMULA:
-                    newCell.setCellFormula(oldCell.getCellFormula());
-                    break;
-                case CellType.NUMERIC:
-                    newCell.setCellValue(oldCell.getNumericCellValue());
-                    break;
-                case CellType.STRING:
-                    newCell.setCellValue(oldCell.getRichStringCellValue());
-                    break;
+            for (int i = 0; i < sourceRow.getLastCellNum(); i++) {
+                XSSFCell oldCell = sourceRow.getCell(i);
+                XSSFCell newCell = newRow.createCell(i);
+                newCell.setCellStyle(headerStyle);
+
+                if (oldCell == null) {
+                    newCell = null;
+                    continue;
+                }
+                newCell.setCellType(oldCell.getCellType());
+
+                switch (oldCell.getCellType()) {
+                    case CellType.BLANK:
+                        newCell.setCellValue(oldCell.getStringCellValue());
+                        break;
+                    case CellType.BOOLEAN:
+                        newCell.setCellValue(oldCell.getBooleanCellValue());
+                        break;
+                    case CellType.ERROR:
+                        newCell.setCellErrorValue(oldCell.getErrorCellValue());
+                        break;
+                    case CellType.FORMULA:
+                        newCell.setCellFormula(oldCell.getCellFormula());
+                        break;
+                    case CellType.NUMERIC:
+                        newCell.setCellValue(oldCell.getNumericCellValue());
+                        break;
+                    case CellType.STRING:
+                        newCell.setCellValue(oldCell.getRichStringCellValue());
+                        break;
+                }
             }
+        } catch (Exception e) {
+            Reporter.log("Error copying row to new file", true);
+            TestListener.logExceptionDetails("Error copying row to new file: " + e.getMessage());
         }
     }
 }

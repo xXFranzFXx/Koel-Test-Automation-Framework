@@ -91,6 +91,7 @@ public class KoelDbTests extends KoelDbActions {
     }
     @AfterClass
     public void closeDbConnection() throws SQLException, IOException {
+        ExcelFileUtil.writeWithoutDuplicates("dbResults.xlsx");
         closeDatabaseConnection();
     }
     @Test(description = "get artist info")
