@@ -25,14 +25,14 @@ public class KoelDbTests extends KoelDbActions {
     TestDataHandler testData =new TestDataHandler();
     public static Map<String,ResultSet> dataMap = new HashMap<>();
     //Verify the data saved in previous test is correct
-//    public boolean verifyData(String key1, String key2) {
-//        Map<String, ResultSet> testDataInMap = testData.getTestDataInMap();
-//        String dataKey1 = testDataInMap.get(key1).toString();
-//        String dataKey2 = testDataInMap.get(key2).toString();
-//        System.out.println("dataKey1 " + dataKey1);
-//        System.out.println("dataKey2 " + dataKey2);
-//        return dataKey1.equals(dataKey2);
-//    }
+    public boolean verifyData(String key1, String key2) {
+        Map<String, ResultSet> testDataInMap = testData.getTestDataInMap();
+        String dataKey1 = testDataInMap.get(key1).toString();
+        String dataKey2 = testDataInMap.get(key2).toString();
+        System.out.println("dataKey1 " + dataKey1);
+        System.out.println("dataKey2 " + dataKey2);
+        return dataKey1.equals(dataKey2);
+    }
     public void addDataFromTest(String key, ResultSet rs) {
         dataMap.put(key, rs);
         testData.setTestDataInMap(dataMap);
