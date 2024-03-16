@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 public class ExcelFileUtil {
     private static final String excelFilePath = System.getProperty("excelPath");
-
+    private static FileInputStream fip;
     //writes data in result set from sql query to an excel file
     public static void generateExcel(Map<String, ResultSet> dataMap, String fileName) throws SQLException, IOException {
         String excelFile = excelFilePath + fileName;
@@ -30,7 +30,7 @@ public class ExcelFileUtil {
         Set<String> testNames = dataMap.keySet();
         XSSFWorkbook wb = null;
         if (file.isFile() && file.exists()) {
-            FileInputStream fip = new FileInputStream(file);
+            fip = new FileInputStream(file);
             wb = new XSSFWorkbook(fip);
             System.out.println(fileName + " open");
         } else {
@@ -46,6 +46,7 @@ public class ExcelFileUtil {
                 for (int i = 0; i < resultSets.get("1").size(); i++) {
                     sheet.autoSizeColumn(i);
                 }
+                fip.close();
                 writeFile(file, wb);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -54,7 +55,7 @@ public class ExcelFileUtil {
 
 
     }
-    private static void writeWithoutDuplicates() throws SQLException, IOException {
+    private static void writeWithoutDuplicates(String fileName) throws SQLException, IOException {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
         if (file.isFile() && file.exists() && duplicateRowsExist(fileName)) {
@@ -201,10 +202,10 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
       String oldExcelFile = excelFilePath + "dbResults.xlsx";
 
       File file = new File(newExcelFile);
-      FileInputStream fip = new FileInputStream(oldExcelFile);
+      FileInputStream fileInputStream = new FileInputStream(oldExcelFile);
 
       XSSFWorkbook newWb = new XSSFWorkbook();
-      XSSFWorkbook wb = new XSSFWorkbook(fip);
+      XSSFWorkbook wb = new XSSFWorkbook(fileInputStream);
 
       List<String> sheetNames = getSheetNames(wb);
       Map<String, List<List<String>>> rowVals = getUniqueRows(wb);
@@ -226,6 +227,7 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
                   }
                   sheet.autoSizeColumn(i-1);
               }
+              fileInputStream.close();
               writeFile(file, newWb);
           } catch (IOException e) {
               e.printStackTrace();
