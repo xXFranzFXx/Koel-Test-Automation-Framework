@@ -36,7 +36,6 @@ public class KoelDbTests extends KoelDbActions {
     public void addDataFromTest(String key, ResultSet rs) {
         dataMap.put(key, rs);
         testData.setTestDataInMap(dataMap);
-
     }
     private boolean checkDatabaseForPlaylist(String koelUser, String playlistName) throws SQLException, ClassNotFoundException {
         rs = checkNewPlaylist(koelUser, playlistName);
@@ -49,7 +48,6 @@ public class KoelDbTests extends KoelDbActions {
         return false;
     }
     private boolean checkDatabaseForSongInPlaylist(String koelUser, String song) throws SQLException, ClassNotFoundException {
-
         rs = checkSongsInPlaylist(koelUser);
         ResultSetMetaData resultSetMetaData = rs.getMetaData();
         final int columnCount = resultSetMetaData.getColumnCount();
@@ -80,13 +78,13 @@ public class KoelDbTests extends KoelDbActions {
         return duplicates;
     }
     @BeforeClass
-    public static void setEnv() {
+    public static void setEnv() throws SQLException, ClassNotFoundException {
         Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").load();
         dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
+        initializeDb();
     }
     @BeforeMethod
-    public void setupDb() throws SQLException, ClassNotFoundException {
-        initializeDb();
+    public void clearDataMap()  {
         dataMap.clear();
     }
     @AfterClass
@@ -102,7 +100,6 @@ public class KoelDbTests extends KoelDbActions {
         ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
 
         if (rs.next()) {
-
             TestListener.logPassDetails("Results: " +"\n" +"<br>"+
                     "id: " + rs.getString("id") +"\n" +"<br>"+
                     "name: " + rs.getString("name") +"\n" +"<br>"+
@@ -110,7 +107,6 @@ public class KoelDbTests extends KoelDbActions {
             );
             Assert.assertEquals(rs.getString("name"), artist);
         }
-
         Assert.assertFalse(false);
     }
 
@@ -161,5 +157,4 @@ public class KoelDbTests extends KoelDbActions {
         }
         Assert.assertFalse(false);
     }
-
 }

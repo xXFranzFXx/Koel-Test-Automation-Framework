@@ -45,6 +45,7 @@ public class ExcelFileUtil {
                     fip.close();
                 }
                 writeFile(file, wb);
+                System.out.println(fileName + " closed.");
             } catch (IOException e) {
                 TestListener.logExceptionDetails("Error writing data to Excel file: " + e.getLocalizedMessage());
                 e.printStackTrace();
@@ -76,6 +77,7 @@ public class ExcelFileUtil {
         wb.write(fileOut);
         fileOut.flush();
         fileOut.close();
+        System.out.println("Finished writing to file");
     }
     private static List<String> getSheetNames(XSSFWorkbook wb) {
         List<String> sheetNames = new ArrayList<String>();
@@ -156,7 +158,11 @@ public class ExcelFileUtil {
                Reporter.log("There are " + (getRowMap(ws).size() - checkDuplicate(ws).size()) + " duplicate rows of data in spreadsheet " + ws.getSheetName() + ".", true);
            }
        }
-              return !workSheets.stream().map(wb::getSheet).filter(s -> getRowMap(s).size() > checkDuplicate(s).size()).toList().isEmpty();
+              return !workSheets.stream()
+                      .map(wb::getSheet)
+                      .filter(s -> getRowMap(s).size() > checkDuplicate(s).size())
+                      .toList()
+                      .isEmpty();
    }
    private static Map<Integer, List<String>> getRowMap (XSSFSheet spreadSheet) {
        Map<Integer, List<String>> rowMap = new HashMap<>();
