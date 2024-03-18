@@ -16,11 +16,12 @@ public class ExcelFileUtil {
     private static final String excelFilePath = System.getProperty("excelPath");
     private static FileInputStream fip;
     //writes data in result set from sql query to an excel file
-    public static void generateExcel(Map<String, ResultSet> dataMap, String fileName) throws SQLException, IOException {
+    public static void generateExcel(TestDataHandler testDataHandler, String fileName) throws SQLException, IOException {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
-
-        Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap = getResultSetMap(dataMap);
+        Map<String, ResultSet> dataMap = testDataHandler.getTestDataInMap();
+        Map<String, List<LinkedHashMap<String, String>>> resultSetMap = getResultSetMap(dataMap);
+        System.out.println("resultSetMap " + resultSetMap);
         Set<String> testNames = dataMap.keySet();
         XSSFWorkbook wb = null;
         if (file.isFile() && file.exists()) {
@@ -35,10 +36,10 @@ public class ExcelFileUtil {
         for (String name : testNames) {
             try {
 
-                Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(name);
+                List<LinkedHashMap<String, String>> resultSets = resultSetMap.get(name);
                 XSSFSheet sheet = makeSheet(wb, name, resultSetMap);
 
-                for (int i = 0; i < resultSets.get("1").size(); i++) {
+                for (int i = 0; i < resultSets.get(0).size(); i++) {
                     sheet.autoSizeColumn(i);
                 }
                 if (fip != null) {
@@ -69,8 +70,8 @@ public class ExcelFileUtil {
             TestListener.logExceptionDetails("Unable access duplicate data " + e.getLocalizedMessage());
         }
     }
-    private static Map<String, Map<String, LinkedHashMap<String, String>>> getResultSetMap (Map<String, ResultSet> dataMap) throws SQLException {
-        return DbUtil.createProcessedResultSetMap(dataMap);
+    private static Map<String, List<LinkedHashMap<String, String>>> getResultSetMap (Map<String, ResultSet> dataMap) throws SQLException {
+        return DbUtil.processResultSet(dataMap);
     }
     private static void writeFile (File file, XSSFWorkbook wb) throws IOException {
         FileOutputStream fileOut = new FileOutputStream(file);
@@ -92,7 +93,7 @@ public class ExcelFileUtil {
         return sheetNames.contains(sheetName);
     }
 
-    private static XSSFSheet makeSheet(XSSFWorkbook wb, String sheetName, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap) {
+    private static XSSFSheet makeSheet(XSSFWorkbook wb, String sheetName, Map<String, List<LinkedHashMap<String, String>>> resultSetMap) {
 
         if (sheetExists(wb, sheetName)) {
             XSSFSheet sheet = wb.getSheet(sheetName);
@@ -118,11 +119,11 @@ public class ExcelFileUtil {
         return headerStyle;
     }
 
-    private static void createHeader(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, XSSFWorkbook wb, int rowCount) {
+    private static void createHeader(XSSFSheet sheet, Map<String, List<LinkedHashMap<String, String>>> resultSetMap, XSSFWorkbook wb, int rowCount) {
         XSSFCellStyle headerStyle = createHeaderStyle(wb);
         XSSFRow row = sheet.createRow(rowCount);
-        Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
-        Map<String, String> columnDetails = resultSets.get("1");
+        List<LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
+        Map<String, String> columnDetails = resultSets.get(0);
         Set<String> columnNames = columnDetails.keySet();
         int cellNo = 0;
         for (String s1 : columnNames) {
@@ -133,18 +134,21 @@ public class ExcelFileUtil {
         }
     }
 
-    private static void createRows(XSSFSheet sheet, Map<String, Map<String, LinkedHashMap<String, String>>> resultSetMap, int rowCount) {
-        Map<String, LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
-        Map<String, String> columnDetails = new HashMap<>();
+    private static void createRows(XSSFSheet sheet,  Map<String, List<LinkedHashMap<String, String>>> resultSetMap, int rowCount) {
+        List<LinkedHashMap<String, String>> resultSets = resultSetMap.get(sheet.getSheetName());
+        Map<String, String> columnDetails = new LinkedHashMap<>();
         for (int i = 1; i <= resultSets.size(); i++) {
-            columnDetails = resultSets.get(Integer.valueOf(i).toString());
+            columnDetails = resultSets.get(i-1);
+            List<String> s = columnDetails.keySet().stream().toList();
             XSSFRow nextRow = sheet.createRow(rowCount + i);
-            Set<String> set = columnDetails.keySet();
             int cellNum = 0;
-            for (String s2 : set) {
-                nextRow.createCell(cellNum).setCellValue(columnDetails.get(s2));
+            for (int j = 0; j < s.size(); j++) {
+                String key = s.get(j);
+                nextRow.createCell(cellNum).setCellValue(columnDetails.get(key));
+                System.out.println("columnDetails " + columnDetails.get(key));
                 cellNum++;
             }
+
         }
     }
    public static boolean duplicateRowsExist(String fileName) throws IOException {

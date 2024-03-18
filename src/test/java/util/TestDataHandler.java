@@ -10,7 +10,9 @@ public class TestDataHandler {
     public Map<String, ResultSet> getTestDataInMap() {
         return testDataInMap;
     }
-
+    public void addDataFromMap(Map<String, ResultSet> dataMap){
+        testDataInMap.putAll(dataMap);
+    }
     public void setTestDataInMap(Map<String, ResultSet> testDataInMap) {
         this.testDataInMap = testDataInMap;
     }

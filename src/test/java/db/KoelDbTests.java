@@ -23,9 +23,9 @@ import util.ExcelFileUtil;
 public class KoelDbTests extends KoelDbActions {
     ResultSet rs;
     TestDataHandler testData =new TestDataHandler();
-    public static Map<String,ResultSet> dataMap = new HashMap<>();
+    Map<String,ResultSet> dataMap = new HashMap<>();
     //Verify the data saved in previous test is correct
-    public boolean verifyData(String key1, String key2) {
+    private boolean verifyData(String key1, String key2) {
         Map<String, ResultSet> testDataInMap = testData.getTestDataInMap();
         String dataKey1 = testDataInMap.get(key1).toString();
         String dataKey2 = testDataInMap.get(key2).toString();
@@ -33,11 +33,11 @@ public class KoelDbTests extends KoelDbActions {
         System.out.println("dataKey2 " + dataKey2);
         return dataKey1.equals(dataKey2);
     }
-    public void addDataFromTest(String key, ResultSet rs) {
+    private void addDataFromTest(String key, ResultSet rs) {
         dataMap.put(key, rs);
-        testData.setTestDataInMap(dataMap);
+        testData.addDataFromMap(dataMap);
     }
-    private boolean checkDatabaseForPlaylist(String koelUser, String playlistName) throws SQLException, ClassNotFoundException {
+    private boolean checkDatabaseForPlaylist(String koelUser, String playlistName) throws SQLException{
         rs = checkNewPlaylist(koelUser, playlistName);
         if(rs.next()) {
             String playlist = rs.getString("p.name");
@@ -47,7 +47,7 @@ public class KoelDbTests extends KoelDbActions {
         }
         return false;
     }
-    private boolean checkDatabaseForSongInPlaylist(String koelUser, String song) throws SQLException, ClassNotFoundException {
+    private boolean checkDatabaseForSongInPlaylist(String koelUser, String song) throws SQLException {
         rs = checkSongsInPlaylist(koelUser);
         ResultSetMetaData resultSetMetaData = rs.getMetaData();
         final int columnCount = resultSetMetaData.getColumnCount();
@@ -64,10 +64,10 @@ public class KoelDbTests extends KoelDbActions {
         }
         return found;
     }
-    public boolean duplicateCondition (int duplicates) {
+    private boolean duplicateCondition (int duplicates) {
         return duplicates >= 2;
     }
-    private int countDuplicateNames(String koelUser, String playlistName) throws SQLException, ClassNotFoundException {
+    private int countDuplicateNames(String koelUser, String playlistName) throws SQLException{
         int duplicates = 0;
         rs = checkDuplicatePlaylistNames(koelUser, playlistName);
         if (rs.next()) {
@@ -83,21 +83,18 @@ public class KoelDbTests extends KoelDbActions {
         dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
         initializeDb();
     }
-    @BeforeMethod
-    public void clearDataMap()  {
-        dataMap.clear();
-    }
     @AfterClass
     public void closeDbConnection() throws SQLException, IOException {
+        ExcelFileUtil.generateExcel(testData, "dbResults.xlsx");
         ExcelFileUtil.writeWithoutDuplicates("dbResults.xlsx");
+        dataMap.clear();
         closeDatabaseConnection();
     }
     @Test(description = "get artist info")
     @Parameters({"artist"})
-    public void queryArtist(String artist) throws SQLException, IOException {
+    public void queryArtist(String artist) throws SQLException{
         rs = artistQuery(artist);
         addDataFromTest("artistQuery", rs);
-        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
 
         if (rs.next()) {
             TestListener.logPassDetails("Results: " +"\n" +"<br>"+
@@ -112,11 +109,9 @@ public class KoelDbTests extends KoelDbActions {
 
     @Test(description = "get songs by an artist")
     @Parameters({"artist"})
-    public void querySongByArtist(String artist) throws SQLException, IOException {
+    public void querySongByArtist(String artist) throws SQLException {
         rs = songByArtistJoinStmt(artist);
         addDataFromTest("songByArtist", rs);
-        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
-
         if(rs.next()){
             int artistID = rs.getInt("s.artist_id");
             int id = rs.getInt("a.id");
@@ -130,10 +125,9 @@ public class KoelDbTests extends KoelDbActions {
         Assert.assertFalse(false);
     }
     @Test(description = "get the total amount of songs in the database")
-    public void getSongTotal() throws SQLException, IOException {
+    public void getSongTotal() throws SQLException {
         rs = totalSongCount();
         addDataFromTest("totalSongCount", rs);
-        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
 
         if(rs.next()) {
             int count = rs.getInt("count");
@@ -144,10 +138,9 @@ public class KoelDbTests extends KoelDbActions {
 
     @Test(description = "get a user's playlists and write the data from the result set to excel file")
     @Parameters({"koelUser"})
-    public void getKoelUserPlaylists(String koelUser) throws SQLException, IOException {
+    public void getKoelUserPlaylists(String koelUser) throws SQLException {
         rs = getUserPlaylst(koelUser);
         addDataFromTest("getKoelUserPlaylists", rs);
-        ExcelFileUtil.generateExcel(dataMap, "dbResults.xlsx");
 
         if(rs.next()) {
             String p_uid = rs.getString("p.user_id");

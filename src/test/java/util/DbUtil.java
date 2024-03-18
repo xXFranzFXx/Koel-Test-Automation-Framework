@@ -5,40 +5,52 @@ import util.listeners.TestListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class DbUtil {
-    public static  Map<String, Map<String, LinkedHashMap<String, String>>>createProcessedResultSetMap(Map<String, ResultSet> dataMap) throws SQLException {
-        Map<String, Map<String, LinkedHashMap<String, String>>> multiRsMap = new LinkedHashMap<>();
+    public static Map<String, List<LinkedHashMap<String, String>>> processResultSet(Map<String, ResultSet> dataMap) {
+        Map<String, List<LinkedHashMap<String, String>>> resultListMap = new LinkedHashMap<>();
+        LinkedHashMap<String, String> rowDetails = new LinkedHashMap<>();
+        List<LinkedHashMap<String, String>> resultList = new ArrayList<>();
         Set<String> s = dataMap.keySet();
-        for (String str: s) {
-            multiRsMap.put(str, processResultSet(str, dataMap.get(str)));
-        }
-        return multiRsMap;
-    }
-    public static Map<String, LinkedHashMap<String, String>> processResultSet(String name, ResultSet rs) {
-        LinkedHashMap<String, String> rowDetails = new LinkedHashMap<String, String>();
-        Map<String, LinkedHashMap<String, String>> resultMap = new LinkedHashMap<String, LinkedHashMap<String, String>>();
+        ResultSet rs = null;
         ResultSetMetaData rsm = null;
-        if (rs != null) {
-            try {
-                int rowCount = 1;
-                rsm = rs.getMetaData();
-                while (rs.next()) {
-                    for (int i = 1; i <= rsm.getColumnCount(); i++) {
-                        rowDetails.put(rsm.getColumnName(i), rs.getString(i));
+
+            for (String str : s) {
+                rs = dataMap.get(str);
+
+                try {
+                    //Total number of rows in each resultset
+                    int numRows = getRowCount(rs);
+                    //bring the iterator back to the start
+                    rs.beforeFirst();
+                    rsm = rs.getMetaData();
+
+                    while (rs.next()) {
+                        for (int j = 1; j<= numRows; j++) {
+                            rowDetails = new LinkedHashMap<>();
+                            for (int i = 1; i <= rsm.getColumnCount(); i++) {
+                                rowDetails.put(rsm.getColumnName(i), rs.getString(i));
+                            }
+                        }
+
+                        resultList.add(rowDetails);
+                        resultListMap.put(str, resultList);
                     }
-                    resultMap.put(Integer.valueOf(rowCount).toString(), rowDetails);
-                    rowCount++;
-                    rowDetails = new LinkedHashMap<>();
+                    //must reset this to avoid saving the row data from first ResultSet as each testCase Resultsets row data.
+                    resultList = new ArrayList<>();
+
+                } catch (SQLException e) {
+                    TestListener.logExceptionDetails("Error processing sql Resultset, could not write to Excel file: " + e.getMessage());
+                    e.printStackTrace();
                 }
-            } catch (SQLException e) {
-                TestListener.logExceptionDetails("Error processing sql Resultset, could not write to Excel file: " + e.getMessage());
-                e.printStackTrace();
-            }
         }
-        return resultMap;
+
+        return resultListMap;
+    }
+    private static int getRowCount(ResultSet resultSet) throws SQLException {
+        resultSet.last();
+        return resultSet.getRow();
     }
 }
+
