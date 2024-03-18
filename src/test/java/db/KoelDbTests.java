@@ -2,28 +2,21 @@ package db;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import util.ExcelFileUtil;
 import util.TestDataHandler;
-import util.TestUtil;
 import util.listeners.TestListener;
-import util.extentReports.ExtentManager;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
-import util.ExcelFileUtil;
 
 public class KoelDbTests extends KoelDbActions {
     ResultSet rs;
     TestDataHandler testData =new TestDataHandler();
-    Map<String,ResultSet> dataMap = new HashMap<>();
     //Verify the data saved in previous test is correct
     private boolean verifyData(String key1, String key2) {
         Map<String, ResultSet> testDataInMap = testData.getTestDataInMap();
