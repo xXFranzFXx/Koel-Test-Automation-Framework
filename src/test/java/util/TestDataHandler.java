@@ -13,6 +13,13 @@ public class TestDataHandler {
     public void addDataFromMap(Map<String, ResultSet> dataMap){
         testDataInMap.putAll(dataMap);
     }
+    public void addTestData(String key, ResultSet rs) {
+        testDataInMap.put(key, rs);
+    }
+    public void clearData() {
+        testDataInMap.clear();
+        setTestDataInMap(testDataInMap);
+    }
     public void setTestDataInMap(Map<String, ResultSet> testDataInMap) {
         this.testDataInMap = testDataInMap;
     }

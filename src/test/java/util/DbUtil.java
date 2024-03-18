@@ -37,7 +37,7 @@ public class DbUtil {
                         resultList.add(rowDetails);
                         resultListMap.put(str, resultList);
                     }
-                    //must reset this to avoid saving the row data from first ResultSet as each testCase Resultsets row data.
+                    //must reset resultList to avoid saving the row data from first ResultSet as each testCase Resultsets row data.
                     resultList = new ArrayList<>();
 
                 } catch (SQLException e) {

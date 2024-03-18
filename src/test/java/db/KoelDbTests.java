@@ -34,8 +34,7 @@ public class KoelDbTests extends KoelDbActions {
         return dataKey1.equals(dataKey2);
     }
     private void addDataFromTest(String key, ResultSet rs) {
-        dataMap.put(key, rs);
-        testData.addDataFromMap(dataMap);
+       testData.addTestData(key, rs);
     }
     private boolean checkDatabaseForPlaylist(String koelUser, String playlistName) throws SQLException{
         rs = checkNewPlaylist(koelUser, playlistName);
@@ -87,7 +86,7 @@ public class KoelDbTests extends KoelDbActions {
     public void closeDbConnection() throws SQLException, IOException {
         ExcelFileUtil.generateExcel(testData, "dbResults.xlsx");
         ExcelFileUtil.writeWithoutDuplicates("dbResults.xlsx");
-        dataMap.clear();
+        testData.clearData();
         closeDatabaseConnection();
     }
     @Test(description = "get artist info")

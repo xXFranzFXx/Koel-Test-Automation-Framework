@@ -16,7 +16,7 @@ public class ExcelFileUtil {
     private static final String excelFilePath = System.getProperty("excelPath");
     private static FileInputStream fip;
     //writes data in result set from sql query to an excel file
-    public static void generateExcel(TestDataHandler testDataHandler, String fileName) throws SQLException, IOException {
+    public static void generateExcel(TestDataHandler testDataHandler, String fileName) throws IOException {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
         Map<String, ResultSet> dataMap = testDataHandler.getTestDataInMap();
@@ -52,10 +52,8 @@ public class ExcelFileUtil {
                 e.printStackTrace();
             }
         }
-
-
     }
-    public static void writeWithoutDuplicates(String fileName) throws SQLException, IOException {
+    public static void writeWithoutDuplicates(String fileName) {
         String excelFile = excelFilePath + fileName;
         File file = new File(excelFile);
         try {
@@ -70,7 +68,7 @@ public class ExcelFileUtil {
             TestListener.logExceptionDetails("Unable access duplicate data " + e.getLocalizedMessage());
         }
     }
-    private static Map<String, List<LinkedHashMap<String, String>>> getResultSetMap (Map<String, ResultSet> dataMap) throws SQLException {
+    private static Map<String, List<LinkedHashMap<String, String>>> getResultSetMap (Map<String, ResultSet> dataMap) {
         return DbUtil.processResultSet(dataMap);
     }
     private static void writeFile (File file, XSSFWorkbook wb) throws IOException {
@@ -81,7 +79,7 @@ public class ExcelFileUtil {
         System.out.println("Finished writing to file");
     }
     private static List<String> getSheetNames(XSSFWorkbook wb) {
-        List<String> sheetNames = new ArrayList<String>();
+        List<String> sheetNames = new ArrayList<>();
         for (int i = 0; i < wb.getNumberOfSheets(); i++) {
             sheetNames.add(wb.getSheetName(i));
         }
@@ -139,16 +137,13 @@ public class ExcelFileUtil {
         Map<String, String> columnDetails = new LinkedHashMap<>();
         for (int i = 1; i <= resultSets.size(); i++) {
             columnDetails = resultSets.get(i-1);
-            List<String> s = columnDetails.keySet().stream().toList();
+            Set<String> s = columnDetails.keySet();
             XSSFRow nextRow = sheet.createRow(rowCount + i);
             int cellNum = 0;
-            for (int j = 0; j < s.size(); j++) {
-                String key = s.get(j);
-                nextRow.createCell(cellNum).setCellValue(columnDetails.get(key));
-                System.out.println("columnDetails " + columnDetails.get(key));
+            for (String str: s) {
+                nextRow.createCell(cellNum).setCellValue(columnDetails.get(str));
                 cellNum++;
             }
-
         }
     }
    public static boolean duplicateRowsExist(String fileName) throws IOException {
@@ -210,7 +205,7 @@ private static Map<String, List<List<String>>> getUniqueRows(XSSFWorkbook wb) {
     }
     return uniqueRowsMap;
   }
-  private static void writeToFileWithoutDuplicates(String newFileName) throws IOException, SQLException {
+  private static void writeToFileWithoutDuplicates(String newFileName) throws IOException{
       String newExcelFile = excelFilePath + newFileName;
       String oldExcelFile = excelFilePath + "dbResults.xlsx";
 
