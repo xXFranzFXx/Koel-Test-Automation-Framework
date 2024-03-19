@@ -8,24 +8,35 @@ import org.testng.annotations.DataProvider;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ExcelDataProvider {
     private static final String excelFilePath = System.getProperty("excelPath");
     @DataProvider(name = "excel-data")
-    public Object[][] excelDP() throws IOException {
+    public static  Object[][] excelDP()  {
         Object[][] arrObj;
-        arrObj = getExcelData("test.xlsx", "Sheet1");
+        arrObj = getExcelData(System.getProperty("dataProviderFile"), System.getProperty("dataProviderSheet"));
         return arrObj;
     }
+    @DataProvider(name = "excel-data-list")
+    public static  Object[] excelDPList()  {
+        Object[][] data = getExcelData(System.getProperty("dataProviderFile"), System.getProperty("dataProviderSheet"));
+        return Arrays.stream(data)
+                .flatMap(Arrays::stream)
+                .toArray();
+    }
 
-    // Data providers end
-    public String[][] getExcelData(String fileName, String sheetName) {
+    public static String[][] getExcelData(String fileName, String sheetName) {
         String[][] data = null;
         try {
             FileInputStream fileInputStream = new FileInputStream(excelFilePath + fileName);
             XSSFWorkbook wb = new XSSFWorkbook(fileInputStream);
             XSSFSheet sheet = wb.getSheet(sheetName);
-            XSSFRow row = sheet.getRow(0);
+            XSSFRow row = sheet.getRow(1);
 
             int numOfRows = sheet.getPhysicalNumberOfRows();
             int numOfColumns = row.getLastCellNum();
