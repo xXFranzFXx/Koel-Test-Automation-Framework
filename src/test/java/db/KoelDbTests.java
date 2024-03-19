@@ -11,12 +11,16 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 public class KoelDbTests extends KoelDbActions {
     ResultSet rs;
     TestDataHandler testData =new TestDataHandler();
+    Map <String, String> testMap = new HashMap<>();
     //Verify the data saved in previous test is correct
     private boolean verifyData(String key1, String key2) {
         Map<String, ResultSet> testDataInMap = testData.getTestDataInMap();
@@ -87,7 +91,6 @@ public class KoelDbTests extends KoelDbActions {
     public void queryArtist(String artist) throws SQLException{
         rs = artistQuery(artist);
         addDataFromTest("artistQuery", rs);
-
         if (rs.next()) {
             TestListener.logPassDetails("Results: " +"\n" +"<br>"+
                     "id: " + rs.getString("id") +"\n" +"<br>"+
@@ -97,6 +100,19 @@ public class KoelDbTests extends KoelDbActions {
             Assert.assertEquals(rs.getString("name"), artist);
         }
         Assert.assertFalse(false);
+    }
+    @Test(description = "get all artists in ascending order")
+    @Parameters({"artist"})
+    public void queryArtists(String artist) throws SQLException {
+        List<String> names = new ArrayList<>();
+        rs = checkArtistsInDb();
+        addDataFromTest("allArtistsQuery", rs);
+        while(rs.next()) {
+            TestListener.logRsDetails("Results: " +"\n" +"<br>"+
+                    "name: " + rs.getString("a.name") +"\n" +"<br>");
+            names.add(rs.getString("a.name"));
+        }
+        Assert.assertTrue(names.contains(artist));
     }
 
     @Test(description = "get songs by an artist")

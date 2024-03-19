@@ -39,23 +39,21 @@ public class ExcelFileUtil {
 
         for (String name : testNames) {
             try {
-                List<LinkedHashMap<String, String>> resultSets = resultSetMap.get(name);
                 XSSFSheet sheet = makeSheet(wb, name, resultSetMap);
-                for (int i = 0; i < resultSets.get(0).size(); i++) {
-                    sheet.autoSizeColumn(i);
-                }
-                if (fip != null) {
-                    fip.close();
-                }
-                writeFile(file, wb);
                 System.out.println("Finished writing to " + sheet.getSheetName());
-            } catch (IOException e) {
+            } catch (Exception e) {
                 TestListener.logExceptionDetails("Error writing data to Excel file: " + e.getLocalizedMessage());
                 e.printStackTrace();
             }
 
         }
-       Reporter.log(fileName + " closed.", true);
+
+        if (fip != null) {
+            fip.close();
+        }
+        autoSizeColumns(wb);
+        writeFile(file, wb);
+        Reporter.log(fileName + " closed.", true);
     }
 
     //if duplicate data is found in existing file, create a new file without any duplicate data.
@@ -221,6 +219,7 @@ public class ExcelFileUtil {
         String oldExcelFile = excelFilePath + "dbResults.xlsx";
 
         File file = new File(newExcelFile);
+        File delFile = new File(oldExcelFile);
         FileInputStream fileInputStream = new FileInputStream(oldExcelFile);
 
         XSSFWorkbook newWb = new XSSFWorkbook();
@@ -244,8 +243,9 @@ public class ExcelFileUtil {
                         nextRow.createCell(cellNum).setCellValue(s);
                         cellNum++;
                     }
-                    sheet.autoSizeColumn(i-1);
+
                 }
+                autoSizeColumns(newWb);
                 fileInputStream.close();
                 writeFile(file, newWb);
                 Reporter.log("Finished writing new data to " + sheet.getSheetName(), true);
@@ -254,6 +254,7 @@ public class ExcelFileUtil {
                 e.printStackTrace();
             }
         }
+        deleteFile(delFile);
         Reporter.log("Finished copying unique data from " + oldExcelFile + " to " + newExcelFile, true);
     }
 
@@ -306,4 +307,28 @@ public class ExcelFileUtil {
             TestListener.logExceptionDetails("Error copying row to new file: " + e.getMessage());
         }
     }
+    private static void autoSizeColumns(Workbook workbook) {
+        int numberOfSheets = workbook.getNumberOfSheets();
+        for (int i = 0; i < numberOfSheets; i++) {
+            Sheet sheet = workbook.getSheetAt(i);
+            if (sheet.getPhysicalNumberOfRows() > 0) {
+                Row row = sheet.getRow(sheet.getFirstRowNum());
+                Iterator<Cell> cellIterator = row.cellIterator();
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    int columnIndex = cell.getColumnIndex();
+                    sheet.autoSizeColumn(columnIndex);
+                }
+            }
+        }
+    }
+    private static void deleteFile(File file) {
+        if (file.delete()) {
+            System.out.println("Deleted the file: " + file.getName());
+        } else {
+            System.out.println("Failed to delete the file.");
+        }
+    }
+
+
 }
