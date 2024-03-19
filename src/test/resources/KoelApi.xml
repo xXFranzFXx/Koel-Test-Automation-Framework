@@ -10,8 +10,7 @@
             <class name="apitests.PlaylistTests"/>
              <class name="apitests.UserTests"/>
             <class name="apitests.SongsTests"/>
-
-
+            <class name="apitests.LoginTests"/>
         </classes>
     </test>
 </suite>

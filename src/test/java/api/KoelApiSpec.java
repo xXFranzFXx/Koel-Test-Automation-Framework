@@ -8,7 +8,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -37,6 +39,19 @@ public class KoelApiSpec {
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.addHeader("Authorization", Authorization);
         requestSpec = builder.build();
+        return requestSpec;
+    }
+    public static RequestSpecification getLoginSpec() {
+        RequestSpecification requestSpec;
+        String email = System.getProperty("koelUser");
+        String password = System.getProperty("koelPassword");
+        Map<String, String> paramsMap = new HashMap<>();
+        paramsMap.put("email",email);
+        paramsMap.put("password", password);
+        RequestSpecBuilder builder = new RequestSpecBuilder();
+        requestSpec = builder.addFormParams(paramsMap)
+                .setBaseUri("https://qa.koel.app/api/me")
+                .build();
         return requestSpec;
     }
 
