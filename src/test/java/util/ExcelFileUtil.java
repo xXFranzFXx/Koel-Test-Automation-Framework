@@ -9,7 +9,6 @@ import util.listeners.TestListener;
 
 import java.io.*;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 public class ExcelFileUtil {
@@ -209,7 +208,7 @@ public class ExcelFileUtil {
         }
         return uniqueRowsMap;
     }
-    //gather only distinct rows of data from current sheet
+    //gather only distinct rows of data from current sheet, then delete file that contains duplicates
     private static List<List<String>> checkDuplicate(XSSFSheet spreadSheet) {
         Map<Integer, List<String>> rowMap = getRowMap(spreadSheet);
         return rowMap.keySet().stream().map(rowMap::get).distinct().toList();
@@ -329,6 +328,4 @@ public class ExcelFileUtil {
             System.out.println("Failed to delete the file.");
         }
     }
-
-
 }
