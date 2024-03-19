@@ -16,17 +16,30 @@ import static io.restassured.RestAssured.given;
 
 public class LoginTests extends  KoelApiSpec{
     Map<String,Object> dataMap = new HashMap<>();
-    @Test(dataProvider="LoginData", dataProviderClass = DataProviderUtil.class)
+    @Test(description="Verify response code 302 when logging in with missing login credentials", dataProvider="LoginData", dataProviderClass = DataProviderUtil.class)
     public void loginWithWrongCredentials(String email, String password) {
         Response response = given()
                 .spec(getLoginSpec(email, password))
                 .post()
                 .then()
                 .extract().response();
-        Assert.assertNotEquals(response.getStatusCode(), 200);
+        Assert.assertEquals(response.getStatusCode(), 302);
         RestUtil.getRequestDetailsForLog(response, getLoginSpec(email, password));
+
     }
-    @Test(dataProvider="LoginData", dataProviderClass = DataProviderUtil.class)
+    @Test(description="Verify response code 401 when logging in with incorrectly formatted email and password", dataProvider="LoginData", dataProviderClass = DataProviderUtil.class)
+    public void loginWithWrongFormat(String email, String password) {
+        Response response = given()
+                .spec(getLoginSpec(email, password))
+                .post()
+                .then()
+                .extract().response();
+
+        Assert.assertEquals(response.getStatusCode(), 401);
+        RestUtil.getRequestDetailsForLog(response, getLoginSpec(email, password));
+
+    }
+    @Test(description="Verify token is received when login with valid credentials", dataProvider="LoginData", dataProviderClass = DataProviderUtil.class)
     public void loginWithValidCredentials(String email, String password) {
         Response response = given()
                 .spec(getLoginSpec(email, password))
