@@ -12,11 +12,7 @@ import java.util.Date;
 
 public class TestUtil{
     public static long sysTime = System.currentTimeMillis();;
-//    public static void takeScreenshotAtEndOfTest(String fileName) throws IOException {
-//        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-//        String currentDir = System.getProperty("user.dir");
-//        FileUtils.copyFile(scrFile, new File(currentDir +"/reports/extent-reports/screenshots/" + fileName + ".png"));
-//    }
+
     public String getScreenShotPath(String testCaseName, WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);

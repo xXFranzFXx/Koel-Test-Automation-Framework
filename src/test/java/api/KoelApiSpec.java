@@ -41,10 +41,8 @@ public class KoelApiSpec {
         requestSpec = builder.build();
         return requestSpec;
     }
-    public static RequestSpecification getLoginSpec() {
+    public static RequestSpecification getLoginSpec(String email, String password) {
         RequestSpecification requestSpec;
-        String email = System.getProperty("koelUser");
-        String password = System.getProperty("koelPassword");
         Map<String, String> paramsMap = new HashMap<>();
         paramsMap.put("email",email);
         paramsMap.put("password", password);
