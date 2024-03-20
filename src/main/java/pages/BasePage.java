@@ -23,56 +23,58 @@ public class BasePage {
     private int timeSeconds = 5;
     public static String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])";
     public static String songTotalRe = "^\\d{1,}[^\\W•]";
-    public static Set<String> themes = Set.of("pines","classic", "violet", "oak", "slate", "madison", "astronaut", "chocolate", "laura", "rose-petals", "purple-waves", "pop-culture", "jungle", "mountains", "nemo", "cat");
+    public static List<String> themes = List.of("pines","classic", "violet", "oak", "slate", "madison", "astronaut", "chocolate", "laura", "rose-petals", "purple-waves", "pop-culture", "jungle", "mountains", "nemo", "cat");
     /**
      * Navigation header "About" link
      */
-    @FindBy(xpath = "//div[@class='header-right']//button[@data-testid='about-btn']")
     @CacheLookup
+    @FindBy(xpath = "//div[@class='header-right']//button[@data-testid='about-btn']")
     private WebElement aboutBtnLocator;
     @FindBy(xpath = "//div[@class='modal-wrapper overlay']//div[@data-testid='about-modal']")
     private WebElement aboutModalLocator;
-    @FindBy(xpath = "//h1[contains(text(), 'About Koel')]")
     @CacheLookup
-    List<WebElement> modal;
+    @FindBy(xpath = "//h1[contains(text(), 'About Koel')]")
+    private List<WebElement> modal;
     @FindBy(xpath = "//div[@class='modal-wrapper overlay']//footer")
     private WebElement modalCloseLocator;
-    @FindBy(xpath = "//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']")
     @CacheLookup
+    @FindBy(xpath = "//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']")
     private WebElement closeModalBtn;
     /**
      * Side Menu links
      */
+    @CacheLookup
     @FindBy(xpath = "//nav[@id='sidebar']//a[@class='queue']")
-    @CacheLookup
     private WebElement currentQueueLocator;
+    @CacheLookup
     @FindBy(xpath = "//nav[@id='sidebar']//a[@class='home active']")
-    @CacheLookup
     private WebElement homeLocator;
+    @CacheLookup
     @FindBy(xpath = "//nav[@id='sidebar']//a[text()[contains(.,'All Songs')]]")
-    @CacheLookup
     private WebElement allSongsLocator;
+    @CacheLookup
     @FindBy(xpath = "//nav[@id='sidebar']//a[@class='albums']")
-    @CacheLookup
     private WebElement albumsLocator;
+    @CacheLookup
     @FindBy(xpath = "//nav[@id='sidebar']//a[@class='artists']")
-    @CacheLookup
     private WebElement artistsLocator;
+    @CacheLookup
     @FindBy(xpath = "//section[@id='playlists']//li[@class='playlist favorites']/a")
-    @CacheLookup
     private WebElement favoritesLocator;
+    @CacheLookup
     @FindBy(css = "[data-testid='sound-bar-play']")
-    @CacheLookup
     private WebElement soundBarVisualizer;
+    @CacheLookup
     @FindBy(xpath = "//section[@id='playlists']//li[@class='playlist recently-played']/a")
-    @CacheLookup
     private WebElement recentlyPlayedLocator;
-    @FindBy(xpath = "//section[@id='searchExcerptsWrapper']//span[@class='details']")
     @CacheLookup
+    @FindBy(xpath = "//section[@id='searchExcerptsWrapper']//span[@class='details']")
     private WebElement searchResultSongLocator;
     @CacheLookup
     @FindBy(css = ".fa-sign-out")
     private WebElement logoutButtonLocator;
+    @CacheLookup
+    private By pageTheme = By.xpath("//html[@data-theme]");
     @CacheLookup
     private By closeModalButton = By.xpath("//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']");
 
@@ -85,7 +87,10 @@ public class BasePage {
     }
 
     public boolean verifyTheme (String theme) {
-        return themes.contains(theme) ? wait.until(ExpectedConditions.attributeToBe(By.xpath("//html[@data-theme]"), "data-theme", theme)) : false;
+         return themes.stream().anyMatch(e -> waitForAttribute(pageTheme, "data-theme", theme));
+    }
+    protected boolean waitForAttribute(By locator, String attribute, String value) {
+       return wait.until(ExpectedConditions.attributeToBe(locator, attribute, value));
     }
 
     protected WebElement find(By locator) {

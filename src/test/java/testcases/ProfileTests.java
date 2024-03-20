@@ -24,7 +24,7 @@ public class ProfileTests extends BaseTest {
     }
 
     @Test(description = "Update profile name")
-    public void changeProfileName()  throws InterruptedException {
+    public void changeProfileName()  {
         setupProfile();
         String randomNm = generateRandomName();
         String profileName = profilePage.getProfileName();

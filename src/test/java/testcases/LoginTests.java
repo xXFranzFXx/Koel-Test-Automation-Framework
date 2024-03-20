@@ -30,7 +30,7 @@ public class LoginTests extends BaseTest {
         profilePage = new ProfilePage(getDriver());
         registrationPage = new RegistrationPage(getDriver());
     }
-    //    @Test
+    @Test(enabled = false)
     public void registerNewAccount() {
         try {
             loginPage.clickRegistrationLink();
