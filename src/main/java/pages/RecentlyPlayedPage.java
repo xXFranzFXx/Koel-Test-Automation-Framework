@@ -18,7 +18,11 @@ public class RecentlyPlayedPage extends BasePage{
     }
     public boolean isSearchedSongInRecentlyPlayed(String search) {
        List<WebElement> rows =  findElements(recentlyPlayedTitlesLocator);
-       int fails = rows.stream().filter(row -> !row.getText().equals(search)).toList().size();
-        return fails == 0;
+       int fails = rows.stream()
+               .filter(
+                       row -> !row.getText().equals(search))
+                        .toList()
+                        .size();
+                return fails == 0;
     }
 }

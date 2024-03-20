@@ -113,6 +113,9 @@ public class BasePage {
    protected boolean textIsPresent(By locator, String text) {
        return wait.until(ExpectedConditions.textToBePresentInElementLocated(locator, text));
     }
+    protected void waitForText(WebElement webElement, String text){
+        wait.until(ExpectedConditions.textToBePresentInElement(webElement, text));
+    }
     protected void contextClick(WebElement webElement) {
         actions.contextClick(findElement(webElement)).perform();
     }
@@ -173,6 +176,9 @@ public class BasePage {
     public boolean modalIsClosed() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         return modal.contains(closeModalBtn);
+    }
+    protected String getTextFromElement(WebElement webElement) {
+        return webElement.getText();
     }
     protected boolean elementDoesNotExist(By locator) {
         return findElements(locator).isEmpty();

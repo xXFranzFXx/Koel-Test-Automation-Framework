@@ -371,12 +371,12 @@ public class HomePage extends BasePage {
     }
 
     public HomePage getSearchResultSongText() {
-        searchResultSongLocator.getText();
+        getTextFromElement(searchResultSongLocator);
         return this;
     }
 
     public HomePage getArtistTabText() {
-        artistTabInfoText.getText();
+        getTextFromElement(artistTabInfoText);
         return this;
     }
 
@@ -436,7 +436,7 @@ public class HomePage extends BasePage {
 
     public boolean noRecentlyPlayedList() {
         String text = "Your recently played songs will be displayed here.";
-        wait.until(ExpectedConditions.textToBePresentInElement(rPEmptyText, text));
+        waitForText(rPEmptyText, text);
         return findElement(rPEmptyText).isDisplayed();
     }
 
@@ -444,13 +444,11 @@ public class HomePage extends BasePage {
     public boolean recentlyAddedListHasAlbumTitles() {
         List<WebElement> li = findElements(recentlyAddedlistItems);
         Reporter.log("Recently Added list items" + li, true);
-        for (WebElement l : li) {
-            Reporter.log("list item" + l, true);
-            WebElement albumTitle = findElement(rAThumbnailTitle);
-            Reporter.log("Checking for album titles" + albumTitle.getText(), true);
-            return albumTitle.getText().equals("by");
-        }
-        return false;
+        return li.stream()
+                .allMatch(e -> 
+                        findElement(rAThumbnailTitle)
+                                .getText()
+                                .equals("by"));
     }
     //only checks first column since second column doesn't display correctly
     public boolean checkRAListButtonsOnHover() {
