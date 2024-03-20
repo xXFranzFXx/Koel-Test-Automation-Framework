@@ -15,6 +15,7 @@ import java.util.Set;
 import static io.restassured.RestAssured.given;
 
 public class LoginTests extends  KoelApiSpec{
+    private final String URL = "https://qa.koel.app/api/me";
     Map<String,Object> dataMap = new HashMap<>();
     @Test(description="Verify response code 302 when logging in with missing login credentials", dataProvider="LoginData", dataProviderClass = DataProviderUtil.class)
     public void loginWithWrongCredentials(String email, String password) {
@@ -53,5 +54,15 @@ public class LoginTests extends  KoelApiSpec{
         Assert.assertTrue(responseBody.toString().contains(token));
         AssertionUtils.assertExpectedValuesWithJsonPath(response, dataMap);
         RestUtil.getRequestDetailsForLog(response, getLoginSpec(email, password));
+    }
+    @Test(description="Verify user can Log out")
+    public void logUserOut() {
+        Response response = given()
+                .spec(getAuthRequestSpec())
+                .when()
+                .delete(URL)
+                .then()
+                .extract().response();
+        Assert.assertEquals(response.getStatusCode(), 204);
     }
 }

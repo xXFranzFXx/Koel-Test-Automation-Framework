@@ -35,7 +35,6 @@ public class KoelApiSpec {
 
         String accessToken = response.path("token");
         String Authorization = "Bearer " + accessToken;
-
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.addHeader("Authorization", Authorization);
         requestSpec = builder.build();
