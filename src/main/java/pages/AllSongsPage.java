@@ -7,9 +7,11 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class AllSongsPage extends BasePage{
 
@@ -67,9 +69,7 @@ public class AllSongsPage extends BasePage{
     //unlikes every liked song
     public AllSongsPage unlikeSongs() {
         if(likedSongsButton.isEmpty()) return this;
-        for(WebElement l: likedSongsButton) {
-               findElement(l).click();
-        }
+        likedSongsButton.forEach(song -> findElement(song).click());
         return this;
     }
     public AllSongsPage likeOneSong() {
@@ -83,9 +83,7 @@ public class AllSongsPage extends BasePage{
     //likes every song
     public AllSongsPage likeSongs() {
         if(unLikedButton.isEmpty()) return this;
-        for(WebElement l: unLikedButton) {
-            l.click();
-        }
+        unLikedButton.forEach(WebElement::click);
         return this;
     }
 
@@ -98,10 +96,9 @@ public class AllSongsPage extends BasePage{
        choosePlayAllLocator.click();
     }
     public boolean findSongInfo() {
-        for(WebElement el: columns) {
-            return (!el.getText().isEmpty());
-        }
-        return false;
+        return columns.stream()
+                .map(WebElement::getText)
+                .noneMatch(String::isEmpty);
     }
     public int getTotalSongsCount() {
         System.out.println(tableRows.size());

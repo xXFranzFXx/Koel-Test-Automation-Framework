@@ -64,14 +64,9 @@ public class ArtistsPage extends BasePage{
         return findElement(soundBarLocator).isDisplayed();
     }
     public List<String> getArtistsNames() {
-        List<String> names = new ArrayList<>();
         pause(4);
-        for(WebElement artist: artistTiles) {
-            String artistName = findElement(artist).getAttribute("title");
-            names.add(artistName);
-        }
         //return a single string instead of List
         //return names.stream().map(String::valueOf).collect(Collectors.joining(", ", "(", ")"));
-        return names;
+        return artistTiles.stream().map(artist -> findElement(artist).getAttribute("title")).toList();
     }
 }
