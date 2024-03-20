@@ -65,8 +65,10 @@ public class ArtistsPage extends BasePage{
     }
     public List<String> getArtistsNames() {
         pause(4);
+        return artistTiles.stream()
+                .map(artist ->
+                        findElement(artist).getAttribute("title")).toList();
         //return a single string instead of List
         //return names.stream().map(String::valueOf).collect(Collectors.joining(", ", "(", ")"));
-        return artistTiles.stream().map(artist -> findElement(artist).getAttribute("title")).toList();
     }
 }
