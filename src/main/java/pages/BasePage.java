@@ -89,10 +89,15 @@ public class BasePage {
     public boolean verifyTheme (String theme) {
          return themes.stream().anyMatch(e -> waitForAttribute(pageTheme, "data-theme", theme));
     }
+    protected void moveToElement(WebElement webElement) {
+       actions.moveToElement(webElement).perform();
+    }
     protected boolean waitForAttribute(By locator, String attribute, String value) {
        return wait.until(ExpectedConditions.attributeToBe(locator, attribute, value));
     }
-
+    protected WebElement findPresentElementBy(By locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
     protected WebElement find(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }

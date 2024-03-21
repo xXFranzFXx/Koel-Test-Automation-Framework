@@ -9,8 +9,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Stream;
 
 
 public class HomePage extends BasePage {
@@ -271,9 +273,9 @@ public class HomePage extends BasePage {
         return successNotification.isDisplayed();
     }
 
-    public boolean hoverPlay() throws InterruptedException {
-        WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(playPauseBtn));
-        actions.moveToElement(btn).perform();
+    public boolean hoverPlay() {
+        WebElement btn = findPresentElementBy(playPauseBtn);
+        moveToElement(btn);
         return playBtnBefore.isEnabled();
     }
 
@@ -282,7 +284,7 @@ public class HomePage extends BasePage {
         return this;
     }
     public HomePage clickRPViewAllBtn() {
-        actions.moveToElement(recentlyPlayedViewAllBtn).perform();
+        moveToElement(recentlyPlayedViewAllBtn);
         click(rPPlayedViewAllBtn);
         return this;
     }
@@ -320,17 +322,16 @@ public class HomePage extends BasePage {
     public boolean checkVisibility() {
         return infoPanel.isDisplayed();
     }
-
+    private String clickTabForInfo(By tabLocator, By infoLocator) {
+        click(tabLocator);
+        return getTextFromElement(findPresentElementBy(infoLocator));
+    }
     public String clickLyricsTab() {
-        click(lyricsTabLocator);
-        WebElement lyricsInfoText = wait.until(ExpectedConditions.presenceOfElementLocated(lyricsTabInfo));
-        return lyricsInfoText.getText();
+        return clickTabForInfo(lyricsTabLocator, lyricsTabInfo);
     }
 
     public String clickArtistTab() {
-        click(artisTabLocator);
-        WebElement artistInfoText = wait.until(ExpectedConditions.presenceOfElementLocated(artistTabInfo));
-        return artistInfoText.getText();
+        return clickTabForInfo(artisTabLocator, artistTabInfo);
     }
 
     public String clickAlbumTab() {
@@ -339,8 +340,7 @@ public class HomePage extends BasePage {
         } else {
             clickInfoButton();
         }
-        WebElement albumInfoText = wait.until(ExpectedConditions.presenceOfElementLocated(albumTabInfo));
-        return albumInfoText.getText();
+        return getTextFromElement(findPresentElementBy(albumTabInfo));
     }
 
     public void clickAlbumTabShuffleBtn() {
@@ -390,13 +390,13 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickSearchResultThumbnail() {
-        WebElement thumbnail = wait.until(ExpectedConditions.visibilityOfElementLocated(searchResultThumbnail));
+        WebElement thumbnail = find(searchResultThumbnail);
         thumbnail.click();
         return this;
     }
 
     public boolean checkForLogoutBtn() {
-        WebElement logoutButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".fa-sign-out")));
+        WebElement logoutButton = findPresentElementBy(By.cssSelector(".fa-sign-out"));
         return logoutButton.isDisplayed();
     }
 
@@ -409,12 +409,12 @@ public class HomePage extends BasePage {
     }
 
     public void clickFooterPlayBtn() {
-        actions.moveToElement(play).perform();
+        moveToElement(play);
         click(playPauseBtn);
     }
 
     public boolean getUserBadgeText(String name) {
-        return wait.until(ExpectedConditions.textToBePresentInElementLocated(badgeNameTextLocator, name));
+        return textIsPresent(badgeNameTextLocator, name);
     }
 
     public int searchResultsSize() {
@@ -445,7 +445,7 @@ public class HomePage extends BasePage {
         List<WebElement> li = findElements(recentlyAddedlistItems);
         Reporter.log("Recently Added list items" + li, true);
         return li.stream()
-                .allMatch(e -> 
+                .allMatch(e ->
                         findElement(rAThumbnailTitle)
                                 .getText()
                                 .equals("by"));
@@ -456,7 +456,7 @@ public class HomePage extends BasePage {
         Reporter.log("Recently Added list items" + li, true);
         for (WebElement l : li) {
             Reporter.log("list item" + l, true);
-            actions.moveToElement(l).perform();
+            moveToElement(l);
             Reporter.log("Checking for buttons", true);
             if (rAShuffleBtn.isDisplayed()) {
                 return rADownloadBtn.isDisplayed();
@@ -539,20 +539,20 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickCreateNewPlaylist() {
-        actions.moveToElement(createNewPlaylistBtnLocator).perform();
+        moveToElement(createNewPlaylistBtnLocator);
         createNewPlaylistBtn.click();
         return this;
     }
 
     public HomePage contextMenuNewPlaylist() {
         findElement(contextMenuNewPlaylst);
-        actions.moveToElement(contextMenuNewPlaylst).perform();
+        moveToElement(contextMenuNewPlaylst);
         clickElement(contextMenuNewPlaylst);
         return this;
     }
 
     public HomePage contextMenuNewSmartlist() {
-       actions.moveToElement(contextMenuNewSmartlst).perform();
+        moveToElement(contextMenuNewSmartlst);
        click(selectNewSmartList);
        return this;
     }
@@ -571,26 +571,29 @@ public class HomePage extends BasePage {
     public boolean smartListModalVisible() {
         return findElement(smartListModal).isDisplayed();
     }
-
+    private void enterIntInfoInField(WebElement fieldElement, int info) {
+        WebElement input = findElement(fieldElement);
+        input.sendKeys(String.valueOf(info));
+    }
+    private void enterInfoInField(WebElement fieldElement, String info) {
+        WebElement input = findElement(fieldElement);
+        input.sendKeys(info);
+    }
     public HomePage enterSmartListName(String smartList) {
-        WebElement input = findElement(smartListFormNameInput);
-        input.sendKeys(smartList);
+        enterInfoInField(smartListFormNameInput, smartList);
         return this;
     }
     public HomePage enterSmartListCriteria(String criteria) {
-        WebElement input = findElement(smartListCriteriaInput);
-        input.sendKeys(criteria);
+        enterInfoInField(smartListCriteriaInput, criteria);
         return this;
     }
 
     public HomePage enterSmartListTextCriteria(String criteria) {
-        WebElement input = findElement(smartListCriteriaTextInput);
-        input.sendKeys(criteria);
+        enterInfoInField(smartListCriteriaTextInput, criteria);
         return this;
     }
     public HomePage enterSmartListIntCriteria(int integer) {
-        WebElement input = findElement(smartListCriteriaIntInput);
-        input.sendKeys(String.valueOf(integer));
+        enterIntInfoInField(smartListCriteriaIntInput, integer);
         return this;
     }
     public boolean smartlistAddedToMenu (String playlist){
