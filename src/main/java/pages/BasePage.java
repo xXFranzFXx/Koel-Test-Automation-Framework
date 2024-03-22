@@ -85,6 +85,9 @@ public class BasePage {
         PageFactory.initElements(driver, this);
         PageFactory.initElements(new AjaxElementLocatorFactory(driver, 10), this);
     }
+    public WebElement locateByVisibility(WebElement webElement){
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
 
     public boolean verifyTheme (String theme) {
          return themes.stream().anyMatch(e -> waitForAttribute(pageTheme, "data-theme", theme));

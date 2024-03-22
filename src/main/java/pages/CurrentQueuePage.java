@@ -25,11 +25,11 @@ public class CurrentQueuePage extends  BasePage{
     }
 
     public boolean isSongPlayingCQ() {
-        WebElement currentSOng = wait.until(ExpectedConditions.presenceOfElementLocated(currentlyPlayingLocator));
+        WebElement currentSOng = findPresentElementBy(currentlyPlayingLocator);
         return findElement(currentSOng).isDisplayed();
     }
     public String duration() {
-        return findElement(durationLocator).getText();
+        return getTextFromElement(durationLocator);
     }
 
     public boolean checkTotalOrDuration(String regex, String time) {

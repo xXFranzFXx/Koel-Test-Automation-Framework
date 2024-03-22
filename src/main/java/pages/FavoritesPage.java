@@ -50,12 +50,12 @@ public class FavoritesPage extends BasePage{
         return this;
     }
     public FavoritesPage selectDownloadFromCM() {
-        WebElement selection = wait.until(ExpectedConditions.visibilityOf(contextMenuDownload));
+        WebElement selection = locateByVisibility(contextMenuDownload);
         actions.moveToElement(selection).click().perform();
         return this;
     }
     public boolean checkPlaylistEmptyIcon() {
-        List<WebElement> icon = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']")));
+        List<WebElement> icon = findElements(By.xpath("//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']"));
         return !icon.isEmpty();
     }
     public boolean isFavoritesEmpty() {
