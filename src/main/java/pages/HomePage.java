@@ -567,7 +567,6 @@ public class HomePage extends BasePage {
     public boolean playlistAddedToMenu(String playlist) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class=\"playlist playlist\"]/a[text()='" + playlist + "']"))).isDisplayed();
     }
-
     public boolean smartListModalVisible() {
         return findElement(smartListModal).isDisplayed();
     }
@@ -587,7 +586,6 @@ public class HomePage extends BasePage {
         enterInfoInField(smartListCriteriaInput, criteria);
         return this;
     }
-
     public HomePage enterSmartListTextCriteria(String criteria) {
         enterInfoInField(smartListCriteriaTextInput, criteria);
         return this;
