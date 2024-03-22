@@ -107,6 +107,9 @@ public class BasePage {
     protected WebElement findElement(WebElement webElement) {
         return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
+    protected String getAttribute(WebElement webElement, String attribute) {
+       return findElement(webElement).getAttribute(attribute);
+    }
     protected void clickElement(WebElement locator) {
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }

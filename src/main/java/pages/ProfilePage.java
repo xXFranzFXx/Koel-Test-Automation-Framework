@@ -38,7 +38,7 @@ public class ProfilePage extends BasePage{
         inThePinesThemeLocator.click();
     }
     public ProfilePage provideRandomProfileName(String randomName) {
-        WebElement profileName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        WebElement profileName = find(By.cssSelector("[name='name']"));
         profileName.clear();
         profileName.sendKeys(randomName);
         return this;
@@ -51,7 +51,7 @@ public class ProfilePage extends BasePage{
        return findElement(actualProfileName).getText();
     }
     public ProfilePage provideNewEmail(String updatedEmail) {
-        WebElement emailInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#inputProfileEmail")));
+        WebElement emailInput = findPresentElementBy(By.cssSelector("#inputProfileEmail"));
         emailInput.clear();
         emailInput.sendKeys(updatedEmail);
         return this;
@@ -61,13 +61,13 @@ public class ProfilePage extends BasePage{
        return this;
     }
     public ProfilePage provideCurrentPassword(String password) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#inputProfileCurrentPassword")));
+        WebElement currentPassword = find(By.cssSelector("#inputProfileCurrentPassword"));
         currentPassword.clear();
         currentPassword.sendKeys(password);
         return this;
     }
     public boolean notificationPopup() {
-       WebElement notification = wait.until(ExpectedConditions.visibilityOf(updateNotification));
+       WebElement notification = findElement(updateNotification);
         return notification.isDisplayed();
     }
     public boolean notificationHasDisappeared() {
@@ -78,37 +78,36 @@ public class ProfilePage extends BasePage{
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector( "i.fa.fa-sign-out"))).click();
     }
     public ProfilePage provideNewPassword(String newPassword) {
-        WebElement currentPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#inputProfileNewPassword")));
+        WebElement currentPassword = find(By.cssSelector("#inputProfileNewPassword"));
         currentPassword.clear();
         currentPassword.sendKeys(newPassword);
         return this;
     }
     public void clickTheme(String theme) {
         By newTheme = By.xpath( "//div[@data-testid='theme-card-"+theme+"']");
-        WebElement themeLocator = wait.until(ExpectedConditions.visibilityOfElementLocated(newTheme));
+        WebElement themeLocator = find(newTheme);
         findElement(themeLocator).click();
     }
     public boolean checkTheme (String theme) {
-        return wait.until(ExpectedConditions.attributeToBe(By.xpath("//html[@data-theme]"), "data-theme", theme));
+        return waitForAttribute(By.xpath("//html[@data-theme]"), "data-theme", theme);
     }
     public String invalidEmailMsg () {
-        WebElement popUpMsg = findElement(emailId);
-        return popUpMsg.getAttribute("required");
+       return getAttribute(emailId, "required");
     }
     public void moveToSaveAndClick() {
        actions.moveToElement(saveButton).click().build().perform();
     }
     public ProfilePage provideEmail(String email) {
-        WebElement currentEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#inputProfileEmail")));
+        WebElement currentEmail = find(By.cssSelector("#inputProfileEmail"));
         currentEmail.clear();
         currentEmail.sendKeys(email);
         return this;
     }
     public String getValidationMsg() {
-        return findElement(emailId).getAttribute("validationMessage");
+        return getAttribute(emailId, "validationMessage");
     }
     public String getErrorNotificationText() {
-        WebElement errorMsg = wait.until(ExpectedConditions.visibilityOf(errorNotification));
+        WebElement errorMsg = findElement(errorNotification);
         return errorMsg.getText();
     }
 
