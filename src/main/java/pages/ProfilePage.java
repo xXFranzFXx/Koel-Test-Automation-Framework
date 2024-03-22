@@ -31,7 +31,6 @@ public class ProfilePage extends BasePage{
     @FindBy(css = ".error.show")
     private WebElement errorNotification;
 
-
     public ProfilePage(WebDriver givenDriver) {
         super(givenDriver);
     }
