@@ -54,7 +54,7 @@ public class AlbumsPage extends BasePage{
         super(givenDriver);
     }
     public AlbumsPage navigateToAlbums() {
-        click((By) albumsLocator);
+        clickElement(albumsLocator);
         return this;
     }
     public boolean checkHeaderTitle() {
@@ -146,8 +146,8 @@ public class AlbumsPage extends BasePage{
         return checkHoveredElements(downloadBtn);
     }
     public String getTrackInfo(WebElement element) {
-        System.out.println("Album track info: " + findElement(element).getText());
-        return findElement(element).getText();
+        System.out.println("Album track info: " + getTextFromElement(element));
+        return getTextFromElement(element);
     }
 
     public String getAlbumSongTotal(String trackInfo) {
