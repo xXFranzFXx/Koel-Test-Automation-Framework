@@ -1,4 +1,4 @@
-package util;
+package util.dbUtils;
 
 import java.sql.ResultSet;
 import java.util.HashMap;

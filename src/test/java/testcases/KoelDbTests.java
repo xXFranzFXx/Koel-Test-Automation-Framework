@@ -4,12 +4,11 @@ import db.KoelDbActions;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import util.DbTestDataHandler;
+import util.dbUtils.DbTestDataHandler;
 import util.listeners.TestListener;
 
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

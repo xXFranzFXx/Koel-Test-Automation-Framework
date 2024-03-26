@@ -567,6 +567,9 @@ public class HomePage extends BasePage {
     public boolean playlistAddedToMenu(String playlist) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class=\"playlist playlist\"]/a[text()='" + playlist + "']"))).isDisplayed();
     }
+    public List<String> getPlaylistNames() {
+        return allPlaylists.stream().map(WebElement::getText).toList();
+    }
     public boolean smartListModalVisible() {
         return findElement(smartListModal).isDisplayed();
     }

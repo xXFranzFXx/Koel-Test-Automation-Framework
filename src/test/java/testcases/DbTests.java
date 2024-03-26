@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EndToEndTests extends BaseTest {
+public class DbTests extends BaseTest {
     LoginPage loginPage;
     AllSongsPage allSongsPage;
     HomePage homePage;

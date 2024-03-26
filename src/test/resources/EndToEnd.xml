@@ -7,7 +7,8 @@
     <parameter name="song" value="dark"/>
     <test name="EndToEndTests">
     <classes>
-        <class name="testcases.EndToEndTests"/>
+        <class name="testcases.DbTests"/>
+        <class name="testcases.ApiTests"/>
     </classes>
 </test>
 </suite>

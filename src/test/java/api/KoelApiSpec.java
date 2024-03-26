@@ -16,12 +16,6 @@ import static io.restassured.RestAssured.given;
 
 public class KoelApiSpec {
 
-//    @BeforeClass
-//    public void setEnv() {
-//        Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").ignoreIfMissing().load();
-//        dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
-//    }
-
     public static RequestSpecification getAuthRequestSpec() {
         RequestSpecification requestSpec;
         Response response = given()
