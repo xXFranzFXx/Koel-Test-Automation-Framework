@@ -1,8 +1,10 @@
 package util.listeners;
 
 import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.markuputils.CodeLanguage;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import io.restassured.http.Header;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.events.WebDriverListener;
@@ -13,6 +15,7 @@ import util.extentReports.ExtentManager;
 import util.logs.Log;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -33,13 +36,24 @@ public class TestListener  implements ITestListener, WebDriverListener {
     public  static void logFailureDetails(String log) {
         test.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
     }
+
     public static void logExceptionDetails(String log) {
         test.get().fail(log);
     }
     public static void logInfoDetails(String log) {
         test.get().info(MarkupHelper.createLabel(log, ExtentColor.GREY));
     }
-
+    public static void logWarningDetails(String log) {
+        test.get().warning(MarkupHelper.createLabel(log, ExtentColor.YELLOW));
+    }
+    public static void logJson(String json) {
+        test.get().info(MarkupHelper.createCodeBlock(json, CodeLanguage.JSON));
+    }
+    public static void logHeaders(List<Header> headersList) {
+        String[][] arrayHeaders = headersList.stream().map(header -> new String[] {header.getName(), header.getValue()})
+                .toArray(String[][] :: new);
+        test.get().info(MarkupHelper.createTable(arrayHeaders));
+    }
     @Override
     public synchronized void onStart(ITestContext context) {
        Log.info("Extent Reports for Koel Automation Test Suite started!");
@@ -65,7 +79,15 @@ public class TestListener  implements ITestListener, WebDriverListener {
         Log.error(result.getMethod().getMethodName() + " failed!");
         test.get().log(Status.FAIL, "fail ❌").addScreenCaptureFromPath("/reports/extent-reports/screenshots/" + result.getMethod().getMethodName() + ".png");
         Log.info("screen shot taken for failed test " + result.getMethod().getMethodName());
-        test.get().fail(result.getThrowable());
+        logFailureDetails(result.getThrowable().getMessage());
+        String stackTrace = Arrays.toString(result.getThrowable().getStackTrace());
+        stackTrace = stackTrace.replaceAll(",", "<br>");
+        String formmatedTrace = "<details>\n" +
+                "    <summary>Click Here To See Exception Logs</summary>\n" +
+                "    " + stackTrace + "\n" +
+                "</details>\n";
+        logExceptionDetails(formmatedTrace);
+
     }
     @Override
     public synchronized void onTestSkipped(ITestResult result) {
