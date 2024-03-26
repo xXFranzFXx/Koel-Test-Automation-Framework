@@ -107,7 +107,7 @@ public class EndToEndTests extends BaseTest {
         return name;
     }
     @Test(description = "Verify total song count displayed in app matches the total song count from the database")
-    public void verifyTotalSongTracks() throws SQLException, ClassNotFoundException {
+    public void verifyTotalSongTracks() throws SQLException {
         setupKoel();
         KoelDbActions koelDbActions = new KoelDbActions();
         allSongsPage.navigateToAllSongs();
@@ -122,7 +122,7 @@ public class EndToEndTests extends BaseTest {
         }
     }
     @Test(description = "Verify the total duration displayed in All Songs Page matches the sum of all durations in database")
-    public void verifyTotalDuration() throws SQLException, ClassNotFoundException {
+    public void verifyTotalDuration() throws SQLException{
         setupKoel();
         allSongsPage.navigateToAllSongs();
         KoelDbActions koelDbActions = new KoelDbActions();
@@ -212,6 +212,19 @@ public class EndToEndTests extends BaseTest {
         Assert.assertNotEquals(names, dataList);
         dataList.clear();
     }
+    @Test(description = "User can create a smart playlist with one rule and verify related songs appear")
+    public void createSmartPlaylist() {
+        setupKoel();
+        String playlist = generatePlaylistName(5);
+        homePage.clickCreateNewPlaylist()
+                .contextMenuNewSmartlist()
+                .enterSmartListName(playlist)
+                .selectOperatorOption("contains")
+                .enterSmartListTextCriteria("dark")
+                .clickSaveSmartList();
+        TestListener.logAssertionDetails("Created smart playlist with songs matching rule criteria: " + !homePage.checkSmartListEmpty());
+        Assert.assertFalse(homePage.checkSmartListEmpty(), "No songs match the rule criteria");
+    }
     @Test(description = "Verify existing smart playlist name can be edited")
     public void editListName() throws SQLException, ClassNotFoundException {
         String newName = generatePlaylistName(6);
@@ -239,7 +252,7 @@ public class EndToEndTests extends BaseTest {
     }
     @Test(enabled = false, description = "Execute SQL query to verify new user info is stored correctly or updated in the Koel database", groups = {"Account Creation"}, priority=3)
     @Parameters({"koelNewUser", "password"})
-    public void queryDbForNewUser(String koelNewUser, String password) throws SQLException, ClassNotFoundException {
+    public void queryDbForNewUser(String koelNewUser, String password) throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
         rs = koelDbActions.getUserInfo(koelNewUser);
         if (rs.next()) {

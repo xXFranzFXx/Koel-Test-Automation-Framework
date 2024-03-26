@@ -1,5 +1,6 @@
-package db;
+package testcases;
 
+import db.KoelDbActions;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.testng.Assert;
 import org.testng.annotations.*;
