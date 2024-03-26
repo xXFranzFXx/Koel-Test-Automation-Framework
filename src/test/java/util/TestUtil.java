@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -36,6 +37,9 @@ public class TestUtil {
         SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         df.setTimeZone(TimeZone.getTimeZone("Europe/London"));
         return df.format(new Date());
+    }
+    public static String convertSecondToHHMMSSString(int nSecondTime) {
+        return LocalTime.MIN.plusSeconds(nSecondTime).toString();
     }
 
 

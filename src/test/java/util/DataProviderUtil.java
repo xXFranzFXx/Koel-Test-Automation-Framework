@@ -31,4 +31,16 @@ public class DataProviderUtil {
             };
         }
     }
+    @DataProvider(name="PlaylistData")
+    public Object[][] playlistData(Method method){
+        if(method.getName().equalsIgnoreCase("createOneCharacterPlaylistName")) {
+            return new Object[][]{
+                    {"a"}
+            };
+        } else {
+            return new Object[][] {
+                    {"playlist"}
+            };
+        }
+    }
 }

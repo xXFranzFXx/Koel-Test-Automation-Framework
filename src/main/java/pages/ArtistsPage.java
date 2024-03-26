@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistsPage extends BasePage{
+    @FindBy(xpath = "//nav[@id='sidebar']//a[@class='artists']")
+    private WebElement artistsLocator;
     @FindBy(xpath = "//li[text()='Play All']")
     private WebElement playAllLocator;
     @FindBy(css = "li[data-test='shuffle']")
@@ -70,5 +72,10 @@ public class ArtistsPage extends BasePage{
                         findElement(artist).getAttribute("title")).toList();
         //return a single string instead of List
         //return names.stream().map(String::valueOf).collect(Collectors.joining(", ", "(", ")"));
+    }
+    public ArtistsPage navigateToArtistsPage() {
+        actions.moveToElement(artistsLocator).perform();
+        clickElement(artistsLocator);
+        return new ArtistsPage(driver);
     }
 }

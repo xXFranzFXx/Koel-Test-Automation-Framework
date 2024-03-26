@@ -25,6 +25,9 @@ public class RegistrationPage extends BasePage{
         provideEmail(newEmail)
                 .clickSubmit();
     }
+    public String confirmationMsgText() {
+        return confirmationMsg.getText();
+    }
     public boolean getConfirmationMsg() {
         return confirmationMsg.isEnabled();
     }
