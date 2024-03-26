@@ -124,6 +124,7 @@ public class EndToEndTests extends BaseTest {
     @Test(description = "Verify the total duration displayed in All Songs Page matches the sum of all durations in database")
     public void verifyTotalDuration() throws SQLException, ClassNotFoundException {
         setupKoel();
+        allSongsPage.navigateToAllSongs();
         KoelDbActions koelDbActions = new KoelDbActions();
         rs = koelDbActions.totalDuration();
         if(rs.next()) {
@@ -139,7 +140,7 @@ public class EndToEndTests extends BaseTest {
 
     @Test(description = "User can create a playlist", dataProvider="PlaylistData", dataProviderClass = DataProviderUtil.class)
     public void createPlaylist(String playlist) {
-        homePage = new HomePage(getDriver());
+        setupKoel();
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlist);
@@ -147,7 +148,7 @@ public class EndToEndTests extends BaseTest {
     }
     @Test(description = "Verify user can create playlists with duplicate names, check database for multiple playlists with same name", dataProvider="PlaylistData", dataProviderClass = DataProviderUtil.class, dependsOnMethods = {"createPlaylist"})
     public void createPlaylistDuplicateName(String playlist) throws SQLException, ClassNotFoundException {
-        homePage = new HomePage(getDriver());
+        setupKoel();
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlist);
@@ -157,8 +158,8 @@ public class EndToEndTests extends BaseTest {
     @Test(description = "Add a song to a playlist", dependsOnMethods = {"createPlaylist"})
     @Parameters({"song"})
     public void addSongToPlaylist(String song) throws SQLException {
-        homePage = new HomePage(getDriver());
-        homePage.searchSong(song)
+                setupKoel();
+                homePage.searchSong(song)
                 .clickViewAllButton()
                 .clickFirstSearchResult()
                 .clickGreenAddToBtn()
@@ -168,14 +169,14 @@ public class EndToEndTests extends BaseTest {
 
     @Test(description = "delete all playlists",dependsOnMethods = {"addSongToPlaylist"})
     public void deleteAllPlaylists(){
-        homePage = new HomePage(getDriver());
+        setupKoel();
         homePage.deleteAllPlaylists();
         Assert.assertTrue(homePage.playlistsEmpty(), "Could not delete all playlists");
     }
     @Test(description = "Create a playlist with over 256 characters and check if it is saved to the database")
     public void createLongPlaylistName() throws SQLException {
+        setupKoel();
         String playlistName = generatePlaylistName(maxLength);
-        homePage = new HomePage(getDriver());
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlistName);
@@ -184,7 +185,7 @@ public class EndToEndTests extends BaseTest {
     }
     @Test(description = "Create a playlist with a name containing one character and verify it is in the database", dataProvider = "PlaylistData", dataProviderClass = DataProviderUtil.class)
     public void createOneCharacterPlaylistName(String playlistName) throws SQLException {
-        homePage = new HomePage(getDriver());
+        setupKoel();
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlistName);
@@ -193,6 +194,7 @@ public class EndToEndTests extends BaseTest {
     }
     @Test(description = "Check artists that are displayed in app and compare with artists displayed in db")
     public void checkDbForArtists() throws SQLException{
+        setupKoel();
         artistsPage.navigateToArtistsPage();
         List<String> names = artistsPage.getArtistsNames();
         KoelDbActions koelDbActions = new KoelDbActions();
@@ -213,7 +215,7 @@ public class EndToEndTests extends BaseTest {
     @Test(description = "Verify existing smart playlist name can be edited")
     public void editListName() throws SQLException, ClassNotFoundException {
         String newName = generatePlaylistName(6);
-        homePage = new HomePage(getDriver());
+        setupKoel();
         String oldPlId = getSmartPlInfo("p.id", System.getProperty("koelUser"), homePage.getFirstSmartPlName());
         TestListener.logInfoDetails("Smart playlist name before: " + homePage.getFirstSmartPlName());
         dataMap.put("oldId", oldPlId);
@@ -261,6 +263,7 @@ public class EndToEndTests extends BaseTest {
     }
     @Test(enabled = false, description = "Get existing user from database, attempt to register with that account", groups = {"Account Creation"}, priority=4)
     public void tryRegisteringExistingUser() {
+        setupKoel();
         String existingUser = rsMap.get("existingUser").toString(); //this value comes from the previous db query
         TestListener.logInfoDetails("Existing Account : " + existingUser);
         registrationPage = new RegistrationPage(getDriver());
