@@ -13,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.Reporter;
 import org.testng.annotations.*;
@@ -107,7 +108,7 @@ public class BaseTest{
         return new RemoteWebDriver(new URL("https://" + username + ":" + authKey + hub), caps);
     }
     private  WebDriver setupDefaultBrowser() {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.chromedriver().driverVersion("122").setup();
         ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito");
@@ -119,7 +120,7 @@ public class BaseTest{
         System.setProperty("browserName", cap.getBrowserName());
         System.setProperty("browserVersion", cap.getBrowserVersion());
         EventFiringDecorator<WebDriver> decorator = new EventFiringDecorator<>(eventListener);
-        return decorator.decorate(driver);
+        return decorator.decorate(ThreadGuard.protect(driver));
     }
     public  HashMap<String, Object> setDownloadDir() {
         HashMap<String, Object> chromePref = new HashMap<>();

@@ -21,8 +21,11 @@ public class ArtistsTests extends BaseTest {
 
     public void setupArtists() {
         loginPage = new LoginPage(getDriver());
-        artistsPage = loginPage.loginValidCredentials().clickArtists();
         searchPage = new SearchPage(getDriver());
+        loginPage.loginValidCredentials();
+        artistsPage = new ArtistsPage(getDriver());
+        artistsPage.navigateToArtistsPage();
+
     }
 
 

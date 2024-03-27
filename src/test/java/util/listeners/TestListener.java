@@ -23,7 +23,7 @@ import java.util.Set;
 
 public class TestListener  implements ITestListener, WebDriverListener {
     static ExtentReports extent = ExtentManager.getInstance();
-    static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
+    public static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
     public static void logPassDetails(String log) {
         test.get().pass(MarkupHelper.createLabel(log, ExtentColor.GREEN));
     }

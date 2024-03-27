@@ -13,9 +13,8 @@ import util.restUtils.ApiTestDataHandler;
 import util.restUtils.AssertionUtils;
 import util.restUtils.RestUtil;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static api.KoelApiSpec.getAuthRequestSpec;
 import static io.restassured.RestAssured.given;
@@ -94,7 +93,7 @@ public class ApiTests extends BaseTest {
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         try {
             setupKoel();
-            playlistMap.put("userPlaylists", homePage.getPlaylistNames());
+            dataMap.put("userPlaylists", homePage.getPlaylistNames());
             TestListener.logInfoDetails("Playlist deleted through api: " + dataMap.get("name"));
             TestListener.logAssertionDetails("Playlist no longer appears in UI: " + !homePage.playlistAddedToMenu(dataMap.get("name").toString()));
             Assert.assertFalse(homePage.playlistAddedToMenu(dataMap.get("name").toString()));
@@ -113,8 +112,9 @@ public class ApiTests extends BaseTest {
                 .extract().response();
         int responseCode = response.getStatusCode();
         Assert.assertEquals(responseCode, 200);
+        Optional<Object> lists = Optional.ofNullable(dataMap.get("userPlaylists"));
         List<String> apiPlaylists = RestUtil.getPlaylistNames(response);
-        List<String> uiPlaylists = playlistMap.get("userPlaylists");
+        List<String> uiPlaylists = lists.stream().map(Object::toString).toList();
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         TestListener.logAssertionDetails("Playlists in UI match api: " + uiPlaylists.equals(apiPlaylists));
         Assert.assertEquals(uiPlaylists, apiPlaylists);

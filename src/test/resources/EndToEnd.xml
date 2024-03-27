@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Sprint-5"  parallel="classes" thread-count="3" verbose="1">
+<suite name="EndToEndTests"  verbose="1">
 <listeners>
     <listener class-name="util.listeners.TestListener"/>
     <listener class-name="util.listeners.AnnotationTransformer"/>
 </listeners>
     <parameter name="song" value="dark"/>
-    <test name="EndToEndTests">
+    <test name="E2E">
     <classes>
         <class name="testcases.DbTests"/>
         <class name="testcases.ApiTests"/>

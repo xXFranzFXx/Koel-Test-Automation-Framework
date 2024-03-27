@@ -2,7 +2,6 @@ package util.restUtils;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.restassured.response.Response;
 import util.extentReports.ExtentManager;
-import util.extentReports.ExtentTestManager;
 import util.listeners.TestListener;
 
 import java.util.*;
