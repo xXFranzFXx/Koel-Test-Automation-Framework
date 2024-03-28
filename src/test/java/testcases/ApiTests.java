@@ -41,7 +41,7 @@ public class ApiTests extends BaseTest {
                 .body(payload)
                 .when()
                 .post(URL)
-                .then().statusCode(200)
+                .then().assertThat().statusCode(200)
                 .extract().response();
         Playlist playlist = response.as(Playlist.class);
         dataMap.put("name", playlist.getName());
@@ -64,7 +64,7 @@ public class ApiTests extends BaseTest {
                 .spec(getAuthRequestSpec())
                 .when()
                 .get(URL)
-                .then().statusCode(200)
+                .then().assertThat().statusCode(200)
                 .extract().response();
         List<String> names = RestUtil.getPlaylistNames(response);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
@@ -86,10 +86,9 @@ public class ApiTests extends BaseTest {
                 .spec(getAuthRequestSpec())
                 .when()
                 .delete(URL+"/"+playlst)
-                .then().statusCode(200)
+                .then().assertThat().statusCode(200)
                 .extract().response();
         int responseCode = response.getStatusCode();
-        Assert.assertEquals(responseCode, 200);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         try {
             setupKoel();
@@ -108,10 +107,9 @@ public class ApiTests extends BaseTest {
                 .spec(getAuthRequestSpec())
                 .when()
                 .get(URL)
-                .then().statusCode(200)
+                .then().assertThat().statusCode(200)
                 .extract().response();
         int responseCode = response.getStatusCode();
-        Assert.assertEquals(responseCode, 200);
         Optional<Object> lists = Optional.ofNullable(dataMap.get("userPlaylists"));
         List<String> apiPlaylists = RestUtil.getPlaylistNames(response);
         List<String> uiPlaylists = lists.stream().map(Object::toString).toList();

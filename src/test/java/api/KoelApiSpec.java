@@ -24,6 +24,7 @@ public class KoelApiSpec {
                 .baseUri("https://qa.koel.app/api/me")
                 .post()
                 .then()
+                .assertThat()
                 .statusCode(200)
                 .extract().response();
 
