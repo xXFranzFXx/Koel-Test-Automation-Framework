@@ -4,6 +4,7 @@ import base.BaseTest;
 import io.restassured.response.Response;
 import models.playlist.Playlist;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pages.HomePage;
@@ -22,14 +23,13 @@ public class ApiTests extends BaseTest {
     HomePage homePage;
     LoginPage loginPage;
     ApiTestDataHandler apiTestDataHandler = new ApiTestDataHandler();
-    Map<String,List<String>> playlistMap = new HashMap<>();
-    Map<String, Object>  dataMap = new HashMap<>();
     private final String URL = "https://qa.koel.app/api/playlist";
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
     }
+
     @Test(description = "Create a playlist through api, and verify new playlist appears in UI")
     public void createPlaylist() {
         String payload = apiTestDataHandler.createPayload("name", "newPlaylist");
@@ -45,11 +45,10 @@ public class ApiTests extends BaseTest {
                 .statusCode(200)
                 .extract().response();
         Playlist playlist = response.as(Playlist.class);
-        dataMap.put("name", playlist.getName());
-        dataMap.put("id", playlist.getId());
-        apiTestDataHandler.setApiTestDataInMap(dataMap);
+        apiTestDataHandler.addApiTestData("name", playlist.getName());
+        apiTestDataHandler.addApiTestData("id", playlist.getId());
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec(), payload);
-        AssertionUtils.assertExpectedValuesWithJsonPath(response, dataMap);
+        AssertionUtils.assertExpectedValuesWithJsonPath(response, apiTestDataHandler.getApiTestDataInMap());
        try {
            setupKoel();
            TestListener.logAssertionDetails("Playlist " + playlist.getName() + " appears in UI: " + homePage.playlistAddedToMenu(playlist.getName()));
@@ -84,7 +83,7 @@ public class ApiTests extends BaseTest {
     }
     @Test(description="Delete a playlist using api call, then verify playlist no longer appears in UI", dependsOnMethods = {"verifyPlaylistNames"})
     public void deletePlaylist() {
-        String playlst = dataMap.get("id").toString();
+        String playlst = apiTestDataHandler.getApiTestValue("id");
         Response response = given()
                 .spec(getAuthRequestSpec())
                 .when()
@@ -93,14 +92,14 @@ public class ApiTests extends BaseTest {
                 .assertThat()
                 .statusCode(200)
                 .extract().response();
-        int responseCode = response.getStatusCode();
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         try {
             setupKoel();
-            dataMap.put("userPlaylists", homePage.getPlaylistNames());
-            TestListener.logInfoDetails("Playlist deleted through api: " + dataMap.get("name"));
-            TestListener.logAssertionDetails("Playlist no longer appears in UI: " + !homePage.playlistAddedToMenu(dataMap.get("name").toString()));
-            Assert.assertFalse(homePage.playlistAddedToMenu(dataMap.get("name").toString()));
+            apiTestDataHandler.addApiTestData("userPlaylists", homePage.getPlaylistNames());
+            String name = apiTestDataHandler.getApiTestValue("name");
+            TestListener.logInfoDetails("Playlist deleted through api: " + name);
+            TestListener.logAssertionDetails("Playlist no longer appears in UI: " + !homePage.playlistAddedToMenu(name));
+            Assert.assertFalse(homePage.playlistAddedToMenu(name));
         } catch (Exception e){
             TestListener.logExceptionDetails("Error deleting playlist, or cannot verify playlist deleted in UI: " + e.getLocalizedMessage());
         }
@@ -115,10 +114,11 @@ public class ApiTests extends BaseTest {
                 .assertThat()
                 .statusCode(200)
                 .extract().response();
-        int responseCode = response.getStatusCode();
-        Optional<Object> lists = Optional.ofNullable(dataMap.get("userPlaylists"));
+
+        Optional<Object> lists = Optional.ofNullable(apiTestDataHandler.getApiTestValue("userPlaylists"));
         List<String> apiPlaylists = RestUtil.getPlaylistNames(response);
         List<String> uiPlaylists = lists.stream().map(Object::toString).toList();
+
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         TestListener.logAssertionDetails("Playlists in UI match api: " + uiPlaylists.equals(apiPlaylists));
         Assert.assertEquals(uiPlaylists, apiPlaylists);
