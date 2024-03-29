@@ -14,7 +14,6 @@ import util.restUtils.AssertionUtils;
 import util.restUtils.RestUtil;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static api.KoelApiSpec.getAuthRequestSpec;
 import static io.restassured.RestAssured.given;
@@ -104,7 +103,6 @@ public class ApiTests extends BaseTest {
             Assert.assertFalse(homePage.playlistAddedToMenu(dataMap.get("name").toString()));
         } catch (Exception e){
             TestListener.logExceptionDetails("Error deleting playlist, or cannot verify playlist deleted in UI: " + e.getLocalizedMessage());
-
         }
     }
     @Test(description = "After deleting playlist in api, verify user playlists in UI match user playlists from api call", dependsOnMethods ={"deletePlaylist"} )
