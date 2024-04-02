@@ -1,6 +1,6 @@
 package util;
 
-import base.BaseTest;
+import base.BaseDefinitions;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TestUtil extends BaseTest {
+public class TestUtil extends BaseDefinitions {
     public static long sysTime = System.currentTimeMillis();;
     public static void takeScreenshotAtEndOfTest(String fileName) throws IOException {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
