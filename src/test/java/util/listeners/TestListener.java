@@ -39,6 +39,7 @@ public class TestListener  implements ITestListener, WebDriverListener {
         test.get().info(MarkupHelper.createLabel(log, ExtentColor.PURPLE));
     }
     public  static void logFailureDetails(String log) {
+        failedTest.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
         test.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
     }
 
