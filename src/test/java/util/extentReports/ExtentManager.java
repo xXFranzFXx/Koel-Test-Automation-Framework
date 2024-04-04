@@ -18,49 +18,38 @@ public class ExtentManager {
     private static ExtentReports failedExtent;
     private static ExtentReports passedExtent;
     private static Platform platform;
-    private static Map<String, String> fileMap = Map.of(
-            "all", "Koel-Test-Automation-Extent-Report.html",
-            "passed","Koel-Test-Automation-Extent-Report-Passed.html",
-            "failed", "Koel-Test-Automation-Extent-Report-Failed.html"
+    private static final String reportFileName = "Koel-Test-Automation-Extent-Report";
+
+    private static final Map<String, String> fileMap = Map.of(
+            "all", reportFileName + ".html",
+            "passed",reportFileName + "-Passed.html",
+            "failed", reportFileName + "-Failed.html"
 
     );
-    private static String reportFileName = "Koel-Test-Automation-Extent-Report.html";
-    private static String macPath = System.getProperty("user.dir") + "/reports/extent-reports";
-    private static String windowsPath = System.getProperty("user.dir") + "\\reports\\extent-reports";
-    private static List<String> macLocs = fileMap.keySet()
-            .stream()
-            .map(s -> macPath + "/" + fileMap.get(s))
-            .toList();
-    private static List<String> windowsLocs = fileMap.keySet()
-            .stream()
-            .map(s -> windowsPath + "\\" + fileMap.get(s))
-            .toList();
-
-    private static String macReportFileLoc = macPath + "/" + reportFileName;
-    private static String winReportFileLoc = windowsPath + "\\" + reportFileName;
+    private static final String macPath = System.getProperty("user.dir") + "/reports/extent-reports";
+    private static final String windowsPath = System.getProperty("user.dir") + "\\reports\\extent-reports";
     public static ExtentReports getInstance(String status) {
-        switch(status) {
-            case "all" :
+        return switch (status) {
+            case "all" -> {
                 if (extent == null)
                     createInstance();
-                return extent;
-            case "failed":
+                yield extent;
+            }
+            case "failed" -> {
                 if (failedExtent == null)
                     createFailed();
-                return failedExtent;
-            case "passed":
+                yield failedExtent;
+            }
+            case "passed" -> {
                 if (passedExtent == null)
                     createPassed();
-                return passedExtent;
-            default:
-                return extent;
-        }
+                yield passedExtent;
+            }
+            default -> extent;
+        };
     }
-    public static void createAll() {
-        createInstance();
-        createPassed();
-        createFailed();
-    }
+
+    //create extent report for all test cases
     public static ExtentReports createInstance() {
         platform = getCurrentPlatform();
         String fileName = getReportFileLocations(platform, "all");
@@ -75,6 +64,7 @@ public class ExtentManager {
         extent.setSystemInfo("Author", "Franz Fernando");
         return extent;
     }
+    //create extent report for test cases with "pass" status
     public static ExtentReports createPassed() {
         String passedFileName = getReportFileLocations(platform, "passed");
         ExtentSparkReporter passedHtmlReporter = new ExtentSparkReporter(passedFileName);
@@ -89,6 +79,7 @@ public class ExtentManager {
         passedExtent.setSystemInfo("Author", "Franz Fernando");
         return passedExtent;
     }
+    //create extent report for test cases with fail/skip status
     public static ExtentReports createFailed() {
         String failedFileName = getReportFileLocations(platform, "failed");
         ExtentSparkReporter failedHtmlReporter = new ExtentSparkReporter(failedFileName);
@@ -122,26 +113,6 @@ public class ExtentManager {
         }
         return reportFileLocation;
     }
-    //Select the extent report file location based on platform
-//    private static String getReportFileLocation (Platform platform) {
-//        String reportFileLocation = null;
-//        switch (platform) {
-//            case MAC:
-//                reportFileLocation = macReportFileLoc;
-//                createReportPath(macPath);
-//                System.out.println("ExtentReport Path for MAC: " + macPath + "\n");
-//                break;
-//            case WINDOWS:
-//                reportFileLocation = winReportFileLoc;
-//                createReportPath(windowsPath);
-//                System.out.println("ExtentReport Path for WINDOWS: " + windowsPath + "\n");
-//                break;
-//            default:
-//                System.out.println("ExtentReport path has not been set! There is a problem!\n");
-//                break;
-//        }
-//        return reportFileLocation;
-//    }
     //Create the report path if it does not exist
     private static void createReportPath (String path) {
         File testDirectory = new File(path);
