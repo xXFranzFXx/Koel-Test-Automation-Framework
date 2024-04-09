@@ -5,11 +5,8 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Reporter;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FavoritesPage extends BasePage{
@@ -49,10 +46,9 @@ public class FavoritesPage extends BasePage{
         contextClick(favoritesSongList.get(0));
         return this;
     }
-    public FavoritesPage selectDownloadFromCM() {
+    public void selectDownloadFromCM() {
         WebElement selection = locateByVisibility(contextMenuDownload);
         actions.moveToElement(selection).click().perform();
-        return this;
     }
     public boolean checkPlaylistEmptyIcon() {
         List<WebElement> icon = findElements(By.xpath("//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']"));
