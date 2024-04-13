@@ -101,11 +101,7 @@ public class DbTests extends BaseTest {
         }
         return result;
     }
-    public String generatePlaylistName(int nameLength) {
-        String name = RandomString.getAlphaNumericString(nameLength);
-        TestListener.logInfoDetails("Smart playlist name: " + name);
-        return name;
-    }
+
     @Test(description = "Verify total song count displayed in app matches the total song count from the database")
     public void verifyTotalSongTracks() throws SQLException {
         setupKoel();

@@ -23,6 +23,7 @@ import util.listeners.TestListener;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.HashMap;
 
@@ -68,7 +69,7 @@ public class BaseTest{
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
-//                edgeOptions.addArguments(new String[]{"--remote-allow-origins=*", "--disable-notifications", "--start-maximized"});
+             //edgeOptions.addArguments(new String[]{"--remote-allow-origins=*", "--disable-notifications", "--start-maximized"});
                 return driver = new EdgeDriver();
             //gradle clean test -Dbrowser=grid-edge
             case "grid-edge":
@@ -111,10 +112,16 @@ public class BaseTest{
         WebDriverManager.chromedriver().driverVersion("122").setup();
         ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito");
+        TestListener eventListener = new TestListener();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-notifications");
+        options.addArguments("--start-maximized");
+        options.addArguments("--incognito");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
+        options.addArguments("--safebrowsing-disable-download-protection");
         options.setExperimentalOption("prefs", setDownloadDir());
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-        TestListener eventListener = new TestListener();
         driver = new ChromeDriver(service, options);
         Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
         System.setProperty("browserName", cap.getBrowserName());
@@ -124,8 +131,10 @@ public class BaseTest{
     }
     public  HashMap<String, Object> setDownloadDir() {
         HashMap<String, Object> chromePref = new HashMap<>();
+        chromePref.put("safebrowsing.enabled", "true");
+        chromePref.put("download.prompt_for_download", "false");
         chromePref.put("profile.default_content_settings.popups", 0);
-        chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
+        chromePref.put("download.default_directory", String.valueOf(Paths.get(System.getProperty("user.dir"), System.getProperty("downloadDir"))));
         return chromePref;
     }
 
