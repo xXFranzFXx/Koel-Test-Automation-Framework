@@ -261,14 +261,11 @@ public class DbTests extends BaseTest {
                             "updated_at: " + updated +"\n" +"<br>"+
                             "user: " + email +"\n" +"<br>"
             );
-
-
             rsMap.put("existingUser", email);   //store the account email to use for the next test
             TestListener.logAssertionDetails("New user data has been saved correctly in the database: " + email.equals(koelNewUser));
             Assert.assertNotSame(ep, password);
             Assert.assertEquals(email, koelNewUser);
         }
-
     }
     @Test(enabled = false, description = "Get existing user from database, attempt to register with that account", groups = {"Account Creation"}, priority=4)
     public void tryRegisteringExistingUser() {
@@ -281,7 +278,6 @@ public class DbTests extends BaseTest {
         TestListener.logRsDetails("Confirmation Message: " + registrationPage.confirmationMsgText());
         TestListener.logAssertionDetails("Confirmation Message is displayed: " + registrationPage.getConfirmationMsg());
         Assert.assertTrue(registrationPage.getConfirmationMsg());
-
     }
     @Test(description = "Execute SQL query to verify password is encrypted and has been updated in the Koel database", groups = {"Update password"})
     public void queryDbPwd() throws SQLException {
