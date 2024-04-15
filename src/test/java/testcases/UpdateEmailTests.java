@@ -64,25 +64,6 @@ public class UpdateEmailTests extends BaseTest {
     }
 
 
-//    @Test(description = "Execute SQL query to find an existing user", priority=0)
-//    @Parameters({"koelExistingUser"})
-//    public void queryDbForExistingUser(String koelExistingUser) throws SQLException, ClassNotFoundException {
-//        KoelDbBase.initializeDb();
-//        KoelDbActions koelDbActions = new KoelDbActions();
-//        rs = koelDbActions.getUserInfo(koelExistingUser);
-//        if (rs.next()) {
-//            String email = rs.getString("email");
-//            TestListener.logRsDetails(
-//                    "Results: " + "\n" + "<br>" +
-//                            "user: " + email + "\n" + "<br>"
-//            );
-//            addDataFromTest("existingUser", email);   //store the account email to use for the next test
-//            TestListener.logRsDetails("Existing user: " + email);
-//            TestListener.logAssertionDetails("User already exists in database: " + email.equals(koelExistingUser));
-//            Assert.assertEquals(email, koelExistingUser);
-//        }
-//        KoelDbBase.closeDatabaseConnection();
-//    }
     @Test(description = "Verify user cannot update email address with one that already exists in the database", priority=1)
     @Parameters({"koelPassword"})
     public void updateEmailWithExisting(String koelPassword) {
@@ -170,23 +151,6 @@ public class UpdateEmailTests extends BaseTest {
         TestListener.logAssertionDetails("User cannot login with old email: " + loginPage.getRegistrationLink());
         Assert.assertTrue(loginPage.getRegistrationLink());
     }
-//    @Test(description = "Execute SQL query to verify new user info is stored correctly or updated in the Koel database", priority = 7)
-//    @Parameters({"properEmail"})
-//    public void queryDbForUpdatedEmail(String properEmail) throws SQLException, ClassNotFoundException {
-//        KoelDbBase.initializeDb();
-//        KoelDbActions koelDbActions = new KoelDbActions();
-//        rs = koelDbActions.getUserInfo(properEmail);
-//        if (rs.next()) {
-//            String email = rs.getString("email");
-//            TestListener.logRsDetails(
-//                    "Results: " + "\n" + "<br>" +
-//                            "user: " + email + "\n" + "<br>"
-//            );
-//            TestListener.logAssertionDetails("New user data has been saved correctly in the database: " + email.equals(properEmail));
-//            Assert.assertEquals(email, properEmail);
-//        }
-//        KoelDbBase.closeDatabaseConnection();
-//    }
 
     @Test(description="Use updated email to log in", priority=8)
     @Parameters({"properEmail", "password"})

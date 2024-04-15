@@ -279,6 +279,24 @@ public class DbTests extends BaseTest {
         TestListener.logAssertionDetails("Confirmation Message is displayed: " + registrationPage.getConfirmationMsg());
         Assert.assertTrue(registrationPage.getConfirmationMsg());
     }
+    @Test(enabled = false, description = "Execute SQL query to find an existing user", priority=0)
+    @Parameters({"koelExistingUser"})
+    public void queryDbForExistingUser(String koelExistingUser) throws SQLException, ClassNotFoundException {
+
+        KoelDbActions koelDbActions = new KoelDbActions();
+        rs = koelDbActions.getUserInfo(koelExistingUser);
+        if (rs.next()) {
+            String email = rs.getString("email");
+            TestListener.logRsDetails(
+                    "Results: " + "\n" + "<br>" +
+                            "user: " + email + "\n" + "<br>"
+            );
+            dataMap.put("existingUser", email);   //store the account email to use for the next test
+            TestListener.logRsDetails("Existing user: " + email);
+            TestListener.logAssertionDetails("User already exists in database: " + email.equals(koelExistingUser));
+            Assert.assertEquals(email, koelExistingUser);
+        }
+    }
     @Test(description = "Execute SQL query to verify password is encrypted and has been updated in the Koel database", groups = {"Update password"})
     public void queryDbPwd() throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
