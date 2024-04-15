@@ -100,7 +100,6 @@ public class SmartPlaylistsTests extends BaseTest {
                 .clickSaveSmartList();
         TestListener.logAssertionDetails("Created smart playlist with name exceeding 256-character length max: " + homePage.smartlistAddedToMenu(longName));
         Assert.assertTrue(homePage.smartlistAddedToMenu(longName), "Unable to create a new smart playlist with name exceeding 256 character-length maximum");
-
     }
     @Test(description = "Create a smart playlist based on 'Date Added' rule criteria")
     public void createSmartPlaylistByDateAdded(){
