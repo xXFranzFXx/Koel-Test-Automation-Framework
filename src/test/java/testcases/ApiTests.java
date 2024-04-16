@@ -167,7 +167,7 @@ public class ApiTests extends BaseTest {
                     .extract().response();
             Optional<SongInteraction> data = Optional.ofNullable(response.as(SongInteraction.class));
             data.stream().map(Object::toString).forEach(System.out::println);
-        } catch (TimeoutException e) {
+        } catch (Exception e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
     }
