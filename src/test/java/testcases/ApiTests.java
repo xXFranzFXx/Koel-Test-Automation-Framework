@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import models.album.Album;
 import models.data.Data;
 import models.playlist.Playlist;
+import models.song.SongInteraction;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
@@ -30,6 +31,7 @@ public class ApiTests extends BaseTest {
     ApiTestDataHandler apiTestDataHandler = new ApiTestDataHandler();
     private final String playlistURL = "https://qa.koel.app/api/playlist";
     private final String dataURL = "https://qa.koel.app/api/data";
+    private final String songInteraction = "https://qa.koel.app/api/interaction/play";
 
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
@@ -130,7 +132,7 @@ public class ApiTests extends BaseTest {
         TestListener.logAssertionDetails("Playlists in UI match api: " + uiPlaylists.equals(apiPlaylists));
         Assert.assertEquals(uiPlaylists, apiPlaylists);
     }
-    @Test( description = "Get application data and compare playlists in response to playlists in ui")
+    @Test(description = "Get application data and compare playlists in response to playlists in ui")
     public void getApplicationData() {
         try {
             Response response = given()
@@ -146,6 +148,25 @@ public class ApiTests extends BaseTest {
             String userEmail = System.getProperty("koelUser");
             RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
             Assert.assertEquals(dataEmail.get(0), userEmail);
+        } catch (TimeoutException e) {
+            TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
+        }
+    }
+    @Test(enabled = false, description = "Increase song playcount")
+    public void increasePlayCount() {
+        try {
+            String payload = apiTestDataHandler.createPayload("song", "06cd19b77127f1e7f889ecad54376b30");
+            Response response = given()
+                    .spec(getAuthRequestSpec())
+                    .body(payload)
+                    .when()
+                    .post(songInteraction)
+                    .then()
+                    .assertThat()
+                    .statusCode(200)
+                    .extract().response();
+            Optional<SongInteraction> data = Optional.ofNullable(response.as(SongInteraction.class));
+            data.stream().map(Object::toString).forEach(System.out::println);
         } catch (TimeoutException e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }

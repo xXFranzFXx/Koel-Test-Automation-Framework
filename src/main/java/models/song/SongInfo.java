@@ -16,8 +16,8 @@ public class SongInfo {
     private Album[] album;
 
 
-    public SongInfo( int album_id, int artist_id, String title, double length, int track, int disc, String created_at, Artist[] artist, Album[] album) {
-
+    public SongInfo( String id, int album_id, int artist_id, String title, double length, int track, int disc, String created_at, Artist[] artist, Album[] album) {
+        this.id = id;
         this.album_id = album_id;
         this.artist_id = artist_id;
         this.title = title;
@@ -31,6 +31,7 @@ public class SongInfo {
     public SongInfo() {
 
     }
+
     public String getId() {
         return id;
     }

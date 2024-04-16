@@ -7,14 +7,14 @@ public class Song {
     private String song_id;
     private boolean liked;
     private int play_count;
-    private SongInfo[] songInfo;
+    private SongInfo[] song;
     private Album[] albums;
 
 
 
-    public Song(boolean liked, SongInfo[] songInfo, int play_count, String song_id, Album[] albums) {
+    public Song(boolean liked, SongInfo[] song, int play_count, String song_id, Album[] albums) {
         this.liked = liked;
-        this.songInfo = songInfo;
+        this.song = song;
         this.play_count = play_count;
         this.song_id = song_id;
         this.albums = albums;
@@ -31,7 +31,7 @@ public class Song {
         this.song_id = song_id;
     }
     public SongInfo[] getSongInfo() {
-        return songInfo;
+        return song;
     }
     public Album[] getAlbums() {
         return albums;
