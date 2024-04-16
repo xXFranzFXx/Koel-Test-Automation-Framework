@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import models.album.Album;
 import models.data.Data;
 import models.playlist.Playlist;
+import models.user.User;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -129,7 +130,7 @@ public class ApiTests extends BaseTest {
         TestListener.logAssertionDetails("Playlists in UI match api: " + uiPlaylists.equals(apiPlaylists));
         Assert.assertEquals(uiPlaylists, apiPlaylists);
     }
-    @Test(enabled = false, description = "Get application data and compare playlists in response to playlists in ui")
+    @Test( description = "Get application data and compare playlists in response to playlists in ui")
     public void getApplicationData() {
         try {
             Response response = given()
@@ -140,14 +141,11 @@ public class ApiTests extends BaseTest {
                     .assertThat()
                     .statusCode(200)
                     .extract().response();
-            Data data = response.as(Data.class);
-            List<String> playlistNames = Arrays.stream(data.getPlaylists())
-                    .map(Playlist::getName)
-                    .toList();
-            boolean song = playlistNames.contains(System.getProperty("checkSong"));
+            Optional<Data> data = Optional.ofNullable(response.as(Data.class));
+            List<String> dataEmail = data.stream().map(Data::getCurrentUser).map(User::getEmail).map(Object::toString).toList();
+            String userEmail = System.getProperty("koelUser");
             RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
-            TestListener.logAssertionDetails("Response contains" + System.getProperty("checkSong") + ": " + song);
-            Assert.assertTrue(song);
+            Assert.assertEquals(dataEmail.get(0), userEmail);
         } catch (TimeoutException e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
