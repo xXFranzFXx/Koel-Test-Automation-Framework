@@ -134,7 +134,7 @@ public class BaseTest{
         chromePref.put("safebrowsing.enabled", "true");
         chromePref.put("download.prompt_for_download", "false");
         chromePref.put("profile.default_content_settings.popups", 0);
-        chromePref.put("download.default_directory", String.valueOf(Paths.get(System.getProperty("user.dir"), System.getProperty("downloadDir"))));
+        chromePref.put("download.default_directory", System.getProperty("user.dir") + "/downloads");
         return chromePref;
     }
 

@@ -83,8 +83,6 @@ public class Data {
         this.artists = artists;
     }
 
-
-
     public void setSongs(Song[] songs) {
         this.songs = songs;
     }
@@ -183,6 +181,5 @@ public class Data {
     public void setLatestVersion(String latestVersion) {
         this.latestVersion = latestVersion;
     }
-
 
 }
