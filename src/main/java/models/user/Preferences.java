@@ -16,3 +16,4 @@ public class Preferences {
         this.lastfm_session_key = lastfm_session_key;
     }
 }
+

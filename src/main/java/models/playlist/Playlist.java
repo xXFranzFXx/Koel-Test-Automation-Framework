@@ -6,7 +6,8 @@ public class Playlist {
     private Rule[] rules;
     private boolean is_smart;
     private String[] songs;
-    public Playlist(String name, Rule[] rules, boolean is_smart, String[] songs) {
+    public Playlist(int id, String name, Rule[] rules, boolean is_smart, String[] songs) {
+        this.id = id;
         this.name = name;
         this.rules = rules;
         this.is_smart = is_smart;

@@ -2,6 +2,7 @@ package testcases;
 
 import base.BaseTest;
 import io.restassured.response.Response;
+import models.data.Data;
 import models.playlist.Playlist;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +24,9 @@ public class ApiTests extends BaseTest {
     HomePage homePage;
     LoginPage loginPage;
     ApiTestDataHandler apiTestDataHandler = new ApiTestDataHandler();
-    private final String URL = "https://qa.koel.app/api/playlist";
+    private final String playlistURL = "https://qa.koel.app/api/playlist";
+    private final String dataURL = "https://qa.koel.app/api/data";
+
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
@@ -39,7 +42,7 @@ public class ApiTests extends BaseTest {
                 .accept("application/json")
                 .body(payload)
                 .when()
-                .post(URL)
+                .post(playlistURL)
                 .then()
                 .assertThat()
                 .statusCode(200)
@@ -63,7 +66,7 @@ public class ApiTests extends BaseTest {
         Response response = given()
                 .spec(getAuthRequestSpec())
                 .when()
-                .get(URL)
+                .get(playlistURL)
                 .then()
                 .assertThat()
                 .statusCode(200)
@@ -87,7 +90,7 @@ public class ApiTests extends BaseTest {
         Response response = given()
                 .spec(getAuthRequestSpec())
                 .when()
-                .delete(URL+"/"+playlst)
+                .delete(playlistURL+"/"+playlst)
                 .then()
                 .assertThat()
                 .statusCode(200)
@@ -109,7 +112,7 @@ public class ApiTests extends BaseTest {
         Response response = given()
                 .spec(getAuthRequestSpec())
                 .when()
-                .get(URL)
+                .get(playlistURL)
                 .then()
                 .assertThat()
                 .statusCode(200)
@@ -122,5 +125,17 @@ public class ApiTests extends BaseTest {
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         TestListener.logAssertionDetails("Playlists in UI match api: " + uiPlaylists.equals(apiPlaylists));
         Assert.assertEquals(uiPlaylists, apiPlaylists);
+    }
+    @Test(enabled = false, description = "Get application data")
+    public void getApplicationData() {
+        Response response = given()
+                .spec(getAuthRequestSpec())
+                .when()
+                .get(dataURL)
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .extract().response();
+          Data data = response.as(Data.class);
     }
 }

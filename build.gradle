@@ -27,11 +27,12 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-core:2.22.0'
     implementation 'org.json:json:20151123'
     implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.17.0'
 
 }
 
 test {
-    def suite = project.properties.getOrDefault("suite", "TestNG.xml")
+    def suite = project.properties.getOrDefault("suite", "EndToEnd.xml")
     useTestNG() {
         suites "src/test/resources/${suite}"    //gradle clean test -Psuite=suiteName.xml
         systemProperty "browser", System.getProperty("browser")
