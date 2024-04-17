@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import pages.HomePage;
 import pages.LoginPage;
+import util.DataProviderUtil;
 import util.listeners.TestListener;
 import util.restUtils.ApiTestDataHandler;
 import util.restUtils.AssertionUtils;
@@ -156,21 +157,21 @@ public class ApiTests extends BaseTest {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
     }
-    @Test(enabled = false, description = "Increase song playcount")
-    public void increasePlayCount() {
+    @Test(description = "Increase song playcount",  dataProvider = "ApiData", dataProviderClass = DataProviderUtil.class)
+    public void increasePlayCount(String songId) {
         try {
-            String payload = apiTestDataHandler.createPayload("song", "06cd19b77127f1e7f889ecad54376b30");
             Response response = given()
                     .spec(getAuthRequestSpec())
-                    .body(payload)
+                    .contentType("multipart/form-data")
+                    .multiPart("song", songId)
                     .when()
                     .post(songInteraction)
                     .then()
                     .assertThat()
                     .statusCode(200)
                     .extract().response();
-            Optional<SongInteraction> data = Optional.ofNullable(response.as(SongInteraction.class));
-            data.stream().map(Object::toString).forEach(System.out::println);
+            SongInteraction interaction = response.as(SongInteraction.class);
+            System.out.println(response.getBody().asPrettyString());
         } catch (Exception e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
