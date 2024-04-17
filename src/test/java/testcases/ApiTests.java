@@ -144,7 +144,11 @@ public class ApiTests extends BaseTest {
                     .statusCode(200)
                     .extract().response();
             Optional<Data> data = Optional.ofNullable(response.as(Data.class));
-            List<String> dataEmail = data.stream().map(Data::getCurrentUser).map(User::getEmail).map(Object::toString).toList();
+            List<String> dataEmail = data.stream()
+                    .map(Data::getCurrentUser)
+                    .map(User::getEmail)
+                    .map(Object::toString)
+                    .toList();
             String userEmail = System.getProperty("koelUser");
             RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
             Assert.assertEquals(dataEmail.get(0), userEmail);
