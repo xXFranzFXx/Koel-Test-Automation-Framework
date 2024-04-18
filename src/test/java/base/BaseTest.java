@@ -109,7 +109,7 @@ public class BaseTest{
         return new RemoteWebDriver(new URL("https://" + username + ":" + authKey + hub), caps);
     }
     private  WebDriver setupDefaultBrowser() {
-        WebDriverManager.chromedriver().driverVersion("122").setup();
+        WebDriverManager.chromedriver().driverVersion("123").setup();
         ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
         ChromeOptions options = new ChromeOptions();
         TestListener eventListener = new TestListener();
