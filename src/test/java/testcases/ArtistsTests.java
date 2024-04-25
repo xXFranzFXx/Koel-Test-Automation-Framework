@@ -26,7 +26,7 @@ public class ArtistsTests extends BaseTest {
         artistsPage = new ArtistsPage(getDriver());
         artistsPage.navigateToArtistsPage();
     }
-    
+
     @Test(description = "Play all songs by an artist")
     public void playAllSongsByArtist () {
         setupArtists();

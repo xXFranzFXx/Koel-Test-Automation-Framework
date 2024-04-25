@@ -7,7 +7,6 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import io.restassured.http.Header;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;

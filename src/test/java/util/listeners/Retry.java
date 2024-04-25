@@ -31,6 +31,5 @@ public class Retry implements IRetryAnalyzer {
     public void extentReportsFailOperations(ITestResult iTestResult) throws IOException {
         TestListener.test.get().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath("/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + count + ".png");
     }
-
 }
 
