@@ -118,7 +118,7 @@ public class BaseTest{
         options.addArguments("--start-maximized");
         options.addArguments("--incognito");
         options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         options.addArguments("--safebrowsing-disable-download-protection");
         options.setExperimentalOption("prefs", setDownloadDir());
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
