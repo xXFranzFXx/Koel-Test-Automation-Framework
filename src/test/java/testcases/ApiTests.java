@@ -2,14 +2,12 @@ package testcases;
 
 import base.BaseTest;
 import io.restassured.response.Response;
-import models.album.Album;
 import models.data.Data;
 import models.playlist.Playlist;
 import models.song.SongInteraction;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pages.HomePage;
@@ -21,7 +19,6 @@ import util.restUtils.AssertionUtils;
 import util.restUtils.RestUtil;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static api.KoelApiSpec.getAuthRequestSpec;
 import static io.restassured.RestAssured.given;
@@ -33,7 +30,6 @@ public class ApiTests extends BaseTest {
     private final String playlistURL = "https://qa.koel.app/api/playlist";
     private final String dataURL = "https://qa.koel.app/api/data";
     private final String songInteraction = "https://qa.koel.app/api/interaction/play";
-
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
@@ -67,7 +63,6 @@ public class ApiTests extends BaseTest {
            TestListener.logExceptionDetails("Could not verify playlist created: " + e.getLocalizedMessage());
        }
     }
-
     @Test
     public void verifyPlaylistNames() {
         Response response = given()
