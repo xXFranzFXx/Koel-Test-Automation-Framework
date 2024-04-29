@@ -14,7 +14,6 @@ public class Album {
        this.cover = cover;
        this.created_at = created_at;
        this.is_compilation = is_compilation;
-
    }
    public Album () {
 
