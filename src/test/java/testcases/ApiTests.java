@@ -4,6 +4,8 @@ import base.BaseTest;
 import io.restassured.response.Response;
 import models.data.Data;
 import models.playlist.Playlist;
+import models.song.Song;
+import models.song.SongInfo;
 import models.song.SongInteraction;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
@@ -165,7 +167,7 @@ public class ApiTests extends BaseTest {
                     .assertThat()
                     .statusCode(200)
                     .extract().response();
-            SongInteraction interaction = response.as(SongInteraction.class);
+            Song interaction = response.as(Song.class);
             System.out.println(response.getBody().asPrettyString());
         } catch (Exception e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
