@@ -4,7 +4,7 @@ public class Interaction {
     private String song_id;
     private boolean liked;
     private int play_count;
-    
+
     public Interaction(String song_id, boolean liked, int play_count) {
         this.song_id = song_id;
         this.liked = liked;
