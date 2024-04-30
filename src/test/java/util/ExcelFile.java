@@ -80,5 +80,4 @@ public class ExcelFile {
             Reporter.log("Error writing to excel file " + e, true);
         }
     }
-
 }
