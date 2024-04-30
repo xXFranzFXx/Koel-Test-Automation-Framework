@@ -6,7 +6,6 @@ import org.testng.ITestResult;
 
 import java.io.IOException;
 
-import static util.extentReports.ExtentTestManager.getTest;
 
 public class Retry implements IRetryAnalyzer {
 
@@ -33,7 +32,7 @@ public class Retry implements IRetryAnalyzer {
         return false;
     }
     public void extendReportsFailOperations(ITestResult iTestResult) throws IOException {
-        getTest().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath("/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + ".png");
+       TestListener.test.get().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath("/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + ".png");
     }
 
 }
