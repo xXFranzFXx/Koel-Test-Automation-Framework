@@ -65,5 +65,4 @@ public class LogoutTests extends BaseTest {
         Assert.assertTrue(loginPage.getRegistrationLink());
         Reporter.log("User has logged out after updating username and password and redirected to login page", true);
     }
-
 }
