@@ -87,7 +87,13 @@ public class HomeTests extends BaseTest {
         TestListener.logAssertionDetails("'About' modal closes: " + loginPage.getRegistrationLink());
         Assert.assertTrue(loginPage.getRegistrationLink());
     }
-  @Test(description = "delete playlist created", dependsOnMethods = { "addSongToPlaylist" })
+   @Test(description="verify recently added list has liked button")
+   public void checkRaLikedButtons() {
+        setupHome();
+        TestListener.logAssertionDetails("Recently Added songs have liked buttons: " + homePage.recentlyAddedHasLikedButtons());
+        Assert.assertTrue(homePage.recentlyAddedHasLikedButtons());
+   }
+   @Test(description = "delete playlist created", dependsOnMethods = { "addSongToPlaylist" })
     public void deletePlaylist() {
         setupHome();
         String playlistName = dataMap.get("playlist");

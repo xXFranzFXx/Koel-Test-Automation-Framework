@@ -174,7 +174,7 @@ public class HomePage extends BasePage {
     private WebElement emptySmartlistIcon;
     @FindBy(css = "#playlistWrapper .text")
     private WebElement emptySmartListText;
-
+    private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class='fa fa-heart-o']");
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
     private final By lyricsTabInfo = By.cssSelector(".none span");
@@ -449,6 +449,10 @@ public class HomePage extends BasePage {
                         findElement(rAThumbnailTitle)
                                 .getText()
                                 .equals("by"));
+    }
+    public boolean recentlyAddedHasLikedButtons() {
+        List<WebElement> likedButtons = findElements(rALikedButtons);
+        return likedButtons.stream().allMatch(WebElement::isDisplayed);
     }
     //only checks first column since second column doesn't display correctly
     public boolean checkRAListButtonsOnHover() {
