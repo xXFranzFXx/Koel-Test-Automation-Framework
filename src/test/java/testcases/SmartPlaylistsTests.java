@@ -8,7 +8,6 @@ import pages.LoginPage;
 import util.TestUtil;
 import util.listeners.TestListener;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
