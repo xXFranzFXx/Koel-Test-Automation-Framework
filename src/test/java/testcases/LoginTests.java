@@ -3,7 +3,7 @@ package testcases;
 import base.BaseTest;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.testng.Assert;
-import org.testng.Reporter;
+
 import org.testng.annotations.*;
 import pages.HomePage;
 import pages.LoginPage;
@@ -13,7 +13,7 @@ import util.DataProviderUtil;
 import util.ExcelFile;
 import util.listeners.TestListener;
 
-import java.net.MalformedURLException;
+
 
 public class LoginTests extends BaseTest {
     LoginPage loginPage;
