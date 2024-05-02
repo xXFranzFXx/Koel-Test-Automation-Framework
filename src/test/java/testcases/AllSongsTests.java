@@ -8,7 +8,6 @@ import pages.HomePage;
 import pages.LoginPage;
 import util.listeners.TestListener;
 
-import java.net.MalformedURLException;
 
 public class AllSongsTests extends BaseTest {
     LoginPage loginPage;
