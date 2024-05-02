@@ -9,7 +9,6 @@ import pages.LoginPage;
 import pages.SearchPage;
 import util.listeners.TestListener;
 
-import java.net.MalformedURLException;
 
 public class ArtistsTests extends BaseTest {
     LoginPage loginPage;
