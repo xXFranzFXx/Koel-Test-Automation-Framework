@@ -44,7 +44,7 @@ public class ExcelFile {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Something went terribly wrong." + e);
+            System.out.println("Unable to read Excel file " + e);
         }
         return data;
     }
