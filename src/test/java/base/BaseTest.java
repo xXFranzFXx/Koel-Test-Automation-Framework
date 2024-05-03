@@ -137,7 +137,6 @@ public class BaseTest{
         chromePref.put("download.default_directory", System.getProperty("user.dir") + "/downloads");
         return chromePref;
     }
-
     @AfterMethod
     public void closeBrowser() {
         if(getDriver() == null) {
