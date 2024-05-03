@@ -109,7 +109,7 @@ public class BaseTest{
         return new RemoteWebDriver(new URL("https://" + username + ":" + authKey + hub), caps);
     }
     private  WebDriver setupDefaultBrowser() {
-        WebDriverManager.chromedriver().driverVersion("123").setup();
+        WebDriverManager.chromedriver().setup();
         ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
         ChromeOptions options = new ChromeOptions();
         TestListener eventListener = new TestListener();
@@ -118,7 +118,7 @@ public class BaseTest{
         options.addArguments("--start-maximized");
         options.addArguments("--incognito");
         options.addArguments("--disable-dev-shm-usage");
-//        options.addArguments("--headless");
+        options.addArguments("--headless");
         options.addArguments("--safebrowsing-disable-download-protection");
         options.setExperimentalOption("prefs", setDownloadDir());
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
