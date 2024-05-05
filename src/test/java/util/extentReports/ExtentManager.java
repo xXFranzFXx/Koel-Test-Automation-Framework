@@ -2,16 +2,12 @@ package util.extentReports;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentReporter;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 import org.openqa.selenium.Platform;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ExtentManager {
     private static ExtentReports extent;
