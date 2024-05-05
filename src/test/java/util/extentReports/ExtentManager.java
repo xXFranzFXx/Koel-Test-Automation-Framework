@@ -20,7 +20,6 @@ public class ExtentManager {
             "all", reportFileName + ".html",
             "passed",reportFileName + "-Passed.html",
             "failed", reportFileName + "-Failed.html"
-
     );
     private static final String macPath = System.getProperty("user.dir") + "/reports/extent-reports";
     private static final String windowsPath = System.getProperty("user.dir") + "\\reports\\extent-reports";
