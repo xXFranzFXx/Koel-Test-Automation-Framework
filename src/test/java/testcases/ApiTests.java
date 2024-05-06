@@ -32,6 +32,9 @@ public class ApiTests extends BaseTest {
     private final String playlistURL = "https://qa.koel.app/api/playlist";
     private final String dataURL = "https://qa.koel.app/api/data";
     private final String songInteraction = "https://qa.koel.app/api/interaction/play";
+    private final String recentlyPlayed = "https://qa.koel.app/api/interaction/recently-played";
+    private final String likeUnlikeOneSong = "https://qa.koel.app/api/like";
+
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
@@ -173,4 +176,22 @@ public class ApiTests extends BaseTest {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
     }
+    @Test
+    public void getRecentlyPlayed() {
+        Response response = given()
+                .spec(getAuthRequestSpec())
+                .contentType("application/json")
+                .accept("application/json")
+                .when()
+                .get(recentlyPlayed)
+                .then().statusCode(200)
+                .extract().response();
+
+        List<String> songs = response.jsonPath().get();
+        songs.forEach(System.out::println);
+
+        Assert.assertEquals(response.statusCode(), 200);
+        RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
+    }
+
 }
