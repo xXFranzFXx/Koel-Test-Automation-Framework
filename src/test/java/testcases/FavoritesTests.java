@@ -26,7 +26,7 @@ public class FavoritesTests extends BaseTest {
 
     //The download directory is reset and used to verify when songs download to it. If the file extension contains ".mp3" then it completed downloading.  If it contains ".crdownload", then it is in the process of downloading
     private boolean checkDownloadedFiles() {
-        File rootFolder = new File(System.getProperty("java.io.tmpdir"));
+        File rootFolder = new File(System.getProperty("user.dir") + "/downloads");
         File[] downloadedFiles = rootFolder.listFiles(file ->
                 file.getName().contains(".mp3") || file.getName().contains(".crdownload")
         );
