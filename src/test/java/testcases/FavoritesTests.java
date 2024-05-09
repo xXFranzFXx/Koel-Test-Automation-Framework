@@ -2,6 +2,7 @@ package testcases;
 
 import base.BaseTest;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.AllSongsPage;
 import pages.FavoritesPage;
@@ -9,6 +10,7 @@ import pages.LoginPage;
 import util.listeners.TestListener;
 
 import java.io.File;
+import java.util.Optional;
 
 /**
  * Story:
@@ -32,7 +34,24 @@ public class FavoritesTests extends BaseTest {
         );
         return downloadedFiles != null;
     }
+    private void deleteFiles() {
+        File rootFolder = new File(System.getProperty("user.dir") + "/downloads");
+        Optional<File[]> deletedFiles = Optional.ofNullable(rootFolder.listFiles());
+        if (deletedFiles.isPresent()) {
+            for(File f : deletedFiles.get()) {
+                Reporter.log("Deleting downloaded file: " + f.getName(), true);
+                f.delete();
+            }
+        } else {
+            Reporter.log("There were no downloaded files present to delete", true);
+        }
+    }
 
+    @AfterClass
+    public void deleteDownloadedFiles() {
+        deleteFiles();
+        Reporter.log("Deleted downloaded files.", true);
+    }
 
     public void setUpFavorites() {
         loginPage = new LoginPage(getDriver());
