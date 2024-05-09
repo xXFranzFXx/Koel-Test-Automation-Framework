@@ -187,7 +187,6 @@ public class HomePage extends BasePage {
     private final By badgeNameTextLocator = By.xpath("//span[@id='userBadge']//span[@class='name']");
     private final By playPauseBtn = By.xpath("//span[@title='Play or resume']//i[@class='fa fa-play']");
     private final By recentlyAddedlistItems = By.xpath("//ol[@class='recently-added-album-list'][1]/li");
-    private final By searchResultsGroup = By.cssSelector("#searchExcerptsWrapper .results section");
     private final By selectNewSmartList = By.cssSelector("li[data-testid='playlist-context-menu-create-smart']");
     private By playlistDelete = By.xpath("//section[@id='playlists']/ul/li[3]/nav/ul/li[2]");
     private By cmDelete= By.xpath("//li[text()[contains(.,'Delete')]]");
@@ -216,16 +215,16 @@ public class HomePage extends BasePage {
             actions.sendKeys(Keys.ENTER).perform();
             return this;
     }
+    public void deleteList(WebElement list) {
+        findElement(list).click();
+        contextClickFirstPlDelete();
+        pause(2);
+        actions.sendKeys(Keys.ENTER).perform();
+        Reporter.log("Deleted playlist: " + list, true);
+    }
     public void deleteAllPlaylists() {
-            for (WebElement l : allPlaylists) {
                 try {
-                    findElement(l).click();
-                    contextClickFirstPlDelete();
-                    pause(2);
-                    actions.sendKeys(Keys.ENTER).perform();
-
-
-                    Reporter.log("Deleted playlist: " + l, true);
+                    allPlaylists.forEach(this::deleteList);
                 } catch (NoSuchElementException e) {
                     Reporter.log("cannot delete playlist" + e, true);
                 }
@@ -233,7 +232,6 @@ public class HomePage extends BasePage {
                         Reporter.log("There are currently no playlists to delete", true);
                         return;
                 }
-            }
         Reporter.log("Total Playlists remaining: " + allPlaylists.size(), true);
     }
     public HomePage deletePlaylists() {
@@ -416,15 +414,7 @@ public class HomePage extends BasePage {
     public boolean getUserBadgeText(String name) {
         return textIsPresent(badgeNameTextLocator, name);
     }
-
-    public int searchResultsSize() {
-        return findElements(searchResultsGroup).size();
-    }
-
-    public boolean searchResultsExists() {
-        return (searchResultsSize() > 0);
-    }
-
+    
     public int recentlyPlayedListSize() {
         return findElements(By.className("recent-song-list")).size();
     }
