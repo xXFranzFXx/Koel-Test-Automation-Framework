@@ -17,7 +17,7 @@ public class FavoritesPage extends BasePage{
     @FindBy(xpath = "//section[@id='favoritesWrapper']//table[@class='items']/tr")
     private List<WebElement> favoritesSongList;
     @FindBy(xpath = "//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']")
-    private By frownIcon;
+    private WebElement frownIcon;
     public FavoritesPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -25,19 +25,12 @@ public class FavoritesPage extends BasePage{
         return likedHeartIcon.size();
     }
     public FavoritesPage unlikeAllSongs()  throws StaleElementReferenceException {
-        if(likedHeartIcon.isEmpty()) return this;
-        int count = 0;
-        int size = likedHeartIcon.size();
         try {
-            for(int i = 0; i < getLikedSongsCount(); i++) {
-                findElement(likedHeartIcon.get(i)).click();
-                count++;
-                if (getLikedSongsCount() == 0 || count == size) {
-                    return this;
-                }
+            likedHeartIcon.forEach(WebElement::click);
+            if (frownIcon.isDisplayed() || getLikedSongsCount() == 0) {
+                return this;
             }
-                unlikeAllSongs();
-        }catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
             Reporter.log("Error removing songs from favorites playlist:  " + e, true);
         }
         return this;

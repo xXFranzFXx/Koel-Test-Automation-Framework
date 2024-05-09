@@ -69,7 +69,7 @@ public class AllSongsPage extends BasePage{
     //unlikes every liked song
     public AllSongsPage unlikeSongs() {
         if(likedSongsButton.isEmpty()) return this;
-        likedSongsButton.forEach(song -> findElement(song).click());
+        likedSongsButton.forEach(WebElement::click);
         return this;
     }
     public AllSongsPage likeOneSong() {
