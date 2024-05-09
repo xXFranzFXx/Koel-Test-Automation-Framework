@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Reporter;
 
@@ -42,6 +39,9 @@ public class FavoritesPage extends BasePage{
     public void selectDownloadFromCM() {
         WebElement selection = locateByVisibility(contextMenuDownload);
         actions.moveToElement(selection).click().perform();
+        pause(1);
+        actions.sendKeys(Keys.ENTER).perform();
+
     }
     public boolean checkPlaylistEmptyIcon() {
         List<WebElement> icon = findElements(By.xpath("//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']"));

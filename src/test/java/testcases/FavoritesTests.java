@@ -28,7 +28,7 @@ public class FavoritesTests extends BaseTest {
     private boolean checkDownloadedFiles() {
         File rootFolder = new File(System.getProperty("user.dir") + "/downloads");
         File[] downloadedFiles = rootFolder.listFiles(file ->
-                file.getName().contains(".mp3") || file.getName().contains(".crdownload")
+                file.getName().contains(".mp3") || file.getName().contains(".com.google.Chrome")
         );
         return downloadedFiles != null;
     }

@@ -414,7 +414,7 @@ public class HomePage extends BasePage {
     public boolean getUserBadgeText(String name) {
         return textIsPresent(badgeNameTextLocator, name);
     }
-    
+
     public int recentlyPlayedListSize() {
         return findElements(By.className("recent-song-list")).size();
     }
