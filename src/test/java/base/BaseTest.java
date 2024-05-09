@@ -23,7 +23,7 @@ import util.listeners.TestListener;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.Paths;
+
 import java.time.Duration;
 import java.util.HashMap;
 
@@ -69,8 +69,8 @@ public class BaseTest{
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
-             //edgeOptions.addArguments(new String[]{"--remote-allow-origins=*", "--disable-notifications", "--start-maximized"});
-                return driver = new EdgeDriver();
+                edgeOptions.addArguments(new String[]{"--remote-allow-origins=*", "--disable-notifications", "--start-maximized"});
+                return driver = new EdgeDriver(edgeOptions);
             //gradle clean test -Dbrowser=grid-edge
             case "grid-edge":
                 caps.setCapability("browserName", "MicrosoftEdge");
