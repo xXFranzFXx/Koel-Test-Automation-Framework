@@ -30,7 +30,7 @@ public class FavoritesPage extends BasePage{
             if (frownIcon.isDisplayed() || getLikedSongsCount() == 0) {
                 return this;
             }
-        } catch (Exception e) {
+        } catch (StaleElementReferenceException e) {
             Reporter.log("Error removing songs from favorites playlist:  " + e, true);
         }
         return this;
