@@ -16,6 +16,7 @@
     <test name="Playlist Tests">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
       <classes>
+            <class name="testcases.RecentlyPlayedTests"/>
             <class name="testcases.SmartPlaylistsTests"/>
         </classes>
     </test>

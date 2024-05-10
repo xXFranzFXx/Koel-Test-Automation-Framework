@@ -11,8 +11,7 @@ import java.util.stream.Collectors;
 public class RecentlyPlayedPage extends BasePage{
     @FindBy(linkText = "Recently Played")
     private By recentlyPlayedLocator;
-    @FindBy(css = "#recentlyPlayedWrapper tr.song-item .title")
-    private By recentlyPlayedTitlesLocator;
+    private By recentlyPlayedTitlesLocator = By.cssSelector("#recentlyPlayedWrapper tr.song-item .title");
     public RecentlyPlayedPage(WebDriver givenDriver) {
          super(givenDriver);
     }
@@ -23,5 +22,9 @@ public class RecentlyPlayedPage extends BasePage{
                         .toList()
                         .size();
                 return fails == 0;
+    }
+    public List<String> recentlyPlayedSongs() {
+        List<WebElement> songTitles = findElements(recentlyPlayedTitlesLocator);
+        return songTitles.stream().map(WebElement::getText).toList();
     }
 }

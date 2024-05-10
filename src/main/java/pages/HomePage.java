@@ -190,7 +190,7 @@ public class HomePage extends BasePage {
     private final By selectNewSmartList = By.cssSelector("li[data-testid='playlist-context-menu-create-smart']");
     private By playlistDelete = By.xpath("//section[@id='playlists']/ul/li[3]/nav/ul/li[2]");
     private By cmDelete= By.xpath("//li[text()[contains(.,'Delete')]]");
-
+    private By recentlyPlayedDetails = By.cssSelector("#homeWrapper .recent-song-list .details");
     private By okBtn = By.xpath( "//div[@class='alertify']//nav/button[@class='ok']");
 
     /**
@@ -666,6 +666,10 @@ public class HomePage extends BasePage {
     }
     public String getNameInputValidationMsg() {
         return findElement(smartListFormNameInput).getAttribute("validationMessage");
+    }
+    public List<String> recentlyPlayedTitles() {
+        List<WebElement> details = findElements(recentlyPlayedDetails);
+        return details.stream().map(WebElement::getText).toList();
     }
 }
 
