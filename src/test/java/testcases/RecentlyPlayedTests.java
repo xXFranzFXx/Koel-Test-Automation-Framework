@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RecentlyPlayedPage;
+import util.listeners.TestListener;
 
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class RecentlyPlayedTests extends BaseTest {
         List<String> homePageTitles = homePage.recentlyPlayedTitles();
         homePage.clickRecentlyPlayed();
         List<String> recentlyPlayedPageTitles = recentlyPlayedPage.recentlyPlayedSongs();
+        TestListener.logInfoDetails("Recently played song titles on homepage: " + homePageTitles);
+        TestListener.logInfoDetails("Song titles on Recently Played page: " + recentlyPlayedPageTitles);
+        TestListener.logAssertionDetails("Song titles are displayed correctly: " + homePageTitles.equals(recentlyPlayedPageTitles));
         Assert.assertNotEquals(recentlyPlayedPageTitles, homePageTitles);
     }
 }
