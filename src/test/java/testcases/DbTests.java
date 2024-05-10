@@ -9,6 +9,7 @@ import pages.*;
 import util.DataProviderUtil;
 import util.RandomString;
 import util.TestUtil;
+import util.dbUtils.DbTestUtil;
 import util.listeners.TestListener;
 
 import java.sql.ResultSet;
@@ -45,61 +46,6 @@ public class DbTests extends BaseTest {
     @AfterMethod
     public void shutDown() throws SQLException {
         KoelDb.closeDatabaseConnection();
-    }
-    private boolean checkDatabaseForPlaylist(String koelUser, String playlistName) throws SQLException{
-        KoelDbActions koelDbActions = new KoelDbActions();
-        rs = koelDbActions.checkNewPlaylist(koelUser, playlistName);
-        if(rs.next()) {
-            String playlist = rs.getString("p.name");
-            TestListener.logInfoDetails("Playlist in database: " + playlist);
-            TestListener.logAssertionDetails("Created playlist exists in database: " + playlistName.equalsIgnoreCase(playlist));
-            return playlistName.equalsIgnoreCase(playlist);
-        }
-        return false;
-    }
-    private boolean checkDatabaseForSongInPlaylist(String koelUser, String song) throws SQLException {
-        KoelDbActions koelDbActions = new KoelDbActions();
-        rs = koelDbActions.checkSongsInPlaylist(koelUser);
-        ResultSetMetaData resultSetMetaData = rs.getMetaData();
-        final int columnCount = resultSetMetaData.getColumnCount();
-        boolean found = false;
-        TestListener.logInfoDetails("Searching for song containing the word '"+song+"' ");
-        while (rs.next()) {
-            for (int i = 1; i <= columnCount; i++) {
-                String dbSong = rs.getString(i).toLowerCase();
-                found = dbSong.contains(song);
-                TestListener.logInfoDetails("Playlist song found: " + dbSong);
-                TestListener.logAssertionDetails("Song added to playlist matches playlist song found in database: " + dbSong.contains(song));
-                if (found) break;
-            }
-        }
-        return found;
-    }
-    private boolean duplicateCondition (int duplicates) {
-        return duplicates >= 2;
-    }
-    private int countDuplicateNames(String koelUser, String playlistName) throws SQLException{
-        KoelDbActions koelDbActions = new KoelDbActions();
-        int duplicates = 0;
-        rs = koelDbActions.checkDuplicatePlaylistNames(koelUser, playlistName);
-        if (rs.next()) {
-            duplicates = rs.getInt("count");
-            TestListener.logInfoDetails("Total playlists with same name: " + duplicates);
-            TestListener.logAssertionDetails("User can create playlists with duplicate names: " + duplicateCondition(duplicates));
-        }
-        return duplicates;
-    }
-    public String getSmartPlInfo(String property, String user, String smartPl) throws SQLException, ClassNotFoundException {
-        KoelDbActions koelDbActions = new KoelDbActions();
-        rs = koelDbActions.checkSmartPl(user, smartPl);
-        String result = "";
-        if(rs.next()) {
-            result = rs.getString(property);
-            TestListener.logInfoDetails("Smart playlist being checked in db: " + smartPl);
-            TestListener.logInfoDetails("Retrieving smart playlist property from database: " + property);
-            TestListener.logRsDetails("SQL query result: " + result);
-        }
-        return result;
     }
 
     @Test(description = "Verify total song count displayed in app matches the total song count from the database")
@@ -148,8 +94,8 @@ public class DbTests extends BaseTest {
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlist);
-        int duplicateCount = countDuplicateNames(System.getProperty("koelUser"), playlist);
-        Assert.assertTrue(duplicateCondition(duplicateCount), "No duplicate playlist names were found");
+        int duplicateCount = DbTestUtil.countDuplicateNames(System.getProperty("koelUser"), playlist, rs);
+        Assert.assertTrue(DbTestUtil.duplicateCondition(duplicateCount), "No duplicate playlist names were found");
     }
     @Test(description = "Add a song to a playlist", dependsOnMethods = {"createPlaylist"})
     @Parameters({"song"})
@@ -160,7 +106,7 @@ public class DbTests extends BaseTest {
                 .clickFirstSearchResult()
                 .clickGreenAddToBtn()
                 .selectPlaylistToAddTo("playlist");
-        Assert.assertTrue(checkDatabaseForSongInPlaylist(System.getProperty("koelUser"), song), "Playlist song could not be found");
+        Assert.assertTrue(DbTestUtil.checkDatabaseForSongInPlaylist(System.getProperty("koelUser"), song, rs), "Playlist song could not be found");
     }
 
     @Test(description = "delete all playlists",dependsOnMethods = {"addSongToPlaylist"})
@@ -176,7 +122,7 @@ public class DbTests extends BaseTest {
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlistName);
-        Assert.assertTrue(checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName), "Playlist not found in database");
+        Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName, rs), "Playlist not found in database");
         Assert.assertTrue(homePage.playlistAddedToMenu(playlistName), "Playlist was not successfully created");
     }
     @Test(description = "Create a playlist with a name containing one character and verify it is in the database", dataProvider = "PlaylistData", dataProviderClass = DataProviderUtil.class)
@@ -185,7 +131,7 @@ public class DbTests extends BaseTest {
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlistName);
-        Assert.assertTrue(checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName), "Playlist not found in database");
+        Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName, rs), "Playlist not found in database");
         Assert.assertTrue(homePage.playlistAddedToMenu(playlistName), "Playlist was not successfully created");
     }
     @Test(description = "Check artists that are displayed in app and compare with artists displayed in db")
@@ -225,7 +171,7 @@ public class DbTests extends BaseTest {
     public void editListName() throws SQLException, ClassNotFoundException {
         String newName = generatePlaylistName(6);
         setupKoel();
-        String oldPlId = getSmartPlInfo("p.id", System.getProperty("koelUser"), homePage.getFirstSmartPlName());
+        String oldPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), homePage.getFirstSmartPlName(), rs);
         TestListener.logInfoDetails("Smart playlist name before: " + homePage.getFirstSmartPlName());
         dataMap.put("oldId", oldPlId);
         homePage.cmEditFirstSmartPl()
@@ -238,7 +184,7 @@ public class DbTests extends BaseTest {
     }
     @Test(description =  "Verify the edited smart playlist is updated correctly in the database", dependsOnMethods = {"editListName"})
     public void checkDbForEditedPl() throws SQLException, ClassNotFoundException {
-        String editedPlId = getSmartPlInfo("p.id", System.getProperty("koelUser"), dataMap.get("editedName"));
+        String editedPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), dataMap.get("editedName"), rs);
         String oldPlId = dataMap.get("oldId");
         TestListener.logRsDetails("Smart playlist id before editing name: " + oldPlId);
         TestListener.logRsDetails("Smart playlist id after editing name: " + editedPlId);
