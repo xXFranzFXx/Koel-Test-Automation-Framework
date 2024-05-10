@@ -7,10 +7,9 @@ import org.testng.annotations.*;
 import pages.AllSongsPage;
 import pages.FavoritesPage;
 import pages.LoginPage;
+import util.TestUtil;
 import util.listeners.TestListener;
 
-import java.io.File;
-import java.util.Optional;
 
 /**
  * Story:
@@ -26,30 +25,11 @@ public class FavoritesTests extends BaseTest {
     AllSongsPage allSongsPage;
     FavoritesPage favoritesPage;
 
-    //The download directory is reset and used to verify when songs download to it. If the file extension contains ".mp3" then it completed downloading.  If it contains ".crdownload", then it is in the process of downloading
-    private boolean checkDownloadedFiles() {
-        File rootFolder = new File(System.getProperty("user.dir") + "/downloads");
-        File[] downloadedFiles = rootFolder.listFiles(file ->
-                file.getName().contains(".mp3") || file.getName().contains(".com.google.Chrome")
-        );
-        return downloadedFiles != null;
-    }
-    private void deleteFiles() {
-        File rootFolder = new File(System.getProperty("user.dir") + "/downloads");
-        Optional<File[]> deletedFiles = Optional.ofNullable(rootFolder.listFiles());
-        if (deletedFiles.isPresent()) {
-            for(File f : deletedFiles.get()) {
-                Reporter.log("Deleting downloaded file: " + f.getName(), true);
-                f.delete();
-            }
-        } else {
-            Reporter.log("There were no downloaded files present to delete", true);
-        }
-    }
+
 
     @AfterClass
     public void deleteDownloadedFiles() {
-        deleteFiles();
+        TestUtil.deleteFiles();
         Reporter.log("Deleted downloaded files.", true);
     }
 
@@ -83,8 +63,8 @@ public class FavoritesTests extends BaseTest {
         favoritesPage.favorites();
         favoritesPage.contextClickFirstSong()
                 .selectDownloadFromCM();
-        TestListener.logAssertionDetails("User can download songs from Favorites playlist page: " + checkDownloadedFiles());
-        Assert.assertTrue(checkDownloadedFiles());
+        TestListener.logAssertionDetails("User can download songs from Favorites playlist page: " + TestUtil.checkDownloadedFiles());
+        Assert.assertTrue(TestUtil.checkDownloadedFiles());
     }
 
 }
