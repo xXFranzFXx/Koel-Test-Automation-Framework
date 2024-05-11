@@ -10,6 +10,8 @@ import pages.RecentlyPlayedPage;
 import util.listeners.TestListener;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class RecentlyPlayedTests extends BaseTest {
     LoginPage loginPage;
@@ -29,6 +31,10 @@ public class RecentlyPlayedTests extends BaseTest {
         List<String> homePageTitles = homePage.recentlyPlayedTitles();
         homePage.clickRecentlyPlayed();
         List<String> recentlyPlayedPageTitles = recentlyPlayedPage.recentlyPlayedSongs();
+        Set<String> titles =  recentlyPlayedPageTitles.stream()
+                .flatMap(str -> 
+                        homePageTitles.stream().filter(str2 ->
+                                str2.contains(str))).collect(Collectors.toSet());
         TestListener.logInfoDetails("Recently played song titles on homepage: " + homePageTitles);
         TestListener.logInfoDetails("Song titles on Recently Played page: " + recentlyPlayedPageTitles);
         TestListener.logAssertionDetails("Song titles are displayed correctly: " + homePageTitles.equals(recentlyPlayedPageTitles));

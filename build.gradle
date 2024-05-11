@@ -32,7 +32,7 @@ dependencies {
 }
 
 test {
-    def suite = project.properties.getOrDefault("suite", "TestNG.xml")
+    def suite = project.properties.getOrDefault("suite", "Smoke.xml")
     useTestNG() {
         suites "src/test/resources/${suite}"    //gradle clean test -Psuite=suiteName.xml
         systemProperty "browser", System.getProperty("browser")
