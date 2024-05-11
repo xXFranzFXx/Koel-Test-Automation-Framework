@@ -53,4 +53,4 @@ public class RecentlyPlayedTests extends BaseTest {
         TestListener.logAssertionDetails("Number of song titles are equal: " + (homePageTitles.size() == recentlyPlayedPageTitles.size()));
         Assert.assertEquals(recentlyPlayedPageTitles.size(), homePageTitles.size());
     }
-    }
+}
