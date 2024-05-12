@@ -44,7 +44,7 @@ public class ExcelFile {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Unable to read Excel file " + e);
+            Reporter.log("Unable to read Excel file " + e.getLocalizedMessage(), true);
         }
         return data;
     }
