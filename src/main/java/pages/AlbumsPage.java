@@ -186,7 +186,7 @@ public class AlbumsPage extends BasePage{
                     }
                 }
             } catch (TimeoutException e) {
-                e.printStackTrace();
+                Reporter.log("Error getting album duration: " + e.getLocalizedMessage());
             }
         }
         return check;
@@ -206,7 +206,7 @@ public class AlbumsPage extends BasePage{
                     }
                 }
             } catch (TimeoutException e) {
-                e.printStackTrace();
+                Reporter.log("Could not find album track total on one or more albums: " + e.getLocalizedMessage());
             }
         }
         return check;
