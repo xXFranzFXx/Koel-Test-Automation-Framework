@@ -93,7 +93,7 @@ public class AlbumsPage extends BasePage{
                     }
                 }
             } catch (TimeoutException e) {
-                e.printStackTrace();
+                Reporter.log("Error finding album cover images: " + e.getLocalizedMessage());
             }
         }
         return check;
@@ -113,7 +113,7 @@ public class AlbumsPage extends BasePage{
                     }
                 }
             } catch (TimeoutException e) {
-                e.printStackTrace();
+                Reporter.log("Error getting album info: " + e.getLocalizedMessage());
             }
         }
         return check;
