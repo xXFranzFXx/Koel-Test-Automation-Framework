@@ -60,6 +60,9 @@ public class KoelDbActions extends KoelDb{
     private String dbArtistsInList = """
            SELECT COUNT(*) as count FROM dbkoel.artists a
            """;
+    private String checkSongs = """
+            SELECT title from dbkoel.songs
+            """;
     private static String createQueryList(int length, String sql, String property) {
         String query = sql + "WHERE " + property + " in (";
         StringBuilder queryBuilder = new StringBuilder(query);
@@ -100,6 +103,7 @@ public class KoelDbActions extends KoelDb{
         rs = st.executeQuery();
         return rs;
     }
+
     public ResultSet artistQuery(String artist) throws SQLException {
         TestListener.logInfoDetails("Artist " + artist);
         String[] str = new String[]{artist};
@@ -158,5 +162,8 @@ public class KoelDbActions extends KoelDb{
     }
     public ResultSet checkArtistsListFromApp(List<String> artists, String property) throws SQLException {
         return processDynamicQuery(artists, dbArtistsInList, property);
+    }
+    public ResultSet checkSongsFromList(List<String> songList, String property) throws SQLException {
+        return processDynamicQuery(songList, checkSongs, property);
     }
 }

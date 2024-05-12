@@ -6,6 +6,8 @@ import util.listeners.TestListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbTestUtil {
     public static boolean checkDatabaseForPlaylist(String koelUser, String playlistName, ResultSet rs) throws SQLException {
@@ -62,5 +64,14 @@ public class DbTestUtil {
             TestListener.logRsDetails("SQL query result: " + result);
         }
         return result;
+    }
+    public List<String> getSongTitles(List<String> songIds) throws SQLException {
+        KoelDbActions koelDbActions = new KoelDbActions();
+        List<String> songTitles =  new ArrayList<>();
+        ResultSet rs = koelDbActions.checkSongsFromList(songIds, "id");
+        while(rs.next()){
+            songTitles.add(rs.getString("title"));
+        }
+        return songTitles;
     }
 }
