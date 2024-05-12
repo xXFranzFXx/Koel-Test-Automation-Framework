@@ -94,7 +94,7 @@ public class DbTests extends BaseTest {
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlist);
-        int duplicateCount = DbTestUtil.countDuplicateNames(System.getProperty("koelUser"), playlist, rs);
+        int duplicateCount = DbTestUtil.countDuplicateNames(System.getProperty("koelUser"), playlist);
         Assert.assertTrue(DbTestUtil.duplicateCondition(duplicateCount), "No duplicate playlist names were found");
     }
     @Test(description = "Add a song to a playlist", dependsOnMethods = {"createPlaylist"})
@@ -106,7 +106,7 @@ public class DbTests extends BaseTest {
                 .clickFirstSearchResult()
                 .clickGreenAddToBtn()
                 .selectPlaylistToAddTo("playlist");
-        Assert.assertTrue(DbTestUtil.checkDatabaseForSongInPlaylist(System.getProperty("koelUser"), song, rs), "Playlist song could not be found");
+        Assert.assertTrue(DbTestUtil.checkDatabaseForSongInPlaylist(System.getProperty("koelUser"), song), "Playlist song could not be found");
     }
 
     @Test(description = "delete all playlists",dependsOnMethods = {"addSongToPlaylist"})
@@ -122,7 +122,7 @@ public class DbTests extends BaseTest {
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlistName);
-        Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName, rs), "Playlist not found in database");
+        Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName), "Playlist not found in database");
         Assert.assertTrue(homePage.playlistAddedToMenu(playlistName), "Playlist was not successfully created");
     }
     @Test(description = "Create a playlist with a name containing one character and verify it is in the database", dataProvider = "PlaylistData", dataProviderClass = DataProviderUtil.class)
@@ -131,7 +131,7 @@ public class DbTests extends BaseTest {
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlistName);
-        Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName, rs), "Playlist not found in database");
+        Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName), "Playlist not found in database");
         Assert.assertTrue(homePage.playlistAddedToMenu(playlistName), "Playlist was not successfully created");
     }
     @Test(description = "Check artists that are displayed in app and compare with artists displayed in db")
@@ -171,7 +171,7 @@ public class DbTests extends BaseTest {
     public void editListName() throws SQLException, ClassNotFoundException {
         String newName = generatePlaylistName(6);
         setupKoel();
-        String oldPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), homePage.getFirstSmartPlName(), rs);
+        String oldPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), homePage.getFirstSmartPlName());
         TestListener.logInfoDetails("Smart playlist name before: " + homePage.getFirstSmartPlName());
         dataMap.put("oldId", oldPlId);
         homePage.cmEditFirstSmartPl()
@@ -184,7 +184,7 @@ public class DbTests extends BaseTest {
     }
     @Test(description =  "Verify the edited smart playlist is updated correctly in the database", dependsOnMethods = {"editListName"})
     public void checkDbForEditedPl() throws SQLException, ClassNotFoundException {
-        String editedPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), dataMap.get("editedName"), rs);
+        String editedPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), dataMap.get("editedName"));
         String oldPlId = dataMap.get("oldId");
         TestListener.logRsDetails("Smart playlist id before editing name: " + oldPlId);
         TestListener.logRsDetails("Smart playlist id after editing name: " + editedPlId);
