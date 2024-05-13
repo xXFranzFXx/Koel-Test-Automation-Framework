@@ -11,6 +11,7 @@ import models.song.SongInteraction;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import pages.HomePage;
@@ -42,6 +43,10 @@ public class ApiTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
+    }
+    @AfterClass
+    public void close() {
+        closeBrowser();
     }
 
     @Test(description = "Create a playlist through api, and verify new playlist appears in UI")
@@ -187,12 +192,13 @@ public class ApiTests extends BaseTest {
                 .accept("application/json")
                 .when()
                 .get(recentlyPlayed)
-                .then().statusCode(200)
+                .then()
+                .assertThat()
+                .statusCode(200)
                 .extract().response();
 
         List<String> songs = response.jsonPath().get();
         songs.forEach(System.out::println);
-        Assert.assertEquals(response.statusCode(), 200);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
     }
     @Test(description = "get recently played song ids from api then query the db for the song titles of those song ids")
@@ -204,7 +210,9 @@ public class ApiTests extends BaseTest {
                 .accept("application/json")
                 .when()
                 .get(recentlyPlayed)
-                .then().statusCode(200)
+                .then()
+                .assertThat()
+                .statusCode(200)
                 .extract().response();
 
         List<String> songs = response.jsonPath().get();
@@ -212,11 +220,36 @@ public class ApiTests extends BaseTest {
 
         dbSongs.forEach(System.out::println);
 
-        Assert.assertEquals(response.statusCode(), 200);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         TestListener.logRsDetails("db songs: " + dbSongs);
         TestListener.logAssertionDetails("All recently played songs are in database: " + (songs.size() == dbSongs.size()));
         KoelDb.closeDatabaseConnection();
     }
+    @Test(description = "get recently played song ids from api then query the db for the song titles of those song ids, and check the db titles against the recently played song titles in ui")
+    public void compareRecentlyPlayedSongTitles() throws SQLException, ClassNotFoundException {
+        KoelDbTests.initializeDb();
+        setupKoel();
+        Response response = given()
+                .spec(getAuthRequestSpec())
+                .contentType("application/json")
+                .accept("application/json")
+                .when()
+                .get(recentlyPlayed)
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .extract().response();
 
+        List<String> songs = response.jsonPath().get();
+        List<String> dbSongs = DbTestUtil.getSongTitles(songs);
+        List<String> rPlayedSongs = homePage.recentlyPlayedTitles();
+        rPlayedSongs.forEach(System.out::println);
+        dbSongs.forEach(System.out::println);
+
+        RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
+        TestListener.logRsDetails("db songs: " + dbSongs);
+        TestListener.logRsDetails("ui songs: " + rPlayedSongs);
+        TestListener.logAssertionDetails("All recently played songs in db and ui are correct: " + (rPlayedSongs.size() == dbSongs.size()));
+        KoelDb.closeDatabaseConnection();
+    }
 }
