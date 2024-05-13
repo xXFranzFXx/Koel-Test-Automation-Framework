@@ -70,7 +70,7 @@ public class DbTestUtil {
         }
         return result;
     }
-    public List<String> getSongTitles(List<String> songIds) throws SQLException {
+    public static List<String> getSongTitles(List<String> songIds) throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
         List<String> songTitles =  new ArrayList<>();
         try (ResultSet rs = koelDbActions.checkSongsFromList(songIds, "id")) {

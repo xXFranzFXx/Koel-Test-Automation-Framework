@@ -1,6 +1,7 @@
 package testcases;
 
 import base.BaseTest;
+import db.KoelDb;
 import io.restassured.response.Response;
 import models.data.Data;
 import models.playlist.Playlist;
@@ -15,11 +16,13 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
 import util.DataProviderUtil;
+import util.dbUtils.DbTestUtil;
 import util.listeners.TestListener;
 import util.restUtils.ApiTestDataHandler;
 import util.restUtils.AssertionUtils;
 import util.restUtils.RestUtil;
 
+import java.sql.SQLException;
 import java.util.*;
 
 import static api.KoelApiSpec.getAuthRequestSpec;
@@ -177,7 +180,7 @@ public class ApiTests extends BaseTest {
         }
     }
     @Test
-    public void getRecentlyPlayed() {
+    public void getRecentlyPlayedSongIds() {
         Response response = given()
                 .spec(getAuthRequestSpec())
                 .contentType("application/json")
@@ -189,9 +192,31 @@ public class ApiTests extends BaseTest {
 
         List<String> songs = response.jsonPath().get();
         songs.forEach(System.out::println);
+        Assert.assertEquals(response.statusCode(), 200);
+        RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
+    }
+    @Test(description = "get recently played song ids from api then query the db for the song titles of those song ids")
+    public void getRecentlyPlayedSongTitles() throws SQLException, ClassNotFoundException {
+        KoelDbTests.initializeDb();
+        Response response = given()
+                .spec(getAuthRequestSpec())
+                .contentType("application/json")
+                .accept("application/json")
+                .when()
+                .get(recentlyPlayed)
+                .then().statusCode(200)
+                .extract().response();
+
+        List<String> songs = response.jsonPath().get();
+        List<String> dbSongs = DbTestUtil.getSongTitles(songs);
+
+        dbSongs.forEach(System.out::println);
 
         Assert.assertEquals(response.statusCode(), 200);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
+        TestListener.logRsDetails("db songs: " + dbSongs);
+        TestListener.logAssertionDetails("All recently played songs are in database: " + (songs.size() == dbSongs.size()));
+        KoelDb.closeDatabaseConnection();
     }
 
 }
