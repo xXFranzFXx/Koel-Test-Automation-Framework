@@ -45,14 +45,14 @@ public class BaseDefinitions {
         return (pageUrl + page);
     }
 //    public static LocalStorage localStorage;
-    public static void setupBrowser() throws MalformedURLException {
+    public  void setupBrowser() throws MalformedURLException {
         threadDriver.set(initializeDriver(System.getProperty("browser", "")));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(timeSeconds));
         getDriver().get(url);
 //        System.out.println(localStorage);
 
     }
-    public static WebDriver initializeDriver(String browser) throws MalformedURLException {
+    public  WebDriver initializeDriver(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.0.15:4444";
         switch (browser) {
@@ -106,7 +106,7 @@ public class BaseDefinitions {
         caps.setCapability("plugin", "java-testNG");
         return new RemoteWebDriver(new URL("https://" + username + ":" + authKey + hub), caps);
     }
-    public static void closeBrowser(){
+    public void closeBrowser(){
             driver.quit();
     }
     public static HashMap<String, Object> setDownloadDir() {
