@@ -23,7 +23,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BaseDefinitions {
-    public static WebDriver driver;
+    public WebDriver driver;
     private static final ThreadLocal <WebDriver> threadDriver = new ThreadLocal<>();
     public static WebDriver getDriver() {
         return threadDriver.get();
@@ -112,7 +112,7 @@ public class BaseDefinitions {
     public static HashMap<String, Object> setDownloadDir() {
         HashMap<String, Object> chromePref = new HashMap<>();
         chromePref.put("profile.default_content_settings.popups", 0);
-        chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
+        chromePref.put("download.default_directory", System.getProperty("user.dir") + "/downloads");
         return chromePref;
     }
     public static String checkString(String string) {
