@@ -19,7 +19,6 @@ public class KoelDbActions extends KoelDb{
     private String getArtistsInDb = """
             SELECT a.name as name FROM dbkoel.artists a  ORDER BY a.name ASC
             """;
-
     private final String getUserPwdInfo = """
             SELECT password, updated_at FROM dbkoel.users u WHERE u.email = ?
             """;
