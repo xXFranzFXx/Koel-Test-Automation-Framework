@@ -41,7 +41,6 @@ public class TestListener  implements ITestListener, WebDriverListener {
         failedTest.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
         test.get().fail(MarkupHelper.createLabel(log, ExtentColor.RED));
     }
-
     public static void logExceptionDetails(String log) {
         test.get().fail(log);
     }
@@ -105,7 +104,6 @@ public class TestListener  implements ITestListener, WebDriverListener {
                 "    " + stackTrace + "\n" +
                 "</details>\n";
         logExceptionDetails(formmatedTrace);
-
     }
     @Override
     public synchronized void onTestSkipped(ITestResult result) {
@@ -117,7 +115,6 @@ public class TestListener  implements ITestListener, WebDriverListener {
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         Log.info("onTestFailedButWithinSuccessPercentage for " + result.getMethod().getMethodName());
-
     }
       @Override
     public void beforeAnyCall(Object target, Method method, Object[] args) {
