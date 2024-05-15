@@ -120,19 +120,15 @@ public class TestListener  implements ITestListener, WebDriverListener {
     public void beforeAnyCall(Object target, Method method, Object[] args) {
         Log.debug( "Before calling method: " + method.getName());
     }
-
     public void afterAnyCall(Object target, Method method, Object[] args, Object result) {
         Log.debug("After calling method: " + method.getName());
     }
-
     public void onError(Object target, Method method, Object[] args, InvocationTargetException e) {
         Log.fatal( "Error while calling method: " + method.getName() + " - " + e.getMessage());
     }
-
     public void beforeAnyWebDriverCall(WebDriver driver, Method method, Object[] args) {
         Log.debug("Before calling WebDriver method: " + method.getName());
     }
-
     public void afterAnyWebDriverCall(WebDriver driver, Method method, Object[] args, Object result) {
         Log.debug("After calling WebDriver method: " + method.getName());
     }
