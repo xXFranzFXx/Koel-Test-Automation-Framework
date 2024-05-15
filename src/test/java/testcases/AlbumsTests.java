@@ -2,14 +2,10 @@ package testcases;
 
 import base.BaseTest;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.AlbumsPage;
-import pages.HomePage;
 import pages.LoginPage;
 import util.listeners.TestListener;
-
-import java.net.MalformedURLException;
 
 public class AlbumsTests extends BaseTest {
     LoginPage loginPage;
@@ -80,5 +76,4 @@ public class AlbumsTests extends BaseTest {
         TestListener.logAssertionDetails("All albums have a shuffle button: " + albumsPage.checkShuffleButtons());
         Assert.assertTrue(albumsPage.checkShuffleButtons(), "One or more albums is missing a shuffle button");
     }
-
 }
