@@ -22,7 +22,6 @@ public class AllSongsTests extends BaseTest {
         allSongsPage = new AllSongsPage(getDriver());
         loginPage.loginValidCredentials();
     }
-
     @Test(description = "Play the first song on All Songs page")
     public void playFirstSong() {
         setupAllSongs();
