@@ -245,7 +245,7 @@ public class HomePage extends BasePage {
                 checkOkModal();
             }
         } catch (StaleElementReferenceException e) {
-            e.printStackTrace();
+            Reporter.log("Error: " + e.getLocalizedMessage());
         }
         return this;
     }
