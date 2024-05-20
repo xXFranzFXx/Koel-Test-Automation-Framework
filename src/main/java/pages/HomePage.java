@@ -6,13 +6,11 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
+
 import org.testng.Reporter;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Stream;
 
 
 public class HomePage extends BasePage {
@@ -81,7 +79,6 @@ public class HomePage extends BasePage {
      */
     @FindBy(css = "[data-testid='extra-panel']")
     private WebElement infoPanel;
-
     @FindBy(css = "#extra.text-secondary.showing")
     private WebElement infoPanelShowing;
     @FindBy(xpath = "//section[@id='playlists']/ul/li")
@@ -287,7 +284,6 @@ public class HomePage extends BasePage {
         return this;
     }
 
-
     public void checkOkModal() {
         List<WebElement> ele2 = driver.findElements(okBtn);
         if (!ele2.isEmpty()) {
@@ -460,8 +456,6 @@ public class HomePage extends BasePage {
         Reporter.log("Couldn't locate buttons", true);
         return false;
     }
-
-
 
     public String getSearchedTitleFromResults() {
         return getSearchedSongTitle();
