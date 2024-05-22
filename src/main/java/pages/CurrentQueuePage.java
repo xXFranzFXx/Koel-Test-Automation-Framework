@@ -47,7 +47,6 @@ public class CurrentQueuePage extends  BasePage{
             return null;
         }
     }
-
     public int queueListSize() {
         return findElements(queueTableRows).size();
     }
