@@ -449,9 +449,9 @@ public class HomePage extends BasePage {
             moveToElement(l);
             Reporter.log("Checking for buttons", true);
             if (rAShuffleBtn.isDisplayed()) {
+                Reporter.log("both buttons present", true);
                 return rADownloadBtn.isDisplayed();
             }
-            Reporter.log("both buttons present", true);
         }
         Reporter.log("Couldn't locate buttons", true);
         return false;
