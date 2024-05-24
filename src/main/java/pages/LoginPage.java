@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage{
     HomePage homePage;
-    //locators
     @CacheLookup
     @FindBy(css = "[type='submit']")
     private WebElement submitButtonLocator;
