@@ -1,15 +1,9 @@
 package api;
-import io.github.cdimascio.dotenv.Dotenv;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import models.playlist.Playlist;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
