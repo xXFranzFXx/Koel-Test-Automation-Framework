@@ -11,6 +11,7 @@ import models.song.SongInteraction;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
@@ -178,8 +179,9 @@ public class ApiTests extends BaseTest {
                     .assertThat()
                     .statusCode(200)
                     .extract().response();
-            Song interaction = response.as(Song.class);
-            System.out.println(response.getBody().asPrettyString());
+            SongInteraction interaction = response.as(SongInteraction.class);
+            System.out.println(interaction.getSong().toString());
+            Reporter.log("Song Interaction: " + interaction, true);
         } catch (Exception e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
