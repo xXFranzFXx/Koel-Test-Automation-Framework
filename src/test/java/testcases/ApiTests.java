@@ -218,13 +218,12 @@ public class ApiTests extends BaseTest {
                 .extract().response();
 
         List<String> songs = response.jsonPath().get();
-        List<String> dbSongs = DbTestUtil.getSongTitles(songs);
-
-        dbSongs.forEach(System.out::println);
+        Optional<List<String>> dbSongs = Optional.ofNullable(DbTestUtil.getSongTitles(songs));
+        dbSongs.get().forEach(System.out::println);
 
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         TestListener.logRsDetails("db songs: " + dbSongs);
-        TestListener.logAssertionDetails("All recently played songs are in database: " + (songs.size() == dbSongs.size()));
+        TestListener.logAssertionDetails("All recently played songs are in database: " + (songs.size() == dbSongs.get().size()));
         KoelDb.closeDatabaseConnection();
     }
     @Test(description = "get recently played song ids from api then query the db for the song titles of those song ids, and check the db titles against the recently played song titles in ui")
