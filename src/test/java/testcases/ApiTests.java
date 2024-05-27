@@ -180,9 +180,9 @@ public class ApiTests extends BaseTest {
                     .statusCode(200)
                     .extract().response();
             SongInteraction interaction = response.as(SongInteraction.class);
-            String userEmail = interaction.getUser().getEmail();
-            System.out.println(response.jsonPath().get().toString());
-        } catch (Exception e) {
+            String song_id = interaction.getSong().getSong_Id();
+            Assert.assertEquals(songId, song_id);
+         } catch (Exception e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
     }
