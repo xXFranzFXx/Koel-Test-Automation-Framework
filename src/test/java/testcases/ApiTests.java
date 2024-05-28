@@ -4,14 +4,11 @@ import base.BaseTest;
 import db.KoelDb;
 import io.restassured.response.Response;
 import models.data.Data;
+import models.data.Interaction;
 import models.playlist.Playlist;
-import models.song.Song;
-import models.song.SongInfo;
-import models.song.SongInteraction;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
@@ -168,6 +165,7 @@ public class ApiTests extends BaseTest {
     }
     @Test(description = "Increase song playcount",  dataProvider = "ApiData", dataProviderClass = DataProviderUtil.class)
     public void increasePlayCount(String songId) {
+        apiTestDataHandler.addApiTestData(songId, songId);
         try {
             Response response = given()
                     .spec(getAuthRequestSpec())
@@ -179,9 +177,10 @@ public class ApiTests extends BaseTest {
                     .assertThat()
                     .statusCode(200)
                     .extract().response();
-            SongInteraction interaction = response.as(SongInteraction.class);
-            String song_id = interaction.getSong().getSong_Id();
-            Assert.assertEquals(songId, song_id);
+            Interaction interaction = response.as(Interaction.class);
+            String id = interaction.getSong_id();
+            TestListener.logAssertionDetails("Song playcount is increased: " + songId.equalsIgnoreCase(id));
+            Assert.assertEquals(songId, id);
          } catch (Exception e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }

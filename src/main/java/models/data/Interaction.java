@@ -1,14 +1,19 @@
 package models.data;
 
-public class Interaction {
-    private String song_id;
-    private boolean liked;
-    private int play_count;
+import models.user.User;
 
-    public Interaction(String song_id, boolean liked, int play_count) {
+public class Interaction {
+    private Song song;
+   private User user;
+   private String song_id;
+   private boolean liked;
+   private int play_count;
+    public Interaction(String song_id, boolean liked, int play_count, Song song, User user) {
         this.song_id = song_id;
         this.liked = liked;
         this.play_count = play_count;
+        this.song = song;
+        this.user = user;
     }
     public Interaction() {
 
@@ -37,4 +42,20 @@ public class Interaction {
     public void setPlay_count(int play_count) {
         this.play_count = play_count;
     }
+    public Song getSong() {
+        return song;
+    }
+
+    public void setSong(Song song) {
+        this.song = song;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

@@ -28,7 +28,7 @@ public class AssertionUtils {
                     actualValuesMap.add(new AssertionKeys(jsonPath, expectedValuesMap.get(jsonPath), value, "FOUND ✅"));
 
                 } else {
-                    // if single assertion is failed then to update final result as failure
+                    // if single assertion is failed then update final result as failure
                     allMatched = false;
                     actualValuesMap.add(new AssertionKeys(jsonPath, expectedValuesMap.get(jsonPath), value, "NOT_MATCHED ❌"));
                 }
