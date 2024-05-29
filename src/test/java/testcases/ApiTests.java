@@ -165,7 +165,6 @@ public class ApiTests extends BaseTest {
     }
     @Test(description = "Increase song playcount",  dataProvider = "ApiData", dataProviderClass = DataProviderUtil.class)
     public void increasePlayCount(String songId) {
-        apiTestDataHandler.addApiTestData(songId, songId);
         try {
             Response response = given()
                     .spec(getAuthRequestSpec())
@@ -179,6 +178,9 @@ public class ApiTests extends BaseTest {
                     .extract().response();
             Interaction interaction = response.as(Interaction.class);
             String id = interaction.getSong_id();
+            int playCount = interaction.getPlay_count();
+            TestListener.logInfoDetails("Song id: " + id);
+            TestListener.logInfoDetails("Play count: " + playCount);
             TestListener.logAssertionDetails("Song playcount is increased: " + songId.equalsIgnoreCase(id));
             Assert.assertEquals(songId, id);
          } catch (Exception e) {
