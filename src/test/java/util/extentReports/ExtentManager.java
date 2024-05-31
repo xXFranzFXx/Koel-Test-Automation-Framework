@@ -56,7 +56,7 @@ public class ExtentManager {
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
         extent.setSystemInfo("Environment", "TEST");
-        extent.setSystemInfo("Author", System.getProperty("author"));
+        extent.setSystemInfo("Author", "Franz Fernando");
         return extent;
     }
     //create extent report for test cases with "pass" status
@@ -71,7 +71,7 @@ public class ExtentManager {
         passedExtent = new ExtentReports();
         passedExtent.attachReporter(passedHtmlReporter);
         passedExtent.setSystemInfo("Status Filter", "Passed");
-        passedExtent.setSystemInfo("Author", System.getProperty("author"));
+        passedExtent.setSystemInfo("Author", "Franz Fernando");
         return passedExtent;
     }
     //create extent report for test cases with fail/skip status
@@ -86,7 +86,7 @@ public class ExtentManager {
         failedExtent = new ExtentReports();
         failedExtent.attachReporter(failedHtmlReporter);
         failedExtent.setSystemInfo("Status Filter", "Failed/Skipped");
-        failedExtent.setSystemInfo("Author", System.getProperty("author"));
+        failedExtent.setSystemInfo("Author", "Franz Fernando");
         return failedExtent;
     }
     private static String getReportFileLocations (Platform platform, String status) {
