@@ -57,7 +57,7 @@ public class DbTestUtil {
         }
         return duplicates;
     }
-    public static String getSmartPlInfo(String property, String user, String smartPl) throws SQLException, ClassNotFoundException {
+    public static String getSmartPlInfo(String property, String user, String smartPl) throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
         String result = "";
         try (ResultSet rs = koelDbActions.checkSmartPl(user, smartPl)) {
