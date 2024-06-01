@@ -43,7 +43,6 @@ public class ExtentManager {
             default -> extent;
         };
     }
-
     //create extent report for all test cases
     public static ExtentReports createInstance() {
         platform = getCurrentPlatform();
