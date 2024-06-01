@@ -15,7 +15,6 @@ public class ExtentManager {
     private static ExtentReports passedExtent;
     private static Platform platform;
     private static final String reportFileName = "Koel-Test-Automation-Extent-Report";
-
     private static final Map<String, String> fileMap = Map.of(
             "all", reportFileName + ".html",
             "passed",reportFileName + "-Passed.html",
