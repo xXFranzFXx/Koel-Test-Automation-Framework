@@ -7,13 +7,12 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.*;
 import util.DataProviderUtil;
-import util.RandomString;
+
 import util.TestUtil;
 import util.dbUtils.DbTestUtil;
 import util.listeners.TestListener;
 
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
