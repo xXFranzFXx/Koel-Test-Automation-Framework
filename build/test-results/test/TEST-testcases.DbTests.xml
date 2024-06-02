@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testcases.DbTests" tests="17" skipped="5" failures="3" errors="0" timestamp="2024-06-02T13:46:43" hostname="admins-Air" time="59.319">
+  <properties/>
+  <testcase name="checkDbForArtists" classname="testcases.DbTests" time="5.306"/>
+  <testcase name="createLongPlaylistName" classname="testcases.DbTests" time="1.333">
+    <skipped/>
+  </testcase>
+  <testcase name="createLongPlaylistName" classname="testcases.DbTests" time="1.236">
+    <failure message="java.lang.AssertionError: Playlist not found in database expected [true] but found [false]" type="java.lang.AssertionError">java.lang.AssertionError: Playlist not found in database expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1413)
+	at org.testng.Assert.assertTrue(Assert.java:56)
+	at testcases.DbTests.createLongPlaylistName(DbTests.java:125)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:148)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:95)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <testcase name="createOneCharacterPlaylistName[0](a)" classname="testcases.DbTests" time="1.199">
+    <skipped/>
+  </testcase>
+  <testcase name="createOneCharacterPlaylistName[1](a)" classname="testcases.DbTests" time="1.182"/>
+  <testcase name="createPlaylist[0](playlist)" classname="testcases.DbTests" time="1.184"/>
+  <testcase name="createSmartPlaylist" classname="testcases.DbTests" time="3.503"/>
+  <testcase name="editListName" classname="testcases.DbTests" time="5.643"/>
+  <testcase name="verifyTotalDuration" classname="testcases.DbTests" time="0.845"/>
+  <testcase name="queryDbPwd" classname="testcases.DbTests" time="0.073">
+    <skipped/>
+  </testcase>
+  <testcase name="queryDbPwd" classname="testcases.DbTests" time="0.066">
+    <failure message="java.lang.AssertionError: expected [true] but found [false]" type="java.lang.AssertionError">java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1413)
+	at org.testng.Assert.assertTrue(Assert.java:56)
+	at org.testng.Assert.assertTrue(Assert.java:66)
+	at testcases.DbTests.queryDbPwd(DbTests.java:263)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:148)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:95)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <testcase name="verifyTotalSongTracks" classname="testcases.DbTests" time="0.795"/>
+  <testcase name="addSongToPlaylist[0](dark)" classname="testcases.DbTests" time="1.596">
+    <skipped/>
+  </testcase>
+  <testcase name="addSongToPlaylist[1](dark)" classname="testcases.DbTests" time="1.639">
+    <failure message="java.lang.AssertionError: Playlist song could not be found expected [true] but found [false]" type="java.lang.AssertionError">java.lang.AssertionError: Playlist song could not be found expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1413)
+	at org.testng.Assert.assertTrue(Assert.java:56)
+	at testcases.DbTests.addSongToPlaylist(DbTests.java:109)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:829)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+	at org.testng.TestNG.runSuites(TestNG.java:1099)
+	at org.testng.TestNG.run(TestNG.java:1067)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:148)
+	at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:95)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at jdk.proxy1/jdk.proxy1.$Proxy2.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:193)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:129)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:100)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:60)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:113)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+</failure>
+  </testcase>
+  <testcase name="createPlaylistDuplicateName[0](playlist)" classname="testcases.DbTests" time="1.136"/>
+  <testcase name="checkDbForEditedPl" classname="testcases.DbTests" time="0.082"/>
+  <testcase name="deleteAllPlaylists" classname="testcases.DbTests" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[Connected to Koel database: true
+[INFO ] 2024-06-02 06:46:43.435 [Test worker] Log - checkDbForArtists started!
+[INFO ] 2024-06-02 06:46:48.740 [Test worker] Log - checkDbForArtists passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:46:50.814 [Test worker] Log - createLongPlaylistName started!
+[WARN ] 2024-06-02 06:46:52.147 [Test worker] Log - createLongPlaylistName skipped
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:46:54.328 [Test worker] Log - createLongPlaylistName started!
+[ERROR] 2024-06-02 06:46:55.736 [Test worker] Log - createLongPlaylistName failed!
+[INFO ] 2024-06-02 06:46:55.737 [Test worker] Log - screen shot taken for failed test createLongPlaylistName
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:46:57.914 [Test worker] Log - createOneCharacterPlaylistName started!
+[WARN ] 2024-06-02 06:46:59.112 [Test worker] Log - createOneCharacterPlaylistName skipped
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:01.217 [Test worker] Log - createOneCharacterPlaylistName started!
+[INFO ] 2024-06-02 06:47:02.399 [Test worker] Log - createOneCharacterPlaylistName passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:04.595 [Test worker] Log - createPlaylist started!
+[INFO ] 2024-06-02 06:47:05.778 [Test worker] Log - createPlaylist passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:07.955 [Test worker] Log - createSmartPlaylist started!
+[INFO ] 2024-06-02 06:47:11.457 [Test worker] Log - createSmartPlaylist passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:13.598 [Test worker] Log - editListName started!
+[INFO ] 2024-06-02 06:47:19.241 [Test worker] Log - editListName passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:21.312 [Test worker] Log - verifyTotalDuration started!
+extracted04:32:57
+[INFO ] 2024-06-02 06:47:22.157 [Test worker] Log - verifyTotalDuration passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:24.172 [Test worker] Log - queryDbPwd started!
+[WARN ] 2024-06-02 06:47:24.246 [Test worker] Log - queryDbPwd skipped
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:26.352 [Test worker] Log - queryDbPwd started!
+[ERROR] 2024-06-02 06:47:26.515 [Test worker] Log - queryDbPwd failed!
+[INFO ] 2024-06-02 06:47:26.516 [Test worker] Log - screen shot taken for failed test queryDbPwd
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:28.715 [Test worker] Log - verifyTotalSongTracks started!
+extracted66
+[INFO ] 2024-06-02 06:47:29.509 [Test worker] Log - verifyTotalSongTracks passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:31.699 [Test worker] Log - addSongToPlaylist started!
+[WARN ] 2024-06-02 06:47:33.294 [Test worker] Log - addSongToPlaylist skipped
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:35.361 [Test worker] Log - addSongToPlaylist started!
+[ERROR] 2024-06-02 06:47:37.166 [Test worker] Log - addSongToPlaylist failed!
+[INFO ] 2024-06-02 06:47:37.166 [Test worker] Log - screen shot taken for failed test addSongToPlaylist
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:39.313 [Test worker] Log - createPlaylistDuplicateName started!
+[INFO ] 2024-06-02 06:47:40.448 [Test worker] Log - createPlaylistDuplicateName passed!
+Connection to Koel database closed: true
+Connected to Koel database: true
+[INFO ] 2024-06-02 06:47:42.553 [Test worker] Log - checkDbForEditedPl started!
+[INFO ] 2024-06-02 06:47:42.634 [Test worker] Log - checkDbForEditedPl passed!
+Connection to Koel database closed: true
+[INFO ] 2024-06-02 06:47:42.753 [Test worker] Log - deleteAllPlaylists started!
+[WARN ] 2024-06-02 06:47:42.754 [Test worker] Log - deleteAllPlaylists skipped
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 51135
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717335999.196][WARNING]: FromSockAddr failed on netmask
+[1717335999.196][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336001.280][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:46:41 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:46:41 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:46:41 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:46:41 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 61680
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336008.888][WARNING]: FromSockAddr failed on netmask
+[1717336008.888][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336009.443][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:46:49 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:46:49 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:46:49 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:46:49 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 63582
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336012.275][WARNING]: FromSockAddr failed on netmask
+[1717336012.275][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336012.827][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:46:52 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:46:52 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:46:52 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:46:52 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 58628
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336015.873][WARNING]: FromSockAddr failed on netmask
+[1717336015.873][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336016.429][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:46:56 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:46:56 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:46:56 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:46:56 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 54304
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336019.242][WARNING]: FromSockAddr failed on netmask
+[1717336019.242][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336019.795][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:46:59 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:46:59 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:46:59 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:46:59 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 57066
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336022.539][WARNING]: FromSockAddr failed on netmask
+[1717336022.539][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336023.110][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:03 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:03 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:03 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:03 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 51036
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336025.902][WARNING]: FromSockAddr failed on netmask
+[1717336025.902][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336026.463][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:06 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:06 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:06 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:06 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 52975
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336031.587][WARNING]: FromSockAddr failed on netmask
+[1717336031.587][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336032.145][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:12 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:12 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:12 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:12 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 55485
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336039.375][WARNING]: FromSockAddr failed on netmask
+[1717336039.375][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336039.925][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:19 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:19 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:19 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:19 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 58128
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336042.286][WARNING]: FromSockAddr failed on netmask
+[1717336042.286][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336042.811][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:22 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:22 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:22 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:22 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 58231
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336044.384][WARNING]: FromSockAddr failed on netmask
+[1717336044.384][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336044.944][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:24 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:25 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:25 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:25 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 54631
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336046.641][WARNING]: FromSockAddr failed on netmask
+[1717336046.641][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336047.240][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:27 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:27 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:27 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:27 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 60995
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336049.639][WARNING]: FromSockAddr failed on netmask
+[1717336049.639][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336050.194][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:30 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:30 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:30 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:30 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 57355
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336053.417][WARNING]: FromSockAddr failed on netmask
+[1717336053.417][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336053.961][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:34 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:34 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:34 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:34 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 62099
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336057.294][WARNING]: FromSockAddr failed on netmask
+[1717336057.294][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336057.860][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:37 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:37 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:37 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:37 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 58900
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1717336060.578][WARNING]: FromSockAddr failed on netmask
+[1717336060.578][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1717336061.114][WARNING]: This version of ChromeDriver has not been tested with Chrome version 125.
+Jun 02, 2024 6:47:41 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 02, 2024 6:47:41 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 125, so returning the closest version found: a no-op implementation
+Jun 02, 2024 6:47:41 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 125.
+Jun 02, 2024 6:47:41 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+</testsuite>
