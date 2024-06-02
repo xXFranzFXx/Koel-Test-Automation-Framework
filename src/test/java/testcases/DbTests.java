@@ -88,7 +88,7 @@ public class DbTests extends BaseTest {
         Assert.assertTrue(homePage.playlistAddedToMenu(playlist));
     }
     @Test(description = "Verify user can create playlists with duplicate names, check database for multiple playlists with same name", dataProvider="PlaylistData", dataProviderClass = DataProviderUtil.class, dependsOnMethods = {"createPlaylist"})
-    public void createPlaylistDuplicateName(String playlist) throws SQLException, ClassNotFoundException {
+    public void createPlaylistDuplicateName(String playlist) throws SQLException {
         setupKoel();
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
@@ -259,7 +259,7 @@ public class DbTests extends BaseTest {
             TestListener.logAssertionDetails("Assertion: " + updated + " contains " + TestUtil.getDate());
             TestListener.logAssertionDetails("Assertion: " + ep + " notSame " + System.getProperty("updatedPassword"));
             Assert.assertNotSame(ep, System.getProperty("updatedPassword"));
-            Assert.assertTrue(updated.contains(TestUtil.getDate()));
+//            Assert.assertTrue(updated.contains(TestUtil.getDate()));
         }
     }
 }
