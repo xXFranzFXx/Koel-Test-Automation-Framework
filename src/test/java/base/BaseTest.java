@@ -69,7 +69,7 @@ public class BaseTest{
             case "MicrosoftEdge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments(new String[]{"--remote-allow-origins=*", "--disable-notifications", "--start-maximized"});
+                edgeOptions.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized");
                 return driver = new EdgeDriver(edgeOptions);
             //gradle clean test -Dbrowser=grid-edge
             case "grid-edge":
@@ -113,7 +113,7 @@ public class BaseTest{
         ChromeDriverService service = new ChromeDriverService.Builder().usingAnyFreePort().build();
         ChromeOptions options = new ChromeOptions();
         TestListener eventListener = new TestListener();
-        options.addArguments(new String[]{"--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito", "--disable-dev-shm-usage", "--safebrowsing-disable-download-protection"});
+        options.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito", "--disable-dev-shm-usage", "--safebrowsing-disable-download-protection");
         //options.addArguments("--headless");
         options.setExperimentalOption("prefs", setDownloadDir());
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
