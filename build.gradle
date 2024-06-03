@@ -37,4 +37,8 @@ test {
         suites "src/test/resources/${suite}"    //gradle clean test -Psuite=suiteName.xml
         systemProperty "browser", System.getProperty("browser")
     }
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED"
+    }
 }
+
