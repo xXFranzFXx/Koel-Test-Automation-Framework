@@ -1,5 +1,6 @@
 .gradle
-/build/
+bin/
+build/
 #build/*
 #!build/test-results/
 .idea*
