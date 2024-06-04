@@ -41,4 +41,7 @@ test {
         events "PASSED", "FAILED", "SKIPPED"
     }
 }
+tasks.withType(JavaCompile) {
+    options.deprecation = true
+}
 
