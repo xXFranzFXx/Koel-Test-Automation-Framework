@@ -22,6 +22,7 @@ import util.listeners.TestListener;
 
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import java.time.Duration;
@@ -94,7 +95,7 @@ public class BaseTest{
                 return setupDefaultBrowser();
         }
     }
-    public  WebDriver lambdaTest() throws MalformedURLException {
+    public  WebDriver lambdaTest() throws MalformedURLException, URISyntaxException {
         String username = System.getProperty("lambdaTestUser");
         String authKey = System.getProperty("lambdaTestKey");
         String hub = "@hub.lambdatest.com/wd/hub";
@@ -106,7 +107,8 @@ public class BaseTest{
         caps.setCapability("build", "TestNG with Java");
         caps.setCapability("name", BaseTest.class.getName());
         caps.setCapability("plugin", "java-testNG");
-        return new RemoteWebDriver(new URL("https://" + username + ":" + authKey + hub), caps);
+        URL url = new URI("https://" + username + ":" + authKey + hub).toURL();
+        return new RemoteWebDriver(url, caps);
     }
     private  WebDriver setupDefaultBrowser() {
         WebDriverManager.chromedriver().driverVersion("124").setup();
