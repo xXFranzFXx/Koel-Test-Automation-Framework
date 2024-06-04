@@ -49,7 +49,7 @@ public class BaseTest{
     }
     @BeforeMethod
     @Parameters({"baseURL"})
-    public  void setupBrowser(String baseURL) throws MalformedURLException {
+    public  void setupBrowser(String baseURL) throws MalformedURLException, URISyntaxException {
         threadDriver.set(pickBrowser(System.getProperty("browser", "")));
         Reporter.log("browser is: " + System.getProperty("browser"));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -57,7 +57,7 @@ public class BaseTest{
         getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
         navigateTo(baseURL);
     }
-    public   WebDriver pickBrowser(String browser) throws MalformedURLException {
+    public   WebDriver pickBrowser(String browser) throws MalformedURLException, URISyntaxException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridURL = "http://192.168.0.224:4444";
         switch (browser) {
