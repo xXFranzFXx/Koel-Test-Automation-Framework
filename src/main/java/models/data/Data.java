@@ -180,5 +180,4 @@ public class Data {
     public void setLatestVersion(String latestVersion) {
         this.latestVersion = latestVersion;
     }
-
 }
