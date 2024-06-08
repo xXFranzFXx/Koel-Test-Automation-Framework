@@ -527,8 +527,9 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickCreateNewPlaylist() {
+        By createPlBtn = By.cssSelector("i[data-testid='sidebar-create-playlist-btn']");
         moveToElement(createNewPlaylistBtnLocator);
-        createNewPlaylistBtn.click();
+        find(createPlBtn).click();
         return this;
     }
 
@@ -664,6 +665,11 @@ public class HomePage extends BasePage {
     public List<String> recentlyPlayedTitles() {
         List<WebElement> details = findElements(recentlyPlayedDetails);
         return details.stream().map(WebElement::getText).toList();
+    }
+
+    public HomePage wait(int seconds) {
+        pause(seconds);
+        return this;
     }
 }
 

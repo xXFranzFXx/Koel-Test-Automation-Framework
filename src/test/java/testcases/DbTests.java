@@ -120,7 +120,9 @@ public class DbTests extends BaseTest {
         String playlistName = generatePlaylistName(maxLength);
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
-                .enterPlaylistName(playlistName);
+                .enterPlaylistName(playlistName)
+                        .wait(4);
+
         Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName), "Playlist not found in database");
         Assert.assertTrue(homePage.playlistAddedToMenu(playlistName), "Playlist was not successfully created");
     }
