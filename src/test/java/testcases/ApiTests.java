@@ -5,6 +5,7 @@ import db.KoelDb;
 import io.restassured.response.Response;
 import models.data.Data;
 import models.data.Interaction;
+import models.information.Song;
 import models.playlist.Playlist;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
@@ -187,7 +188,7 @@ public class ApiTests extends BaseTest {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
         }
     }
-    @Test
+    @Test (dataProvider = "ApiData", dataProviderClass = DataProviderUtil.class)
     public void getRecentlyPlayedSongIds() {
         Response response = given()
                 .spec(getAuthRequestSpec())
@@ -253,5 +254,21 @@ public class ApiTests extends BaseTest {
         TestListener.logRsDetails("ui songs: " + rPlayedSongs);
         TestListener.logAssertionDetails("All recently played songs in db and ui are correct: " + (rPlayedSongs.size() == dbSongs.size()));
         KoelDb.closeDatabaseConnection();
+    }
+    @Test
+    public void getSongExtraInfo(String song) {
+        Response response = given()
+                .spec(getAuthRequestSpec())
+                .contentType("application/json")
+                .accept("application/json")
+                .when()
+                .get("https://qa.koel.app/api/'"+song+"'/info")
+                .then()
+                .assertThat()
+                .statusCode(200)
+                .extract().response();
+
+        Song songInfo = response.as(Song.class);
+        System.out.println(songInfo.getAlbum_info());
     }
 }

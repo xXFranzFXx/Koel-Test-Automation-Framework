@@ -5,9 +5,9 @@
     <listener class-name="util.listeners.TestListener"/>
     <listener class-name="util.listeners.AnnotationTransformer"/>
 </listeners>
-    <test name="E2E">
     <parameter name="baseURL" value="https://qa.koel.app/"/>
     <parameter name="song" value="dark"/>
+    <test name="E2E">
     <classes>
         <class name="testcases.DbTests"/>
         <class name="testcases.ApiTests"/>

@@ -45,7 +45,7 @@ public class DataProviderUtil {
     }
     @DataProvider(name="ApiData")
     public Object[][] apiData(Method method){
-        if(method.getName().equalsIgnoreCase("increasePlayCount")) {
+        if(method.getName().equalsIgnoreCase("increasePlayCount") || method.getName().equalsIgnoreCase("getSongExtraInfo")) {
             return new Object[][]{
                     {"06cd19b77127f1e7f889ecad54376b30"},
                     {"08116cdc269c9f19964369e4bb1ab343"},
