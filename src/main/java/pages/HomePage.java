@@ -189,7 +189,7 @@ public class HomePage extends BasePage {
     private By cmDelete= By.xpath("//li[text()[contains(.,'Delete')]]");
     private By recentlyPlayedDetails = By.cssSelector("#homeWrapper .recent-song-list .details");
     private By okBtn = By.xpath( "//div[@class='alertify']//nav/button[@class='ok']");
-
+    private By createPlBtn = By.cssSelector("i[data-testid='sidebar-create-playlist-btn']");
     /**
      * INFO panel components end
      */
@@ -527,7 +527,6 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickCreateNewPlaylist() {
-        By createPlBtn = By.cssSelector("i[data-testid='sidebar-create-playlist-btn']");
         moveToElement(createNewPlaylistBtnLocator);
         find(createPlBtn).click();
         return this;
