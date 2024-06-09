@@ -541,8 +541,8 @@ public class HomePage extends BasePage {
 
     public HomePage contextMenuNewSmartlist() {
         moveToElement(contextMenuNewSmartlst);
-       click(selectNewSmartList);
-       return this;
+        click(selectNewSmartList);
+        return this;
     }
 
     public HomePage enterPlaylistName(String playlist) {

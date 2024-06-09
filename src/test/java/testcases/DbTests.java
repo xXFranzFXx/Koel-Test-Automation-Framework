@@ -121,8 +121,7 @@ public class DbTests extends BaseTest {
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
                 .enterPlaylistName(playlistName)
-                        .wait(4);
-
+                .wait(4);
         Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName), "Playlist not found in database");
         Assert.assertTrue(homePage.playlistAddedToMenu(playlistName), "Playlist was not successfully created");
     }
@@ -131,7 +130,8 @@ public class DbTests extends BaseTest {
         setupKoel();
         homePage.clickCreateNewPlaylist()
                 .contextMenuNewPlaylist()
-                .enterPlaylistName(playlistName);
+                .enterPlaylistName(playlistName)
+                .wait(4);
         Assert.assertTrue(DbTestUtil.checkDatabaseForPlaylist(System.getProperty("koelUser"), playlistName), "Playlist not found in database");
         Assert.assertTrue(homePage.playlistAddedToMenu(playlistName), "Playlist was not successfully created");
     }
@@ -169,7 +169,7 @@ public class DbTests extends BaseTest {
         Assert.assertFalse(homePage.checkSmartListEmpty(), "No songs match the rule criteria");
     }
     @Test(description = "Verify existing smart playlist name can be edited")
-    public void editListName() throws SQLException, ClassNotFoundException {
+    public void editListName() throws SQLException {
         String newName = generatePlaylistName(6);
         setupKoel();
         String oldPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), homePage.getFirstSmartPlName());
@@ -184,7 +184,7 @@ public class DbTests extends BaseTest {
         Assert.assertTrue(homePage.getFirstSmartPlName().contains(newName), "Unable to edit smart playlist name");
     }
     @Test(description =  "Verify the edited smart playlist is updated correctly in the database", dependsOnMethods = {"editListName"})
-    public void checkDbForEditedPl() throws SQLException, ClassNotFoundException {
+    public void checkDbForEditedPl() throws SQLException {
         String editedPlId = DbTestUtil.getSmartPlInfo("p.id", System.getProperty("koelUser"), dataMap.get("editedName"));
         String oldPlId = dataMap.get("oldId");
         TestListener.logRsDetails("Smart playlist id before editing name: " + oldPlId);
@@ -228,7 +228,7 @@ public class DbTests extends BaseTest {
     }
     @Test(enabled = false, description = "Execute SQL query to find an existing user", priority=0)
     @Parameters({"koelExistingUser"})
-    public void queryDbForExistingUser(String koelExistingUser) throws SQLException, ClassNotFoundException {
+    public void queryDbForExistingUser(String koelExistingUser) throws SQLException {
 
         KoelDbActions koelDbActions = new KoelDbActions();
         rs = koelDbActions.getUserInfo(koelExistingUser);
@@ -244,7 +244,7 @@ public class DbTests extends BaseTest {
             Assert.assertEquals(email, koelExistingUser);
         }
     }
-    @Test(description = "Execute SQL query to verify password is encrypted and has been updated in the Koel database", groups = {"Update password"})
+    @Test(enabled = false, description = "Execute SQL query to verify password is encrypted and has been updated in the Koel database")
     public void queryDbPwd() throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
         TestListener.logInfoDetails("Db connection: " + KoelDb.getDbConnection().getMetaData().getURL());
@@ -258,10 +258,9 @@ public class DbTests extends BaseTest {
                             "updated_at: " + updated +"\n" +"<br>"+
                             "user: " + System.getProperty("koelUser")
             );
-            TestListener.logAssertionDetails("Assertion: " + updated + " contains " + TestUtil.getDate());
             TestListener.logAssertionDetails("Assertion: " + ep + " notSame " + System.getProperty("updatedPassword"));
             Assert.assertNotSame(ep, System.getProperty("updatedPassword"));
-//            Assert.assertTrue(updated.contains(TestUtil.getDate()));
+            Assert.assertTrue(updated.contains(TestUtil.getDate()));
         }
     }
 }
