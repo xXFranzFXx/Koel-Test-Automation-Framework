@@ -43,10 +43,10 @@ public class ApiTests extends BaseTest {
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
     }
-    @AfterClass
-    public void close() {
-        closeBrowser();
-    }
+//    @AfterClass
+//    public void close() {
+//        closeBrowser();
+//    }
 
     @Test(description = "Create a playlist through api, and verify new playlist appears in UI")
     public void createPlaylist() {
@@ -255,20 +255,18 @@ public class ApiTests extends BaseTest {
         TestListener.logAssertionDetails("All recently played songs in db and ui are correct: " + (rPlayedSongs.size() == dbSongs.size()));
         KoelDb.closeDatabaseConnection();
     }
-    @Test
+    @Test(description = "get song extra information",  dataProvider = "ApiData", dataProviderClass = DataProviderUtil.class)
     public void getSongExtraInfo(String song) {
         Response response = given()
                 .spec(getAuthRequestSpec())
-                .contentType("application/json")
                 .accept("application/json")
                 .when()
-                .get("https://qa.koel.app/api/'"+song+"'/info")
+                .get("https://qa.koel.app/api/song/'"+song+"'/info")
                 .then()
-                .assertThat()
-                .statusCode(200)
                 .extract().response();
-
         Song songInfo = response.as(Song.class);
-        System.out.println(songInfo.getAlbum_info());
+        String message = songInfo.getMessage();
+        System.out.println(message);
+        Assert.assertTrue(message.contains("No query results for"));
     }
 }

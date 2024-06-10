@@ -5,16 +5,27 @@ public class Song {
     private String album_info;
     private String artist_info;
     private String youtube;
+    private String message;
 
-    public Song(String lyrics, String album_info, String artist_info, String youtube) {
+    public Song(String lyrics, String album_info, String artist_info, String youtube, String message) {
         this.lyrics = lyrics;
         this.album_info = album_info;
         this.artist_info = artist_info;
         this.youtube = youtube;
+        this.message = message;
     }
     public Song () {
 
     }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public String getLyrics() {
         return lyrics;
     }
