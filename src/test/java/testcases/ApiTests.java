@@ -31,22 +31,19 @@ import static io.restassured.RestAssured.given;
 public class ApiTests extends BaseTest {
     HomePage homePage;
     LoginPage loginPage;
+    private final String baseUrl = "https://qa.koel.app/api";
     ApiTestDataHandler apiTestDataHandler = new ApiTestDataHandler();
-    private final String playlistURL = "https://qa.koel.app/api/playlist";
-    private final String dataURL = "https://qa.koel.app/api/data";
-    private final String songInteraction = "https://qa.koel.app/api/interaction/play";
-    private final String recentlyPlayed = "https://qa.koel.app/api/interaction/recently-played";
-    private final String likeUnlikeOneSong = "https://qa.koel.app/api/like";
+    private final String playlistURL = baseUrl + "/playlist";
+    private final String dataURL = baseUrl + "/data";
+    private final String songInteraction = baseUrl + "/interaction/play";
+    private final String recentlyPlayed = baseUrl + "/interaction/recently-played";
+    private final String likeUnlikeOneSong = baseUrl + "/like";
 
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
     }
-//    @AfterClass
-//    public void close() {
-//        closeBrowser();
-//    }
 
     @Test(description = "Create a playlist through api, and verify new playlist appears in UI")
     public void createPlaylist() {
@@ -261,7 +258,7 @@ public class ApiTests extends BaseTest {
                 .spec(getAuthRequestSpec())
                 .accept("application/json")
                 .when()
-                .get("https://qa.koel.app/api/song/'"+song+"'/info")
+                .get(baseUrl + "/song/'"+song+"'/info")
                 .then()
                 .extract().response();
         Song songInfo = response.as(Song.class);
