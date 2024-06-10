@@ -20,6 +20,7 @@ public class LoginPage extends BasePage{
     private WebElement passwordField;
     @FindBy(xpath = "//a[@href='registration']")
     private WebElement registrationLinkLocator;
+    private By registrationLink = By.cssSelector("a[href='registration']");
     private By emailInput = By.cssSelector("[type='email']");
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
@@ -59,7 +60,7 @@ public class LoginPage extends BasePage{
         registrationLinkLocator.click();
     }
     public boolean getRegistrationLink() {
-     WebElement registrationLink =  wait.until(ExpectedConditions.visibilityOf(registrationLinkLocator));
-     return registrationLink.isDisplayed();
+     WebElement registrationLnk = find(registrationLink);
+     return registrationLnk.isDisplayed();
     }
 }
