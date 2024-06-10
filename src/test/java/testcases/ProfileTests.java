@@ -47,8 +47,7 @@ public class ProfileTests extends BaseTest {
     public void choosePinesTheme() {
         setupProfile();
         try {
-            profilePage
-                    .clickTheme("pines");
+            profilePage.clickTheme("pines");
             boolean themeChanged = profilePage.verifyTheme("pines");
             TestListener.logAssertionDetails("Changed theme to pines: " + themeChanged);
             Assert.assertTrue(themeChanged);
