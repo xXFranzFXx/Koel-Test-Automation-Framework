@@ -10,6 +10,8 @@ import util.listeners.TestListener;
 import java.io.*;
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class ExcelFileUtil {
@@ -83,15 +85,9 @@ public class ExcelFileUtil {
         fileOut.close();
     }
     private static List<String> getSheetNames(XSSFWorkbook wb) {
-//        List<String> sheetNames = new ArrayList<>();
-//        for (int i = 0; i < wb.getNumberOfSheets(); i++) {
-//            sheetNames.add(wb.getSheetName(i));
-//        }
-//        return sheetNames;
-      return IntStream.rangeClosed(0, wb.getNumberOfSheets())
+      return IntStream.range(0, wb.getNumberOfSheets())
               .boxed()
-              .map(wb::getSheetName)
-              .toList();
+              .map(wb::getSheetName).toList();
     }
 
     private static boolean sheetExists(XSSFWorkbook wb, String sheetName) {
