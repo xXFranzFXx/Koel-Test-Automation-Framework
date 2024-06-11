@@ -10,6 +10,7 @@ import util.listeners.TestListener;
 import java.io.*;
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class ExcelFileUtil {
     private static final String excelFilePath = System.getProperty("excelPath");
@@ -35,7 +36,7 @@ public class ExcelFileUtil {
             wb = new XSSFWorkbook();
             System.out.println(fileName + " either does not exist" + " or can't open, creating new file");
         }
-
+        
         for (String name : testNames) {
             try {
                 XSSFSheet sheet = makeSheet(wb, name, resultSetMap);
@@ -82,11 +83,15 @@ public class ExcelFileUtil {
         fileOut.close();
     }
     private static List<String> getSheetNames(XSSFWorkbook wb) {
-        List<String> sheetNames = new ArrayList<>();
-        for (int i = 0; i < wb.getNumberOfSheets(); i++) {
-            sheetNames.add(wb.getSheetName(i));
-        }
-        return sheetNames;
+//        List<String> sheetNames = new ArrayList<>();
+//        for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+//            sheetNames.add(wb.getSheetName(i));
+//        }
+//        return sheetNames;
+      return IntStream.rangeClosed(0, wb.getNumberOfSheets())
+              .boxed()
+              .map(wb::getSheetName)
+              .toList();
     }
 
     private static boolean sheetExists(XSSFWorkbook wb, String sheetName) {
