@@ -111,7 +111,7 @@ public class HomePage extends BasePage {
     private WebElement rADownloadBtn;
     @FindBy(xpath = "//span[@class='album-thumb-wrapper']//span[@class='album-thumb']")
     private WebElement playBtnBefore;
-    @FindBy(xpath = "//section[@id='playlists']//h1")
+    @FindBy(xpath = "//section[@id='playlists']/h1")
     private WebElement createNewPlaylistBtnLocator;
     @FindBy(xpath = "//section[@id='playlists']//i[@data-testid='sidebar-create-playlist-btn']")
     private WebElement createNewPlaylistBtn;
@@ -527,8 +527,8 @@ public class HomePage extends BasePage {
     }
 
     public HomePage clickCreateNewPlaylist() {
-        moveToElement(createNewPlaylistBtnLocator);
-        find(createPlBtn).click();
+        pause(2);
+        createNewPlaylistBtn.click();
         return this;
     }
 

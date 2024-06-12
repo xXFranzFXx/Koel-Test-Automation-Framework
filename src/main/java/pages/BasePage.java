@@ -92,7 +92,7 @@ public class BasePage {
     public boolean verifyTheme (String theme) {
          return themes.stream().anyMatch(e -> waitForAttribute(pageTheme, "data-theme", theme));
     }
-    public void moveToElement(WebElement webElement) {
+    protected void moveToElement(WebElement webElement) {
        actions.moveToElement(webElement).perform();
     }
     protected boolean waitForAttribute(By locator, String attribute, String value) {
