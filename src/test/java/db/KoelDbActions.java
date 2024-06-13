@@ -38,9 +38,11 @@ public class KoelDbActions extends KoelDb{
             SELECT * FROM dbkoel.songs s JOIN dbkoel.artists a ON a.id = s.artist_id WHERE a.name = ?
             """;
     private String songSpecificLength = """
-            SELECT * FROM dbkoel.songs WHERE LENGTH BETWEEN ? AND ?""";
+            SELECT * FROM dbkoel.songs WHERE LENGTH BETWEEN ? AND ?
+            """;
     private String usersThatHavePlaylsts = """
-            SELECT * FROM dbkoel.users u RIGHT JOIN dbkoel.playlists p ON u.id = p.user_id""";
+            SELECT * FROM dbkoel.users u RIGHT JOIN dbkoel.playlists p ON u.id = p.user_id
+            """;
     private final String getTotalDuration = """
              SELECT SUM(length) as duration FROM dbkoel.songs
              """;
