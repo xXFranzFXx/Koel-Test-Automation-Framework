@@ -23,13 +23,7 @@ public class TestUtil {
         String currentDir = System.getProperty("user.dir");
         FileUtils.copyFile(scrFile, new File(currentDir +"/reports/extent-reports/screenshots/" + fileName + ".png"));
     }
-    public String getScreenShotPath(String testCaseName, WebDriver driver) throws IOException {
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File source = ts.getScreenshotAs(OutputType.FILE);
-        String destinationFile = "/reports/extent-reports/screenshots/" + testCaseName + ".png";
-        FileUtils.copyFile(source, new File(destinationFile));
-        return destinationFile;
-    }
+
     private Date getTime(long millis) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(millis);
@@ -63,5 +57,4 @@ public class TestUtil {
             Reporter.log("There were no downloaded files present to delete", true);
         }
     }
-
 }
