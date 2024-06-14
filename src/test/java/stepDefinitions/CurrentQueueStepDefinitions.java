@@ -14,6 +14,8 @@ public class CurrentQueueStepDefinitions extends BaseDefinitions {
     LoginPage loginPage;
     HomePage homePage;
     CurrentQueuePage currentQueuePage;
+    private static String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])";
+    private static String songTotalRe = "^\\d{1,}[^\\W•]";
     @Given("User has songs playing")
     public void userHasSongsPlaying() {
         loginPage = new LoginPage(getDriver());
@@ -36,10 +38,14 @@ public class CurrentQueueStepDefinitions extends BaseDefinitions {
 
     @And("Total count of songs should be displayed")
     public void totalCountOfSongsShouldBeDisplayed() {
+        currentQueuePage = new CurrentQueuePage(getDriver());
+        Assert.assertTrue(currentQueuePage.checkTotalOrDuration(songTotalRe, currentQueuePage.duration()));
     }
 
     @And("Duration of count of all songs should be displayed")
     public void durationOfCountOfAllSongsShouldBeDisplayed() {
+        currentQueuePage = new CurrentQueuePage(getDriver());
+        Assert.assertTrue(currentQueuePage.checkTotalOrDuration(durationRe, currentQueuePage.duration()));
     }
 
     @And("ID, Title, Artist, ALbum and Time should be displayed")
@@ -56,6 +62,7 @@ public class CurrentQueueStepDefinitions extends BaseDefinitions {
 
     @When("User double clicks on a song")
     public void userDoubleClicksOnASong() {
+
     }
 
     @Then("User will navigate to Current Queue page")
