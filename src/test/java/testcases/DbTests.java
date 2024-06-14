@@ -229,7 +229,6 @@ public class DbTests extends BaseTest {
     @Test(enabled = false, description = "Execute SQL query to find an existing user", priority=0)
     @Parameters({"koelExistingUser"})
     public void queryDbForExistingUser(String koelExistingUser) throws SQLException {
-
         KoelDbActions koelDbActions = new KoelDbActions();
         rs = koelDbActions.getUserInfo(koelExistingUser);
         if (rs.next()) {
