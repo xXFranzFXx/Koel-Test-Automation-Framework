@@ -171,10 +171,12 @@ public class HomePage extends BasePage {
     private WebElement emptySmartlistIcon;
     @FindBy(css = "#playlistWrapper .text")
     private WebElement emptySmartListText;
+    @FindBy(css = "#extraTabLyrics")
+    private WebElement lyricsTab;
     private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class='fa fa-heart-o']");
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
-    private final By lyricsTabInfo = By.cssSelector(".none span");
+    private final By lyricsTabInfo = By.cssSelector("#lyrics > div > div > div:nth-child(1)");
     private final By artisTabLocator = By.id("extraTabArtist");
     private final By artistTabInfo = By.cssSelector("[data-test='artist-info'] h1.name span");
     private final By albumTabLocator = By.id("extraTabAlbum");
@@ -321,6 +323,7 @@ public class HomePage extends BasePage {
         return getTextFromElement(findPresentElementBy(infoLocator));
     }
     public String clickLyricsTab() {
+//        lyricsTab.click();
         return clickTabForInfo(lyricsTabLocator, lyricsTabInfo);
     }
 

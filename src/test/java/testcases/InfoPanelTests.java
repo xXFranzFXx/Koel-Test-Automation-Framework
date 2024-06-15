@@ -110,4 +110,21 @@ public class InfoPanelTests extends BaseTest {
         }
         Reporter.log("Finished testing functionality of all tabs in info panel", true);
     }
+    @Test(description = "Get Lyrics from Lyrics info Tab")
+    public void getLyrics() {
+        setupInfoPanel();
+        String lyricsInfoText = "This song has no lyrics but for testing purposes here is some:";
+        checkInfoPanel();
+        try {
+            homePage.searchSong("emotional")
+                    .clickSearchResultThumbnail();
+            String displayedLyricsString = homePage.clickLyricsTab();
+            TestListener.logInfoDetails("Lyrics tab: " + displayedLyricsString);
+            TestListener.logAssertionDetails("Correct info is displayed in info panel lyrics tab: " + displayedLyricsString.contains(lyricsInfoText));
+            Assert.assertTrue(displayedLyricsString.contains(lyricsInfoText));
+        } catch (Exception e) {
+            TestListener.logExceptionDetails("Error: " + e);
+            Assert.assertFalse(false);
+        }
+    }
 }
