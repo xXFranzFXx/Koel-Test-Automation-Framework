@@ -262,6 +262,33 @@ public class DbTests extends BaseTest {
             Assert.assertTrue(updated.contains(TestUtil.getDate()));
         }
     }
+    @Test(description = "verify lyrics displayed in infopanel match the lyrics for that same song in the database")
+    public void checkLyrics(){
+        setupKoel();
+        KoelDbActions koelDbActions = new KoelDbActions();
+        if(!homePage.checkVisibility()){
+            homePage.clickInfoButton();
+        }
+        try {
+            homePage.searchSong("emotional")
+                    .clickSearchResultThumbnail();
+            dataMap.put("displayedLyrics", homePage.clickLyricsTab());
+            TestListener.logInfoDetails("Lyrics tab: " + dataMap.get("displayedLyrics"));
+        } catch (Exception e) {
+            TestListener.logExceptionDetails("Error: " + e);
+            Assert.assertFalse(false);
+        }
+        try {
+            rs = koelDbActions.lyricsQuery();
+            if (rs.next()) {
+                dataMap.put("dbLyrics", rs.getString("lyrics"));
+            }
+        } catch (Exception e) {
+                TestListener.logExceptionDetails("Error: " + e);
+                Assert.assertFalse(false);
+            }
+        Assert.assertEquals(dataMap.get("displayedLyrics"), dataMap.get("dbLyrics"));
+        }
 }
 
 
