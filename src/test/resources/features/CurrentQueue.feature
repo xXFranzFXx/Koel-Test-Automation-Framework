@@ -41,12 +41,14 @@ Feature: Current Queue
       When User clicks 'Shuffle All' button
       Then Currently playing songs will be shuffled
 
-    Scenario: Clicking the 'Clear' button will clear the page and a placeholder message will be displayed
+    Scenario Outline: Clicking the 'Clear' button will clear the page and a placeholder message will be displayed
       Given User has songs playing
       Then User will navigate to Current Queue page
       When User clicks 'Clear' button
       Then Songs will disappear
-      And the message "<No songs queued. How about shuffling all songs?>" will appear
-
+      And the message "<message>" will appear
+      Examples:
+      |message|
+      |No songs queued. How about shuffling all songs?|
 
 
