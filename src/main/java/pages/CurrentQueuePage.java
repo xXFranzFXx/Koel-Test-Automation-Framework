@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Reporter;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +23,7 @@ public class CurrentQueuePage extends  BasePage{
             @FindBy(css = "#queueWrapper td.album"),
             @FindBy(css = "#queueWrapper td.time.text-secondary")
     })
+    private List<WebElement> columns;
     @FindBy(xpath = "//span[@class='meta text-secondary']//span[@data-test='list-meta']")
     private WebElement durationLocator;
     private final By queueTableRows = By.xpath("//section[@id='queueWrapper']//table[@class='items']/tr");
@@ -64,6 +66,11 @@ public class CurrentQueuePage extends  BasePage{
     public boolean queueListExists() {
         int li = findElements(queueTableRows).size();
         return (li > 0);
+    }
+    public boolean findSongInfo() {
+        return columns.stream()
+                .map(WebElement::getText)
+                .noneMatch(String::isEmpty);
     }
 
 

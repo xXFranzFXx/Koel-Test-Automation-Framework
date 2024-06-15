@@ -5,6 +5,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.Assert;
 import pages.BasePage;
 import pages.CurrentQueuePage;
@@ -54,6 +55,8 @@ public class CurrentQueueStepDefinitions extends BaseDefinitions {
 
     @And("ID, Title, Artist, ALbum and Time should be displayed")
     public void idTitleArtistALbumAndTimeShouldBeDisplayed() {
+        currentQueuePage = new CurrentQueuePage(getDriver());
+        Assert.assertTrue(currentQueuePage.findSongInfo());
     }
 
     @Given("User clicks on {string}")
