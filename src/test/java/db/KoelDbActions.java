@@ -64,6 +64,9 @@ public class KoelDbActions extends KoelDb{
     private String checkSongs = """
             SELECT title from dbkoel.songs
             """;
+    private String getLyrics = """
+            SELECT a.lyrics FROM dbkoel.songs a WHERE a.id='06cd19b77127f1e7f889ecad54376b30'
+            """;
     private static String createQueryList(int length, String sql, String property) {
         String query = sql + "WHERE " + property + " in (";
         StringBuilder queryBuilder = new StringBuilder(query);
@@ -103,6 +106,9 @@ public class KoelDbActions extends KoelDb{
         }
         rs = st.executeQuery();
         return rs;
+    }
+    public ResultSet lyricsQuery() throws SQLException {
+        return simpleQuery(getLyrics);
     }
 
     public ResultSet artistQuery(String artist) throws SQLException {
