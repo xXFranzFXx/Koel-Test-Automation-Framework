@@ -282,6 +282,7 @@ public class DbTests extends BaseTest {
             rs = koelDbActions.lyricsQuery();
             if (rs.next()) {
                 dataMap.put("dbLyrics", rs.getString("lyrics"));
+                TestListener.logInfoDetails("db Lyrics: " + dataMap.get("dbLyrics"));
             }
         } catch (Exception e) {
                 TestListener.logExceptionDetails("Error: " + e);
