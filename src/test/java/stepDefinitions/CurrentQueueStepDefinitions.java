@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import pages.BasePage;
 import pages.CurrentQueuePage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -33,7 +34,10 @@ public class CurrentQueueStepDefinitions extends BaseDefinitions {
     @Then("Currently playing songs should be listed")
     public void currentlyPlayingSongsShouldBeListed() {
         currentQueuePage = new CurrentQueuePage(getDriver());
-        Assert.assertTrue(currentQueuePage.isSongPlayingCQ());
+        String total = currentQueuePage.extractTotalOrDuration(BasePage.songTotalRe, currentQueuePage.duration());
+        int actualListSize = currentQueuePage.queueListSize();
+        int reported = Integer.parseInt(total);
+        Assert.assertEquals(reported, actualListSize);
     }
 
     @And("Total count of songs should be displayed")
