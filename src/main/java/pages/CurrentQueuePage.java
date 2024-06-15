@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Reporter;
@@ -15,6 +16,12 @@ public class CurrentQueuePage extends  BasePage{
     private WebElement currentQueuePageTitle;
     @FindBy(css = "table.items .song-item.playing")
     private By currentlyPlaying;
+    @FindAll({
+            @FindBy(css = "#queueWrapper td.artist"),
+            @FindBy(css = "#queueWrapper td.title"),
+            @FindBy(css = "#queueWrapper td.album"),
+            @FindBy(css = "#queueWrapper td.time.text-secondary")
+    })
     @FindBy(xpath = "//span[@class='meta text-secondary']//span[@data-test='list-meta']")
     private WebElement durationLocator;
     private final By queueTableRows = By.xpath("//section[@id='queueWrapper']//table[@class='items']/tr");
