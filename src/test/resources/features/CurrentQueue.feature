@@ -23,17 +23,17 @@ Feature: Current Queue
 
     Scenario Outline: Double clicking a song from any of the locations in the side menu will navigate user to Current Queue page
       Given User clicks on "<location>"
-      Then User will navigate to "<location>" page
+      Then User will navigate to "<locationUrl>" page
       When User double clicks on a song
       Then User will navigate to Current Queue page
       Examples:
-      |location|
-      |Home    |
-      |All Songs|
-      |ALbums   |
-      |Artists  |
-      |Recently Played|
-      |playlist       |
+      |location| locationUrl |
+      |Home    | https://qa.koel.app/#!/home |
+      |All Songs| https://qa.koel.app/#!/songs |
+      |ALbums   | https://qa.koel.app/#!/albums |
+      |Artists  | https://qa.koel.app/#!/artists |
+      |Recently Played| https://qa.koel.app/#!/recently-played |
+
 
     Scenario: Clicking the 'Shuffle All' button should shuffle songs
       Given User has songs playing

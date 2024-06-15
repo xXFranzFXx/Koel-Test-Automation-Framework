@@ -20,6 +20,8 @@ public class ArtistsPage extends BasePage{
     //finds the link to any album on the artists page
     @FindBy(xpath = "//section[@id='artistsWrapper']/div/article[1]/span/span/a")
     private WebElement firstArtistAlbumLocator;
+    @FindBy(css = "#artistsWrapper  article:nth-child(1) .control.control-play")
+    private WebElement firstArtistLocator;
     public ArtistsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -37,8 +39,13 @@ public class ArtistsPage extends BasePage{
         contextClick(firstArtistAlbumLocator);
         return this;
     }
-    public void selectPlayAll() {
+    public ArtistsPage selectPlayAll() {
         findElement(playAllLocator);
         playAllLocator.click();
+        return this;
+    }
+    public ArtistsPage playFirstArtist() {
+        clickElement(firstArtistLocator);
+        return this;
     }
 }

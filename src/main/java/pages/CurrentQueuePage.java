@@ -15,8 +15,8 @@ import java.util.regex.Pattern;
 public class CurrentQueuePage extends  BasePage{
     @FindBy(xpath = "//h1[text()[normalize-space()='Current Queue']]")
     private WebElement currentQueuePageTitle;
-    @FindBy(css = "table.items .song-item.playing")
-    private By currentlyPlaying;
+    @FindBy(css = "table.items .song-item.playing .title")
+    private WebElement currentlyPlaying;
     @FindAll({
             @FindBy(css = "#queueWrapper td.artist"),
             @FindBy(css = "#queueWrapper td.title"),
@@ -26,6 +26,12 @@ public class CurrentQueuePage extends  BasePage{
     private List<WebElement> columns;
     @FindBy(xpath = "//span[@class='meta text-secondary']//span[@data-test='list-meta']")
     private WebElement durationLocator;
+    @FindBy(css = "#queueWrapper button.btn-shuffle-all")
+    private WebElement shuffleBtn;
+    @FindBy(css = "#queueWrapper button.btn-clear-queue")
+    private WebElement clearBtn;
+    @FindBy(css = "#queueWrapper div.text")
+    private WebElement emptyQueueText;
     private final By queueTableRows = By.xpath("//section[@id='queueWrapper']//table[@class='items']/tr");
     private final By currentlyPlayingLocator = By.cssSelector("table.items .song-item.playing");
 
@@ -72,8 +78,19 @@ public class CurrentQueuePage extends  BasePage{
                 .map(WebElement::getText)
                 .noneMatch(String::isEmpty);
     }
-
-
-
+    public CurrentQueuePage clickShuffleBtn() {
+        clickElement(shuffleBtn);
+        return this;
+    }
+    public String getCurrentlyPlaying() {
+        return currentlyPlaying.getText();
+    }
+    public CurrentQueuePage clickClearBtn() {
+        clickElement(clearBtn);
+        return this;
+    }
+    public String getEmptyListText() {
+        return emptyQueueText.getText();
+    }
 
 }

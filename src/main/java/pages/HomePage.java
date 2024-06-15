@@ -477,6 +477,17 @@ public class HomePage extends BasePage {
         closeModalAndLogout();
         return this;
     }
+    public HomePage navigateFromSideMenu(String page) {
+        switch(page) {
+            case "Home" -> clickHome();
+            case "All Songs" -> clickAllSongs();
+            case "Albums" -> clickAlbums();
+            case "Artists" -> clickArtists();
+            case "Recently Played" -> clickRecentlyPlayed();
+            default -> clickFavorites();
+        }
+        return this;
+    }
 
     /**
      * Side menu links actions
