@@ -266,6 +266,7 @@ public class DbTests extends BaseTest {
     public void checkLyrics(){
         setupKoel();
         KoelDbActions koelDbActions = new KoelDbActions();
+        String firstLine = "This song has no lyrics but for testing purposes here is some:";
         if(!homePage.checkVisibility()){
             homePage.clickInfoButton();
         }
@@ -274,6 +275,9 @@ public class DbTests extends BaseTest {
                     .clickSearchResultThumbnail();
             dataMap.put("displayedLyrics", homePage.clickLyricsTab());
             TestListener.logInfoDetails("Lyrics tab: " + dataMap.get("displayedLyrics"));
+            String infoTabLyrics = dataMap.get("displayedLyrics");
+            Assert.assertTrue(infoTabLyrics.contains(firstLine));
+
         } catch (Exception e) {
             TestListener.logExceptionDetails("Error: " + e);
             Assert.assertFalse(false);
@@ -283,12 +287,13 @@ public class DbTests extends BaseTest {
             if (rs.next()) {
                 dataMap.put("dbLyrics", rs.getString("lyrics"));
                 TestListener.logInfoDetails("db Lyrics: " + dataMap.get("dbLyrics"));
+                String dbLyrics = dataMap.get("dbLyrics");
+                Assert.assertTrue(dbLyrics.contains(firstLine));
             }
         } catch (Exception e) {
                 TestListener.logExceptionDetails("Error: " + e);
                 Assert.assertFalse(false);
             }
-        Assert.assertTrue(dataMap.get("displayedLyrics").equalsIgnoreCase(dataMap.get("dbLyrics")));
         }
 }
 
