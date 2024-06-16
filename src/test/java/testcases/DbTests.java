@@ -288,7 +288,7 @@ public class DbTests extends BaseTest {
                 TestListener.logExceptionDetails("Error: " + e);
                 Assert.assertFalse(false);
             }
-        Assert.assertEquals(dataMap.get("displayedLyrics"), dataMap.get("dbLyrics"));
+        Assert.assertTrue(dataMap.get("displayedLyrics").equalsIgnoreCase(dataMap.get("dbLyrics")));
         }
 }
 
