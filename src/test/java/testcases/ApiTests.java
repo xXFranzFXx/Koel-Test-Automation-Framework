@@ -180,6 +180,7 @@ public class ApiTests extends BaseTest {
             TestListener.logInfoDetails("Song id: " + id);
             TestListener.logInfoDetails("Play count: " + playCount);
             TestListener.logAssertionDetails("Song playcount is increased: " + songId.equalsIgnoreCase(id));
+            RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
             Assert.assertEquals(songId, id);
          } catch (Exception e) {
             TestListener.logExceptionDetails("Request timed out: " + e.getLocalizedMessage());
@@ -264,6 +265,7 @@ public class ApiTests extends BaseTest {
         Song songInfo = response.as(Song.class);
         String message = songInfo.getMessage();
         System.out.println(message);
+        RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         Assert.assertTrue(message.contains("No query results for"));
     }
 }
