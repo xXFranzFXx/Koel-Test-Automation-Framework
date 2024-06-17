@@ -9,8 +9,6 @@ import pages.LoginPage;
 import pages.ProfilePage;
 import util.listeners.TestListener;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.UUID;
 
 /**
