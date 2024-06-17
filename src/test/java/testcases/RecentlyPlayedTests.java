@@ -2,7 +2,6 @@ package testcases;
 
 import base.BaseTest;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.LoginPage;
