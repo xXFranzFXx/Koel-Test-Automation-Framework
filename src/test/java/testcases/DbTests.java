@@ -25,7 +25,6 @@ public class DbTests extends BaseTest {
     HomePage homePage;
     ArtistsPage artistsPage;
     RegistrationPage registrationPage;
-    ResultSet rs;
     List<String> dataList = new ArrayList<>();
     Map<String, String> dataMap = new HashMap<>();
     Map<String, Object> rsMap = new HashMap<>();
@@ -52,14 +51,15 @@ public class DbTests extends BaseTest {
         setupKoel();
         KoelDbActions koelDbActions = new KoelDbActions();
         allSongsPage.navigateToAllSongs();
-        rs = koelDbActions.totalSongCount();
-        if(rs.next()) {
-            int count = rs.getInt("count");
-            int totalSongsInApp = Integer.parseInt(allSongsPage.getSongTotalFromHeader());
-            TestListener.logInfoDetails("Total song tracks displayed on All Songs page header: " + totalSongsInApp);
-            TestListener.logInfoDetails("Total song tracks in database: " + count);
-            TestListener.logAssertionDetails("Total songs in app matches total songs in database: " + (count == totalSongsInApp));
-            Assert.assertEquals(count, totalSongsInApp, "Total song count displayed in app does not match the total song count from database");
+        try(ResultSet rs = koelDbActions.totalSongCount()){
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                int totalSongsInApp = Integer.parseInt(allSongsPage.getSongTotalFromHeader());
+                TestListener.logInfoDetails("Total song tracks displayed on All Songs page header: " + totalSongsInApp);
+                TestListener.logInfoDetails("Total song tracks in database: " + count);
+                TestListener.logAssertionDetails("Total songs in app matches total songs in database: " + (count == totalSongsInApp));
+                Assert.assertEquals(count, totalSongsInApp, "Total song count displayed in app does not match the total song count from database");
+            }
         }
     }
     @Test(description = "Verify the total duration displayed in All Songs Page matches the sum of all durations in database")
@@ -67,25 +67,25 @@ public class DbTests extends BaseTest {
         setupKoel();
         allSongsPage.navigateToAllSongs();
         KoelDbActions koelDbActions = new KoelDbActions();
-        rs = koelDbActions.totalDuration();
-        if(rs.next()) {
-            int durationFromDb = rs.getInt("duration");
-            String convertedDurationFromDb = TestUtil.convertSecondToHHMMSSString(durationFromDb);
-            String durationInApp = allSongsPage.getDurationFromHeader();
-            TestListener.logInfoDetails("Total duration displayed on All Songs page: " + durationInApp);
-            TestListener.logInfoDetails("Total duration from database: " + convertedDurationFromDb);
-            TestListener.logAssertionDetails("Total duration in app matches total duration in database: " + durationInApp.equals(convertedDurationFromDb));
-            Assert.assertEquals(convertedDurationFromDb, durationInApp, "Duration displayed in app does not match total durtion in database");
+        try (ResultSet rs = koelDbActions.totalDuration()) {
+            if(rs.next()) {
+                int durationFromDb = rs.getInt("duration");String convertedDurationFromDb = TestUtil.convertSecondToHHMMSSString(durationFromDb);
+                String durationInApp = allSongsPage.getDurationFromHeader();
+                TestListener.logInfoDetails("Total duration displayed on All Songs page: " + durationInApp);
+                TestListener.logInfoDetails("Total duration from database: " + convertedDurationFromDb);
+                TestListener.logAssertionDetails("Total duration in app matches total duration in database: " + durationInApp.equals(convertedDurationFromDb));
+                Assert.assertEquals(convertedDurationFromDb, durationInApp, "Duration displayed in app does not match total durtion in database");
+            }
         }
     }
 
     @Test(description = "User can create a playlist", dataProvider="PlaylistData", dataProviderClass = DataProviderUtil.class)
     public void createPlaylist(String playlist) {
-        setupKoel();
-        homePage.clickCreateNewPlaylist()
-                .contextMenuNewPlaylist()
-                .enterPlaylistName(playlist);
-        Assert.assertTrue(homePage.playlistAddedToMenu(playlist));
+            setupKoel();
+            homePage.clickCreateNewPlaylist()
+                    .contextMenuNewPlaylist()
+                    .enterPlaylistName(playlist);
+            Assert.assertTrue(homePage.playlistAddedToMenu(playlist));
     }
     @Test(description = "Verify user can create playlists with duplicate names, check database for multiple playlists with same name", dataProvider="PlaylistData", dataProviderClass = DataProviderUtil.class, dependsOnMethods = {"createPlaylist"})
     public void createPlaylistDuplicateName(String playlist) throws SQLException {
@@ -141,18 +141,19 @@ public class DbTests extends BaseTest {
         artistsPage.navigateToArtistsPage();
         List<String> names = artistsPage.getArtistsNames();
         KoelDbActions koelDbActions = new KoelDbActions();
-        rs = koelDbActions.checkArtistsInDb();
-        while (rs.next()) {
-            String name = rs.getString("name");
-            dataList.add(name);
+        try(ResultSet rs = koelDbActions.checkArtistsInDb()) {
+            while (rs.next()) {
+                String name = rs.getString("name");
+                dataList.add(name);
+            }
+            List<String> differences = new ArrayList<>(dataList);
+            differences.removeAll(names);
+            TestListener.logInfoDetails("Artist names found in app: " + names);
+            TestListener.logInfoDetails("Artist names found in db: " + dataList);
+            TestListener.logRsDetails("Database contains some artists that are not shown in app: " + !differences.isEmpty());
+            TestListener.logAssertionDetails("Artists names are stored correctly: " + (names.size() == dataList.size()));
+            Assert.assertNotEquals(names, dataList);
         }
-        List<String> differences = new ArrayList<>(dataList);
-        differences.removeAll(names);
-        TestListener.logInfoDetails("Artist names found in app: " + names);
-        TestListener.logInfoDetails("Artist names found in db: " + dataList);
-        TestListener.logRsDetails("Database contains some artists that are not shown in app: " + !differences.isEmpty());
-        TestListener.logAssertionDetails("Artists names are stored correctly: " + (names.size()==dataList.size()));
-        Assert.assertNotEquals(names, dataList);
         dataList.clear();
     }
     @Test(description = "User can create a smart playlist with one rule and verify related songs appear")
@@ -197,21 +198,22 @@ public class DbTests extends BaseTest {
     @Parameters({"koelNewUser", "password"})
     public void queryDbForNewUser(String koelNewUser, String password) throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
-        rs = koelDbActions.getUserInfo(koelNewUser);
-        if (rs.next()) {
-            String ep = rs.getString("password");
-            String updated = rs.getString("updated_at");
-            String email = rs.getString("email");
-            TestListener.logRsDetails(
-                    "Results: " +"\n" +"<br>"+
-                            "encrypted password: " + ep +"\n" +"<br>"+
-                            "updated_at: " + updated +"\n" +"<br>"+
-                            "user: " + email +"\n" +"<br>"
-            );
-            rsMap.put("existingUser", email);   //store the account email to use for the next test
-            TestListener.logAssertionDetails("New user data has been saved correctly in the database: " + email.equals(koelNewUser));
-            Assert.assertNotSame(ep, password);
-            Assert.assertEquals(email, koelNewUser);
+        try (ResultSet rs = koelDbActions.getUserInfo(koelNewUser)) {
+            if (rs.next()) {
+                String ep = rs.getString("password");
+                String updated = rs.getString("updated_at");
+                String email = rs.getString("email");
+                TestListener.logRsDetails(
+                        "Results: " + "\n" + "<br>" +
+                                "encrypted password: " + ep + "\n" + "<br>" +
+                                "updated_at: " + updated + "\n" + "<br>" +
+                                "user: " + email + "\n" + "<br>"
+                );
+                rsMap.put("existingUser", email);   //store the account email to use for the next test
+                TestListener.logAssertionDetails("New user data has been saved correctly in the database: " + email.equals(koelNewUser));
+                Assert.assertNotSame(ep, password);
+                Assert.assertEquals(email, koelNewUser);
+            }
         }
     }
     @Test(enabled = false, description = "Get existing user from database, attempt to register with that account", groups = {"Account Creation"}, priority=4)
@@ -230,36 +232,38 @@ public class DbTests extends BaseTest {
     @Parameters({"koelExistingUser"})
     public void queryDbForExistingUser(String koelExistingUser) throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
-        rs = koelDbActions.getUserInfo(koelExistingUser);
-        if (rs.next()) {
-            String email = rs.getString("email");
-            TestListener.logRsDetails(
-                    "Results: " + "\n" + "<br>" +
-                            "user: " + email + "\n" + "<br>"
-            );
-            dataMap.put("existingUser", email);   //store the account email to use for the next test
-            TestListener.logRsDetails("Existing user: " + email);
-            TestListener.logAssertionDetails("User already exists in database: " + email.equals(koelExistingUser));
-            Assert.assertEquals(email, koelExistingUser);
+        try(ResultSet rs = koelDbActions.getUserInfo(koelExistingUser)) {
+            if (rs.next()) {
+                String email = rs.getString("email");
+                TestListener.logRsDetails(
+                        "Results: " + "\n" + "<br>" +
+                                "user: " + email + "\n" + "<br>"
+                );
+                dataMap.put("existingUser", email);   //store the account email to use for the next test
+                TestListener.logRsDetails("Existing user: " + email);
+                TestListener.logAssertionDetails("User already exists in database: " + email.equals(koelExistingUser));
+                Assert.assertEquals(email, koelExistingUser);
+            }
         }
     }
     @Test(enabled = false, description = "Execute SQL query to verify password is encrypted and has been updated in the Koel database")
     public void queryDbPwd() throws SQLException {
         KoelDbActions koelDbActions = new KoelDbActions();
         TestListener.logInfoDetails("Db connection: " + KoelDb.getDbConnection().getMetaData().getURL());
-        rs = koelDbActions.getPwdInfo(System.getProperty("koelUser"));
-        if (rs.next()) {
-            String ep = rs.getString("password");
-            String updated = rs.getString("updated_at");
-            TestListener.logRsDetails(
-                    "Results: " +"\n" +"<br>"+
-                            "encrypted password: " + ep +"\n" +"<br>"+
-                            "updated_at: " + updated +"\n" +"<br>"+
-                            "user: " + System.getProperty("koelUser")
-            );
-            TestListener.logAssertionDetails("Assertion: " + ep + " notSame " + System.getProperty("updatedPassword"));
-            Assert.assertNotSame(ep, System.getProperty("updatedPassword"));
-            Assert.assertTrue(updated.contains(TestUtil.getDate()));
+        try(ResultSet rs = koelDbActions.getPwdInfo(System.getProperty("koelUser"))) {
+            if (rs.next()) {
+                String ep = rs.getString("password");
+                String updated = rs.getString("updated_at");
+                TestListener.logRsDetails(
+                        "Results: " + "\n" + "<br>" +
+                                "encrypted password: " + ep + "\n" + "<br>" +
+                                "updated_at: " + updated + "\n" + "<br>" +
+                                "user: " + System.getProperty("koelUser")
+                );
+                TestListener.logAssertionDetails("Assertion: " + ep + " notSame " + System.getProperty("updatedPassword"));
+                Assert.assertNotSame(ep, System.getProperty("updatedPassword"));
+                Assert.assertTrue(updated.contains(TestUtil.getDate()));
+            }
         }
     }
     @Test(description = "verify lyrics displayed in infopanel match the lyrics for that same song in the database")
@@ -282,8 +286,7 @@ public class DbTests extends BaseTest {
             TestListener.logExceptionDetails("Error: " + e);
             Assert.assertFalse(false);
         }
-        try {
-            rs = koelDbActions.lyricsQuery();
+        try (ResultSet rs = koelDbActions.lyricsQuery()) {
             if (rs.next()) {
                 dataMap.put("dbLyrics", rs.getString("lyrics"));
                 TestListener.logInfoDetails("db Lyrics: " + dataMap.get("dbLyrics"));
