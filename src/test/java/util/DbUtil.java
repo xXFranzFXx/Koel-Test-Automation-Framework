@@ -12,11 +12,11 @@ public class DbUtil {
         Map<String, List<LinkedHashMap<String, String>>> resultListMap = new LinkedHashMap<>();
         LinkedHashMap<String, String> rowDetails = new LinkedHashMap<>();
         List<LinkedHashMap<String, String>> resultList = new ArrayList<>();
-        Set<String> s = dataMap.keySet();
+        Optional<Set<String>> s = Optional.of(dataMap.keySet());
         ResultSet rs = null;
         ResultSetMetaData rsm = null;
 
-            for (String str : s) {
+            for (String str : s.get()) {
                 rs = dataMap.get(str);
 
                 try {
