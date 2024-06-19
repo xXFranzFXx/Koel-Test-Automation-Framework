@@ -24,7 +24,7 @@ public class FavoritesTests extends BaseTest {
     LoginPage loginPage;
     AllSongsPage allSongsPage;
     FavoritesPage favoritesPage;
-    
+
     @AfterClass
     public void deleteDownloadedFiles() {
         TestUtil.deleteFiles();
