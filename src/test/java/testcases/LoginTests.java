@@ -13,8 +13,6 @@ import util.DataProviderUtil;
 import util.ExcelFile;
 import util.listeners.TestListener;
 
-
-
 public class LoginTests extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
