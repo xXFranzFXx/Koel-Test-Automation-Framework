@@ -134,5 +134,4 @@ public class AllSongsPage extends BasePage{
     public String getDurationFromHeader() {
         return extractTotalOrDuration(durationRe, duration());
     }
-
 }
