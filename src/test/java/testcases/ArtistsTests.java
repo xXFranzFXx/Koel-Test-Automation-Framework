@@ -17,7 +17,6 @@ public class ArtistsTests extends BaseTest {
     public ArtistsTests() {
         super();
     }
-
     public void setupArtists() {
         loginPage = new LoginPage(getDriver());
         searchPage = new SearchPage(getDriver());
