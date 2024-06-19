@@ -10,14 +10,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Set;
 
-//POM
 public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
@@ -78,7 +75,6 @@ public class BasePage {
     @CacheLookup
     private WebElement logoutButtonLocator;
     private By closeModalButton = By.xpath("//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']");
-
 
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
@@ -171,5 +167,4 @@ public class BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         return modal.contains(closeModalBtn);
     }
-
 }
