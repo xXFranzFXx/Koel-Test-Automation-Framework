@@ -9,7 +9,6 @@ import pages.LoginPage;
 import pages.SearchPage;
 import util.listeners.TestListener;
 
-
 public class ArtistsTests extends BaseTest {
     LoginPage loginPage;
     SearchPage searchPage;
