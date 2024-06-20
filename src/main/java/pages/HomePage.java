@@ -203,8 +203,8 @@ public class HomePage extends BasePage {
        contextClick(regularPl);
        pause(2);
        click(cmDelete);
-        wait.until(ExpectedConditions.elementToBeClickable(findElement(ok)));
-        actions.moveToElement(ok).click().perform();
+        wait.until(ExpectedConditions.elementToBeClickable(ok));
+        actions.moveToElement(ok).click().pause(2).click().perform();
        return this;
     }
     public HomePage contextClickFirstPlDelete() {
