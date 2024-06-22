@@ -51,7 +51,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "span[data-testid='play-btn']")
     private WebElement play;
 
-    @FindBy(xpath = "//section[@class='songs']//button[contains(.,'View All')]")
+    @FindBy(css = "button[data-testid^='home-view-all-recently-played']")
     private WebElement viewAllBtnLocator;
 
     @FindBy(xpath = "//section[@class='recent']//h1")
@@ -200,6 +200,7 @@ public class HomePage extends BasePage {
     }
     public HomePage deleteRegularPlaylistWithSong(String playlistName) {
        WebElement regularPl = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']/a[text()='" + playlistName + "']")));
+       pause(1);
        contextClick(regularPl);
        pause(2);
        click(cmDelete);
@@ -260,9 +261,23 @@ public class HomePage extends BasePage {
     }
 
     public HomePage searchSong(String song) {
-        searchSongInput.clear();
-        searchSongInput.sendKeys(song);
+        try {
+            searchSongInput.clear();
+            pause(1);
+            searchSongInput.sendKeys(song);
+        }catch (TimeoutException e) {
+            if (emptyHomeScreenText()) {
+                searchSongInput.sendKeys(Keys.SPACE);
+            }
+        }
         return this;
+    }
+    public boolean emptyHomeScreenText() {
+        By textMsg = By.cssSelector("#homeWrapper p.text-secondary");
+        String expected = "Your recently played songs will be displayed here.\n" +
+                "Start listening!";
+        return textIsPresent(textMsg, expected);
+
     }
 
     public boolean notificationMsg() {
