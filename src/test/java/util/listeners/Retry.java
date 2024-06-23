@@ -1,8 +1,10 @@
 package util.listeners;
 
+import base.BaseTest;
 import com.aventstack.extentreports.Status;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
+import util.TestUtil;
 
 import java.io.IOException;
 
@@ -29,7 +31,12 @@ public class Retry implements IRetryAnalyzer {
         return false;
     }
     public void extentReportsFailOperations(ITestResult iTestResult) throws IOException {
-        TestListener.test.get().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath("/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + count + ".png");
+        try {
+            TestUtil.takeScreenshotAtEndOfTest(iTestResult.getMethod().getMethodName(), BaseTest.getDriver());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        TestListener.test.get().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath( "/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + count + ".png");
     }
 }
 
