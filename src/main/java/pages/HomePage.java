@@ -53,7 +53,8 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "button[data-testid^='home-view-all-recently-played']")
     private WebElement viewAllBtnLocator;
-
+    @FindBy(css = "[data-test='view-all-songs-btn']")
+    private WebElement searchViewAllBtn;
     @FindBy(xpath = "//section[@class='recent']//h1")
     private WebElement recentlyPlayedViewAllBtn;
     private By rPPlayedViewAllBtn = By.xpath("//section[@class='recent']//h1/button");
@@ -289,6 +290,10 @@ public class HomePage extends BasePage {
         WebElement btn = findPresentElementBy(playPauseBtn);
         moveToElement(btn);
         return playBtnBefore.isEnabled();
+    }
+    public HomePage clickSearchViewAllBtn() {
+        findElement(searchViewAllBtn).click();
+        return this;
     }
 
     public HomePage clickViewAllButton() {

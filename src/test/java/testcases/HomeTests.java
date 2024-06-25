@@ -39,7 +39,8 @@ public class HomeTests extends BaseTest {
     public void addSongToPlaylist() {
         setupHome();
         homePage.searchSong("dark")
-                .clickViewAllButton()
+                .wait(2)
+                .clickSearchViewAllBtn()
                 .clickFirstSearchResult()
                 .clickGreenAddToBtn()
                 .selectPlaylistToAddTo(dataMap.get("playlist"));
