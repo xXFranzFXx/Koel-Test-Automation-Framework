@@ -53,7 +53,7 @@ public class BaseTest{
         threadDriver.set(pickBrowser(System.getProperty("browser", "")));
         Reporter.log("browser is: " + System.getProperty("browser"));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
+        getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         getDriver().manage().deleteAllCookies();
         navigateTo(baseURL);
     }
