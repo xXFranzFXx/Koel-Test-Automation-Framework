@@ -46,8 +46,7 @@ public class AlbumsPage extends BasePage{
     private List<WebElement> trackInfo;
     private static final String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9])";
     private static final String songTotalRe = "^\\d{1,}|[^\\W•]";
-
-
+    
 
     public AlbumsPage(WebDriver givenDriver) {
         super(givenDriver);
