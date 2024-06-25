@@ -443,6 +443,11 @@ public class HomePage extends BasePage {
         waitForText(rPEmptyText, text);
         return findElement(rPEmptyText).isDisplayed();
     }
+    public void refreshIfRpListEmpty() {
+        if(noRecentlyPlayedList()) {
+            driver.navigate().refresh();
+        }
+    }
 
     //only checks first column since second column doesn't display correctly
     public boolean recentlyAddedListHasAlbumTitles() {
@@ -525,8 +530,13 @@ public class HomePage extends BasePage {
         findElement(profilePageLink).click();
         return new ProfilePage(driver);
     }
+
     public AlbumsPage clickAlbums() {
-        albumsPage();
+        try {
+            albumsPage();
+        } catch (Exception e) {
+            refreshIfRpListEmpty();
+        }
         return new AlbumsPage(driver);
     }
 
