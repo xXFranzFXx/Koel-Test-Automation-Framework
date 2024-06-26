@@ -45,8 +45,8 @@ public class TestUtil {
         );
         return downloadedFiles != null;
     }
-    public static void deleteFiles() {
-        File rootFolder = new File(System.getProperty("user.dir") + "/downloads");
+    public static void deleteFiles(String directory) {
+        File rootFolder = new File(System.getProperty("user.dir") + "/" + directory);
         Optional<File[]> deletedFiles = Optional.ofNullable(rootFolder.listFiles());
         if (deletedFiles.isPresent()) {
             for(File f : deletedFiles.get()) {

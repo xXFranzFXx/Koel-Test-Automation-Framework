@@ -174,7 +174,7 @@ public class HomePage extends BasePage {
     private WebElement emptySmartListText;
     @FindBy(css = "#extraTabLyrics")
     private WebElement lyricsTab;
-    private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class='fa fa-heart-o']");
+    private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class^='fa fa-heart']");
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
     private final By lyricsTabInfo = By.cssSelector("#lyrics > div > div > div:nth-child(1)");
@@ -465,8 +465,14 @@ public class HomePage extends BasePage {
                                 .equals("by"));
     }
     public boolean recentlyAddedHasLikedButtons() {
-        List<WebElement> likedButtons = findElements(rALikedButtons);
-        return likedButtons.stream().allMatch(WebElement::isDisplayed);
+        try {
+            List<WebElement> likedButtons = findElements(rALikedButtons);
+            return likedButtons.stream().allMatch(WebElement::isDisplayed);
+        } catch(TimeoutException e) {
+            refreshIfRpListEmpty();
+            recentlyAddedHasLikedButtons();
+        }
+        return false;
     }
     //only checks first column since second column doesn't display correctly
     public boolean checkRAListButtonsOnHover() {
@@ -536,13 +542,12 @@ public class HomePage extends BasePage {
         return new ProfilePage(driver);
     }
 
-    public AlbumsPage clickAlbums() {
+    public void clickAlbums() {
         try {
             albumsPage();
         } catch (Exception e) {
             refreshIfRpListEmpty();
         }
-        return new AlbumsPage(driver);
     }
 
     public ArtistsPage clickArtists() {

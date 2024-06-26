@@ -47,11 +47,6 @@
 <span class="ico"><i class="fa fa-list"></i></span>
 </a>
 </li>
-<li class="nav-item dropdown" onclick="toggleView('exception-view')">
-<a id="nav-exception" class="dropdown-toggle" href="#">
-<span class="ico"><i class="fa fa-bug"></i></span>
-</a>
-</li>
 <li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
 <a id="nav-dashboard" class="dropdown-toggle" href="#">
 <span class="ico"><i class="fa fa-bar-chart"></i></span>
@@ -72,7 +67,6 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
 <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
 <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
-<a class="dropdown-item" status="fail" href="#"><span>Fail</span><span class="status danger"></span></a>
 <div class="dropdown-divider"></div>
 <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
 </ul>
@@ -80,14 +74,14 @@
 </ul>
 </div>    <div class="test-list-wrapper scrollable">
       <ul class="test-list-item">
-        <li class="test-item"  status="pass" test-id="1"
+        <li class="test-item"  status="pass" test-id="3"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">checkQueuePageSongs</p>
             <p class="text-sm">
-              <span>1:43:11 PM</span> / <span>00:00:04:243</span>
+              <span>1:43:11 PM</span> / <span>00:00:04:240</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -98,8 +92,8 @@
 <h5 class="test-status text-pass">checkQueuePageSongs</h5>
 <span class='badge badge-success'>06.26.2024 1:43:11 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:43:15 PM</span>
-<span class='badge badge-default'>00:00:04:243</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<span class='badge badge-default'>00:00:04:240</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -109,27 +103,6 @@
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:43:15 PM</td>
-        <td>
-          <span class='badge white-text grey'>Song Total is66</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:43:15 PM</td>
-        <td>
-          <span class='badge white-text grey'>Duration is:66 songs • 04:32:57</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:43:15 PM</td>
-        <td>
-          <span class='badge white-text grey'>counted list size63</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:43:15 PM</td>
@@ -142,7 +115,7 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="4"
+        <li class="test-item"  status="pass" test-id="6"
           author=""
           tag=""
           device="">
@@ -161,7 +134,7 @@
 <span class='badge badge-success'>06.26.2024 1:43:13 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:43:46 PM</span>
 <span class='badge badge-default'>00:00:33:352</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -183,7 +156,7 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="7"
+        <li class="test-item"  status="pass" test-id="9"
           author=""
           tag=""
           device="">
@@ -202,7 +175,7 @@
 <span class='badge badge-success'>06.26.2024 1:43:18 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:43:20 PM</span>
 <span class='badge badge-default'>00:00:01:744</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -212,13 +185,6 @@
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:43:20 PM</td>
-        <td>
-          <span class='badge white-text purple'>Recently Added songs have title, shuffle icon and download icon: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:43:20 PM</td>
@@ -231,7 +197,7 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="10"
+        <li class="test-item"  status="pass" test-id="12"
           author=""
           tag=""
           device="">
@@ -250,7 +216,7 @@
 <span class='badge badge-success'>06.26.2024 1:43:24 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:43:27 PM</span>
 <span class='badge badge-default'>00:00:02:217</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -260,13 +226,6 @@
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:43:27 PM</td>
-        <td>
-          <span class='badge white-text purple'>Recently Added songs have liked buttons: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:43:27 PM</td>
@@ -279,7 +238,7 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="13"
+        <li class="test-item"  status="pass" test-id="15"
           author=""
           tag=""
           device="">
@@ -298,7 +257,7 @@
 <span class='badge badge-success'>06.26.2024 1:43:31 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:43:34 PM</span>
 <span class='badge badge-default'>00:00:02:648</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -308,13 +267,6 @@
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:43:33 PM</td>
-        <td>
-          <span class='badge white-text purple'>Recently Added songs are displayed: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:43:34 PM</td>
@@ -327,150 +279,34 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="fail" test-id="16"
+        <li class="test-item"  status="pass" test-id="18"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">clickAboutLink</p>
             <p class="text-sm">
-              <span>1:43:37 PM</span> / <span>00:01:01:663</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>1:43:37 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">clickAboutLink</h5>
+<h5 class="test-status text-pass">clickAboutLink</h5>
 <span class='badge badge-success'>06.26.2024 1:43:37 PM</span>
-<span class='badge badge-danger'>06.26.2024 1:44:38 PM</span>
-<span class='badge badge-default'>00:01:01:663</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=16</span>
+<span class='badge badge-danger'>06.26.2024 1:43:37 PM</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=18</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-10 m-l-5">verify visibility of 'about' link</div>
 </div>
-</div>    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='/reports/extent-reports/screenshots' src="/reports/extent-reports/screenshots">
-    <div class="title">clickAboutLink1.png</div>
-    </div></div>
-<div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>1:44:38 PM</td>
-        <td>
-          Test Failed
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:44:38 PM</td>
-        <td>
-          <span class='badge white-text amber'>Skipped</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:44:38 PM</td>
-        <td>
-          <textarea readonly class="code-block">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of Proxy element for: AjaxElementLocator 'By.xpath: //div[@class='modal-wrapper overlay']//div[@data-testid='about-modal']' (tried for 10 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at pages.BasePage.findElement(BasePage.java:108)
-	at pages.BasePage.checkAboutModal(BasePage.java:174)
-	at pages.HomePage.aboutModalVisible(HomePage.java:504)
-	at testcases.HomeTests.clickAboutLink(HomeTests.java:80)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:829)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:475)
-	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-Caused by: org.openqa.selenium.NoSuchElementException: Timed out after 10 seconds. Unable to locate the element
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:99)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
-	at jdk.proxy2/jdk.proxy2.$Proxy61.isDisplayed(Unknown Source)
-	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
-	... 26 more
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='modal-wrapper overlay']//div[@data-testid='about-modal']"}
-  (Session info: chrome=126.0.6478.126)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.5.0', revision: 'fe167b119a'
-System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '14.5', java.version: '17.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [db96d4daebc94cc7ae1ebcb6a3c35eb2, findElement {using=xpath, value=//div[@class='modal-wrapper overlay']//div[@data-testid='about-modal']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.126, chrome: {chromedriverVersion: 125.0.6422.141 (4b1e8393712..., userDataDir: /var/folders/zq/q7s0y3_s5yz...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57025}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: MAC, proxy: Proxy(), se:cdp: ws://localhost:57025/devtoo..., se:cdpVersion: 126.0.6478.126, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:547)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:365)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:357)
-	at jdk.internal.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.openqa.selenium.support.ThreadGuard$WebDriverInvocationHandler.invokeUnderlying(ThreadGuard.java:101)
-	at org.openqa.selenium.support.ThreadGuard$WebDriverInvocationHandler.invoke(ThreadGuard.java:93)
-	at jdk.proxy2/jdk.proxy2.$Proxy35.findElement(Unknown Source)
-	at jdk.internal.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:247)
-	at org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
-	at org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$0(WebDriverDecorator.java:309)
-	at net.bytebuddy.renamed.java.lang.Object$ByteBuddy$xWvfFkDd.findElement(Unknown Source)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.access$001(AjaxElementLocator.java:39)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator$SlowLoadingElement.isLoaded(AjaxElementLocator.java:165)
-	at org.openqa.selenium.support.ui.SlowLoadableComponent.get(SlowLoadableComponent.java:72)
-	at org.openqa.selenium.support.pagefactory.AjaxElementLocator.findElement(AjaxElementLocator.java:95)
-	... 33 more
-</textarea>
-          
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
+</div>          </div>
         </li>
-        <li class="test-item"  status="pass" test-id="19"
+        <li class="test-item"  status="pass" test-id="21"
           author=""
           tag=""
           device="">
@@ -489,7 +325,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:43:49 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:43:53 PM</span>
 <span class='badge badge-default'>00:00:03:269</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=19</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=21</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -511,7 +347,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="22"
+        <li class="test-item"  status="pass" test-id="24"
           author=""
           tag=""
           device="">
@@ -530,7 +366,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:43:56 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:43:59 PM</span>
 <span class='badge badge-default'>00:00:03:277</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=22</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=24</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -552,7 +388,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="25"
+        <li class="test-item"  status="pass" test-id="27"
           author=""
           tag=""
           device="">
@@ -571,7 +407,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:44:02 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:44:05 PM</span>
 <span class='badge badge-default'>00:00:03:274</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=25</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=27</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -593,7 +429,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="28"
+        <li class="test-item"  status="pass" test-id="30"
           author=""
           tag=""
           device="">
@@ -612,7 +448,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:44:09 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:44:12 PM</span>
 <span class='badge badge-default'>00:00:02:920</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=28</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=30</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -634,7 +470,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="31"
+        <li class="test-item"  status="pass" test-id="33"
           author=""
           tag=""
           device="">
@@ -653,7 +489,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:44:14 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:44:18 PM</span>
 <span class='badge badge-default'>00:00:03:244</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=31</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=33</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -675,7 +511,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="34"
+        <li class="test-item"  status="pass" test-id="36"
           author=""
           tag=""
           device="">
@@ -694,7 +530,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:44:21 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:44:24 PM</span>
 <span class='badge badge-default'>00:00:02:993</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=34</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=36</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -705,27 +541,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:44:24 PM</td>
-        <td>
-          <span class='badge white-text grey'>Total songs displayed in All Songs page header: 66</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:44:24 PM</td>
-        <td>
-          <span class='badge black-text white'>Manual count of songs listed in All Songs page: 63</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:44:24 PM</td>
-        <td>
-          <span class='badge white-text purple'>Song total from header matches manual count: false</span>
-        </td>
-      </tr>
-      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:44:24 PM</td>
         <td>
@@ -737,108 +552,41 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="fail" test-id="37"
+        <li class="test-item"  status="pass" test-id="39"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">albumsAreDisplayed</p>
             <p class="text-sm">
-              <span>1:44:27 PM</span> / <span>00:01:02:705</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>1:44:27 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">albumsAreDisplayed</h5>
+<h5 class="test-status text-pass">albumsAreDisplayed</h5>
 <span class='badge badge-success'>06.26.2024 1:44:27 PM</span>
-<span class='badge badge-danger'>06.26.2024 1:45:30 PM</span>
-<span class='badge badge-default'>00:01:02:705</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=37</span>
+<span class='badge badge-danger'>06.26.2024 1:44:27 PM</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=39</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-10 m-l-5">Verify albums are displayed</div>
 </div>
-</div>    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='/reports/extent-reports/screenshots' src="/reports/extent-reports/screenshots">
-    <div class="title">albumsAreDisplayed1.png</div>
-    </div></div>
-<div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:44:59 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums are present: false</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>1:45:30 PM</td>
-        <td>
-          Test Failed
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:45:30 PM</td>
-        <td>
-          <span class='badge white-text amber'>Skipped</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:45:30 PM</td>
-        <td>
-          <textarea readonly class="code-block">java.lang.AssertionError: Albums are not displayed expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:110)
-	at org.testng.Assert.failNotEquals(Assert.java:1413)
-	at org.testng.Assert.assertTrue(Assert.java:56)
-	at testcases.AlbumsTests.albumsAreDisplayed(AlbumsTests.java:38)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:829)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:475)
-	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-</textarea>
-          
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
+</div>          </div>
         </li>
-        <li class="test-item"  status="pass" test-id="40"
+        <li class="test-item"  status="pass" test-id="42"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">clickAboutLink</p>
             <p class="text-sm">
-              <span>1:44:42 PM</span> / <span>00:00:01:376</span>
+              <span>1:44:42 PM</span> / <span>00:00:01:375</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -849,8 +597,8 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <h5 class="test-status text-pass">clickAboutLink</h5>
 <span class='badge badge-success'>06.26.2024 1:44:42 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:44:43 PM</span>
-<span class='badge badge-default'>00:00:01:376</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=40</span>
+<span class='badge badge-default'>00:00:01:375</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=42</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -860,13 +608,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:44:43 PM</td>
-        <td>
-          <span class='badge white-text purple'>'About' link visible: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:44:43 PM</td>
@@ -879,7 +620,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="43"
+        <li class="test-item"  status="pass" test-id="45"
           author=""
           tag=""
           device="">
@@ -898,7 +639,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:44:46 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:44:47 PM</span>
 <span class='badge badge-default'>00:00:00:703</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=43</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=45</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -920,14 +661,14 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="46"
+        <li class="test-item"  status="pass" test-id="48"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">likeSongs</p>
             <p class="text-sm">
-              <span>1:44:50 PM</span> / <span>00:00:33:391</span>
+              <span>1:44:50 PM</span> / <span>00:00:33:390</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -938,8 +679,8 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <h5 class="test-status text-pass">likeSongs</h5>
 <span class='badge badge-success'>06.26.2024 1:44:50 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:23 PM</span>
-<span class='badge badge-default'>00:00:33:391</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=46</span>
+<span class='badge badge-default'>00:00:33:390</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=48</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -949,13 +690,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:23 PM</td>
-        <td>
-          <span class='badge white-text purple'>Songs appear in favorites list after being 'liked': true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:23 PM</td>
@@ -968,7 +702,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="49"
+        <li class="test-item"  status="pass" test-id="51"
           author=""
           tag=""
           device="">
@@ -987,7 +721,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:26 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:29 PM</span>
 <span class='badge badge-default'>00:00:03:302</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=49</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=51</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -997,13 +731,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:29 PM</td>
-        <td>
-          <span class='badge white-text purple'>'About' modal closes: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:29 PM</td>
@@ -1016,7 +743,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="52"
+        <li class="test-item"  status="pass" test-id="54"
           author=""
           tag=""
           device="">
@@ -1035,7 +762,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:31 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:32 PM</span>
 <span class='badge badge-default'>00:00:01:059</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=52</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=54</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1045,13 +772,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:32 PM</td>
-        <td>
-          <span class='badge white-text grey'>Recently Played song list size is: 1</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:32 PM</td>
@@ -1064,7 +784,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="55"
+        <li class="test-item"  status="pass" test-id="57"
           author=""
           tag=""
           device="">
@@ -1083,7 +803,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:33 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:34 PM</span>
 <span class='badge badge-default'>00:00:01:489</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=55</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=57</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1093,13 +813,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:34 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums are present: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:34 PM</td>
@@ -1112,7 +825,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="58"
+        <li class="test-item"  status="pass" test-id="60"
           author=""
           tag=""
           device="">
@@ -1131,7 +844,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:35 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:38 PM</span>
 <span class='badge badge-default'>00:00:02:715</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=58</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=60</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1141,20 +854,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:36 PM</td>
-        <td>
-          <span class='badge white-text grey'>Playlist name: qJPq7</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:38 PM</td>
-        <td>
-          <span class='badge white-text purple'>User can create a playlist: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:38 PM</td>
@@ -1167,7 +866,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="61"
+        <li class="test-item"  status="pass" test-id="63"
           author=""
           tag=""
           device="">
@@ -1186,7 +885,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:37 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:41 PM</span>
 <span class='badge badge-default'>00:00:03:157</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=61</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=63</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1196,13 +895,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:40 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums have an artist: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:41 PM</td>
@@ -1215,7 +907,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="64"
+        <li class="test-item"  status="pass" test-id="66"
           author=""
           tag=""
           device="">
@@ -1234,7 +926,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:41 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:43 PM</span>
 <span class='badge badge-default'>00:00:02:801</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=64</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=66</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1244,13 +936,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:43 PM</td>
-        <td>
-          <span class='badge white-text purple'>User can download songs from Favorites playlist page: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:43 PM</td>
@@ -1263,7 +948,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="67"
+        <li class="test-item"  status="pass" test-id="69"
           author=""
           tag=""
           device="">
@@ -1282,7 +967,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:43 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:46:08 PM</span>
 <span class='badge badge-default'>00:00:25:134</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=67</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=69</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1292,13 +977,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:56 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums have a cover image: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:46:08 PM</td>
@@ -1311,7 +989,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="70"
+        <li class="test-item"  status="pass" test-id="72"
           author=""
           tag=""
           device="">
@@ -1330,7 +1008,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:46 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:45:53 PM</span>
 <span class='badge badge-default'>00:00:06:627</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=70</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=72</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1340,13 +1018,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:45:53 PM</td>
-        <td>
-          <span class='badge white-text purple'>Added song to playlist: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:45:53 PM</td>
@@ -1359,7 +1030,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="73"
+        <li class="test-item"  status="pass" test-id="75"
           author=""
           tag=""
           device="">
@@ -1378,7 +1049,7 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <span class='badge badge-success'>06.26.2024 1:45:56 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:46:01 PM</span>
 <span class='badge badge-default'>00:00:04:995</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=73</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=75</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1388,13 +1059,6 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:46:01 PM</td>
-        <td>
-          <span class='badge white-text purple'>Playlist qJPq7 deleted: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:46:01 PM</td>
@@ -1407,135 +1071,41 @@ Session ID: db96d4daebc94cc7ae1ebcb6a3c35eb2
 </div>
           </div>
         </li>
-        <li class="test-item"  status="fail" test-id="76"
+        <li class="test-item"  status="pass" test-id="78"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">unlikeAllSongs</p>
             <p class="text-sm">
-              <span>1:46:03 PM</span> / <span>00:00:12:238</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>1:46:03 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">unlikeAllSongs</h5>
+<h5 class="test-status text-pass">unlikeAllSongs</h5>
 <span class='badge badge-success'>06.26.2024 1:46:03 PM</span>
-<span class='badge badge-danger'>06.26.2024 1:46:16 PM</span>
-<span class='badge badge-default'>00:00:12:238</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=76</span>
+<span class='badge badge-danger'>06.26.2024 1:46:03 PM</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=78</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-10 m-l-5">Remove all songs from favorites playlist and verify no songs are displayed</div>
 </div>
-</div>    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='/reports/extent-reports/screenshots' src="/reports/extent-reports/screenshots">
-    <div class="title">unlikeAllSongs1.png</div>
-    </div></div>
-<div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>1:46:16 PM</td>
-        <td>
-          Test Failed
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:46:16 PM</td>
-        <td>
-          <span class='badge white-text amber'>Skipped</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:46:16 PM</td>
-        <td>
-          <textarea readonly class="code-block">org.openqa.selenium.ElementNotInteractableException: element not interactable
-  (Session info: chrome=126.0.6478.126)
-Build info: version: '4.5.0', revision: 'fe167b119a'
-System info: os.name: 'Mac OS X', os.arch: 'aarch64', os.version: '14.5', java.version: '17.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [78e58c4512d388d8f1d2ed4b7b75c90a, clickElement {id=f.31AC78F8B42C32C2F4933EB2EF71078F.d.2CAB25717BAA7387E750025AFE936996.e.90}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 126.0.6478.126, chrome: {chromedriverVersion: 125.0.6422.141 (4b1e8393712..., userDataDir: /var/folders/zq/q7s0y3_s5yz...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57855}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: MAC, proxy: Proxy(), se:cdp: ws://localhost:57855/devtoo..., se:cdpVersion: 126.0.6478.126, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on MAC (78e58c4512d388d8f1d2ed4b7b75c90a)] -> xpath: //section[@id='favoritesWrapper']//td[@class='favorite']//button[@class='text-secondary' and contains(@title, 'Unlike')]]
-Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:547)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
-	at jdk.internal.reflect.GeneratedMethodAccessor27.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:247)
-	at org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)
-	at org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxy$0(WebDriverDecorator.java:309)
-	at net.bytebuddy.renamed.java.lang.Object$ByteBuddy$gpJVXYYD.click(Unknown Source)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
-	at jdk.proxy2/jdk.proxy2.$Proxy62.forEach(Unknown Source)
-	at pages.FavoritesPage.unlikeAllSongs(FavoritesPage.java:27)
-	at testcases.FavoritesTests.unlikeAllSongs(FavoritesTests.java:54)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:829)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:475)
-	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-</textarea>
-          
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
+</div>          </div>
         </li>
-        <li class="test-item"  status="pass" test-id="79"
+        <li class="test-item"  status="pass" test-id="81"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">checkAlbumSongDurtation</p>
             <p class="text-sm">
-              <span>1:46:11 PM</span> / <span>00:00:24:956</span>
+              <span>1:46:11 PM</span> / <span>00:00:24:959</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -1546,8 +1116,8 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <h5 class="test-status text-pass">checkAlbumSongDurtation</h5>
 <span class='badge badge-success'>06.26.2024 1:46:11 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:46:36 PM</span>
-<span class='badge badge-default'>00:00:24:956</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=79</span>
+<span class='badge badge-default'>00:00:24:959</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=81</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1557,13 +1127,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:46:24 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums have song duration total: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:46:36 PM</td>
@@ -1576,7 +1139,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="82"
+        <li class="test-item"  status="pass" test-id="84"
           author=""
           tag=""
           device="">
@@ -1595,7 +1158,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:46:17 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:46:20 PM</span>
 <span class='badge badge-default'>00:00:03:437</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=82</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=84</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1605,13 +1168,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:46:20 PM</td>
-        <td>
-          <span class='badge white-text purple'>User can remove songs from Favorites playlist page: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:46:20 PM</td>
@@ -1624,7 +1180,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="85"
+        <li class="test-item"  status="pass" test-id="87"
           author=""
           tag=""
           device="">
@@ -1643,7 +1199,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:46:38 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:47:03 PM</span>
 <span class='badge badge-default'>00:00:24:531</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=85</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=87</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1653,13 +1209,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:46:51 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums have total song count: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:47:03 PM</td>
@@ -1672,7 +1221,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="88"
+        <li class="test-item"  status="pass" test-id="90"
           author=""
           tag=""
           device="">
@@ -1691,7 +1240,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:47:05 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:47:30 PM</span>
 <span class='badge badge-default'>00:00:24:566</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=88</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=90</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1701,13 +1250,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:47:18 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums display album titles: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:47:30 PM</td>
@@ -1720,7 +1262,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="91"
+        <li class="test-item"  status="pass" test-id="93"
           author=""
           tag=""
           device="">
@@ -1739,7 +1281,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:47:31 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:47:47 PM</span>
 <span class='badge badge-default'>00:00:16:115</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=91</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=93</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1749,13 +1291,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:47:40 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums have a download button: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:47:47 PM</td>
@@ -1768,7 +1303,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="94"
+        <li class="test-item"  status="pass" test-id="96"
           author=""
           tag=""
           device="">
@@ -1787,7 +1322,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:47:50 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:48:04 PM</span>
 <span class='badge badge-default'>00:00:14:695</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=94</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=96</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1797,13 +1332,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:47:58 PM</td>
-        <td>
-          <span class='badge white-text purple'>All albums have a shuffle button: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:48:04 PM</td>
@@ -1816,7 +1344,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="97"
+        <li class="test-item"  status="pass" test-id="99"
           author=""
           tag=""
           device="">
@@ -1835,7 +1363,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:48:07 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:48:09 PM</span>
 <span class='badge badge-default'>00:00:01:611</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=97</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=99</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1845,13 +1373,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:48:09 PM</td>
-        <td>
-          <span class='badge white-text purple'>Added all songs from selected album to current queue: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:48:09 PM</td>
@@ -1864,7 +1385,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="100"
+        <li class="test-item"  status="pass" test-id="102"
           author=""
           tag=""
           device="">
@@ -1883,7 +1404,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:48:11 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:48:13 PM</span>
 <span class='badge badge-default'>00:00:01:221</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=100</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=102</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -1894,13 +1415,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:48:13 PM</td>
-        <td>
-          <span class='badge white-text purple'>All artists are present: true</span>
-        </td>
-      </tr>
-      <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:48:13 PM</td>
         <td>
@@ -1912,165 +1426,68 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="fail" test-id="103"
+        <li class="test-item"  status="pass" test-id="105"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">playAllSongsByArtist</p>
             <p class="text-sm">
-              <span>1:48:15 PM</span> / <span>00:00:01:729</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>1:48:15 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">playAllSongsByArtist</h5>
+<h5 class="test-status text-pass">playAllSongsByArtist</h5>
 <span class='badge badge-success'>06.26.2024 1:48:15 PM</span>
-<span class='badge badge-danger'>06.26.2024 1:48:17 PM</span>
-<span class='badge badge-default'>00:00:01:729</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=103</span>
+<span class='badge badge-danger'>06.26.2024 1:48:15 PM</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=105</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-10 m-l-5">Play all songs by an artist</div>
 </div>
-</div>    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='/reports/extent-reports/screenshots' src="/reports/extent-reports/screenshots">
-    <div class="title">playAllSongsByArtist1.png</div>
-    </div></div>
-<div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>1:48:17 PM</td>
-        <td>
-          Test Failed
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:48:17 PM</td>
-        <td>
-          <span class='badge white-text amber'>Skipped</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log skip-bg">Skip</span></td>
-        <td>1:48:17 PM</td>
-        <td>
-          <textarea readonly class="code-block">java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:110)
-	at org.testng.Assert.failNotEquals(Assert.java:1413)
-	at org.testng.Assert.assertTrue(Assert.java:56)
-	at org.testng.Assert.assertTrue(Assert.java:66)
-	at testcases.ArtistsTests.playAllSongsByArtist(ArtistsTests.java:33)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at org.testng.TestRunner.privateRun(TestRunner.java:829)
-	at org.testng.TestRunner.run(TestRunner.java:602)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
-	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:475)
-	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:842)
-</textarea>
-          
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
+</div>          </div>
         </li>
-        <li class="test-item"  status="fail" test-id="106"
+        <li class="test-item"  status="pass" test-id="108"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">playAllSongsByArtist</p>
             <p class="text-sm">
-              <span>1:48:18 PM</span> / <span>00:00:02:868</span>
-              <span class="badge fail-bg log float-right">Fail</span>
+              <span>1:48:18 PM</span> / <span>00:00:00:000</span>
+              <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">playAllSongsByArtist</h5>
+<h5 class="test-status text-pass">playAllSongsByArtist</h5>
 <span class='badge badge-success'>06.26.2024 1:48:18 PM</span>
-<span class='badge badge-danger'>06.26.2024 1:48:21 PM</span>
-<span class='badge badge-default'>00:00:02:868</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=106</span>
+<span class='badge badge-danger'>06.26.2024 1:48:18 PM</span>
+<span class='badge badge-default'>00:00:00:000</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=108</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 <div class="m-t-10 m-l-5">Play all songs by an artist</div>
 </div>
-</div>    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='/reports/extent-reports/screenshots/playAllSongsByArtist.png' src="/reports/extent-reports/screenshots/playAllSongsByArtist.png">
-    
-    </div></div>
-<div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>1:48:21 PM</td>
-        <td>
-          fail ❌
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>1:48:21 PM</td>
-        <td>
-          <span class='badge white-text red'>expected [true] but found [false]</span>
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>1:48:21 PM</td>
-        <td>
-          <details>
-    <summary>Click Here To See Exception Logs</summary>
-    [org.testng.Assert.fail(Assert.java:110)<br> org.testng.Assert.failNotEquals(Assert.java:1413)<br> org.testng.Assert.assertTrue(Assert.java:56)<br> org.testng.Assert.assertTrue(Assert.java:66)<br> testcases.ArtistsTests.playAllSongsByArtist(ArtistsTests.java:33)<br> java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br> java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)<br> java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)<br> java.base/java.lang.reflect.Method.invoke(Method.java:568)<br> org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)<br> org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)<br> org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)<br> org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)<br> org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)<br> org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)<br> org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)<br> org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)<br> java.base/java.util.ArrayList.forEach(ArrayList.java:1511)<br> org.testng.TestRunner.privateRun(TestRunner.java:829)<br> org.testng.TestRunner.run(TestRunner.java:602)<br> org.testng.SuiteRunner.runTest(SuiteRunner.java:437)<br> org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:475)<br> org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:58)<br> java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)<br> java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)<br> java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)<br> java.base/java.lang.Thread.run(Thread.java:842)]
-</details>
-
-        </td>
-      </tr>
-  </tbody>
-</table>
-</div>
-          </div>
+</div>          </div>
         </li>
-        <li class="test-item"  status="pass" test-id="109"
+        <li class="test-item"  status="pass" test-id="111"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">playArtistSongs</p>
             <p class="text-sm">
-              <span>1:48:24 PM</span> / <span>00:00:01:919</span>
+              <span>1:48:24 PM</span> / <span>00:00:01:918</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -2081,8 +1498,8 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <h5 class="test-status text-pass">playArtistSongs</h5>
 <span class='badge badge-success'>06.26.2024 1:48:24 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:48:26 PM</span>
-<span class='badge badge-default'>00:00:01:919</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=109</span>
+<span class='badge badge-default'>00:00:01:918</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=111</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -2092,13 +1509,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:48:26 PM</td>
-        <td>
-          <span class='badge white-text purple'>User can play song from artist: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:48:26 PM</td>
@@ -2111,7 +1521,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="112"
+        <li class="test-item"  status="pass" test-id="114"
           author=""
           tag=""
           device="">
@@ -2130,7 +1540,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:48:27 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:48:29 PM</span>
 <span class='badge badge-default'>00:00:02:723</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=112</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=114</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -2140,13 +1550,6 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>1:48:29 PM</td>
-        <td>
-          <span class='badge white-text purple'>Artist shows up from search: true</span>
-        </td>
-      </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
         <td>1:48:29 PM</td>
@@ -2159,7 +1562,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="115"
+        <li class="test-item"  status="pass" test-id="117"
           author=""
           tag=""
           device="">
@@ -2178,7 +1581,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <span class='badge badge-success'>06.26.2024 1:48:32 PM</span>
 <span class='badge badge-danger'>06.26.2024 1:49:05 PM</span>
 <span class='badge badge-default'>00:00:33:585</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=115</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=117</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
@@ -2209,129 +1612,7 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
 <div class="test-content-detail"><div class="detail-body"></div></div>
 </div></div>
-<div class="test-wrapper row view exception-view attributes-view">
-<div class="test-list">
-<div class="test-list-tools">
-<ul class="tools pull-left"><li><a href=""><span class="font-size-14">Exception</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">3</span></a></li></ul>
-</div>
-<div class="test-list-wrapper scrollable">
-<ul class="test-list-item">
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log badge-danger'>1</span>
-</span>
-<p class="name">org.openqa.selenium.ElementNotInteractableException</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>org.openqa.selenium.ElementNotInteractableException</h4>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>13:46:03 PM</td>
-<td>
-<a href="#" class="linked" test-id='76' id='76'>unlikeAllSongs</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log badge-danger'>1</span>
-</span>
-<p class="name">org.openqa.selenium.TimeoutException</p>
-<p class="duration text-sm">1 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>org.openqa.selenium.TimeoutException</h4>
-<span status="fail" class='badge log badge-danger'>1 failed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>13:43:37 PM</td>
-<td>
-<a href="#" class="linked" test-id='16' id='16'>clickAboutLink</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-<li class="test-item">
-<div class="test-detail">
-<span class="meta">
-<span class='badge log badge-danger'>2</span>
-</span>
-<p class="name">java.lang.AssertionError</p>
-<p class="duration text-sm">2 tests</p>
-</div>
-<div class="test-contents d-none">
-<div class="info">
-<h4>java.lang.AssertionError</h4>
-<span status="fail" class='badge log badge-danger'>2 failed</span>
-</div>
-<table class='table table-sm mt-4'>
-<thead>
-<tr>
-<th class="status-col">Status</th>
-<th class="timestamp-col">Timestamp</th>
-<th>TestName</th>
-</tr>
-</thead>
-<tbody>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>13:44:27 PM</td>
-<td>
-<a href="#" class="linked" test-id='37' id='37'>albumsAreDisplayed</a>
-</td>
-</tr>
-<tr class="tag-test-status" status="fail">
-<td><span class="badge log fail-bg">Fail</span></td>
-<td>13:48:15 PM</td>
-<td>
-<a href="#" class="linked" test-id='103' id='103'>playAllSongsByArtist</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="test-content scrollable">
-<div class="test-content-detail">
-<div class="detail-body"></div>
-</div>
-</div>
-</div><div class="container-fluid p-4 view dashboard-view">
+<div class="container-fluid p-4 view dashboard-view">
 <div class="row">
 <div class="col-md-3">
 <div class="card"><div class="card-body">
@@ -2348,13 +1629,13 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>34</h3>
+<h3>39</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>5</h3>
+<h3>0</h3>
 </div></div>
 </div>
 </div>
@@ -2370,12 +1651,12 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='87%'>
-<b>34</b> tests passed
+<div><small data-tooltip='100%'>
+<b>39</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='12%'><b>5</b> tests failed,
+<small data-tooltip='0%'><b>0</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -2393,10 +1674,10 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='41%'><b>34</b> events passed</small></div>
+<div><small data-tooltip='100%'><b>34</b> events passed</small></div>
 <div>
-<small data-tooltip='8%'><b>7</b> events failed,
-<b data-tooltip='%'>40</b> others
+<small data-tooltip='0%'><b>0</b> events failed,
+<b data-tooltip='%'>0</b> others
 </small>
 </div>
 </div>
@@ -2412,35 +1693,17 @@ Session ID: 78e58c4512d388d8f1d2ed4b7b75c90a
 </div></div>
 <script>
 var timeline = {
-"checkQueuePageSongs":4.243,"likeAll":33.352,"checkRASongsOnHover":1.744,"checkRaLikedButtons":2.217,"checkRecentlyAdded":2.648,"clickAboutLink":61.663,"checkSongInfo":3.269,"clickInfoPanelAlbumTab":3.277,"durationInHeader":3.274,"playFirstSong":2.92,"songTotalIsDisplayed":3.244,"totalPlayableSongsCount":2.993,"albumsAreDisplayed":62.705,"clickAboutLink":1.376,"hoverOverPlayBtn":0.703,"likeSongs":33.391,"modalCloses":3.302,"recentlyPlayedExists":1.059,"albumsAreDisplayed":1.489,"createPlaylist":2.715,"checkAlbumArtist":3.157,"downloadSong":2.801,"checkAlbumCoverImages":25.134,"addSongToPlaylist":6.627,"deletePlaylist":4.995,"unlikeAllSongs":12.238,"checkAlbumSongDurtation":24.956,"unlikeAllSongs":3.437,"checkAlbumSongTrackTotal":24.531,"checkAlbumTitles":24.566,"checkDownloadButton":16.115,"checkShuffleButton":14.695,"playFirstAlbumSongs":1.611,"artistsAreDisplayed":1.221,"playAllSongsByArtist":1.729,"playAllSongsByArtist":2.868,"playArtistSongs":1.919,"searchArtist":2.723,"unlikeAll":33.585
+"checkQueuePageSongs":4.24,"likeAll":33.352,"checkRASongsOnHover":1.744,"checkRaLikedButtons":2.217,"checkRecentlyAdded":2.648,"clickAboutLink":0,"checkSongInfo":3.269,"clickInfoPanelAlbumTab":3.277,"durationInHeader":3.274,"playFirstSong":2.92,"songTotalIsDisplayed":3.244,"totalPlayableSongsCount":2.993,"albumsAreDisplayed":0,"clickAboutLink":1.375,"hoverOverPlayBtn":0.703,"likeSongs":33.39,"modalCloses":3.302,"recentlyPlayedExists":1.059,"albumsAreDisplayed":1.489,"createPlaylist":2.715,"checkAlbumArtist":3.157,"downloadSong":2.801,"checkAlbumCoverImages":25.134,"addSongToPlaylist":6.627,"deletePlaylist":4.995,"unlikeAllSongs":0,"checkAlbumSongDurtation":24.959,"unlikeAllSongs":3.437,"checkAlbumSongTrackTotal":24.531,"checkAlbumTitles":24.566,"checkDownloadButton":16.115,"checkShuffleButton":14.695,"playFirstAlbumSongs":1.611,"artistsAreDisplayed":1.221,"playAllSongsByArtist":0,"playAllSongsByArtist":0,"playArtistSongs":1.918,"searchArtist":2.723,"unlikeAll":33.585
 };
 </script>
 <div class="row">
-<div class="col-lg-6 col-md-12 sysenv-container">
-<div class="card">
-<div class="card-header"><p>System/Environment</p></div>
-<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
-<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
-<tbody>
-<tr>
-<td>Environment</td>
-<td>TEST</td>
-</tr>
-<tr>
-<td>Author</td>
-<td>Franz Fernando</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-</div>
 </div>
 </div>
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 34,
-failParent: 5,
+passParent: 39,
+failParent: 0,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -2457,10 +1720,10 @@ skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
 passEvents: 34,
-failEvents: 7,
+failEvents: 0,
 warningEvents: 0,
-skipEvents: 8,
-infoEvents: 32
+skipEvents: 0,
+infoEvents: 0
 };
 </script>        </div>
       </div>

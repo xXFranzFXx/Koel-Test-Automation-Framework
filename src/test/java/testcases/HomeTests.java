@@ -43,6 +43,7 @@ public class HomeTests extends BaseTest {
                 .clickSearchViewAllBtn()
                 .clickFirstSearchResult()
                 .clickGreenAddToBtn()
+                .wait(2)
                 .selectPlaylistToAddTo(dataMap.get("playlist"));
         TestListener.logAssertionDetails("Added song to playlist: " + homePage.notificationMsg());
         Assert.assertTrue(homePage.notificationMsg());

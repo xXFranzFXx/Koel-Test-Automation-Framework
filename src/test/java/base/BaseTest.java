@@ -18,6 +18,7 @@ import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.Reporter;
 import org.testng.annotations.*;
 import util.RandomString;
+import util.TestUtil;
 import util.listeners.TestListener;
 
 import java.net.MalformedURLException;
@@ -46,6 +47,11 @@ public class BaseTest{
     public  void loadEnv() {
         Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").load();
         dotenv.entries().forEach(e -> System.setProperty(e.getKey(), e.getValue()));
+    }
+    @BeforeSuite
+    public void clearFiles() {
+        TestUtil.deleteFiles("reports/extent-reports/screenshots");
+        TestUtil.deleteFiles("downloads");
     }
     @BeforeMethod
     @Parameters({"baseURL"})

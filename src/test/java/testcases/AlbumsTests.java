@@ -4,20 +4,23 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.AlbumsPage;
+import pages.HomePage;
 import pages.LoginPage;
 import util.listeners.TestListener;
 
 public class AlbumsTests extends BaseTest {
     LoginPage loginPage;
     AlbumsPage albumsPage;
+    HomePage homePage;
     public AlbumsTests() {
         super();
     }
     public void setupAlbums(){
         loginPage = new LoginPage(getDriver());
         loginPage.loginValidCredentials();
+        homePage = new HomePage(getDriver());
         albumsPage = new AlbumsPage(getDriver());
-        albumsPage.navigateToAlbums();
+        homePage.albumsPage();
     }
 
     @Test(description = "Right click on an album and play all songs")

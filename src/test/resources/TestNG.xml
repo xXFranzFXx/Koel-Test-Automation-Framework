@@ -10,15 +10,17 @@
         <classes>
             <class name="testcases.FavoritesTests"/>
             <class name="testcases.HomeTests"/>
-            <class name="testcases.AlbumsTests"/>
+            <class name="testcases.CurrentQueueTests"/>
         </classes>
     </test>
     <test name="TestNG Group2">
         <parameter name="baseURL" value="https://qa.koel.app/"/>
         <classes>
             <class name="testcases.AllSongsTests"/>
+            <class name="testcases.AlbumsTests"/>
             <class name="testcases.ArtistsTests"/>
-            <class name="testcases.CurrentQueueTests"/>
+
+
         </classes>
     </test>
 </suite>

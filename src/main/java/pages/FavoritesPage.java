@@ -23,12 +23,12 @@ public class FavoritesPage extends BasePage{
     }
     public FavoritesPage unlikeAllSongs()  throws StaleElementReferenceException {
         try {
+            if(likedHeartIcon.isEmpty()) return this;
             likedHeartIcon.forEach(WebElement::click);
-            if (frownIcon.isDisplayed() || getLikedSongsCount() == 0) {
-                return this;
-            }
+            return this;
         } catch (StaleElementReferenceException e) {
             Reporter.log("Error removing songs from favorites playlist:  " + e, true);
+            unlikeAllSongs();
         }
         return this;
     }

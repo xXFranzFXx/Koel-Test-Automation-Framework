@@ -27,7 +27,7 @@ public class FavoritesTests extends BaseTest {
 
     @AfterClass
     public void deleteDownloadedFiles() {
-        TestUtil.deleteFiles();
+        TestUtil.deleteFiles("downloads");
         Reporter.log("Deleted downloaded files.", true);
     }
 

@@ -153,6 +153,7 @@ public class BasePage {
         clickElement(albumsLocator);
     }
     public void allSongsPage() {  actions.moveToElement(allSongsLocator).perform();
+        pause(2);
         clickElement(allSongsLocator);
     }
 

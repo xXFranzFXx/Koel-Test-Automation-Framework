@@ -72,7 +72,13 @@ public class AlbumsPage extends BasePage{
         return isSongPlaying();
     }
     public boolean albumsArePresent() {
-        return !albumTiles.isEmpty();
+        try {
+            return !albumTiles.isEmpty();
+        } catch (TimeoutException e) {
+            driver.navigate().refresh();
+            albumsArePresent();
+        }
+        return false;
     }
 
     public boolean checkAlbumImage(WebElement element) {
