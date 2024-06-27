@@ -36,7 +36,7 @@ public class Retry implements IRetryAnalyzer {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        TestListener.test.get().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath( "/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + count + ".png");
+        TestListener.test.get().log(Status.FAIL, "Test Failed").addScreenCaptureFromPath( "/reports/extent-reports/screenshots", iTestResult.getMethod().getMethodName() + ".png");
     }
 }
 
