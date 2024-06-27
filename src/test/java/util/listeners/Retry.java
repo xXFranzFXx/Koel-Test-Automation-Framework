@@ -30,6 +30,7 @@ public class Retry implements IRetryAnalyzer {
         }
         return false;
     }
+    //If test fails and the count is less than retry value, mark it as skipped
     public void extentReportsFailOperations(ITestResult iTestResult) throws IOException {
         try {
             TestUtil.takeScreenshotAtEndOfTest(iTestResult.getMethod().getMethodName(), BaseTest.getDriver());
