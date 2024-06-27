@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testcases.ArtistsTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2024-06-27T16:33:26" hostname="admins-Air" time="16.052">
+  <properties/>
+  <testcase name="artistsAreDisplayed" classname="testcases.ArtistsTests" time="1.397"/>
+  <testcase name="playAllSongsByArtist" classname="testcases.ArtistsTests" time="1.803"/>
+  <testcase name="playArtistSongs" classname="testcases.ArtistsTests" time="2.083"/>
+  <testcase name="searchArtist" classname="testcases.ArtistsTests" time="3.458"/>
+  <system-out><![CDATA[[INFO ] 2024-06-27 09:33:26.764 [TestNG-tests-2] Log - artistsAreDisplayed started!
+[INFO ] 2024-06-27 09:33:28.160 [TestNG-tests-2] Log - artistsAreDisplayed passed!
+[INFO ] 2024-06-27 09:33:31.161 [TestNG-tests-2] Log - playAllSongsByArtist started!
+[INFO ] 2024-06-27 09:33:32.964 [TestNG-tests-2] Log - playAllSongsByArtist passed!
+[INFO ] 2024-06-27 09:33:35.767 [TestNG-tests-2] Log - playArtistSongs started!
+[INFO ] 2024-06-27 09:33:37.850 [TestNG-tests-2] Log - playArtistSongs passed!
+[INFO ] 2024-06-27 09:33:39.358 [TestNG-tests-2] Log - searchArtist started!
+[INFO ] 2024-06-27 09:33:42.815 [TestNG-tests-2] Log - searchArtist passed!
+]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 125.0.6422.141 (4b1e83937122185343ba92e909b021f307c719ca-refs/branch-heads/6422@{#1186}) on port 52749
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1719506003.778][WARNING]: FromSockAddr failed on netmask
+[1719506003.778][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1719506004.361][WARNING]: This version of ChromeDriver has not been tested with Chrome version 126.
+Jun 27, 2024 9:33:24 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 27, 2024 9:33:24 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 126, so returning the closest version found: a no-op implementation
+Jun 27, 2024 9:33:24 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 126.
+Jun 27, 2024 9:33:24 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 125.0.6422.141 (4b1e83937122185343ba92e909b021f307c719ca-refs/branch-heads/6422@{#1186}) on port 59103
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1719506008.284][WARNING]: FromSockAddr failed on netmask
+[1719506008.284][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1719506008.864][WARNING]: This version of ChromeDriver has not been tested with Chrome version 126.
+Jun 27, 2024 9:33:28 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 27, 2024 9:33:28 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 126, so returning the closest version found: a no-op implementation
+Jun 27, 2024 9:33:28 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 126.
+Jun 27, 2024 9:33:28 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 125.0.6422.141 (4b1e83937122185343ba92e909b021f307c719ca-refs/branch-heads/6422@{#1186}) on port 58093
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1719506013.085][WARNING]: FromSockAddr failed on netmask
+[1719506013.085][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1719506013.672][WARNING]: This version of ChromeDriver has not been tested with Chrome version 126.
+Jun 27, 2024 9:33:33 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 27, 2024 9:33:33 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 126, so returning the closest version found: a no-op implementation
+Jun 27, 2024 9:33:33 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 126.
+Jun 27, 2024 9:33:33 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+Starting ChromeDriver 125.0.6422.141 (4b1e83937122185343ba92e909b021f307c719ca-refs/branch-heads/6422@{#1186}) on port 55965
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1719506017.983][WARNING]: FromSockAddr failed on netmask
+[1719506017.983][WARNING]: FromSockAddr failed on netmask
+ChromeDriver was started successfully.
+[1719506018.560][WARNING]: This version of ChromeDriver has not been tested with Chrome version 126.
+Jun 27, 2024 9:33:38 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected upstream dialect: W3C
+Jun 27, 2024 9:33:38 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 126, so returning the closest version found: a no-op implementation
+Jun 27, 2024 9:33:38 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+INFO: Unable to find CDP implementation matching 126.
+Jun 27, 2024 9:33:38 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$3
+WARNING: Unable to find version of CDP to use for . You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.5.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="testcases.CurrentQueueTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-06-27T16:27:06" hostname="admins-Air" time="2.923">
+  <properties/>
+  <testcase name="checkQueuePageSongs" classname="testcases.CurrentQueueTests" time="2.923"/>
+  <system-out><![CDATA[[INFO ] 2024-06-27 09:27:06.104 [TestNG-tests-1] Log - checkQueuePageSongs started!
+extracted66
+extracted04:32:57
+[INFO ] 2024-06-27 09:27:09.028 [TestNG-tests-1] Log - checkQueuePageSongs passed!
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
