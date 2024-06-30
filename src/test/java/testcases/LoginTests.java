@@ -142,7 +142,6 @@ public class LoginTests extends BaseTest {
         } catch(Exception e) {
             TestListener.logExceptionDetails("Error logging in with dataProvider: " + e);
             Assert.assertTrue(loginPage.getRegistrationLink());
-
         }
     }
     @Test(description = "Log in with data read from Excel Sheet", dataProvider = "excel-data", dataProviderClass = ExcelFile.class)
@@ -183,6 +182,5 @@ public class LoginTests extends BaseTest {
            TestListener.logExceptionDetails("Unable to reset profile" + e);
         }
     }
-
 }
 
