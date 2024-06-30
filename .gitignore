@@ -1,8 +1,8 @@
 .gradle
 bin/
-#build/
-build/*
-!build/test-results/
+build/
+#build/*
+#!build/test-results/
 .idea*
 /downloads/
 # Ignore Gradle GUI config
