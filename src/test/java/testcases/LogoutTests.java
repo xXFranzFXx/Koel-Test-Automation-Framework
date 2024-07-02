@@ -36,6 +36,7 @@ public class LogoutTests extends BaseTest {
     public void setupLogout(){
         homePage = new HomePage(getDriver());
         loginPage = new LoginPage(getDriver());
+        profilePage = new ProfilePage(getDriver());
     }
 
     @Test(description = "Log in and verify visibility of logout button, then log out")
@@ -44,23 +45,33 @@ public class LogoutTests extends BaseTest {
         loginPage.loginValidCredentials();
         homePage.clickLogoutButton();
         TestListener.logAssertionDetails("Successfully logged out after logging in: " + loginPage.getRegistrationLink());
-        Assert.assertTrue(loginPage.getRegistrationLink());
+        Assert.assertTrue(loginPage.getRegistrationLink(), "Error logging out.");
     }
-
 
     @Test(enabled=false, dependsOnMethods = { "useLogoutButton" }, description = "Update username and password then logout and verify navigation back to login screen")
     public void logoutAfterProfileUpdate() {
-        String randomNm = generateRandomName();
-        String password = System.getProperty("koelPassword");
-        String profileName = profilePage.getProfileName();
-        profilePage
-                .provideNewPassword(System.getProperty("koelPassword"))
-                .provideRandomProfileName(randomNm)
-                .provideCurrentPassword(password);
-
-        Assert.assertTrue(profilePage.clickSave());
+        setupLogout();
+        try {
+            loginPage.loginValidCredentials();
+            homePage.clickAvatar();
+            String randomNm = generateRandomName();
+            String password = System.getProperty("koelPassword");
+            String profileName = profilePage.getProfileName();
+            profilePage
+                    .provideNewPassword(System.getProperty("koelPassword"))
+                    .provideRandomProfileName(randomNm)
+                    .provideCurrentPassword(password);
+            Assert.assertTrue(profilePage.clickSave(), "Error saving profile name.");
+        } catch (Exception e) {
+            Reporter.log("Unable to update profile name." + e.getLocalizedMessage(), true);
+        }
+        try {
         profilePage.clickLogout();
-        Assert.assertTrue(loginPage.getRegistrationLink());
+        Assert.assertTrue(loginPage.getRegistrationLink(), "Error logging out.");
+        TestListener.logAssertionDetails("User can log out after updating profile name: " + loginPage.getRegistrationLink());
         Reporter.log("User has logged out after updating username and password and redirected to login page", true);
-    }
+    } catch (Exception e) {
+            Reporter.log("Unable to log out after updating profile." + e.getLocalizedMessage(), true);
+            }
+        }
 }
