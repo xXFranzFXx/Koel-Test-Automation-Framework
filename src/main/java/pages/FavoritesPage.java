@@ -50,5 +50,4 @@ public class FavoritesPage extends BasePage{
     public boolean isFavoritesEmpty() {
         return favoritesSongList.isEmpty();
     }
-
 }
