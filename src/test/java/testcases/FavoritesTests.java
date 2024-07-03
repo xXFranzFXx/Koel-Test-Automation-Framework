@@ -2,7 +2,6 @@ package testcases;
 
 import base.BaseTest;
 import org.testng.Assert;
-import org.testng.Reporter;
 import org.testng.annotations.*;
 import pages.AllSongsPage;
 import pages.FavoritesPage;
@@ -24,12 +23,6 @@ public class FavoritesTests extends BaseTest {
     LoginPage loginPage;
     AllSongsPage allSongsPage;
     FavoritesPage favoritesPage;
-
-    @AfterClass
-    public void deleteDownloadedFiles() {
-        TestUtil.deleteFiles("downloads");
-        Reporter.log("Deleted downloaded files.", true);
-    }
 
     public void setUpFavorites() {
         loginPage = new LoginPage(getDriver());
