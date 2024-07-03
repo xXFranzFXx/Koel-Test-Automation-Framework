@@ -52,6 +52,7 @@ public class BaseTest{
     public void clearFiles() {
         TestUtil.deleteFiles("reports/extent-reports/screenshots");
         TestUtil.deleteFiles("downloads");
+        Reporter.log("Deleted downloaded files and cleared screenshots folder.", true);
     }
     @BeforeMethod
     @Parameters({"baseURL"})
