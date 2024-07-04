@@ -110,7 +110,6 @@ public class KoelDbActions extends KoelDb{
     public ResultSet lyricsQuery() throws SQLException {
         return simpleQuery(getLyrics);
     }
-
     public ResultSet artistQuery(String artist) throws SQLException {
         TestListener.logInfoDetails("Artist " + artist);
         String[] str = new String[]{artist};
