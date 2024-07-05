@@ -10,7 +10,6 @@ import models.playlist.Playlist;
 import models.user.User;
 import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import pages.HomePage;
