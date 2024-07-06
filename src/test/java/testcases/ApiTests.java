@@ -131,7 +131,6 @@ public class ApiTests extends BaseTest {
         Optional<Object> lists = Optional.ofNullable(apiTestDataHandler.getApiTestValue("userPlaylists"));
         List<String> apiPlaylists = RestUtil.getPlaylistNames(response);
         List<String> uiPlaylists = lists.stream().map(Object::toString).toList();
-
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
         TestListener.logAssertionDetails("Playlists in UI match api: " + uiPlaylists.equals(apiPlaylists));
         Assert.assertEquals(uiPlaylists, apiPlaylists);
