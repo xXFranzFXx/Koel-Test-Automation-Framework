@@ -9,18 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ProfilePage extends BasePage{
     @FindBy(xpath = "//div[@data-testid='theme-card-pines']/div")
     private WebElement inThePinesThemeLocator;
-    @FindBy(xpath = "//a[@data-testid='btn-logout']/i")
-    private WebElement logoutButton;
     @FindBy(css = ".success.show")
     private WebElement updateNotification;
-    @FindBy(css = "[data-testid='view-profile-link'] .name")
-    private WebElement avatarLocator;
-    @FindBy(css = "[name='current_password']")
-    private WebElement currentPassword;
-    @FindBy(css = "[name='new_password']")
-    private WebElement newPassword;
-    @FindBy(css ="[name='email']")
-    private WebElement newEmail;
     @FindBy(xpath = "//span[@id='userBadge']//a[@data-testid='view-profile-link']/span")
     private WebElement actualProfileName;
     @FindBy(css = "button.btn-submit")
