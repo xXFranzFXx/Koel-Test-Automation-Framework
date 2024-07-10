@@ -41,7 +41,6 @@ public class FavoritesPage extends BasePage{
         actions.moveToElement(selection).click().perform();
         pause(1);
         actions.sendKeys(Keys.ENTER).perform();
-
     }
     public boolean checkPlaylistEmptyIcon() {
         List<WebElement> icon = findElements(By.xpath("//section[@id='favoritesWrapper']//i[@class='fa fa-frown-o']"));
