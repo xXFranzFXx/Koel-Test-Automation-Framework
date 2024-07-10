@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
-
 public class RecentlyPlayedPage extends BasePage{
     @FindBy(linkText = "Recently Played")
     private By recentlyPlayedLocator;
