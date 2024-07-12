@@ -48,7 +48,6 @@ public class LoginPage extends BasePage{
         if(!driver.getCurrentUrl().equalsIgnoreCase(homeUrl)) {
             driver.get(homeUrl);
         }
-
         return new HomePage(driver);
     }
     public void loginAsNewUser() {
