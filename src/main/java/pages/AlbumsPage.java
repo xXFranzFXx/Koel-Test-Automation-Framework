@@ -215,5 +215,4 @@ public class AlbumsPage extends BasePage{
         }
         return check;
     }
-
 }
