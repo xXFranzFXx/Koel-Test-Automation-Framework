@@ -1,5 +1,4 @@
 package models.album;
-import models.artist.Artist;
 public class Album {
    private int id;
    private int artist_id;
@@ -15,9 +14,7 @@ public class Album {
        this.created_at = created_at;
        this.is_compilation = is_compilation;
    }
-   public Album () {
-
-   }
+   public Album () {}
    public int getId() {
        return id;
    }
@@ -54,5 +51,4 @@ public class Album {
    public void setIs_compilation(boolean is_compilation) {
        this.is_compilation = is_compilation;
    }
-
 }
