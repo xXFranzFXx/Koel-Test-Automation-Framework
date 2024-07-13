@@ -10,9 +10,7 @@ public class Artist {
         this.name = name;
         this.image = image;
     }
-    public Artist() {
-
-    }
+    public Artist() { }
     public int getId() {
         return id;
     }
