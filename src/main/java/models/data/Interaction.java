@@ -57,5 +57,4 @@ public class Interaction {
     public void setUser(User user) {
         this.user = user;
     }
-
 }
