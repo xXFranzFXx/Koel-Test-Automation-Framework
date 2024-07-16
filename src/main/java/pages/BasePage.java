@@ -88,7 +88,6 @@ public class BasePage {
     public WebElement locateByVisibility(WebElement webElement){
         return wait.until(ExpectedConditions.visibilityOf(webElement));
     }
-
     public boolean verifyTheme (String theme) {
          return themes.stream().anyMatch(e -> waitForAttribute(pageTheme, "data-theme", theme));
     }
@@ -137,7 +136,6 @@ public class BasePage {
         findElement(soundBarVisualizer);
         return soundBarVisualizer.isDisplayed();
     }
-
     public void currentQueuePage () {
         actions.moveToElement(currentQueueLocator).perform();
         clickElement(currentQueueLocator);    }
@@ -156,7 +154,6 @@ public class BasePage {
         pause(2);
         clickElement(allSongsLocator);
     }
-
     public void favorites() {actions.moveToElement(favoritesLocator).perform();
         clickElement(favoritesLocator);
     }
@@ -166,7 +163,6 @@ public class BasePage {
     public void about() { actions.moveToElement(aboutBtnLocator).perform();
             clickElement(aboutBtnLocator);
     }
-
     public void clickLogoutButton() {
         findElement(logoutButtonLocator).click();
     }
@@ -198,6 +194,4 @@ public class BasePage {
     public void pause(int seconds) {
         actions.pause(Duration.ofSeconds(seconds)).perform();
     }
-
-
 }
