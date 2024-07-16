@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-
 public class LoginPage extends BasePage{
     HomePage homePage;
     @CacheLookup
@@ -55,7 +54,6 @@ public class LoginPage extends BasePage{
         providePassword(System.getProperty("koelPassword"));
         clickSubmitBtn();
     }
-
     public void clickRegistrationLink() {
         registrationLinkLocator.click();
     }
