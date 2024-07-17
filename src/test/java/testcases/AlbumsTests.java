@@ -22,7 +22,6 @@ public class AlbumsTests extends BaseTest {
         albumsPage = new AlbumsPage(getDriver());
         homePage.albumsPage();
     }
-
     @Test(description = "Right click on an album and play all songs")
     public void playFirstAlbumSongs() {
         setupAlbums();
