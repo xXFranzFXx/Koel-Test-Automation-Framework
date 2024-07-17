@@ -43,7 +43,6 @@ public class ApiTests extends BaseTest {
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
     }
-
     @Test(description = "Create a playlist through api, and verify new playlist appears in UI")
     public void createPlaylist() {
         String payload = apiTestDataHandler.createPayload("name", "newPlaylist");
