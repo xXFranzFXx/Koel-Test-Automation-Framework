@@ -84,7 +84,6 @@ public class AllSongsPage extends BasePage{
         unLikedButton.forEach(WebElement::click);
         return this;
     }
-
     //checks if there are any songs that are marked as "liked"
     public boolean checkUnliked() {
         return likedSongsButton.isEmpty();
@@ -105,7 +104,6 @@ public class AllSongsPage extends BasePage{
     public String duration() {
         return findElement(headerTotalDurationText).getText();
     }
-
     private boolean checkTotalOrDuration(String regex, String time) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(time);
