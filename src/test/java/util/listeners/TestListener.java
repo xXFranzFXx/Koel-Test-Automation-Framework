@@ -20,7 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
-
 public class TestListener  implements ITestListener, WebDriverListener {
     static ExtentReports extent = ExtentManager.getInstance("all");
     static ExtentReports failedExtent = ExtentManager.getInstance("failed");
@@ -116,7 +115,7 @@ public class TestListener  implements ITestListener, WebDriverListener {
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         Log.info("onTestFailedButWithinSuccessPercentage for " + result.getMethod().getMethodName());
     }
-      @Override
+    @Override
     public void beforeAnyCall(Object target, Method method, Object[] args) {
         Log.debug( "Before calling method: " + method.getName());
     }
