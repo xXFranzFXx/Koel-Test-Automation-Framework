@@ -26,7 +26,6 @@ import java.util.Map;
  * The updated email should be correctly saved to the database
  *
  */
-
 public class UpdateEmailTests extends BaseTest {
     LoginPage loginPage;
     ProfilePage profilePage;
