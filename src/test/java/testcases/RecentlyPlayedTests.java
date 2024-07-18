@@ -22,7 +22,6 @@ public class RecentlyPlayedTests extends BaseTest {
         recentlyPlayedPage = new RecentlyPlayedPage(getDriver());
         loginPage.loginValidCredentials();
     }
-
     //Song titles do not match
     @Test(description = "Verify song titles in recently played section of homepage match song titles in recently played page")
     public void recentlyPlayedTitles() {
