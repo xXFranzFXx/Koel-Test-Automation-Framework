@@ -20,12 +20,10 @@ import util.listeners.TestListener;
  * BUG >>Search should be case sensitive
  * User can clear the search query with keyboard and 'x' button. Search results should be cleared on the search field and the search page in each section: song, artist or album.
  */
-
 public class SearchTests extends BaseTest {
     HomePage homePage;
     LoginPage loginPage;
     SearchPage searchPage;
-
     public void setupSearch() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
