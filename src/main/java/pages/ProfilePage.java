@@ -99,5 +99,4 @@ public class ProfilePage extends BasePage{
         WebElement errorMsg = findElement(errorNotification);
         return errorMsg.getText();
     }
-
 }
