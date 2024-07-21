@@ -49,7 +49,6 @@ public class CurrentQueuePage extends  BasePage{
     public int queueListSize() {
         return findElements(queueTableRows).size();
     }
-
     public boolean queueListExists() {
         return !findElements(queueTableRows).isEmpty();
     }
