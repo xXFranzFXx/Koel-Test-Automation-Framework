@@ -30,7 +30,6 @@ public class CurrentQueuePage extends  BasePage{
     public String duration() {
         return getTextFromElement(durationLocator);
     }
-
     public boolean checkTotalOrDuration(String regex, String time) {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(time);
