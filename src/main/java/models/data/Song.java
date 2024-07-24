@@ -9,7 +9,6 @@ public class Song {
     private int track;
     private int disc;
     private String created_at;
-
     public Song(String id, int album_id, int artist_id, String title, double length, int track, int disc, String created_at) {
         this.id = id;
         this.album_id = album_id;
@@ -23,7 +22,6 @@ public class Song {
     public Song() {
 
     }
-
     public String getId() {
         return id;
     }
