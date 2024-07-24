@@ -24,7 +24,6 @@ public class Data {
     private String currentVersion;
     private String latestVersion;
 
-
     public Data(Album[] albums, Song[] songs, String[] settings, Playlist[] playlists, Interaction[] interactions, String[] recentlyPlayed, User[] users, User currentUser, boolean useLastfm, boolean useYouTube, boolean useiTunes, boolean allowDownload, boolean supportsTranscoding, String cdnUrl, String currentVersion, String latestVersion) {
         this.albums = albums;
         this.songs = songs;
