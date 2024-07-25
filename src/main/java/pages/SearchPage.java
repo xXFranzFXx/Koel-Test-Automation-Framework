@@ -44,7 +44,6 @@ public class SearchPage extends BasePage{
             int xOffset = center - 10;
             actions.moveToElement(searchInputLocator, xOffset, -1).click().perform();
         }
-
         public void useKeyBoardClear() {
             searchInputLocator.sendKeys(Keys.chord(Keys.CONTROL, Keys.SHIFT, "A"));
             searchInputLocator.sendKeys(Keys.BACK_SPACE);
