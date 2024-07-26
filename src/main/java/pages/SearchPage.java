@@ -38,8 +38,6 @@ public class SearchPage extends BasePage{
         public void clickCancelBtn() {
             int width = searchInputLocator.getSize().getWidth();
             int height = searchInputLocator.getSize().getHeight();
-            System.out.println(width);
-            System.out.println(height);
             int center = width/2;
             int xOffset = center - 10;
             actions.moveToElement(searchInputLocator, xOffset, -1).click().perform();
