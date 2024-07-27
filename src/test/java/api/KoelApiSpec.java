@@ -9,7 +9,6 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 
 public class KoelApiSpec {
-
     public static RequestSpecification getAuthRequestSpec() {
         RequestSpecification requestSpec;
         Response response = given()
@@ -40,5 +39,4 @@ public class KoelApiSpec {
                 .build();
         return requestSpec;
     }
-
 }
