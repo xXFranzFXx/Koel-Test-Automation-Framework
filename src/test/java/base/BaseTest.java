@@ -123,7 +123,6 @@ public class BaseTest{
         ChromeOptions options = new ChromeOptions();
         TestListener eventListener = new TestListener();
         options.addArguments("--remote-allow-origins=*", "--disable-notifications", "--start-maximized", "--incognito", "--disable-dev-shm-usage", "--safebrowsing-disable-download-protection");
-        //options.addArguments("--headless");
         options.setExperimentalOption("prefs", setDownloadDir());
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
         driver = new ChromeDriver(service, options);
