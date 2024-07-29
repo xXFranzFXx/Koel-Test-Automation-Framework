@@ -20,7 +20,6 @@ public class KoelApiSpec {
                 .assertThat()
                 .statusCode(200)
                 .extract().response();
-
         String accessToken = response.path("token");
         String Authorization = "Bearer " + accessToken;
         RequestSpecBuilder builder = new RequestSpecBuilder();
