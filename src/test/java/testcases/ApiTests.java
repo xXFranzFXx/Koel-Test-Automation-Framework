@@ -37,7 +37,6 @@ public class ApiTests extends BaseTest {
     private final String songInteraction = baseUrl + "/interaction/play";
     private final String recentlyPlayed = baseUrl + "/interaction/recently-played";
     private final String likeUnlikeOneSong = baseUrl + "/like";
-
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
@@ -126,7 +125,6 @@ public class ApiTests extends BaseTest {
                 .assertThat()
                 .statusCode(200)
                 .extract().response();
-
         Optional<Object> lists = Optional.ofNullable(apiTestDataHandler.getApiTestValue("userPlaylists"));
         List<String> apiPlaylists = RestUtil.getPlaylistNames(response);
         List<String> uiPlaylists = lists.stream().map(Object::toString).toList();
