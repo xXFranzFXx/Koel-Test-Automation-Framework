@@ -193,7 +193,6 @@ public class ApiTests extends BaseTest {
                 .assertThat()
                 .statusCode(200)
                 .extract().response();
-
         List<String> songs = response.jsonPath().get();
         songs.forEach(System.out::println);
         RestUtil.getRequestDetailsForLog(response, getAuthRequestSpec());
@@ -211,7 +210,6 @@ public class ApiTests extends BaseTest {
                 .assertThat()
                 .statusCode(200)
                 .extract().response();
-
         List<String> songs = response.jsonPath().get();
         Optional<List<String>> dbSongs = Optional.ofNullable(DbTestUtil.getSongTitles(songs));
         dbSongs.get().forEach(System.out::println);
@@ -235,7 +233,6 @@ public class ApiTests extends BaseTest {
                 .assertThat()
                 .statusCode(200)
                 .extract().response();
-
         List<String> songs = response.jsonPath().get();
         List<String> dbSongs = DbTestUtil.getSongTitles(songs);
         List<String> rPlayedSongs = homePage.recentlyPlayedTitles();
