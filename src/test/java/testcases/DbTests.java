@@ -28,7 +28,6 @@ public class DbTests extends BaseTest {
     List<String> dataList = new ArrayList<>();
     Map<String, String> dataMap = new HashMap<>();
     Map<String, Object> rsMap = new HashMap<>();
-
     private final int maxLength = 256;
     public void setupKoel() {
         loginPage = new LoginPage(getDriver());
@@ -45,7 +44,6 @@ public class DbTests extends BaseTest {
     public void shutDown() throws SQLException {
         KoelDb.closeDatabaseConnection();
     }
-
     @Test(description = "Verify total song count displayed in app matches the total song count from the database")
     public void verifyTotalSongTracks() throws SQLException {
         setupKoel();
@@ -78,7 +76,6 @@ public class DbTests extends BaseTest {
             }
         }
     }
-
     @Test(description = "User can create a playlist", dataProvider="PlaylistData", dataProviderClass = DataProviderUtil.class)
     public void createPlaylist(String playlist) {
             setupKoel();
@@ -107,7 +104,6 @@ public class DbTests extends BaseTest {
                 .selectPlaylistToAddTo("playlist");
         Assert.assertTrue(DbTestUtil.checkDatabaseForSongInPlaylist(System.getProperty("koelUser"), song), "Playlist song could not be found");
     }
-
     @Test(description = "delete all playlists",dependsOnMethods = {"addSongToPlaylist"})
     public void deleteAllPlaylists(){
         setupKoel();
