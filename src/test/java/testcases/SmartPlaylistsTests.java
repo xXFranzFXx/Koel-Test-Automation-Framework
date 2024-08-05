@@ -21,7 +21,6 @@ public class SmartPlaylistsTests extends BaseTest {
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
     }
-
     @Test(description = "User can create a smart playlist with one rule and verify related songs appear")
     public void createSmartPlaylist() {
         setupSmartPl();
