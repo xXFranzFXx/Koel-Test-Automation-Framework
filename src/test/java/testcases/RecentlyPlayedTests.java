@@ -45,7 +45,6 @@ public class RecentlyPlayedTests extends BaseTest {
         List<String> homePageTitles = homePage.recentlyPlayedTitles();
         homePage.clickRecentlyPlayed();
         List<String> recentlyPlayedPageTitles = recentlyPlayedPage.recentlyPlayedSongs();
-
         TestListener.logInfoDetails("Number of Recently played song titles on homepage: " + homePageTitles.size());
         TestListener.logInfoDetails("Number of song titles on Recently Played page: " + recentlyPlayedPageTitles.size());
         TestListener.logAssertionDetails("Number of song titles are equal: " + (homePageTitles.size() == recentlyPlayedPageTitles.size()));
