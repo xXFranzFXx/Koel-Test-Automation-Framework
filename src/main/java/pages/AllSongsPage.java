@@ -43,11 +43,9 @@ public class AllSongsPage extends BasePage{
     private final String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])";
     private final String songTotalRe = "^\\d{1,}[^\\W•]";
 
-
     public AllSongsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
     public boolean checkSongPlaying() {
         return isSongPlaying();
     }
