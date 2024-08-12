@@ -5,7 +5,6 @@ import org.testng.annotations.DataProvider;
 import java.lang.reflect.Method;
 
 public class DataProviderUtil {
-
     @DataProvider(name="LoginData")
     public Object[][] getDataFromDataProvider(){
         return new Object[][]{
@@ -15,7 +14,6 @@ public class DataProviderUtil {
                 {"",""}
         };
     }
-
     @DataProvider(name="SearchData")
     public Object[][] getSearchData(Method method){
         if(method.getName().equalsIgnoreCase("checkWhiteSpace")) {
