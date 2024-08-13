@@ -45,11 +45,11 @@ public class DataProviderUtil {
     public Object[][] apiData(Method method){
         if(method.getName().equalsIgnoreCase("increasePlayCount") || method.getName().equalsIgnoreCase("getSongExtraInfo")) {
             return new Object[][]{
-                    {"06cd19b77127f1e7f889ecad54376b30"},
                     {"08116cdc269c9f19964369e4bb1ab343"},
                     {"0aedf0c1c02188e8b73483d1bf2eacab"},
                     {"0b794968a26cd03bb533762affc8c0ca"},
-                    {"0c3d784a530e74f9e5dbcad9c2711cd2"}
+                    {"0c3d784a530e74f9e5dbcad9c2711cd2"},
+                    {"06cd19b77127f1e7f889ecad54376b30"}
             };
         } else {
             return new Object[][] {
