@@ -7,6 +7,8 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.ProfilePage;
 import util.listeners.TestListener;
+
+import java.util.List;
 import java.util.UUID;
 
 public class ProfileTests extends BaseTest {
@@ -56,20 +58,14 @@ public class ProfileTests extends BaseTest {
         }
     }
     @Test(description = "Verify functionality of checkboxes")
-    public void checkBoxTest() {
+    public void checkBoxTests() {
         setupProfile();
+        List<Boolean> initialState = profilePage.getCheckboxStatus();
         try {
-            boolean notificationState =  profilePage.notificationState();
-            boolean confirmCloseState = profilePage.confirmCloseState();
-            boolean showArtState = profilePage.showArtState();
-            TestListener.logInfoDetails("Notification checkbox is checked: " + notificationState);
-            TestListener.logInfoDetails("Confirm close checkbox is checked: " + confirmCloseState);
-            TestListener.logInfoDetails("Show album artwork checkbox is checked: " + showArtState);
-            profilePage.clickNotificationCheckBox()
-                    .clickConfirmBox()
-                    .clickShowArtCheckBox();
-            TestListener.logAssertionDetails("Notification checkbox has changed" + (notificationState != profilePage.notificationState()));
-            Assert.assertNotEquals(notificationState, profilePage.notificationState());
+            profilePage.clickAllCheckBoxes();
+            List<Boolean> currentState = profilePage.getCheckboxStatus();
+            TestListener.logAssertionDetails("Check boxes can selected/unselected: " + !initialState.equals(currentState));
+            Assert.assertNotEquals(initialState, currentState);
         } catch (Exception e) {
             TestListener.logExceptionDetails("Failed to verify checkbox functionality: " + e);
         }
