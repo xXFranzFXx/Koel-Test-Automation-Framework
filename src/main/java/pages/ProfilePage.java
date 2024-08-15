@@ -19,6 +19,14 @@ public class ProfilePage extends BasePage{
     private WebElement emailId;
     @FindBy(css = ".error.show")
     private WebElement errorNotification;
+    @FindBy(css = "input[name='notify']")
+    private WebElement notificationCheckBox;
+    @FindBy(css = "input[name='rm_closing']")
+    private WebElement confirmCloseCheckBox;
+    @FindBy(css = "input[name='show_album_art_overlay']")
+    private WebElement showAlbumArtCheckBox;
+
+
 
     public ProfilePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -98,5 +106,12 @@ public class ProfilePage extends BasePage{
     public String getErrorNotificationText() {
         WebElement errorMsg = findElement(errorNotification);
         return errorMsg.getText();
+    }
+    public Boolean checkBoxInitialState(WebElement element) {
+        return element.isSelected();
+    }
+    public Boolean checkBoxStateAfter(WebElement element) {
+        findElement(element).click();
+        return element.isSelected();
     }
 }
