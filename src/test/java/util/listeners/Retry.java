@@ -8,7 +8,6 @@ import util.TestUtil;
 
 import java.io.IOException;
 
-
 public class Retry implements IRetryAnalyzer {
     private int count  = 0;
     private static int maxTry = 1; //Run the failed test 1 times
