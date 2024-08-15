@@ -107,11 +107,33 @@ public class ProfilePage extends BasePage{
         WebElement errorMsg = findElement(errorNotification);
         return errorMsg.getText();
     }
-    public Boolean checkBoxInitialState(WebElement element) {
-        return element.isSelected();
+    public Boolean checkBoxState(WebElement element) {
+         return element.isSelected();
     }
-    public Boolean checkBoxStateAfter(WebElement element) {
-        findElement(element).click();
-        return element.isSelected();
+    public void clickCheckBox(WebElement element) {
+       findElement(element).click();
     }
+
+    public Boolean notificationState() {
+        return checkBoxState(notificationCheckBox);
+    }
+    public ProfilePage clickNotificationCheckBox() {
+        clickCheckBox(notificationCheckBox);
+        return this;
+    }
+    public Boolean confirmCloseState() {
+        return checkBoxState(confirmCloseCheckBox);
+    }
+    public ProfilePage clickConfirmBox() {
+        clickCheckBox(confirmCloseCheckBox);
+        return this;
+    }
+    public Boolean showArtState() {
+        return checkBoxState(showAlbumArtCheckBox);
+    }
+    public ProfilePage clickShowArtCheckBox() {
+        clickCheckBox(showAlbumArtCheckBox);
+        return this;
+    }
+
 }
