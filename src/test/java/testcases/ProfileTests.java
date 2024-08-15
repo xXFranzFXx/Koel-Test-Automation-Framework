@@ -55,4 +55,23 @@ public class ProfileTests extends BaseTest {
             TestListener.logExceptionDetails("Failed to change theme to pines: " + e);
         }
     }
+    @Test(description = "Verify functionality of checkboxes")
+    public void checkBoxTest() {
+        setupProfile();
+        try {
+            boolean notificationState =  profilePage.notificationState();
+            boolean confirmCloseState = profilePage.confirmCloseState();
+            boolean showArtState = profilePage.showArtState();
+            TestListener.logInfoDetails("Notification checkbox is checked: " + notificationState);
+            TestListener.logInfoDetails("Confirm close checkbox is checked: " + confirmCloseState);
+            TestListener.logInfoDetails("Show album artwork checkbox is checked: " + showArtState);
+            profilePage.clickNotificationCheckBox()
+                    .clickConfirmBox()
+                    .clickShowArtCheckBox();
+            TestListener.logAssertionDetails("Notification checkbox has changed" + (notificationState != profilePage.notificationState()));
+            Assert.assertNotEquals(notificationState, profilePage.notificationState());
+        } catch (Exception e) {
+            TestListener.logExceptionDetails("Failed to verify checkbox functionality: " + e);
+        }
+    }
 }
