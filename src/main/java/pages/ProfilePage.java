@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ProfilePage extends BasePage {
     @FindBy(xpath = "//div[@data-testid='theme-card-pines']/div")
@@ -174,5 +177,14 @@ public class ProfilePage extends BasePage {
         checkboxes.forEach(WebElement::click);
         return this;
     }
-
+    public List<String> getCheckBoxNames() {
+        return checkboxes.stream().map(el -> el.getAttribute("name")).toList();
+    }
+    public Map<String, Boolean> checkBoxMap() {
+        return IntStream.range(0, getCheckBoxNames().size())
+                .boxed()
+                .collect(Collectors.toMap(
+                        getCheckBoxNames()::get,
+                        getCheckboxStatus()::get));
+    }
 }

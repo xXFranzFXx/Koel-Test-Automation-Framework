@@ -61,9 +61,11 @@ public class ProfileTests extends BaseTest {
     public void checkBoxTests() {
         setupProfile();
         List<Boolean> initialState = profilePage.getCheckboxStatus();
+        TestListener.logInfoDetails("CheckBox states before clicking: " + profilePage.checkBoxMap());
         try {
             profilePage.clickAllCheckBoxes();
             List<Boolean> currentState = profilePage.getCheckboxStatus();
+            TestListener.logInfoDetails("CheckBox states after clicking: " + profilePage.checkBoxMap());
             TestListener.logAssertionDetails("Check boxes can selected/unselected: " + !initialState.equals(currentState));
             Assert.assertNotEquals(initialState, currentState);
         } catch (Exception e) {
