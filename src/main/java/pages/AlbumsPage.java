@@ -103,7 +103,6 @@ public class AlbumsPage extends BasePage{
         }
         return check;
     }
-
     public boolean checkAllAlbumText(List<WebElement> list) {
         boolean check = true;
         int count = 0;
