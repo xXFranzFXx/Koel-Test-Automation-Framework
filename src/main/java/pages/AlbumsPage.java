@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AlbumsPage extends BasePage{
-    
+
     @FindBy(xpath = "//nav[@id='sidebar']/section[1]/ul/li[4]/a")
     private WebElement albumsLocator;
 
