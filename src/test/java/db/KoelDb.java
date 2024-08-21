@@ -11,7 +11,6 @@ import org.mariadb.jdbc.Connection;
         public static Connection getDbConnection() {
             return threadDriver.get();
         }
-
         public static void initializeDb() throws SQLException, ClassNotFoundException {
             threadDriver.set(setupDB());
         }
