@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-
 public class KoelDbActions extends KoelDb{
     private static Connection db ;
     private static PreparedStatement st;
