@@ -57,5 +57,4 @@ public class FavoritesTests extends BaseTest {
         TestListener.logAssertionDetails("User can download songs from Favorites playlist page: " + TestUtil.checkDownloadedFiles());
         Assert.assertTrue(TestUtil.checkDownloadedFiles());
     }
-
 }
