@@ -30,7 +30,6 @@ public class FavoritesTests extends BaseTest {
         favoritesPage = new FavoritesPage(getDriver());
         loginPage.loginValidCredentials();
     }
-
     @Test(description="Add songs to favorites playlist and verify they are displayed in the favorites playlist page", priority=0)
     public void likeSongs() {
         setUpFavorites();
