@@ -9,7 +9,6 @@ import pages.LoginPage;
 import util.TestUtil;
 import util.listeners.TestListener;
 
-
 /**
  * Story:
  * As a user I want to be able to save songs to my Favorites Playlist.
