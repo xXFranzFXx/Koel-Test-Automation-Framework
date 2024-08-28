@@ -294,6 +294,6 @@ public class DbTests extends BaseTest {
                 Assert.assertFalse(false);
             }
         }
-}
+    }
 
 
