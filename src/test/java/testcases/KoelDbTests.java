@@ -29,7 +29,6 @@ public class KoelDbTests extends KoelDbActions {
     private void addDataFromTest(String key, ResultSet rs) {
        testData.addTestData(key, rs);
     }
-
     @BeforeClass
     public static void setEnv() throws SQLException, ClassNotFoundException {
         Dotenv dotenv = Dotenv.configure().directory("./src/test/resources").load();
