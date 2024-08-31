@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 public class RecentlyPlayedPage extends BasePage{
     @FindBy(linkText = "Recently Played")
-    private By recentlyPlayedLocator;
+    private WebElement recentlyPlayedLocator;
     private By recentlyPlayedTitlesLocator = By.cssSelector("#recentlyPlayedWrapper tr.song-item .title");
     public RecentlyPlayedPage(WebDriver givenDriver) {
          super(givenDriver);
