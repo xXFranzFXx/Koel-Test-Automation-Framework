@@ -21,10 +21,10 @@ public class Album {
    public void setId(int id) {
        this.id = id;
    }
-    public int getArtist_id() {
+   public int getArtist_id() {
         return artist_id;
-    }
-    public void setArtist_id(int artist_id) {
+   }
+   public void setArtist_id(int artist_id) {
        this.artist_id = artist_id;
     }
    public String getName() {
