@@ -84,6 +84,7 @@ public class Data {
     public void setSongs(Song[] songs) {
         this.songs = songs;
     }
+
     public String[] getSettings() {
         return settings;
     }
