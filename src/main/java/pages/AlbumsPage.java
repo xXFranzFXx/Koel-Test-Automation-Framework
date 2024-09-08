@@ -46,7 +46,6 @@ public class AlbumsPage extends BasePage{
     private static final String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9])";
     private static final String songTotalRe = "^\\d{1,}|[^\\W•]";
 
-
     public AlbumsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
@@ -66,7 +65,6 @@ public class AlbumsPage extends BasePage{
         findElement(playAll);
         playAll.click();
     }
-
     public boolean checkAlbumSongPlaying() {
         return isSongPlaying();
     }
@@ -79,7 +77,6 @@ public class AlbumsPage extends BasePage{
         }
         return false;
     }
-
     public boolean checkAlbumImage(WebElement element) {
         return element.getAttribute("style").contains("https://qa.koel.app/img/covers");
     }
