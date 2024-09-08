@@ -7,7 +7,6 @@ public class Preferences {
     }
     public Preferences() {
         this(null);
-
     }
     public String getLastfm_session_key() {
         return lastfm_session_key;
