@@ -7,7 +7,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
-    HomePage homePage;
     @CacheLookup
     @FindBy(css = "[type='submit']")
     private WebElement submitButtonLocator;
