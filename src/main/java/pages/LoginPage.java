@@ -23,7 +23,6 @@ public class LoginPage extends BasePage{
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
     public void clickSubmitBtn() {
        submitButtonLocator.click();
     }
