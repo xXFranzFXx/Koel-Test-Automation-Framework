@@ -18,7 +18,6 @@ public class RestUtil {
                 .headers(headers)
                 .contentType(ContentType.JSON);
     }
-
     private static void printRequestLogInReport(RequestSpecification requestSpecification, String jsonObject) {
         QueryableRequestSpecification queryableRequestSpecification = SpecificationQuerier.query(requestSpecification);
         TestListener.logInfoDetails("Endpoint is " + queryableRequestSpecification.getBaseUri());
