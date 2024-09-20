@@ -44,8 +44,6 @@ public class RestUtil {
         TestListener.logInfoDetails("Response body is ");
         TestListener.logJson(response.getBody().prettyPrint());
     }
-
-
     public static void getRequestDetailsForLog(Response response, RequestSpecification requestSpecification, String requestPayload) {
         printRequestLogInReport(requestSpecification, requestPayload);
         printResponseLogInReport(response);
