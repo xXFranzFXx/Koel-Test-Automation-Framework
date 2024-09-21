@@ -10,7 +10,7 @@ public class RegistrationPage extends BasePage{
    private WebElement submitButton;
    @FindBy(xpath = "//div[text()= 'We've sent a confirmation link to the email. Please continue by clicking on it']")
    private WebElement confirmationMsg;
-    public RegistrationPage(WebDriver givenDriver) {
+   public RegistrationPage(WebDriver givenDriver) {
         super(givenDriver);
     }
     public RegistrationPage provideEmail(String email) {
