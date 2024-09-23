@@ -214,7 +214,7 @@ public class AlbumsPage extends BasePage{
         }
         return check;
     }
-    public AlbumsPage goToAlbum() {
+    public AlbumsPage goToAlbumFromCM() {
         rightClickAlbum();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#app > nav")));
         findElement(goToAlbumCM).click();
