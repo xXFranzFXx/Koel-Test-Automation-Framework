@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,10 @@ public class AlbumsPage extends BasePage{
 
     @FindBy(xpath = "//nav[@id='sidebar']/section[1]/ul/li[4]/a")
     private WebElement albumsLocator;
-
+    @FindBy(css = "#app > nav")
+    private WebElement contextMenu;
+    @FindBy(css = "[data-test='view-album']")
+    private WebElement goToAlbumCM;
     @FindBy(xpath = "//li[text()='Play All']")
     private WebElement playAll;
 
@@ -209,5 +213,11 @@ public class AlbumsPage extends BasePage{
             }
         }
         return check;
+    }
+    public AlbumsPage goToAlbum() {
+        rightClickAlbum();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#app > nav")));
+        findElement(goToAlbumCM).click();
+        return this;
     }
 }
