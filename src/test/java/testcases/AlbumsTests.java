@@ -78,4 +78,14 @@ public class AlbumsTests extends BaseTest {
         TestListener.logAssertionDetails("All albums have a shuffle button: " + albumsPage.checkShuffleButtons());
         Assert.assertTrue(albumsPage.checkShuffleButtons(), "One or more albums is missing a shuffle button");
     }
+    @Test(description = "Verify 'go to album' context menu option")
+    public void goToAlbumCM() {
+        setupAlbums();
+        String albumTitle = albumsPage.getAlbumTitle(0);
+        String albumViewTitle = albumsPage.getAlbumViewTitle();
+        albumsPage.rightClickAlbum()
+                .goToAlbumFromCM();
+        TestListener.logAssertionDetails("Go to Album context menu button displays correct album: " + albumTitle.equalsIgnoreCase(albumViewTitle));
+        Assert.assertEquals(albumTitle, albumViewTitle);
+    }
 }

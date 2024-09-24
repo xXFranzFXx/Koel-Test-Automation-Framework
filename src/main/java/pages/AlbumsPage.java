@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AlbumsPage extends BasePage{
+public class AlbumsPage extends BasePage {
 
     @FindBy(xpath = "//nav[@id='sidebar']/section[1]/ul/li[4]/a")
     private WebElement albumsLocator;
@@ -22,7 +22,8 @@ public class AlbumsPage extends BasePage{
     private WebElement goToAlbumCM;
     @FindBy(xpath = "//li[text()='Play All']")
     private WebElement playAll;
-
+    @FindBy(css = "#albumWrapper .heading-wrapper h1")
+    private WebElement albumViewTitle;
     @FindBy(css = "li[data-test='shuffle']")
     private WebElement shuffleSongs;
     @FindBy(xpath = "//section[@id='albumsWrapper']/div/article[1]/span/span/a")
@@ -31,20 +32,20 @@ public class AlbumsPage extends BasePage{
     private WebElement albumsPageTitleLocator;
     @FindBy(css = "#albumsWrapper .albums article.item.full")
     private List<WebElement> albumTiles;
-    @FindBy(css="article.item.full span.cover")
+    @FindBy(css = "article.item.full span.cover")
     private List<WebElement> albumCoverPics;
-    @FindBy(css ="article.item.full footer .info .name")
+    @FindBy(css = "article.item.full footer .info .name")
     private List<WebElement> albumTitles;
     @FindBy(css = "article.item.full footer .info .artist")
     private List<WebElement> albumArtists;
-    @FindBy(css="#albumsWrapper p.meta")
-    private List <WebElement> footerInfoContainer;
-    @FindBy(css="#albumsWrapper .fa.fa-list")
+    @FindBy(css = "#albumsWrapper p.meta")
+    private List<WebElement> footerInfoContainer;
+    @FindBy(css = "#albumsWrapper .fa.fa-list")
     private WebElement listViewButton;
     @FindBy(css = "#albumsWrapper p.meta i.fa.fa-download")
-    private List <WebElement> downloadBtn;
+    private List<WebElement> downloadBtn;
     @FindBy(css = "#albumsWrapper p.meta i.fa.fa-random")
-    private List <WebElement> shuffleBtn;
+    private List<WebElement> shuffleBtn;
     @FindBy(css = "article.item.full footer .meta .left")
     private List<WebElement> trackInfo;
     private static final String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9])";
@@ -53,10 +54,12 @@ public class AlbumsPage extends BasePage{
     public AlbumsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
+
     public AlbumsPage navigateToAlbums() {
         clickElement(albumsLocator);
         return this;
     }
+
     public boolean checkHeaderTitle() {
         return albumsPageTitleLocator.isDisplayed();
     }
@@ -65,13 +68,16 @@ public class AlbumsPage extends BasePage{
         contextClick(firstAlbumLocator);
         return this;
     }
+
     public void selectPlayAll() {
         findElement(playAll);
         playAll.click();
     }
+
     public boolean checkAlbumSongPlaying() {
         return isSongPlaying();
     }
+
     public boolean albumsArePresent() {
         try {
             return !albumTiles.isEmpty();
@@ -81,9 +87,15 @@ public class AlbumsPage extends BasePage{
         }
         return false;
     }
+
     public boolean checkAlbumImage(WebElement element) {
         return element.getAttribute("style").contains("https://qa.koel.app/img/covers");
     }
+
+    public String getAlbumTitle(WebElement element) {
+        return element.getAttribute("title");
+    }
+
     public boolean checkAllAlbumCoverImage() {
         boolean check = true;
         int count = 0;
@@ -103,6 +115,7 @@ public class AlbumsPage extends BasePage{
         }
         return check;
     }
+
     public boolean checkAllAlbumText(List<WebElement> list) {
         boolean check = true;
         int count = 0;
@@ -122,14 +135,15 @@ public class AlbumsPage extends BasePage{
         }
         return check;
     }
+
     public boolean checkHoveredElements(List<WebElement> hoveredElement) {
         boolean check = true;
         int limit = footerInfoContainer.size();
-        for(int i =0; i < limit; i++) {
+        for (int i = 0; i < limit; i++) {
             actions.moveToElement(footerInfoContainer.get(i)).perform();
             actions.moveToElement(hoveredElement.get(i)).perform();
             check = hoveredElement.get(i).isDisplayed();
-            if(!check) {
+            if (!check) {
                 return false;
             }
         }
@@ -139,19 +153,24 @@ public class AlbumsPage extends BasePage{
     public boolean checkAlbumTitles() {
         return checkAllAlbumText(albumTitles);
     }
+
     public boolean checkAlbumArtists() {
         return checkAllAlbumText(albumArtists);
     }
+
     public boolean checkShuffleButtons() {
         return checkHoveredElements(shuffleBtn);
     }
+
     public boolean checkDownloadButtons() {
         return checkHoveredElements(downloadBtn);
     }
+
     public String getTrackInfo(WebElement element) {
         System.out.println("Album track info: " + getTextFromElement(element));
         return getTextFromElement(element);
     }
+
     public String getAlbumSongTotal(String trackInfo) {
         Pattern pattern = Pattern.compile(songTotalRe);
         Matcher matcher = pattern.matcher(trackInfo);
@@ -163,6 +182,7 @@ public class AlbumsPage extends BasePage{
             return null;
         }
     }
+
     public String getAlbumDuration(String trackInfo) {
         Pattern pattern = Pattern.compile(durationRe);
         Matcher matcher = pattern.matcher(trackInfo);
@@ -174,17 +194,18 @@ public class AlbumsPage extends BasePage{
             return null;
         }
     }
+
     public boolean albumDuration() {
         boolean check = true;
         int count = 0;
         while (check) {
-            try{
-                for (WebElement l: trackInfo) {
+            try {
+                for (WebElement l : trackInfo) {
                     wait.until(ExpectedConditions.visibilityOf(l));
                     String track = getTrackInfo(l);
                     check = !getAlbumDuration(track).isEmpty();
-                    count ++;
-                    if (count == trackInfo.size()){
+                    count++;
+                    if (count == trackInfo.size()) {
                         return check;
                     }
                 }
@@ -194,17 +215,18 @@ public class AlbumsPage extends BasePage{
         }
         return check;
     }
+
     public boolean albumSongTrackTotal() {
         boolean check = true;
         int count = 0;
         while (check) {
-            try{
-                for (WebElement l: trackInfo) {
+            try {
+                for (WebElement l : trackInfo) {
                     wait.until(ExpectedConditions.visibilityOf(l));
                     String track = getTrackInfo(l);
                     check = Integer.parseInt(getAlbumSongTotal(track)) > 0;
-                    count ++;
-                    if (count == trackInfo.size()){
+                    count++;
+                    if (count == trackInfo.size()) {
                         return check;
                     }
                 }
@@ -214,10 +236,17 @@ public class AlbumsPage extends BasePage{
         }
         return check;
     }
+
     public AlbumsPage goToAlbumFromCM() {
-        rightClickAlbum();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("#app > nav")));
         findElement(goToAlbumCM).click();
         return this;
+    }
+
+    public String getAlbumTitle(int album) {
+        return albumTitles.get(album).getText();
+    }
+    public String getAlbumViewTitle() {
+        return albumViewTitle.getText();
     }
 }
