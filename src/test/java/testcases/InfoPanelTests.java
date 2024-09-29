@@ -38,7 +38,6 @@ public class InfoPanelTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         homePage = loginPage.loginValidCredentials();
     }
-
     @Test(description = "checks for visibility of the info panel upon logging in")
     public void toggleInfoPanel() {
         setupInfoPanel();
