@@ -15,9 +15,7 @@ public class Interaction {
         this.song = song;
         this.user = user;
     }
-    public Interaction() {
-
-    }
+    public Interaction() { }
 
     public String getSong_id() {
         return song_id;

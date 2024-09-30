@@ -8,7 +8,6 @@ import pages.HomePage;
 import pages.LoginPage;
 import util.listeners.TestListener;
 
-
 /**
  * Story:
  * As a user, I want to be able to observe Lyrics, Artist and Album information in the Info panel
@@ -33,7 +32,6 @@ public class InfoPanelTests extends BaseTest {
     public InfoPanelTests() {
         super();
     }
-
     public void setupInfoPanel() {
         loginPage = new LoginPage(getDriver());
         homePage = loginPage.loginValidCredentials();
