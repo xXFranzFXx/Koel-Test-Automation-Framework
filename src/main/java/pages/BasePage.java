@@ -17,7 +17,6 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
     protected Actions actions;
-    private int timeSeconds = 5;
     public static String durationRe = "[^\\W•]+([1-9][0-99]+|[01]?[0-9]):([0-5]?[0-9]):([0-5]?[0-9])";
     public static String songTotalRe = "^\\d{1,}[^\\W•]";
     public static List<String> themes = List.of("pines","classic", "violet", "oak", "slate", "madison", "astronaut", "chocolate", "laura", "rose-petals", "purple-waves", "pop-culture", "jungle", "mountains", "nemo", "cat");
