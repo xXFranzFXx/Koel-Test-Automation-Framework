@@ -33,7 +33,7 @@ public class FavoritesPage extends BasePage{
         return this;
     }
     public FavoritesPage contextClickFirstSong() {
-        contextClick(favoritesSongList.get(0));
+        contextClick(favoritesSongList.getFirst());
         return this;
     }
     public void selectDownloadFromCM() {
