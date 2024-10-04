@@ -652,7 +652,7 @@ public class HomePage extends BasePage {
         return this;
     }
     public HomePage cmEditFirstSmartPl() {
-        contextClick(sideMenuSmartPlaylistName.get(0));
+        contextClick(sideMenuSmartPlaylistName.getFirst());
         findElement(plEditBtn).click();
         return this;
     }
