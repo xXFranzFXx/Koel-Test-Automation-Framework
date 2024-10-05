@@ -343,7 +343,6 @@ public class HomePage extends BasePage {
         return getTextFromElement(findPresentElementBy(infoLocator));
     }
     public String clickLyricsTab() {
-//        lyricsTab.click();
         return clickTabForInfo(lyricsTabLocator, lyricsTabInfo);
     }
 
