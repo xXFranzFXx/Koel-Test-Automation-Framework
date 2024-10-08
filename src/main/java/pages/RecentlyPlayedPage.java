@@ -9,7 +9,7 @@ import java.util.List;
 public class RecentlyPlayedPage extends BasePage{
     @FindBy(linkText = "Recently Played")
     private WebElement recentlyPlayedLocator;
-    private By recentlyPlayedTitlesLocator = By.cssSelector("#recentlyPlayedWrapper tr.song-item .title");
+    private final By recentlyPlayedTitlesLocator = By.cssSelector("#recentlyPlayedWrapper tr.song-item .title");
     public RecentlyPlayedPage(WebDriver givenDriver) {
          super(givenDriver);
     }
