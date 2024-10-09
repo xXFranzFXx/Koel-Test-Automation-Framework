@@ -18,8 +18,8 @@ public class LoginPage extends BasePage{
     private WebElement passwordField;
     @FindBy(xpath = "//a[@href='registration']")
     private WebElement registrationLinkLocator;
-    private By registrationLink = By.cssSelector("a[href='registration']");
-    private By emailInput = By.cssSelector("[type='email']");
+    private final By registrationLink = By.cssSelector("a[href='registration']");
+    private final By emailInput = By.cssSelector("[type='email']");
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
     }
