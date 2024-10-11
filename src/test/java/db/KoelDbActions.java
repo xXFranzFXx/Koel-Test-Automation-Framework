@@ -12,10 +12,10 @@ public class KoelDbActions extends KoelDb{
     private static Connection db ;
     private static PreparedStatement st;
     private static ResultSet rs;
-    private String getSmartPLaylist = """
+    private final String getSmartPLaylist = """
             SELECT * FROM dbkoel.playlists p JOIN dbkoel.users u ON p.user_id = u.id WHERE u.email= ? AND p.name= ?
             """;
-    private String getArtistsInDb = """
+    private final String getArtistsInDb = """
             SELECT a.name as name FROM dbkoel.artists a  ORDER BY a.name ASC
             """;
     private final String getUserPwdInfo = """
