@@ -14,11 +14,6 @@ import java.util.NoSuchElementException;
 
 
 public class HomePage extends BasePage {
-    RecentlyPlayedPage recentlyPlayedPage;
-    AlbumsPage albumsPage;
-    CurrentQueuePage currentQueuePage;
-    ArtistsPage artistsPage;
-    ProfilePage profilePage;
 
     //user avatar icon element
     @CacheLookup
@@ -27,18 +22,7 @@ public class HomePage extends BasePage {
     //side menu first playlist
     @FindBy(xpath = "//section[@id='playlists']/ul/li[3]/a")
     private WebElement playlistsMenuFirstPl;
-    //locates the first playlist listed on menu after clicking "add to" button
-    @FindBy(css = "#songResultsWrapper li:nth-child(5)")
-    private WebElement addToPlaylistMenuSelection;
-    //playlist name input field, accessed when creating a new playlist
-    @FindBy(css = ".song-menu li.has-sub")
-    private WebElement addToDropDown;
-    @FindBy(css = "li.has-sub ul li:nth-child(7)")
-    private WebElement chooseFirstPlylstFrmDD;
 
-    //delete playlist button
-    @FindBy(className = "btn-delete-playlist")
-    private By deletePlaylistBtn;
     @FindBy(css = ".search-results .virtual-scroller tr:nth-child(1)  .title")
     private WebElement firstSearchSong;
     @FindBy(css = "div.success.show")
@@ -89,10 +73,6 @@ public class HomePage extends BasePage {
             @FindBy(xpath = "//section[@id='playlists']/ul/li[@class='playlist playlist']/a")
     })
     private List<WebElement> allPlaylists;
-    @FindBy(xpath = "//section[@id='playlists']/ul/li[@class='playlist playlist']/a")
-    private List<WebElement> regularPlaylists;
-    @FindBy(xpath = "//section[@id='playlists']/ul/li[@class='playlist playlist smart']/a")
-    private List<WebElement> smartLists;
     @FindBy(xpath = "//footer[@id='mainFooter']//button[@data-testid='toggle-extra-panel-btn']")
     private WebElement infoButton;
     @FindBy(xpath = "//article[@class='album-info sidebar']//span[@class='cover']/a")
@@ -111,8 +91,6 @@ public class HomePage extends BasePage {
     private WebElement rADownloadBtn;
     @FindBy(xpath = "//span[@class='album-thumb-wrapper']//span[@class='album-thumb']")
     private WebElement playBtnBefore;
-    @FindBy(xpath = "//section[@id='playlists']/h1")
-    private WebElement createNewPlaylistBtnLocator;
     @FindBy(xpath = "//section[@id='playlists']//i[@data-testid='sidebar-create-playlist-btn']")
     private WebElement createNewPlaylistBtn;
     @FindBy(xpath = "//nav[@class='menu playlist-menu']//li[@data-testid='playlist-context-menu-create-simple']")
@@ -123,8 +101,7 @@ public class HomePage extends BasePage {
     private WebElement newPlaylistInput;
     @FindBy(xpath = "//form[@data-testid='create-smart-playlist-form']")
     private WebElement smartListModal;
-    @FindBy(css = ".rule-group .btn-add-rule .fa.fa-plus")
-    private WebElement smartListAddRuleBtn;
+
     @FindBy(css = ".btn-add-group .fa.fa-plus")
     private WebElement smartListAddGroupBtn;
     @FindBy(xpath = "//span[@class='value-wrapper']/input[@type='text']")
@@ -171,8 +148,7 @@ public class HomePage extends BasePage {
     private WebElement emptySmartlistIcon;
     @FindBy(css = "#playlistWrapper .text")
     private WebElement emptySmartListText;
-    @FindBy(css = "#extraTabLyrics")
-    private WebElement lyricsTab;
+
     private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class^='fa fa-heart']");
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
@@ -191,7 +167,6 @@ public class HomePage extends BasePage {
     private By cmDelete= By.xpath("//li[text()[contains(.,'Delete')]]");
     private By recentlyPlayedDetails = By.cssSelector("#homeWrapper .recent-song-list .details");
     private By okBtn = By.xpath( "//div[@class='alertify']//nav/button[@class='ok']");
-    private By createPlBtn = By.cssSelector("i[data-testid='sidebar-create-playlist-btn']");
     /**
      * INFO panel components end
      */
