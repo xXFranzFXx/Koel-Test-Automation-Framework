@@ -26,7 +26,7 @@ public class ArtistsTests extends BaseTest {
     @Test(description = "Play all songs by an artist")
     public void playAllSongsByArtist () {
         setupArtists();
-       artistsPage
+        artistsPage
                 .rightClickAlbum()
                 .selectPlayAll();
         Assert.assertTrue(artistsPage.soundbarIsDisplayed());
