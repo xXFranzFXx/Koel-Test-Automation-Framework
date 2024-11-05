@@ -97,7 +97,6 @@ public class HomePage extends BasePage {
     private WebElement infoButton;
     @FindBy(xpath = "//article[@class='album-info sidebar']//span[@class='cover']/a")
     private WebElement albumTabCoverFinder;
-
     @FindBy(xpath = "//article[@class='artist-info sidebar']//h1/span/text()")
     private WebElement artistTabInfoText;
     @FindBy(css = "section#extra .tabs")
