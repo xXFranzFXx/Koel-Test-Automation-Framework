@@ -498,7 +498,6 @@ public class HomePage extends BasePage {
         homePage();
         new HomePage(driver);
     }
-
     public CurrentQueuePage clickCurrentQueue() {
         currentQueuePage();
         return new CurrentQueuePage(driver);
