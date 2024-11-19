@@ -513,7 +513,6 @@ public class HomePage extends BasePage {
         findElement(profilePageLink).click();
         return new ProfilePage(driver);
     }
-
     public void clickAlbums() {
         try {
             albumsPage();
