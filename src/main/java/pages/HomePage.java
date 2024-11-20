@@ -520,7 +520,6 @@ public class HomePage extends BasePage {
             refreshIfRpListEmpty();
         }
     }
-
     public ArtistsPage clickArtists() {
         artistsPage();
         return new ArtistsPage(driver);
