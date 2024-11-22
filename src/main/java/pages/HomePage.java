@@ -524,7 +524,6 @@ public class HomePage extends BasePage {
         artistsPage();
         return new ArtistsPage(driver);
     }
-
     public RecentlyPlayedPage clickRecentlyPlayed() {
         recentlyPlayedPage();
         return new RecentlyPlayedPage(driver);
