@@ -528,7 +528,6 @@ public class HomePage extends BasePage {
         recentlyPlayedPage();
         return new RecentlyPlayedPage(driver);
     }
-
     public void clickFavorites() {
         favorites();
     }
