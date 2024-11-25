@@ -537,14 +537,12 @@ public class HomePage extends BasePage {
         createNewPlaylistBtn.click();
         return this;
     }
-
     public HomePage contextMenuNewPlaylist() {
         findElement(contextMenuNewPlaylst);
         moveToElement(contextMenuNewPlaylst);
         clickElement(contextMenuNewPlaylst);
         return this;
     }
-
     public HomePage contextMenuNewSmartlist() {
         moveToElement(contextMenuNewSmartlst);
         click(selectNewSmartList);
