@@ -548,14 +548,12 @@ public class HomePage extends BasePage {
         click(selectNewSmartList);
         return this;
     }
-
     public HomePage enterPlaylistName(String playlist) {
         WebElement input = findElement(newPlaylistInput);
         input.sendKeys(playlist);
         input.sendKeys(Keys.ENTER);
         return this;
     }
-
     public boolean playlistAddedToMenu(String playlist) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class=\"playlist playlist\"]/a[text()='" + playlist + "']"))).isDisplayed();
     }
