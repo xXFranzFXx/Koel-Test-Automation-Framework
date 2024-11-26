@@ -620,7 +620,6 @@ public class HomePage extends BasePage {
         findElement(plEditBtn).click();
         return this;
     }
-
     public String getFirstSmartPlName() {
         return sideMenuSmartPlaylistName.get(0).getText();
     }
@@ -667,7 +666,6 @@ public class HomePage extends BasePage {
         List<WebElement> details = findElements(recentlyPlayedDetails);
         return details.stream().map(WebElement::getText).toList();
     }
-
     public HomePage wait(int seconds) {
         pause(seconds);
         return this;
