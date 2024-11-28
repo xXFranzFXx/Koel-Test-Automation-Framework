@@ -14,8 +14,6 @@ public class ArtistsPage extends BasePage{
     private WebElement artistsLocator;
     @FindBy(xpath = "//li[text()='Play All']")
     private WebElement playAllLocator;
-    @FindBy(css = "li[data-test='shuffle']")
-    private WebElement shuffleLocator;
     @FindBy(xpath = "//img[@alt='Sound bars']")
     private WebElement soundBarLocator;
     @FindBy(xpath = "//nav[@id='sidebar']/section[1]/ul/li[5]/a")
