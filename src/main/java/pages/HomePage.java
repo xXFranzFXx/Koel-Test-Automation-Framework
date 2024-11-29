@@ -148,7 +148,8 @@ public class HomePage extends BasePage {
     private WebElement emptySmartlistIcon;
     @FindBy(css = "#playlistWrapper .text")
     private WebElement emptySmartListText;
-
+    @FindBy(css = "[id='volume']")
+    private WebElement volumeControl;
     private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class^='fa fa-heart']");
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
@@ -670,5 +671,13 @@ public class HomePage extends BasePage {
         pause(seconds);
         return this;
     }
+    public HomePage hoverVolumeControl() {
+        WebElement volume = findElement(volumeControl);
+        actions.moveToElement(volume).perform();
+        wait(1);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[id='volumeRange']")));
+        return this;
+    }
 }
+
 
