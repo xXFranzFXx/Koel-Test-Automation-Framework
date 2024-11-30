@@ -126,7 +126,7 @@ public class HomePage extends BasePage {
     private WebElement editSmartListFormNameInput;
     @FindBy(xpath = "//button[text()='Cancel']")
     private WebElement smartListCancelButton;
-    @FindBy(xpath="//section[@id='playlists']//ul/li[@class='playlist playlist smart']//li[text()[contains(.,'Edit')]]")
+    @FindBy(xpath = "//section[@id='playlists']//ul/li[@class='playlist playlist smart']//li[text()[contains(.,'Edit')]]")
     private WebElement plEditBtn;
     @FindBy(xpath = "//span[@class='value-wrapper']/input[@type='number']")
     private WebElement smartListCriteriaIntInput;
@@ -142,7 +142,7 @@ public class HomePage extends BasePage {
     private WebElement smartListModelSelectMenu;
     @FindBy(xpath = "//div[@data-test='smart-playlist-rule-row']//select[@name='operator[]']")
     private WebElement smartListOperatorSelectMenu;
-    @FindBy(css ="#playlistWrapper .items")
+    @FindBy(css = "#playlistWrapper .items")
     private List<WebElement> smartPlaylistSongs;
     @FindBy(css = ".fa.fa-file-o")
     private WebElement emptySmartlistIcon;
@@ -150,6 +150,11 @@ public class HomePage extends BasePage {
     private WebElement emptySmartListText;
     @FindBy(css = "[id='volume']")
     private WebElement volumeControl;
+    @FindBy(css = "[id='volumeRange']")
+    private WebElement volumeRange;
+    @FindBy(css = "[data-testid='repeat-mode-switch']")
+    private WebElement repeatModeSwitch;
+    private final By volumeSlider
     private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class^='fa fa-heart']");
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
@@ -165,32 +170,36 @@ public class HomePage extends BasePage {
     private final By recentlyAddedlistItems = By.xpath("//ol[@class='recently-added-album-list'][1]/li");
     private final By selectNewSmartList = By.cssSelector("li[data-testid='playlist-context-menu-create-smart']");
     private By playlistDelete = By.xpath("//section[@id='playlists']/ul/li[3]/nav/ul/li[2]");
-    private By cmDelete= By.xpath("//li[text()[contains(.,'Delete')]]");
+    private By cmDelete = By.xpath("//li[text()[contains(.,'Delete')]]");
     private By recentlyPlayedDetails = By.cssSelector("#homeWrapper .recent-song-list .details");
-    private By okBtn = By.xpath( "//div[@class='alertify']//nav/button[@class='ok']");
+    private By okBtn = By.xpath("//div[@class='alertify']//nav/button[@class='ok']");
+
     /**
      * INFO panel components end
      */
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
     }
+
     public HomePage deleteRegularPlaylistWithSong(String playlistName) {
-       WebElement regularPl = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']/a[text()='" + playlistName + "']")));
-       pause(1);
-       contextClick(regularPl);
-       pause(2);
-       click(cmDelete);
+        WebElement regularPl = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist']/a[text()='" + playlistName + "']")));
+        pause(1);
+        contextClick(regularPl);
+        pause(2);
+        click(cmDelete);
         wait.until(ExpectedConditions.elementToBeClickable(ok));
         actions.moveToElement(ok).click().perform();
-       return this;
+        return this;
     }
+
     public HomePage contextClickFirstPlDelete() {
-            wait.until(ExpectedConditions.elementToBeClickable(playlistsMenuFirstPl));
-            contextClick(playlistsMenuFirstPl);
-            click(playlistDelete);
-            actions.sendKeys(Keys.ENTER).perform();
-            return this;
+        wait.until(ExpectedConditions.elementToBeClickable(playlistsMenuFirstPl));
+        contextClick(playlistsMenuFirstPl);
+        click(playlistDelete);
+        actions.sendKeys(Keys.ENTER).perform();
+        return this;
     }
+
     public void deleteList(WebElement list) {
         findElement(list).click();
         contextClickFirstPlDelete();
@@ -198,23 +207,25 @@ public class HomePage extends BasePage {
         actions.sendKeys(Keys.ENTER).perform();
         Reporter.log("Deleted playlist: " + list, true);
     }
+
     public void deleteAllPlaylists() {
-                try {
-                    allPlaylists.forEach(this::deleteList);
-                } catch (NoSuchElementException e) {
-                    Reporter.log("cannot delete playlist" + e, true);
-                }
-                if(playlistsEmpty()) {
-                        Reporter.log("There are currently no playlists to delete", true);
-                        return;
-                }
+        try {
+            allPlaylists.forEach(this::deleteList);
+        } catch (NoSuchElementException e) {
+            Reporter.log("cannot delete playlist" + e, true);
+        }
+        if (playlistsEmpty()) {
+            Reporter.log("There are currently no playlists to delete", true);
+            return;
+        }
         Reporter.log("Total Playlists remaining: " + allPlaylists.size(), true);
     }
+
     public HomePage deletePlaylists() {
         int count = 0;
         try {
             System.out.println(playlistsSection.size());
-            for (int i = 2; i < playlistsSection.size(); i ++) {
+            for (int i = 2; i < playlistsSection.size(); i++) {
                 WebElement plSection = wait.until(ExpectedConditions.elementToBeClickable(playlistsSection.get(i)));
                 actions.moveToElement(plSection).pause(1).perform();
                 contextClick(plSection);
@@ -228,6 +239,7 @@ public class HomePage extends BasePage {
         }
         return this;
     }
+
     public boolean playlistsEmpty() {
         return (playlistsSection.size() == 2);
     }
@@ -241,13 +253,14 @@ public class HomePage extends BasePage {
             searchSongInput.clear();
             pause(1);
             searchSongInput.sendKeys(song);
-        }catch (TimeoutException e) {
+        } catch (TimeoutException e) {
             if (emptyHomeScreenText()) {
                 searchSongInput.sendKeys(Keys.SPACE);
             }
         }
         return this;
     }
+
     public boolean emptyHomeScreenText() {
         By textMsg = By.cssSelector("#homeWrapper p.text-secondary");
         String expected = "Your recently played songs will be displayed here.\n" +
@@ -266,6 +279,7 @@ public class HomePage extends BasePage {
         moveToElement(btn);
         return playBtnBefore.isEnabled();
     }
+
     public HomePage clickSearchViewAllBtn() {
         findElement(searchViewAllBtn).click();
         return this;
@@ -275,6 +289,7 @@ public class HomePage extends BasePage {
         findElement(viewAllBtnLocator).click();
         return this;
     }
+
     public HomePage clickRPViewAllBtn() {
         moveToElement(recentlyPlayedViewAllBtn);
         click(rPPlayedViewAllBtn);
@@ -291,6 +306,7 @@ public class HomePage extends BasePage {
             deletePlaylists();
         }
     }
+
     public HomePage clickFirstSearchResult() {
         findElement(firstSearchSong).click();
         return this;
@@ -300,23 +316,26 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(greenAddToBtn)).click();
         return this;
     }
+
     public HomePage selectPlaylistToAddTo(String playlist) {
-        WebElement menuChoice = find(By.xpath("//section[@id='songResultsWrapper']//li[@class='playlist' and text()[contains(.,"+playlist+")]]"));
+        WebElement menuChoice = find(By.xpath("//section[@id='songResultsWrapper']//li[@class='playlist' and text()[contains(.," + playlist + ")]]"));
         findElement(menuChoice).click();
         return this;
     }
 
     public void clickInfoButton() {
-       findElement(infoButton).click();
+        findElement(infoButton).click();
     }
 
     public boolean checkVisibility() {
         return infoPanel.isDisplayed();
     }
+
     private String clickTabForInfo(By tabLocator, By infoLocator) {
         click(tabLocator);
         return getTextFromElement(findPresentElementBy(infoLocator));
     }
+
     public String clickLyricsTab() {
         return clickTabForInfo(lyricsTabLocator, lyricsTabInfo);
     }
@@ -348,6 +367,7 @@ public class HomePage extends BasePage {
         actions.doubleClick(searchResultSongText).perform();
         return this;
     }
+
     public String getSearchInputValidationMsg() {
         return findElement(newPlaylistInput).getAttribute("validationMessage");
     }
@@ -422,8 +442,9 @@ public class HomePage extends BasePage {
         waitForText(rPEmptyText, text);
         return findElement(rPEmptyText).isDisplayed();
     }
+
     public void refreshIfRpListEmpty() {
-        if(noRecentlyPlayedList()) {
+        if (noRecentlyPlayedList()) {
             driver.navigate().refresh();
         }
     }
@@ -438,16 +459,18 @@ public class HomePage extends BasePage {
                                 .getText()
                                 .equals("by"));
     }
+
     public boolean recentlyAddedHasLikedButtons() {
         try {
             List<WebElement> likedButtons = findElements(rALikedButtons);
             return likedButtons.stream().allMatch(WebElement::isDisplayed);
-        } catch(TimeoutException e) {
+        } catch (TimeoutException e) {
             refreshIfRpListEmpty();
             recentlyAddedHasLikedButtons();
         }
         return false;
     }
+
     //only checks first column since second column doesn't display correctly
     public boolean checkRAListButtonsOnHover() {
         List<WebElement> li = findElements(recentlyAddedlistItems);
@@ -482,6 +505,7 @@ public class HomePage extends BasePage {
         closeModal();
         return this;
     }
+
     public boolean verifyModalClosed() {
         return modalIsClosed();
     }
@@ -499,21 +523,26 @@ public class HomePage extends BasePage {
         homePage();
         new HomePage(driver);
     }
+
     public CurrentQueuePage clickCurrentQueue() {
         currentQueuePage();
         return new CurrentQueuePage(driver);
     }
+
     public boolean checkSongPlaying() {
         return isSongPlaying();
     }
+
     public AllSongsPage clickAllSongs() {
         allSongsPage();
         return new AllSongsPage(driver);
     }
+
     public ProfilePage clickAvatar() {
         findElement(profilePageLink).click();
         return new ProfilePage(driver);
     }
+
     public void clickAlbums() {
         try {
             albumsPage();
@@ -521,14 +550,17 @@ public class HomePage extends BasePage {
             refreshIfRpListEmpty();
         }
     }
+
     public ArtistsPage clickArtists() {
         artistsPage();
         return new ArtistsPage(driver);
     }
+
     public RecentlyPlayedPage clickRecentlyPlayed() {
         recentlyPlayedPage();
         return new RecentlyPlayedPage(driver);
     }
+
     public void clickFavorites() {
         favorites();
     }
@@ -538,94 +570,115 @@ public class HomePage extends BasePage {
         createNewPlaylistBtn.click();
         return this;
     }
+
     public HomePage contextMenuNewPlaylist() {
         findElement(contextMenuNewPlaylst);
         moveToElement(contextMenuNewPlaylst);
         clickElement(contextMenuNewPlaylst);
         return this;
     }
+
     public HomePage contextMenuNewSmartlist() {
         moveToElement(contextMenuNewSmartlst);
         click(selectNewSmartList);
         return this;
     }
+
     public HomePage enterPlaylistName(String playlist) {
         WebElement input = findElement(newPlaylistInput);
         input.sendKeys(playlist);
         input.sendKeys(Keys.ENTER);
         return this;
     }
+
     public boolean playlistAddedToMenu(String playlist) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class=\"playlist playlist\"]/a[text()='" + playlist + "']"))).isDisplayed();
     }
+
     public List<String> getPlaylistNames() {
         return allPlaylists.stream().map(WebElement::getText).toList();
     }
+
     public boolean smartListModalVisible() {
         return findElement(smartListModal).isDisplayed();
     }
+
     private void enterIntInfoInField(WebElement fieldElement, int info) {
         WebElement input = findElement(fieldElement);
         input.sendKeys(String.valueOf(info));
     }
+
     private void enterInfoInField(WebElement fieldElement, String info) {
         WebElement input = findElement(fieldElement);
         input.sendKeys(info);
     }
+
     public HomePage enterSmartListName(String smartList) {
         enterInfoInField(smartListFormNameInput, smartList);
         return this;
     }
+
     public HomePage enterSmartListCriteria(String criteria) {
         enterInfoInField(smartListCriteriaInput, criteria);
         return this;
     }
+
     public HomePage enterSmartListTextCriteria(String criteria) {
         enterInfoInField(smartListCriteriaTextInput, criteria);
         return this;
     }
+
     public HomePage enterSmartListIntCriteria(int integer) {
         enterIntInfoInField(smartListCriteriaIntInput, integer);
         return this;
     }
-    public boolean smartlistAddedToMenu (String playlist){
+
+    public boolean smartlistAddedToMenu(String playlist) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='playlist playlist smart']/a[text()='" + playlist + "']"))).isDisplayed();
     }
+
     public HomePage clickSaveSmartList() {
         findElement(smartListSaveButton).click();
         pause(2);
         return this;
     }
+
     public HomePage clickGroupRuleBtn() {
         findElement(smartListAddGroupBtn).click();
         return this;
     }
-    public HomePage enterGroupRulesText(String[] text){
-        for (int i = 0; i < text.length; i ++) {
+
+    public HomePage enterGroupRulesText(String[] text) {
+        for (int i = 0; i < text.length; i++) {
             smartListCriteriaInputGroup.get(i).sendKeys(text[i]);
         }
         return this;
     }
+
     public HomePage enterIntCriteria(int[] ints) {
         for (int i = 0; i < ints.length; i++) {
             smartListCriteriaIntInputGrp.get(i).sendKeys(String.valueOf(ints[i]));
         }
         return this;
     }
+
     public HomePage clickSmartListCancelBtn() {
         findElement(smartListCancelButton).click();
         return this;
     }
+
     public HomePage cmEditFirstSmartPl() {
         contextClick(sideMenuSmartPlaylistName.getFirst());
         findElement(plEditBtn).click();
         return this;
     }
+
     public String getFirstSmartPlName() {
         return sideMenuSmartPlaylistName.get(0).getText();
     }
-    public HomePage editSmartPlName(String playlist){
-        if(!isEditModalVisible()) pause(2);
+
+    public HomePage editSmartPlName(String playlist) {
+        if (!isEditModalVisible()) pause(2);
         WebElement input = findElement(editSmartListFormNameInput);
         actions.moveToElement(input).doubleClick(input).perform();
         input.sendKeys(Keys.SPACE);
@@ -633,50 +686,80 @@ public class HomePage extends BasePage {
         input.sendKeys(playlist);
         return this;
     }
+
     public boolean isEditModalVisible() {
         WebElement editModal = find(By.cssSelector(".smart-playlist-form form"));
-        return  editModal.isDisplayed();
+        return editModal.isDisplayed();
     }
-    public HomePage selectOperatorOption(String option){
+
+    public HomePage selectOperatorOption(String option) {
         Select operatorSelectMenu = new Select(smartListOperatorSelectMenu);
         operatorSelectMenu.selectByVisibleText(option);
         return this;
     }
-    public HomePage selectModelOption(String option){
+
+    public HomePage selectModelOption(String option) {
         Select modelSelectMenu = new Select(smartListModelSelectMenu);
         modelSelectMenu.selectByVisibleText(option);
         return this;
     }
+
     public boolean checkSmartListEmpty() {
         return smartPlaylistSongs.isEmpty();
     }
+
     public HomePage enterSmartListDateCriteria(String date) {
         smartListCriteriaDateInput.sendKeys(date);
         return this;
     }
+
     public boolean checkEmptySmartListIcon() {
         return emptySmartlistIcon.isDisplayed();
     }
+
     public String emptySmartListMessage() {
         return emptySmartListText.getText();
     }
+
     public String getNameInputValidationMsg() {
         return findElement(smartListFormNameInput).getAttribute("validationMessage");
     }
+
     public List<String> recentlyPlayedTitles() {
         List<WebElement> details = findElements(recentlyPlayedDetails);
         return details.stream().map(WebElement::getText).toList();
     }
+
     public HomePage wait(int seconds) {
         pause(seconds);
         return this;
     }
+
     public HomePage hoverVolumeControl() {
         WebElement volume = findElement(volumeControl);
         actions.moveToElement(volume).perform();
         wait(1);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[id='volumeRange']")));
         return this;
+    }
+
+    public HomePage hoverRepeatModeSwitch() {
+        WebElement repeat = findElement(repeatModeSwitch);
+        actions.moveToElement(repeat).perform();
+        wait(1);
+        return this;
+    }
+
+    public HomePage checkVolumeSlider() {
+        hoverVolumeControl();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[id='volumeRange']")));
+        hoverRepeatModeSwitch();
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("[id='volumeRange']")));
+        return this;
+    }
+    public boolean volumeSliderDisplayed() {
+        hoverVolumeControl();
+        wait(1);
+       return find(volumeSlider).isDisplayed();
     }
 }
 

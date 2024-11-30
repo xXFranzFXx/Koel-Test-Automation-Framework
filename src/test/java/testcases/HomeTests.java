@@ -24,6 +24,13 @@ public class HomeTests extends BaseTest {
         homePage = new HomePage(getDriver());
         loginPage.loginValidCredentials();
     }
+    @Test(description = "Volume slider control appears when mouse hovers over volume control")
+    public void checkForVolumeSlider() {
+        setupHome();
+        homePage.checkVolumeSlider();
+        TestListener.logAssertionDetails("Volume slider appears when hovering over volume button: " + homePage.volumeSliderDisplayed());
+        Assert.assertTrue(homePage.volumeSliderDisplayed());
+    }
     @Test(description = "User can create a playlist", priority = 1)
     public void createPlaylist() {
         setupHome();
