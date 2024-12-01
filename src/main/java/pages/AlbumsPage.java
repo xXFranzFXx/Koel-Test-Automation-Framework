@@ -16,8 +16,6 @@ public class AlbumsPage extends BasePage {
 
     @FindBy(xpath = "//nav[@id='sidebar']/section[1]/ul/li[4]/a")
     private WebElement albumsLocator;
-    @FindBy(css = "#app > nav")
-    private WebElement contextMenu;
     @FindBy(css = "[data-test='view-album']")
     private WebElement goToAlbumCM;
     @FindBy(xpath = "//li[text()='Play All']")
