@@ -22,7 +22,6 @@ public class FavoritesTests extends BaseTest {
     LoginPage loginPage;
     AllSongsPage allSongsPage;
     FavoritesPage favoritesPage;
-
     public void setUpFavorites() {
         loginPage = new LoginPage(getDriver());
         allSongsPage = new AllSongsPage(getDriver());
