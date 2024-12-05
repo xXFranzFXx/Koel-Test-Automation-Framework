@@ -10,7 +10,6 @@ public class CurrentQueueTests extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     CurrentQueuePage currentQueuePage;
-
     public CurrentQueueTests() {
         super();
     }
