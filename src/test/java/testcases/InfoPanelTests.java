@@ -23,7 +23,6 @@ public class InfoPanelTests extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     private final String searchArtist = "Grav";
-
     private void checkInfoPanel() {
         if(!homePage.checkVisibility()){
             homePage.clickInfoButton();
