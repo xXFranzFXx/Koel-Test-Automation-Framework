@@ -15,7 +15,6 @@ import java.util.Map;
 
 public class KoelDbTests extends KoelDbActions {
     DbTestDataHandler testData = new DbTestDataHandler();
-
     //Verify the data saved in previous test is correct
     private boolean verifyData(String key1, String key2) {
         Map<String, ResultSet> testDataInMap = testData.getTestDataInMap();
