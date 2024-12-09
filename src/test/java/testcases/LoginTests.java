@@ -21,7 +21,6 @@ public class LoginTests extends BaseTest {
     public LoginTests() {
         super();
     }
-
     public void setupLogin() {
         loginPage = new LoginPage(getDriver());
         homePage = new HomePage(getDriver());
