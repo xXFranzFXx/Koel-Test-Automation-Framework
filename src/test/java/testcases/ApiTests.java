@@ -20,7 +20,6 @@ import util.listeners.TestListener;
 import util.restUtils.ApiTestDataHandler;
 import util.restUtils.AssertionUtils;
 import util.restUtils.RestUtil;
-
 import java.sql.SQLException;
 import java.util.*;
 
