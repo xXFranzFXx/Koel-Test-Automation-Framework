@@ -28,7 +28,6 @@ public class LogoutTests extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     ProfilePage profilePage;
-
     public LogoutTests() {
         super();
     }
