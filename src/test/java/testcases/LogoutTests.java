@@ -36,7 +36,6 @@ public class LogoutTests extends BaseTest {
         loginPage = new LoginPage(getDriver());
         profilePage = new ProfilePage(getDriver());
     }
-
     @Test(description = "Log in and verify visibility of logout button, then log out")
     public void useLogoutButton() {
         setupLogout();
