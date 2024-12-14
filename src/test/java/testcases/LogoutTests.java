@@ -31,7 +31,6 @@ public class LogoutTests extends BaseTest {
     public LogoutTests() {
         super();
     }
-
     public void setupLogout(){
         homePage = new HomePage(getDriver());
         loginPage = new LoginPage(getDriver());
