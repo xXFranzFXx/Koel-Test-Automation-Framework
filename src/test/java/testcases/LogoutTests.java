@@ -44,7 +44,6 @@ public class LogoutTests extends BaseTest {
         TestListener.logAssertionDetails("Successfully logged out after logging in: " + loginPage.getRegistrationLink());
         Assert.assertTrue(loginPage.getRegistrationLink(), "Error logging out.");
     }
-
     @Test(enabled=false, dependsOnMethods = { "useLogoutButton" }, description = "Update username and password then logout and verify navigation back to login screen")
     public void logoutAfterProfileUpdate() {
         setupLogout();
