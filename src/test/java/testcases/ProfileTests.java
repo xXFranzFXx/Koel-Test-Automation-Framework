@@ -44,7 +44,6 @@ public class ProfileTests extends BaseTest {
     private String generateRandomName() {
         return UUID.randomUUID().toString().replace("-", "");
     }
-
     @Test(description = "Update theme to In the Pines")
     public void choosePinesTheme() {
         setupProfile();
