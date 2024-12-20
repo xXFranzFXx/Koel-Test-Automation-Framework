@@ -30,7 +30,6 @@ public class SearchTests extends BaseTest {
         searchPage = new SearchPage(getDriver());
         loginPage.loginValidCredentials();
     }
-
     @Test(description = "Verify info is displayed in Songs, Artists, Albums section when searching")
     @Parameters({"searchString"})
     public void checkSearchResults(String searchString) {
