@@ -49,7 +49,6 @@ public class SearchTests extends BaseTest {
         setupSearch();
         homePage.searchSong(searchString2);
         TestListener.logInfoDetails("Search input: " + searchString2);
-
         TestListener.logAssertionDetails("Results for songs are empty: " + searchPage.noneFoundTextExists("song"));
         TestListener.logAssertionDetails("Results for artist are empty: " + searchPage.noneFoundTextExists("artist"));
         TestListener.logAssertionDetails("Results for album are empty: " + searchPage.noneFoundTextExists("album"));
