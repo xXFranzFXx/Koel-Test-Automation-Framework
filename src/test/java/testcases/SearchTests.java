@@ -52,7 +52,6 @@ public class SearchTests extends BaseTest {
         TestListener.logAssertionDetails("Results for songs are empty: " + searchPage.noneFoundTextExists("song"));
         TestListener.logAssertionDetails("Results for artist are empty: " + searchPage.noneFoundTextExists("artist"));
         TestListener.logAssertionDetails("Results for album are empty: " + searchPage.noneFoundTextExists("album"));
-
         Assert.assertTrue(searchPage.noneFoundTextExists("song"));
         Assert.assertTrue(searchPage.noneFoundTextExists("artist"));
         Assert.assertTrue(searchPage.noneFoundTextExists("album"));
