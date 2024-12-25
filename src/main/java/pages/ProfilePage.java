@@ -162,7 +162,6 @@ public class ProfilePage extends BasePage {
     public Boolean showArtState() {
         return checkBoxState(showAlbumArtCheckBox);
     }
-
     public ProfilePage clickShowArtCheckBox() {
         clickCheckBox(showAlbumArtCheckBox);
         return this;
