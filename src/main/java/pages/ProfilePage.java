@@ -150,7 +150,6 @@ public class ProfilePage extends BasePage {
         clickCheckBox(notificationCheckBox);
         return this;
     }
-
     public Boolean confirmCloseState() {
         return checkBoxState(confirmCloseCheckBox);
     }
