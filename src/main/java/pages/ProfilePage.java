@@ -141,7 +141,6 @@ public class ProfilePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         actions.moveToElement(element).click().perform();
     }
-
     public Boolean notificationState() {
         return checkBoxState(notificationCheckBox);
     }
