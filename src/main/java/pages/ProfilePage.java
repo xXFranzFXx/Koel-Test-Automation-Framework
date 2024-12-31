@@ -132,7 +132,6 @@ public class ProfilePage extends BasePage {
         WebElement errorMsg = findElement(errorNotification);
         return errorMsg.getText();
     }
-
     public Boolean checkBoxState(WebElement element) {
         return element.isSelected();
     }
@@ -152,7 +151,6 @@ public class ProfilePage extends BasePage {
     public Boolean confirmCloseState() {
         return checkBoxState(confirmCloseCheckBox);
     }
-
     public ProfilePage clickConfirmBox() {
         clickCheckBox(confirmCloseCheckBox);
         return this;
