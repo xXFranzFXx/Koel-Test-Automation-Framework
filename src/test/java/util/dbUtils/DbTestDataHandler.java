@@ -6,7 +6,6 @@ import java.util.Map;
 
 public class DbTestDataHandler {
     Map<String, ResultSet> testDataInMap = new HashMap<>();
-
     public Map<String, ResultSet> getTestDataInMap() {
         return testDataInMap;
     }
