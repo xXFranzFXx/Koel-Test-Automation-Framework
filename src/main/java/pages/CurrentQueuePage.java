@@ -18,7 +18,6 @@ public class CurrentQueuePage extends  BasePage{
     private WebElement durationLocator;
     private final By queueTableRows = By.xpath("//section[@id='queueWrapper']//table[@class='items']/tr");
     private final By currentlyPlayingLocator = By.cssSelector("table.items .song-item.playing");
-
     public CurrentQueuePage(WebDriver givenDriver) {
         super(givenDriver);
     }
