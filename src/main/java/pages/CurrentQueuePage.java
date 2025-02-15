@@ -21,7 +21,6 @@ public class CurrentQueuePage extends  BasePage{
     public CurrentQueuePage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
     public boolean isSongPlayingCQ() {
         WebElement currentSOng = findPresentElementBy(currentlyPlayingLocator);
         return findElement(currentSOng).isDisplayed();
