@@ -73,7 +73,6 @@ public class BasePage {
     private By pageTheme = By.xpath("//html[@data-theme]");
     @CacheLookup
     private By closeModalButton = By.xpath("//div[@class='modal-wrapper overlay']//button[@data-test='close-modal-btn']");
-
     public BasePage(WebDriver givenDriver) {
         driver = givenDriver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
