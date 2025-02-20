@@ -52,7 +52,6 @@ public class AlbumsPage extends BasePage {
     public AlbumsPage(WebDriver givenDriver) {
         super(givenDriver);
     }
-
     public AlbumsPage navigateToAlbums() {
         clickElement(albumsLocator);
         return this;
