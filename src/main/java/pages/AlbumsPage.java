@@ -56,7 +56,6 @@ public class AlbumsPage extends BasePage {
         clickElement(albumsLocator);
         return this;
     }
-
     public boolean checkHeaderTitle() {
         return albumsPageTitleLocator.isDisplayed();
     }
