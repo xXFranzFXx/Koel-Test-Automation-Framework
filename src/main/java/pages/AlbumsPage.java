@@ -166,7 +166,6 @@ public class AlbumsPage extends BasePage {
         System.out.println("Album track info: " + getTextFromElement(element));
         return getTextFromElement(element);
     }
-
     public String getAlbumSongTotal(String trackInfo) {
         Pattern pattern = Pattern.compile(songTotalRe);
         Matcher matcher = pattern.matcher(trackInfo);
