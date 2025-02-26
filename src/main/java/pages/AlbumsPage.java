@@ -177,7 +177,6 @@ public class AlbumsPage extends BasePage {
             return null;
         }
     }
-
     public String getAlbumDuration(String trackInfo) {
         Pattern pattern = Pattern.compile(durationRe);
         Matcher matcher = pattern.matcher(trackInfo);
