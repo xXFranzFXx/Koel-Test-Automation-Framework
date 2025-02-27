@@ -188,7 +188,6 @@ public class AlbumsPage extends BasePage {
             return null;
         }
     }
-
     public boolean albumDuration() {
         boolean check = true;
         int count = 0;
