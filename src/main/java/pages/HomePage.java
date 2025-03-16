@@ -154,7 +154,7 @@ public class HomePage extends BasePage {
     private WebElement volumeRange;
     @FindBy(css = "[data-testid='repeat-mode-switch']")
     private WebElement repeatModeSwitch;
-    private final By volumeSlider
+    private final By volumeSlider = By.cssSelector("#volumeRange");
     private final By rALikedButtons = By.cssSelector("ol[class^='recently-added'] i[class^='fa fa-heart']");
     private final By searchResultThumbnail = By.cssSelector("section[data-testid='song-excerpts'] span.cover:nth-child(1)");
     private final By lyricsTabLocator = By.id("extraTabLyrics");
